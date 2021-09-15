@@ -1,138 +1,117 @@
 <template>
-<v-app >
-  <header>
-    <div class="nav-d">
-      <Nav />
-      </div>
-      <div class="nav-m">
-        <Navmobile :drawerclick="drawerclick"/>
-        <v-navigation-drawer
+  <v-app dark>
+    <v-navigation-drawer
       v-model="drawer"
-      absolute
-      temporary
+      :mini-variant="miniVariant"
+      :clipped="clipped"
+      fixed
+      app
     >
-      <v-list
-        nav
-        dense
-      >
-        <v-list-item-group
-          v-model="group"
-          active-class="deep-purple--text text--accent-4"
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          router
+          exact
         >
-          <v-list-item @click="onhome()">
-            <v-list-item-icon>
-              <fa style="color:#FF7A00"  icon="home"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Главная</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item @click="onPage('catalog/Все_продукты')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00"  icon="th-list"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Каталог</v-list-item-title>
-          </v-list-item>
-
-              <v-list-item @click="onPage('o_nas')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00"  icon="people-arrows"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>О нас</v-list-item-title>
-          </v-list-item>
-
-            <v-list-item @click="onPage('for_work')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00"  icon="network-wired"></fa>
-            </v-list-item-icon>
-            <v-list-item-title> Как это работает </v-list-item-title>
-          </v-list-item>
-
-            <v-list-item @click="onPage('for_bonus')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00" icon="coins"></fa>
-            </v-list-item-icon>
-            <v-list-item-title> Бонусы</v-list-item-title>
-          </v-list-item>
-
-             <v-list-item @click="onPage('business')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00" icon="chart-pie"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Для Бизнеса</v-list-item-title>
-          </v-list-item>
-
-            <v-list-item @click="onPage('#contact')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00" icon="address-book"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Контакты</v-list-item-title> 
-          </v-list-item>
-        </v-list-item-group>
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-      </div>
-  </header>
-    <main style="min-height:100vh">
-      <Nuxt />
-    </main>
-    <footer id="contact" style="background: #f6f6f6">
-      <Foot/>
-    </footer>
-    <div class="d-block d-lg-none ">
-      <Mobbar/>
-    </div>
+    <v-app-bar
+      :clipped-left="clipped"
+      fixed
+      app
+    >
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-btn
+        icon
+        @click.stop="miniVariant = !miniVariant"
+      >
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        @click.stop="clipped = !clipped"
+      >
+        <v-icon>mdi-application</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        @click.stop="fixed = !fixed"
+      >
+        <v-icon>mdi-minus</v-icon>
+      </v-btn>
+      <v-toolbar-title v-text="title" />
+      <v-spacer />
+      <v-btn
+        icon
+        @click.stop="rightDrawer = !rightDrawer"
+      >
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <v-main>
+      <v-container>
+        <Nuxt />
+      </v-container>
+    </v-main>
+    <v-navigation-drawer
+      v-model="rightDrawer"
+      :right="right"
+      temporary
+      fixed
+    >
+      <v-list>
+        <v-list-item @click.native="right = !right">
+          <v-list-item-action>
+            <v-icon light>
+              mdi-repeat
+            </v-icon>
+          </v-list-item-action>
+          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-footer
+      :absolute="!fixed"
+      app
+    >
+      <span>&copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
-  head(){
-    return{
-      link:[{rel:"canonical",href:`https://el-bazaar.kz/${this.$route.path}`}]
-    }
-  },
-  data() {
+  data () {
     return {
+      clipped: false,
       drawer: false,
-      group: null,
-    };
-  },
-  methods: {
-    onhome(){
-      this.$router.push('/')
-    },
-    drawerclick() {
-      this.drawer = !this.drawer
-    },
-    onPage(url){
-      this.drawer = false
-      this.$router.push('/'+url)
+      fixed: false,
+      items: [
+        {
+          icon: 'mdi-apps',
+          title: 'Welcome',
+          to: '/'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Inspire',
+          to: '/inspire'
+        }
+      ],
+      miniVariant: false,
+      right: true,
+      rightDrawer: false,
+      title: 'Vuetify.js'
     }
-  },
-   
+  }
 }
 </script>
-
-<style >
-
-.nav-d {
-  display: none;
-}
-@media (min-width: 1260px) {
-  .nav-d {
-    display: block;
-  }
-}
-
-.nav-m {
-  display: none;
-}
-@media (max-width: 1259px) {
-  .nav-m {
-    display: block;
-  }
-}
-
-
-  
-</style>

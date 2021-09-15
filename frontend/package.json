@@ -19,6 +19,7 @@
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.12.1"
+    "@nuxtjs/vuetify": "^1.12.1",
+    "node-sass": "^6.0.1"
   }
 }

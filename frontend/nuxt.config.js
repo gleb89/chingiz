@@ -47,9 +47,9 @@ export default {
     '@nuxtjs/axios',
   ],
   
-  // plugins: [
-  //     '~plugins/firebase.js', 
-  // ]
+  plugins: [
+      '~/plugins/firebase.js', 
+  ],
  
   fontawesome:{
     component:'fa',
