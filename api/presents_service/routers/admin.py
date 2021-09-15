@@ -14,7 +14,7 @@ admin_router = APIRouter(
 )
 
 @admin_router.post('/')
-async def create(admin: Admin):
+async def create_admin(admin: Admin):
     return await admin.save()
 
 
