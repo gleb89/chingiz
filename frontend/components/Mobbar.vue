@@ -5,10 +5,16 @@
       background-color="#494A51"
       
     >
-     <div style="padding-top: 1.1rem;" @click="onPage('/')">
-        <v-img style="max-width:5rem;width:3rem" fluid src="/logobtn.png" alt=""></v-img>
+     
+     <v-btn text style="" @click="onPage('/')">
+     <div>
+       <img style="max-width:5rem;margin-top:.3rem" fluid src="/logobtn.png" alt="">
+     </div>
+     <div>
         <span style="color:white;font-size: 15px;" >Главная</span>
-      </div>
+     </div>
+        
+      </v-btn>
       
       <v-btn icon>
         <span style="color:white" >Поиск</span>
