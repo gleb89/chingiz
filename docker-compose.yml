@@ -35,6 +35,7 @@ services:
     depends_on:
       - present_api
     volumes: 
+    - ./frontend:/usr/src/app
     - /app/node_modules
 
 
