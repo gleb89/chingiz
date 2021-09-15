@@ -43,16 +43,19 @@
               @input="menu1 = false"
             ></v-date-picker>
           </v-menu>
+          
           <v-btn
           @click="hhh"
           class="btnper"
             rounded
+            style="margin-top:1rem;height: 3rem;"
             color="#ff7a00"
-            style="height: 39px; margin-top: 1.3rem"
+            
             dark
           >
             <span style="font-size: 12px">перезвоните мне</span>
           </v-btn>
+          
         </div>
       </div>
     </div>
@@ -444,10 +447,11 @@ h1 {
   font-weight: bold;
   margin-left: 1rem;
 }
+
 @media(max-width: 500px){
 .btnper{
   width: 50%;
-  height: 45px;
+  margin-top: 1.3rem
 
 }
 }
