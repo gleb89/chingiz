@@ -1,0 +1,177 @@
+[
+  {
+    "name": "666",
+    "path": "/666",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/666.vue",
+    "chunkName": "pages/666",
+    "_name": "_0150e496"
+  },
+  {
+    "name": "admin",
+    "path": "/admin",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/index.vue",
+    "chunkName": "pages/admin/index",
+    "_name": "_13a55732"
+  },
+  {
+    "name": "business",
+    "path": "/business",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/business/index.vue",
+    "chunkName": "pages/business/index",
+    "_name": "_423e335a"
+  },
+  {
+    "name": "cabinet",
+    "path": "/cabinet",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/cabinet/index.vue",
+    "chunkName": "pages/cabinet/index",
+    "_name": "_e19d060a"
+  },
+  {
+    "name": "catalog",
+    "path": "/catalog",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/catalog/index.vue",
+    "chunkName": "pages/catalog/index",
+    "_name": "_9c040508"
+  },
+  {
+    "name": "for_bonus",
+    "path": "/for_bonus",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/for_bonus/index.vue",
+    "chunkName": "pages/for_bonus/index",
+    "_name": "_f0f846e8"
+  },
+  {
+    "name": "for_work",
+    "path": "/for_work",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/for_work/index.vue",
+    "chunkName": "pages/for_work/index",
+    "_name": "_3c1c529a"
+  },
+  {
+    "name": "o_nas",
+    "path": "/o_nas",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/o_nas/index.vue",
+    "chunkName": "pages/o_nas/index",
+    "_name": "_2dbd8ff3"
+  },
+  {
+    "name": "admin-add_courie_order",
+    "path": "/admin/add_courie_order",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/add_courie_order.vue",
+    "chunkName": "pages/admin/add_courie_order",
+    "_name": "_68a0c022"
+  },
+  {
+    "name": "admin-all_couries",
+    "path": "/admin/all_couries",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/all_couries.vue",
+    "chunkName": "pages/admin/all_couries",
+    "_name": "_56a05220"
+  },
+  {
+    "name": "admin-categories",
+    "path": "/admin/categories",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/categories.vue",
+    "chunkName": "pages/admin/categories",
+    "_name": "_bb71da28"
+  },
+  {
+    "name": "admin-form",
+    "path": "/admin/form",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/form.vue",
+    "chunkName": "pages/admin/form",
+    "_name": "_0594cf94"
+  },
+  {
+    "name": "admin-list_presents",
+    "path": "/admin/list_presents",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/list_presents/index.vue",
+    "chunkName": "pages/admin/list_presents/index",
+    "_name": "_7c6ab788"
+  },
+  {
+    "name": "admin-orders",
+    "path": "/admin/orders",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/orders.vue",
+    "chunkName": "pages/admin/orders",
+    "_name": "_653e7f35"
+  },
+  {
+    "name": "admin-povod",
+    "path": "/admin/povod",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/povod.vue",
+    "chunkName": "pages/admin/povod",
+    "_name": "_518c57cc"
+  },
+  {
+    "name": "admin-send_order",
+    "path": "/admin/send_order",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/send_order.vue",
+    "chunkName": "pages/admin/send_order",
+    "_name": "_0c486b27"
+  },
+  {
+    "name": "admin-type",
+    "path": "/admin/type",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/type.vue",
+    "chunkName": "pages/admin/type",
+    "_name": "_7dedb1ec"
+  },
+  {
+    "name": "cabinet-basket",
+    "path": "/cabinet/basket",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/cabinet/basket/index.vue",
+    "chunkName": "pages/cabinet/basket/index",
+    "_name": "_c0671ca0"
+  },
+  {
+    "name": "cabinet-history",
+    "path": "/cabinet/history",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/cabinet/history/index.vue",
+    "chunkName": "pages/cabinet/history/index",
+    "_name": "_06605c40"
+  },
+  {
+    "name": "admin-list_presents-id",
+    "path": "/admin/list_presents/:id",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/admin/list_presents/_id.vue",
+    "chunkName": "pages/admin/list_presents/_id",
+    "_name": "_ca26f4b8"
+  },
+  {
+    "name": "basket-id",
+    "path": "/basket/:id?",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/basket/_id.vue",
+    "chunkName": "pages/basket/_id",
+    "_name": "_241af381"
+  },
+  {
+    "name": "catalog-name",
+    "path": "/catalog/:name",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/catalog/_name/index.vue",
+    "chunkName": "pages/catalog/_name/index",
+    "_name": "_c2d3b8d2"
+  },
+  {
+    "name": "catalog-name-present",
+    "path": "/catalog/:name/present",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/catalog/_name/present/index.vue",
+    "chunkName": "pages/catalog/_name/present/index",
+    "_name": "_7aa87643"
+  },
+  {
+    "name": "catalog-name-present-id",
+    "path": "/catalog/:name/present/:id",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/catalog/_name/present/_id.vue",
+    "chunkName": "pages/catalog/_name/present/_id",
+    "_name": "_6955a52a"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/gleb/projects/presents-service/frontend/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_12c36bf2"
+  }
+]
