@@ -19,3 +19,4 @@ EXPOSE 3000
 
 # start command
 CMD [ "npm", "start" ]
+# CMD [ "npm", "run" ,"dev"]

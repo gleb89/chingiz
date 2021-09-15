@@ -446,7 +446,8 @@ h1 {
 }
 @media(max-width: 500px){
 .btnper{
-width: 50%;
+  width: 50%;
+  height: 45px;
 
 }
 }
