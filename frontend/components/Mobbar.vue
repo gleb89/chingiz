@@ -74,7 +74,7 @@
       
     >
     <v-card style="padding:1rem">
-    <SignIn :dialog_exit="dialog_exit" :close="close"/>
+    <!-- <SignIn :dialog_exit="dialog_exit" :close="close"/> -->
 
     </v-card>
     </v-dialog>
