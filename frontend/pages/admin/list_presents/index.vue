@@ -310,6 +310,11 @@
             </v-dialog>
           </v-toolbar>
         </template>
+        <!-- изображение -->
+          <template v-slot:item.image="{ item }">
+          <img  style="width: 10rem;" :src="item.image_precent" alt="">
+
+        </template>
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
@@ -350,6 +355,7 @@ export default {
   data: () => ({
     name_precent: "",
     price: null,
+    img_open :false,
     composition: "",
     image_precent: null,
     categories: [],
@@ -375,6 +381,7 @@ export default {
     headers: [
       { text: "Артикул", value: "id" },
       { text: "Название", value: "name_precent" },
+      { text: "Изображение", value: "image", sortable: false },
       { text: "Цена(тг)", value: "price" },
       { text: "Состав", value: "composition", sortable: false },
       { text: "Описание", value: "body" },
@@ -466,6 +473,11 @@ export default {
   },
 
   methods: {
+    onImage(image){
+        // <img src="image_precent"/>
+        console.log(image);
+        return 'hhh'
+      },
     selectFile() {
 
     },

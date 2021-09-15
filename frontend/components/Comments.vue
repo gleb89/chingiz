@@ -125,7 +125,7 @@ export default {
   methods: {
     onOtz() {
       console.log(this.$router.history._startLocation);
-      this.$router.push(this.$router.history._startLocation+'#form-comments')
+      this.$router.push('#form-comments')
     },
   },
 };
