@@ -3,13 +3,13 @@
   <v-card
     style="box-shadow: none;max-height:500px;position: relative;"
     class="ma-4"
-    :class="{ 'on-hover': hover }"
+    
     width="285"
     
   >
   <div style="text-align: start;" @click="onPageProduct(present.id,present.category[0].slug_category)">
     </div>
-    <v-img  :src="present.image_precent" height="200px"></v-img>
+    <v-img :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" height="200px"></v-img>
     <div v-if="hover"  class="text-center" style="position:absolute;left: 5rem;top: 6rem;opacity:1;">
                     <v-btn
                     @click="onPageProduct(present.id,present.category[0].slug_category)"
@@ -20,7 +20,7 @@
                           подробнее
                         </v-btn>
     </div>
-    <v-card-title >
+    <v-card-title :class="{ 'on-hover': hover }">
       <h4 style="font-size: 0.9rem">{{present.name_precent}}</h4>
     </v-card-title>
 
@@ -128,14 +128,16 @@ export default {
 
 <style >
   
-.v-card {
-  transition: opacity .4s ease-in-out;
-  opacity: 0.5;
+.imgs {
+  
+  opacity: 1;
 }
 
-.v-card:not(.on-hover) {
-  opacity: 1;
- }
+.on-hover{
+  opacity: .5;
+  transition: opacity .4s ease-in-out;
+
+}
 
 .show-btns {
   color: rgb(26, 24, 24) !important;
