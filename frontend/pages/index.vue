@@ -45,6 +45,7 @@
           </v-menu>
           <v-btn
           @click="hhh"
+          class="btnper"
             rounded
             color="#ff7a00"
             style="height: 39px; margin-top: 1.3rem"
@@ -64,7 +65,7 @@
             @click="oncatalog()"
             rounded
             color="#ff7a00"
-            style="height: 39px; margin: 0.7rem"
+            style="height: 39px; margin: 0.7rem;margin-top:4rem"
             dark
           >
             <span style="font-size: 12px">перейти в каталог</span>
@@ -116,7 +117,7 @@
             @click="oncatalog()"
             rounded
             color="#ff7a00"
-            style="height: 39px; margin: 0.7rem"
+            style="height: 39px; margin: 0.7rem;margin-top:4rem"
             dark
           >
             <span style="font-size: 12px">перейти в каталог</span>
@@ -443,6 +444,13 @@ h1 {
   font-weight: bold;
   margin-left: 1rem;
 }
+@media(max-width: 500px){
+.btnper{
+width: 50%;
+
+}
+}
+
 .text-flex1 {
   position: absolute;
   z-index: 1;

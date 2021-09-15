@@ -1,8 +1,7 @@
 <template>
   <v-card
-    style="box-shadow: none"
+    style="box-shadow: none;max-height:500px"
     class="ma-4"
-    height="500"
     width="285"
     
   >
