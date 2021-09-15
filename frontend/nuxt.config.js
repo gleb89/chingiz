@@ -30,7 +30,7 @@ export default {
   css: [
     '@/style/index.css'
   ],
-
+  plugins: ['~/plugins/firebase.js'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // plugins: ['@/plugins/firebase'],
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -54,7 +54,7 @@ export default {
     // '@nuxtjs/recaptcha',
 
   ],
-  plugins: ['~/plugins/firebase.js'],
+  
   fontawesome:{
     component:'fa',
     icons:{
@@ -63,7 +63,8 @@ export default {
     }
   },
   axios: {
-    baseURL: 'http://82.148.17.12:8080/api/v1/'
+    // baseURL: 'http://82.148.17.12:8080/api/v1/'
+    // baseURL:"http://testlocal.com:8080/api/v1/"
     },
 
   // recaptcha: {

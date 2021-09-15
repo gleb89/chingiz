@@ -9,13 +9,19 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@fortawesome/free-brands-svg-icons": "^5.15.4",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@nuxtjs/axios": "^5.13.6",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/fontawesome": "^1.1.2",
-    "core-js": "^3.15.1",
-    "firebase": "^9.0.2",
-    "nuxt": "^2.15.7",
+    "@nuxtjs/pwa": "^3.3.5",
+    "cookieparser": "^0.1.0",
+    "core-js": "^3.9.1",
+    "firebase": "^8.6.7",
+    "firebase-admin": "^9.9.0",
+    "js-cookie": "^2.2.1",
+    "jwt-decode": "^3.1.2",
+    "nuxt": "^2.15.3",
     "vuetify": "^2.5.5"
   },
   "devDependencies": {
