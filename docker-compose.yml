@@ -34,8 +34,7 @@ services:
     build: ./frontend
     depends_on:
       - present_api
-    volumes: 
-    - /app/node_modules
+
 
 
   nginx:
