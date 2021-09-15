@@ -5,7 +5,9 @@ FROM node:14.17-alpine3.14
 WORKDIR /app
 COPY package*.json ./
 # Install app dependencies
-RUN rm -rf node_modules package-lock.json &&  npm install --save firebase 
+RUN apk update && apk upgrade && apk add git
+RUN rm -rf node_modules package-lock.json &&  npm install --save core-js@3 firebase --save
+
 
 
 COPY . /app
@@ -19,3 +21,4 @@ EXPOSE 3000
 
 # start command
 CMD [ "npm", "start"]
+# CMD [ "npm", "run", "dev"]
