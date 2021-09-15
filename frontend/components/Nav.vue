@@ -120,7 +120,7 @@ export default {
       return this.$store.state.localStorage.basket
     },
     userauth() {
-      return this.$store.state.localStorage.basket.id_basket
+      return this.$store.state.localStorage.uid_auth_user
     },
   
   },
