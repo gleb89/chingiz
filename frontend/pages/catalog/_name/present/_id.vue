@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center">
+    <v-row justify="center" style="margin-top:3rem">
       <!-- box-img tovar and name-->
       <v-col cols="12" lg="6" class="box-formob">
         <div>
@@ -53,6 +53,7 @@
             {{product.body}}
           </p>
           <!-- card basket -->
+          <div class="d-flex flex-wrap">
           <div
             class="d-flex justify-start"
             style="
@@ -78,6 +79,17 @@
               <v-btn block depressed @click="count_present+=1"> + </v-btn>
             </div>
           </div>
+          <div>
+        <v-btn
+        @click="addBasket(product.id)"
+        style="color:white;margin-top:.7rem"
+        rounded
+        color="#ff7a00"
+        ><span v-if="reveal">в корзине</span> <span v-if="!reveal">купить</span>
+        <img style="width: 1.5rem;cursor:pointer" src="/shopcart.png" alt="" />
+        </v-btn>
+          </div>
+          </div>
           <div class="mt-14">
             <p>
               Внимание! Товар может отличаться по размеру и цвету от
@@ -93,9 +105,9 @@
       <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
       <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
     </div>
-    <!-- <div class="mt-14">
+    <div class="mt-14">
       <Comments />
-    </div> -->
+    </div>
   </v-container>
 </template>
 
@@ -138,7 +150,71 @@ export default {
     return {
       products: this.$store.getters["products/products"],
       count_present:1,
+      reveal:false
     };
+  },
+  methods: {
+    addBasket(present_id){
+      let headers = {
+        "Content-Type": "application/json"
+      };
+     if(this.$store.state.localStorage.uid_auth_user){
+      let data = {
+        'id_user':this.$store.state.localStorage.uid_auth_user,
+        'precent_id':present_id
+      }
+        this.$axios
+        .$post(`present/users/basket/user_basket/add`,data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp);
+          console.log(resp.basket_id);
+          if(this.$store.state.localStorage.basket.id_basket > 0){
+            this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
+          }
+          else{
+            this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
+            this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          }
+          this.reveal = true
+          this.count_present = this.count_present +1
+          
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+      }
+
+      else{
+      let data = {
+        'id_basket':this.$store.state.localStorage.basket.id_basket,
+        'precent_id':present_id
+      }
+      this.$axios
+        .$post(`present/users/basket/anonim_basket/add`,data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp.basket_id);
+          if(this.$store.state.localStorage.basket.id_basket > 0){
+            this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
+          }
+          else{
+            this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
+            this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          }
+          this.reveal = true
+          this.count_present = this.count_present +1
+          
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        } 
+    }
   },
 };
 </script>

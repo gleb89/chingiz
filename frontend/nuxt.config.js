@@ -74,7 +74,7 @@ export default {
   // },
   loading: {
     color: 'orange',
-    height: '1px'
+    height: '2px'
   },
 
   vuetify: {
