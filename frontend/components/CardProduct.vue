@@ -1,19 +1,30 @@
 <template>
+<v-hover v-slot="{ hover }">
   <v-card
-    style="box-shadow: none;max-height:500px"
+    style="box-shadow: none;max-height:500px;position: relative;"
     class="ma-4"
+    :class="{ 'on-hover': hover }"
     width="285"
     
   >
   <div style="text-align: start;" @click="onPageProduct(present.id,present.category[0].slug_category)">
     </div>
-    <v-img @click="onPageProduct(present.id,present.category[0].slug_category)" :src="present.image_precent" height="200px"></v-img>
-
-    <v-card-title @click="onPageProduct(present.id,present.category[0].slug_category)">
+    <v-img  :src="present.image_precent" height="200px"></v-img>
+    <div v-if="hover"  class="text-center" style="position:absolute;left: 5rem;top: 6rem;opacity:1;">
+                    <v-btn
+                    @click="onPageProduct(present.id,present.category[0].slug_category)"
+                       style="color:white;opacity:1"
+                        
+                        color="#ff7a00"
+                        >
+                          подробнее
+                        </v-btn>
+    </div>
+    <v-card-title >
       <h4 style="font-size: 0.9rem">{{present.name_precent}}</h4>
     </v-card-title>
 
-    <v-card-subtitle @click="onPageProduct(present.id,present.category[0].slug_category)">
+    <v-card-subtitle >
 
     </v-card-subtitle>
 
@@ -36,6 +47,7 @@
       </div>
     </v-card-actions>
   </v-card>
+  </v-hover>
 </template>
 
 <script>
@@ -44,6 +56,7 @@ export default {
   data: () => ({
     show: false,
     reveal: false,
+    //  transparent: 'rgba(255, 255, 255, 0)',
    
   }),
   methods: {
@@ -111,3 +124,21 @@ export default {
   },
 };
 </script>
+
+
+<style >
+  
+.v-card {
+  transition: opacity .4s ease-in-out;
+  opacity: 0.5;
+}
+
+.v-card:not(.on-hover) {
+  opacity: 1;
+ }
+
+.show-btns {
+  color: rgb(26, 24, 24) !important;
+}
+
+</style>
