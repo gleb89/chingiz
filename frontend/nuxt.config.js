@@ -63,7 +63,7 @@ export default {
     }
   },
   axios: {
-    baseURL: 'https://testfds.ru/api/v1/'
+    baseURL: 'http://testfds.ru:8080/api/v1/'
     },
 
   // recaptcha: {
