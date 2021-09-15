@@ -6,9 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 # Install app dependencies
 RUN apk update && apk upgrade && apk add git
-RUN rm -rf node_modules package-lock.json &&  npm install -- save nuxt firebase --save
-
-
+RUN rm -rf node_modules package-lock.json &&  npm install -- save nuxt 
 
 COPY . /app
 
