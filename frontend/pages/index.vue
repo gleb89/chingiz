@@ -111,10 +111,13 @@
           class="d-lg-block d-none"
           :listproducts="listproducts.slice(-6)"
         />
+        <div id="ind">
+          <div class="ind2">{{onscr}}</div>
         <Listcartmob
           class="d-lg-none d-block"
           :listproducts="listproducts.slice(-6)"
         />
+        </div>
         <div style="text-align: center">
           <v-btn
             @click="oncatalog()"
@@ -307,6 +310,22 @@ export default {
       });
   },
   computed: {
+        onscr() {
+      if (process.browser) {
+        setTimeout(() => {
+      var intersecti = new IntersectionObserver(function (entries) {
+            if (entries[0].intersectionRatio <= 0) return;
+            document.querySelector("#ind");
+            document.querySelector("#ind").classList.add("ind3");
+            setTimeout(() => {
+              document.querySelector("#ind").classList.remove("ind3");
+            }, 600);
+            
+          });
+      intersecti.observe(document.querySelector(".ind2"));
+        }, 1000);
+      }
+      },
     listproducts() {
       
       return this.presents;
@@ -365,6 +384,14 @@ export default {
 };
 </script>
 <style>
+#ind{
+    transition-delay: .5s;
+    transition: .5s linear .5s; 
+    }
+.ind3{
+  padding-left: 15rem;
+  transition: .5s linear .5s; 
+}
 #header__content {
   background-repeat: no-repeat;
   background-position: center;

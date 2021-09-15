@@ -425,6 +425,7 @@ export default {
   }),
 
   computed: {
+
     all_filter() {
       (this.categories = this.data_filter.categories),
         (this.form_precent = this.data_filter.form_precent),
