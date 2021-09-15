@@ -73,7 +73,7 @@ export default {
   //   version: 2, // Or 3
   // },
   loading: {
-    color: 'white',
+    color: 'orange',
     height: '1px'
   },
 

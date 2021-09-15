@@ -61,7 +61,7 @@
     </div>
       </v-btn>
 
-      <v-btn icon style="position: relative;" @click="onBasket('/basket/'+$store.state.localStorage.basket.id_basket)">
+      <v-btn icon style="position: relative;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
     
         <span style="color: #ff7a00;font-size: .6rem;" >{{basket.summ_present.toLocaleString()}} тг</span>
         <img src="/baskbtn.png" alt="">
@@ -103,10 +103,10 @@ export default {
     onBasket(basket_id){
       if(this.$store.state.localStorage.basket.id_basket > 0){
         if(this.$store.state.localStorage.uid_auth_user){
-        this.$router.push('/cabinet/basket')
+        this.$router.push('/'+'cabinet/basket')
         }
         else{
-        this.$router.push(basket_id)
+        this.$router.push('/'+basket_id)
         }
         
       }

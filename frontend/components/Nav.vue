@@ -135,7 +135,7 @@ export default {
         this.$router.push('/cabinet/basket')
         }
         else{
-        this.$router.push(basket_id)
+        this.$router.push('/'+basket_id)
         }
         
       }
