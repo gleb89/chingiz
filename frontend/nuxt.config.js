@@ -30,7 +30,7 @@ export default {
   
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/firebase.js'],
+  
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -46,7 +46,12 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
   ],
-
+  
+  // plugins: [
+  //     '~plugins/firebase.js', 
+  // ]
+ 
+  
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'http://82.148.17.12:8080/api/v1/'
