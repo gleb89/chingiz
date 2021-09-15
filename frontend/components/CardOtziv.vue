@@ -7,7 +7,7 @@
           >
           <v-card-title >
             <p style="color:#676767;font-size: 1rem;">
-              Михаил Ким
+              Михаил Шафутинский
               <br>
               <span style="color: #C4C4C4;;font-size: .8rem;">г. Алма-ата</span>
             </p>
