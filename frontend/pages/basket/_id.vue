@@ -108,7 +108,7 @@ export default {
   },
   mounted: function () {
     let self = this; 
-    this.ws = new WebSocket("ws://testfds.ru/ws/present/basket");
+    this.ws = new WebSocket("ws://82.148.17.12:8080/ws/present/basket");
     this.ws.onmessage = (event) => {
       let response = JSON.parse(event.data)
       if (response.message === 'remove_all'){
