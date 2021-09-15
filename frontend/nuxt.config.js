@@ -54,7 +54,7 @@ export default {
     // '@nuxtjs/recaptcha',
 
   ],
-  // plugins: ['~/plugins/firebase.js'],
+  plugins: ['~/plugins/firebase.js'],
   fontawesome:{
     component:'fa',
     icons:{
