@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  data_present:
+    restart: always
+    image: "postgres:13-alpine"
+    restart: always
+    volumes:
+        - ./present_data/:/var/lib/postgresql/data/
+    environment:
+        - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
+        - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
+        - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
+
+
+
+
+  present_api:
+    restart: always
+    build: ./api/presents_service
+    env_file:
+      - .env
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
+   
+    depends_on: 
+      - data_present
+    volumes:
+      - ./api/presents_service:/app/presents
+
+
+
+  front:
+    restart: always
+    build: ./frontend
+    depends_on:
+      - present_api
+
+
+  nginx:
+    image: nginx:1.17
+    restart: unless-stopped
+    volumes:
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    depends_on:
+      - present_api
+      - front
+    ports:
+      - "3000:80"
+      - "8080:8080"
+      - "8000:8080"
+      - "80:80"
+      - "443:443"
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  
+  certbot:
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+ 
+    

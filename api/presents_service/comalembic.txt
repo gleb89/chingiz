@@ -1,0 +1,5 @@
+alembic revision --autogenerate -m "New revision"
+
+alembic upgrade head
+
+в случае ошибки Target database is not up to date \ alembic stamp head
