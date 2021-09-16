@@ -31,3 +31,4 @@ class Comments(ormar.Model):
     email_user:str = ormar.String(max_length=100)
     body:str = ormar.String(max_length=10000)
     moderation:bool = ormar.Boolean(nullable=True,default=False)
+    moderation2:bool = ormar.Boolean(nullable=True,default=False)

@@ -1,8 +1,8 @@
-"""first
+"""first2
 
-Revision ID: 918057d7b739
-Revises: 
-Create Date: 2021-09-16 20:25:36.790412
+Revision ID: a9915f846cae
+Revises: 2381f43a89aa
+Create Date: 2021-09-16 20:59:03.025138
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '918057d7b739'
-down_revision = None
+revision = 'a9915f846cae'
+down_revision = '2381f43a89aa'
 branch_labels = None
 depends_on = None
 
@@ -29,7 +29,9 @@ def upgrade():
     op.alter_column('categories', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('categories_id_seq'::regclass)"))
+    op.add_column('coments', sa.Column('moderation2', sa.Boolean(), nullable=True))
     op.alter_column('coments', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
@@ -37,12 +39,12 @@ def upgrade():
     op.alter_column('form', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
-               autoincrement=True,
-               existing_server_default=sa.text("nextval('form_id_seq'::regclass)"))
+               autoincrement=True)
     op.alter_column('present', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('present_id_seq'::regclass)"))
     op.alter_column('presents_categoriess', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
@@ -62,7 +64,8 @@ def upgrade():
     op.alter_column('reason', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('reason_id_seq'::regclass)"))
     op.alter_column('type', 'id',
                existing_type=sa.INTEGER(),
                nullable=True,
@@ -87,7 +90,8 @@ def downgrade():
     op.alter_column('reason', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('reason_id_seq'::regclass)"))
     op.alter_column('presents_typepresents', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
@@ -107,20 +111,22 @@ def downgrade():
     op.alter_column('present', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('present_id_seq'::regclass)"))
     op.alter_column('form', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
-               autoincrement=True,
-               existing_server_default=sa.text("nextval('form_id_seq'::regclass)"))
+               autoincrement=True)
     op.alter_column('coments', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
                autoincrement=True)
+    op.drop_column('coments', 'moderation2')
     op.alter_column('categories', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,
-               autoincrement=True)
+               autoincrement=True,
+               existing_server_default=sa.text("nextval('categories_id_seq'::regclass)"))
     op.alter_column('basket', 'id',
                existing_type=sa.INTEGER(),
                nullable=False,

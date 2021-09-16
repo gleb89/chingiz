@@ -1,5 +1,6 @@
 sudo docker-compose run present_api alembic revision --autogenerate -m "first"
 
-alembic upgrade head
+sudo docker-compose run present_api alembic upgrade head
 
-в случае ошибки Target database is not up to date \ alembic stamp head
+в случае ошибки Target database is not up to date 
+sudo docker-compose run present_api alembic stamp head
