@@ -73,7 +73,7 @@
                 border: 1px solid whitesmoke;
               "
             >
-              {{count_present}}
+              
             </div>
             <div style="flex-grow: 1; text-align: center; background: #f4f5f6">
               <v-btn block depressed @click="count_present+=1"> + </v-btn>
@@ -106,25 +106,22 @@
       <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
     </div>
     <div class="mt-14">
-      <Comments />
+      <Comments :comments_list="comments_list" :product_id="product_id" :add_comment="add_comment"/>
     </div>
   </v-container>
 </template>
 
 <script>
 export default {
-  asyncData({ $axios, route, error }) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
+  async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
-    return $axios
-      .$get(`present/${product_id}`, {
-        headers: headers,
-      })
-      .then((product) => {
-        return { product };
-      });
+    let product = await $axios.get(
+       `present/${product_id}`
+    );
+    const comments = await $axios.get(
+      `present/comments/all/${product_id}`
+    );
+    return { product: product.data,comments:comments.data,product_id};
   },
   computed: {},
   async fetch({ store }) {
@@ -145,15 +142,23 @@ export default {
       });
       return this.products;
     },
+    comments_list(){
+      this.comments_all = this.comments
+      return this.comments_all
+    }
   },
   data() {
     return {
       products: this.$store.getters["products/products"],
       count_present:1,
-      reveal:false
+      reveal:false,
+      comments_all:[]
     };
   },
   methods: {
+    add_comment(data){
+      this.comments_all.push(data)
+    },
     addBasket(present_id){
       let headers = {
         "Content-Type": "application/json"

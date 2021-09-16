@@ -16,7 +16,8 @@ from routers import (
     admin,
     sockets,
     users,
-    basket
+    basket,
+    coments
     )   
 
 
@@ -92,9 +93,7 @@ app.include_router(
 app.include_router(
     reason_for_precent.reason_precent
 )
-# app.include_router(
-#     users.users_route
-# )
+
 app.include_router(
     admin.admin_router
 )
@@ -106,6 +105,10 @@ app.include_router(
 )
 app.include_router(
     basket.app
+)
+
+app.include_router(
+    coments.comment_router
 )
 
 

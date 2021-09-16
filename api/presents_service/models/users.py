@@ -23,4 +23,5 @@ class Users(ormar.Model):
     firstname:str = ormar.String(max_length=100, nullable=True)
     last_name:str = ormar.String(max_length=100, nullable=True)
     father_name:str = ormar.String(max_length=100, nullable=True)
+    points:int = ormar.Integer(nullable=True,default=0)
     

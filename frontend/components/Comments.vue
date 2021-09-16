@@ -10,23 +10,21 @@
     </div>
 
     <!-- box-comments -->
-    <div v-for="i in 3" :key="i" id="comments">
+    <div class="boxc-comment" style="overflow: auto; max-height: 60vh;">
+      {{onscr}}
+    <div v-for="comment in comments_list" :key="comment.id" id="comments">
       <v-container>
         <v-row justify="center">
           <v-col cols="12">
             <div class="card-comments-user">
               <div class="d-flex flex-wrap">
                 <div style="flex-grow: 1">
-                  <span>Виктор | 05.06.2021</span>
+                  <span>{{comment.name_user}} | 05.06.2021</span>
                 </div>
               </div>
               <div class="text-comment">
                 <p>
-                  Отличные яблоки - сочные, сладкие, свежие! Мои дети их
-                  обожают. Сервис и стоимость приятно порадовали. Заказ приняли
-                  быстро, вежливо. Единственные момент - нашёл в одном яблоке
-                  червячка, поэтому снизил оценку, но определённо буду брать
-                  ещё!
+                 {{comment.body}}
                 </p>
               </div>
             </div>
@@ -34,11 +32,8 @@
         </v-row>
       </v-container>
     </div>
-    <div id="all-comments" class="text-center mt-3">
-      <a style="color: black; border-bottom: 1px solid; border-color: black"
-        >показать все отзывы</a
-      >
     </div>
+
 
  <div id="form-comments" class="mt-10">
       <h2>Написать отзыв</h2>
@@ -60,31 +55,42 @@
               <v-row>
                 <v-col class="namephone" cols="12" md="6">
                   <v-text-field
+                  v-model="name_user"
                     class="rounded-xl"
                     label="Ваше имя"
                     placeholder="Ваше имя"
                     outlined
+                    :rules="[(v) => !!v || 'Не может быть пустым']"
+                    required
                   ></v-text-field>
 
                   <v-text-field
+                  v-model="phone_user"
                     class="rounded-xl"
                     label="Номер телефона"
                     placeholder="Номер телефона"
                     outlined
+                    :rules="[(v) => !!v || 'Не может быть пустым']"
+                    required
                   ></v-text-field>
 
                   <v-text-field
+                  v-model="email_user"
                     class="rounded-xl"
                     label="E-mail"
                     placeholder="E-mail"
                     outlined
+                    :rules="[v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Введите E-mail']"
+                    required
                   ></v-text-field>
                 </v-col>
 
                 <v-col class="textotz" cols="12" md="6">
                   <v-textarea
+                    v-model="body"
                     class="rounded-xl"
                     solo
+                   :rules="[(v) => !!v || 'Не может быть пустым']"
                     style="width: 32rem; max-width: 100%"
                     label="Напишите ваш отзыв здесь"
                   ></v-textarea>
@@ -97,8 +103,20 @@
               Нажимая кнопку “Оставить отзыв” вы соглашаетесь с нашей политикой
               конфиденциальности
             </p>
-            <div class="text-center">
+            <div class="text-center" style="position: relative;">
+            <v-alert
+        v-model="alert"
+          style="position: absolute;z-index: 2;width: 90%;top: -6rem;"
+            color="orange"
+            elevation="13"
+            type="success"
+          >
+          <p class="text-center">Спасибо за коментарий!</p>
+          <p class="text-center">{{text_alert}}</p>
+          </v-alert>
               <v-btn
+              :disabled="!onlformdata"
+              @click="sendComment"
                 rounded
                 color="#ff7a00"
                 style="height: 39px; margin: 0.7rem"
@@ -115,16 +133,85 @@
 </template>
 
 <script>
+      const headers = {
+        "Content-Type": "application/json"
+      };
 export default {
+  props:['comments_list','product_id','add_comment'],
+  computed: {
+        onscr() {
+      if (process.browser) {
+        setTimeout(() => {
+      var intersecti = new IntersectionObserver(function (entries) {
+            if (entries[0].intersectionRatio <= 0) return;
+            document.querySelector(".boxc-comment");
+            document.querySelector(".boxc-comment").classList.add("listgroup1-dwizh33");
+            setTimeout(() => {
+              document.querySelector(".boxc-comment").classList.remove("listgroup1-dwizh33");
+            }, 600);
+            
+          });
+      intersecti.observe(document.querySelector(".boxc-comment"));
+        }, 1000);
+      }
+      },
+  onlformdata() {
+      if (
+      this.email_user == !this.email_user || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email_user) &&
+      this.phone_user &&
+      this.email_user &&
+      this.name_user &&
+      this.body
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  
+  },
   data() {
     return {
-    
-      
+      text_alert:'',
+      body:'',
+      email_user:'',
+      phone_user:'',
+      name_user:'',
+      alert:false
     };
   },
   methods: {
+    sendComment(){
+      let data = {
+          "present_id": this.product_id,
+          "name_user": this.name_user,
+          "phone_user": this.phone_user,
+          "email_user": this.email_user,
+          "body": this.body
+        }
+      this.$axios
+        .$post(`present/comments/`, data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          this.add_comment(resp)
+          console.log(resp.user_id);
+          if(resp.user_id){
+            this.text_alert = 'Вам начисленно 500 бонусных балов'
+          }
+          else{
+            this.text_alert = ''
+          }
+          this.alert = true
+        setTimeout(() => {
+          this.alert = false
+        }, 2000);
+        })
+        .catch(function (error) {
+          console.log("error");
+        });
+    },
     onOtz() {
-      console.log(this.$router.history._startLocation);
       this.$router.push('#form-comments')
     },
   },
@@ -133,6 +220,15 @@ export default {
 
 
 <style>
+.boxc-comment{
+       
+  transition-delay: .5s;
+  transition: .5s linear .5s; 
+    }
+.listgroup1-dwizh33{
+  padding-top: 20rem;
+  transition: .5s linear .5s; 
+}
 .form-otziv {
   background-repeat: no-repeat;
   background-position: center;

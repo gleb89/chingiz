@@ -21,5 +21,5 @@ class Basket(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     user: Optional[Users] = ormar.ForeignKey(Users, related_name="basket_user")
-    count_present_item = ormar.JSON(default={},nullable=True,)
+    count_present_item = ormar.JSON(default={},nullable=True)
 
