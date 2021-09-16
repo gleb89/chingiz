@@ -3,7 +3,7 @@ version: '3'
 services:
   present_bd:
     restart: always
-    image: "postgres:13-alpine"
+    image: "postgres:13.4-alpine"
     restart: always
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
