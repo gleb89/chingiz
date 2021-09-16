@@ -45,7 +45,6 @@
           </v-menu>
           
           <v-btn
-          @click="hhh"
           class="btnper"
             rounded
             style="margin-top:1rem;height: 3rem;"
@@ -85,6 +84,7 @@
           на постоянную скидку
         </h2>
         <v-btn
+        @click="onBonus"
           rounded
           color="#ff7a00"
           style="height: 39px; margin-top: 2rem"
@@ -279,6 +279,7 @@
             ></v-radio>
           </v-radio-group>
           <v-btn
+          @click="onBonus"
             rounded
             color="#ff7a00"
             style="height: 39px; margin-top: 1.7rem; margin-bottom: 1.7rem"
@@ -354,6 +355,9 @@ export default {
   }),
 
   methods: {
+    onBonus(){
+      this.$router.push('/'+'for_bonus')
+    },
     hhh(){
       this.$store.commit("localStorage/set_summBasket",0);
       this.$store.commit("localStorage/set_idBasket",0);
