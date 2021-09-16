@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  data_present:
+  present_bd:
     restart: always
     image: "postgres:13-alpine"
     restart: always
@@ -23,7 +23,7 @@ services:
     command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
    
     depends_on: 
-      - data_present
+      - present_bd
     volumes:
       - ./api/presents_service:/app/presents
 
