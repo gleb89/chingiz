@@ -1,4 +1,4 @@
-alembic revision --autogenerate -m "New revision"
+sudo docker-compose run present_api alembic revision --autogenerate -m "first"
 
 alembic upgrade head
 

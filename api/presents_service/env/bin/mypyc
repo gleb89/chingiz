@@ -1,4 +1,4 @@
-#!/home/gleb/projects/presents-service/api/presents_service/env/bin/python3
+#!/home/gleb/projects/chingiz/api/presents_service/env/bin/python3
 """Mypyc command-line tool.
 
 Usage:
