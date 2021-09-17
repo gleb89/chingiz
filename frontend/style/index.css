@@ -57,11 +57,12 @@ html{
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
-.v-window__prev {
-  background: white;
-    
-  }
-  .v-window__next {
+
+.v-application--is-ltr .v-window__prev {
+    left: 0;
     background: white;
- 
-  }
+}
+.v-application--is-ltr .v-window__next, .v-application--is-rtl .v-window__prev {
+  right: 0;
+  background: white;
+}
