@@ -62,7 +62,7 @@
         <div class="d-flex flex-wrap mt-6 mb-6">
           <div style="flex-grow: 3; position: relative;width:100%">
             <img
-              style="position: absolute; top: 2.2rem; z-index: 1; right: 1rem"
+              style="position: absolute; top: 1.1rem; z-index: 1; right: 1rem"
               src="/search .png"
               alt=""
             />

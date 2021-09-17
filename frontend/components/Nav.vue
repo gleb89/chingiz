@@ -66,6 +66,7 @@
       >
         <template v-slot:activator="{ on, attrs }">
           <v-btn
+          text
             class=""
             v-bind="attrs"
             v-on="on"
@@ -188,6 +189,7 @@ export default {
 }
 .box-icon_text {
   display: flex;
+  background: none;
 }
 @media (max-width:1890px) {
   .text-nav{
