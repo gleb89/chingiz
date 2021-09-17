@@ -44,7 +44,7 @@
             <v-list-item-icon>
              <fa style="color:#FF7A00"  icon="network-wired"></fa>
             </v-list-item-icon>
-            <v-list-item-title> Как это работает </v-list-item-title>
+            <v-list-item-title> Доставка и оплата  </v-list-item-title>
           </v-list-item>
 
             <v-list-item @click="onPage('for_bonus')">

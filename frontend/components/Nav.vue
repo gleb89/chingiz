@@ -1,7 +1,9 @@
 <template>
-  <v-bottom-navigation
-  style="position: fixed;top: 0;z-index: 1;"
-    class="d-flex">
+  <nav
+  class="text-center"
+  style="position: fixed;top: 0;z-index: 1;width:100%;background: white;"
+    >
+    <v-container class="d-flex justify-center">
     <div style="padding-right: 3rem">
       <v-img
       @click="onHome()"
@@ -26,7 +28,7 @@
       <span class="text-nav">О нас</span>
     </div>
     <div @click="onPage('for_work')" class="nav-link">
-      <span class="text-nav">Как это работает</span>
+      <span class="text-nav">Доставка и оплата </span>
     </div>
     <div @click="onPage('for_bonus')" class="nav-link">
       <span class="text-nav">Бонусы</span>
@@ -40,9 +42,13 @@
     <div class="nav-link" style="cursor:pointer" @click="onCatalog">
       <img style="width: 1rem" src="/search.svg" alt="" />
     </div>
+
     <div class="nav-link">
       <span class="text-nav">+7 (888) 777 77 88</span>
+      <img style="width: 1rem;margin-left:.7rem" src="/tt.png" alt="" />
+      <img style="width: 1rem;margin-left:.7rem" src="/ww.png" alt="" />
     </div>
+            
     <div class="nav-link box-icon_text" v-if="!userauth">
       <div style="margin-right: 7px">
         <img src="/login.svg" alt="" />
@@ -105,7 +111,8 @@
     
     </v-card>
     </v-dialog>
-  </v-bottom-navigation>
+    </v-container>
+  </nav>
 </template>
 
 <script>
@@ -182,4 +189,10 @@ export default {
 .box-icon_text {
   display: flex;
 }
+@media (max-width:1890px) {
+  .text-nav{
+    font-size: .8rem;
+  }
+}
+
 </style>

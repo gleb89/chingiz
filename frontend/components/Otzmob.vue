@@ -1,50 +1,30 @@
 <template>
-    <div id="box-cardmob2" class="d-flex flex-nowrap  py-3">
-        <div  v-for="present in 5" :key="present.id">
-            <div class="startefect2">
-            {{onscr}}
-          </div>
+  <v-carousel class="carsmob" height="400"  hide-delimiters style="position:relitative;">
+    <v-carousel-item  v-for="comment in 9" :key="comment.id">
+      <v-container>
+        <v-row justify="center" class="text-center">
+          <v-col class="text-center d-flex justify-center"  cols="12"    >
             <CardOtziv/>
-        </div>
-    </div>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-carousel-item>
+  </v-carousel>
 </template>
 
-<script>
-  export default {
-    
-    data: () => ({
-      model: null,
-    }),
-    computed: {
-    onscr() {
-      if (process.browser) {
-        setTimeout(() => {
-      var intersecti = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio <= 0) return;
-            document.querySelector("#box-cardmob2");
-            document.querySelector("#box-cardmob2").classList.add("listgroup1-dwizh2");
-            setTimeout(() => {
-              document.querySelector("#box-cardmob2").classList.remove("listgroup1-dwizh2");
-            }, 600);
-            
-          });
-      intersecti.observe(document.querySelector(".startefect2"));
-        }, 1000);
-      }
-      },
-    
-    },
-  }
-</script>
-
 <style >
-#box-cardmob2{
-    overflow-x: scroll;  
-    transition-delay: .5s;
-    transition: .5s linear .5s; 
-    }
-.listgroup1-dwizh2{
-  padding-left: 15rem;
-  transition: .5s linear .5s; 
+
+@media (max-width: 500px) {
+  .carsmob  .v-window__prev {
+    left: -.9rem;
+    
 }
+    
+  .carsmob  .v-window__next {
+    right: -.9rem;
+   
+}
+}
+
+
 </style>

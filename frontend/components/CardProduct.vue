@@ -1,14 +1,14 @@
 <template>
 <v-hover v-slot="{ hover }">
   <v-card
-    style="box-shadow: none;max-height:500px;position: relative;"
-    class="ma-4"
+    style="box-shadow: none;max-height:500px;position: relative;padding:1rem"
+    
     width="400"
     
   >
   <div style="text-align: start;" @click="onPageProduct(present.id,present.category[0].slug_category)">
     </div>
-    <div style="width:100%">
+    <div style="width:100%;text-align: center;">
     <img style="width:20rem" :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" >
     </div>
     <div v-if="hover"  class="text-center" style="position:absolute;left: 8rem;top: 10rem;opacity:1;">
@@ -22,19 +22,19 @@
                         </v-btn>
     </div>
     <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
-      <h4 class="hh4" style="font-size: 0.9rem">{{present.name_precent}}</h4>
+      <h4 class="hh4" style="font-size: 0.9rem;text-align: center;">{{present.name_precent}}</h4>
     </v-card-title>
 
     <v-card-subtitle >
 
     </v-card-subtitle>
 
-    <v-card-actions class="d-flex justify-start">
+    <v-card-actions class="d-flex justify-center" style="text-align: center;">
       <div style="min-width: 40%;">
         <img v-if="reveal" src="/checbasket.png" alt="" />
-        <span style="">{{present.price.toLocaleString()}} тг</span>
+        <span style="font-weight: bold;font-size: 1.3rem;">{{present.price.toLocaleString()}} тг</span>
       </div>
-      <div style="width: 50%; text-align: end">
+      <div style="width: 50%; text-align: center">
         <v-btn
         @click="addBasket(present.id)"
         style="color:white"

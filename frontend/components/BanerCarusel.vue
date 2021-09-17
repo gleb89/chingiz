@@ -2,9 +2,9 @@
   <v-carousel hide-delimiters style="position:relitative">
     <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
       <div class="box-text-carusel">
-        <h3 style="font-size:2.5rem">Акция 
+        <h3 style="font-size:2.5rem;color:white">Акция 
 на день учителя*</h3>
-        <p style="margin-top: 1rem;">
+        <p style="margin-top: 1rem;color:white">
           Закажите оригинальный букет с бесплатной доставкой!
         </p>
               <v-btn
@@ -70,7 +70,7 @@ export default {
   left: 0;
   height: 100%;
   padding-left: 4rem;
-  top: 10rem;
+  top: 3rem;
 
 }
 </style>

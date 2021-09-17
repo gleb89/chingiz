@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <div id="header__content">
       <div style="text-alignt: center; width: 100%">
         <h1>лучший сервис оригинальных подарков</h1>
@@ -66,8 +67,10 @@
     </div>
     <section id="best-products" style="margin-bottom:4rem;margin-top:4rem">
       <v-container>
+        <h2 style="font-size: 2.5rem;">популярные корзины и боксы</h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
-        <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
+        <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
+        <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
         <div style="text-align: center">
           <v-btn
             @click="oncatalog()"
@@ -81,7 +84,7 @@
         </div>
       </v-container>
     </section>
-
+<v-parallax  src="/bonus.png">
     <section id="baner-bonys">
       <div style="width: 100%">
         <h2 style="font-size: 2.5rem">
@@ -100,7 +103,7 @@
         </v-btn>
       </div>
     </section>
-
+</v-parallax>
     <section id="new-products" style="margin-bottom:4rem;margin-top:4rem">
       <v-container>
         <h2
@@ -114,7 +117,8 @@
           новинки в тренде
         </h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
-        <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
+        <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
+        <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
         <div style="text-align: center">
           <v-btn
             @click="oncatalog()"
@@ -194,7 +198,7 @@
                 ассортимент
               </p>
             </div>
-            <img style="max-width: 100%;" src="preim1.png" />
+            <img style="max-width: 100%;width: 35rem;" src="preim1.png" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -206,7 +210,7 @@
                 каждый день
               </p>
             </div>
-            <img style="max-width: 100%;" src="preim2.png" />
+            <img style="max-width: 100%;width: 35rem;" src="preim2.png" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -216,7 +220,7 @@
                 до двери
               </p>
             </div>
-            <img style="max-width: 100%;" src="preim3.png" />
+            <img style="max-width: 100%;width: 35rem;" src="preim3.png" />
           </div>
         </div>
         <div style="text-align: center">
@@ -363,96 +367,96 @@ export default {
     date: "",
     city: "",
     list_cituys:[
-      'Абай',
-      'Акколь',
-      'Аксай',
-      'Аксу',
-      'Актау',
-      'Актобе',
-      'Алга',
+      // 'Абай',
+      // 'Акколь',
+      // 'Аксай',
+      // 'Аксу',
+      // 'Актау',
+      // 'Актобе',
+      // 'Алга',
       'Алматы',
-      'Арал',
-      'Аркалык',
-      'Арыс',
+      // 'Арал',
+      // 'Аркалык',
+      // 'Арыс',
       'Нур-Султан',
-      'Атбасар',
-      'Атырау',
-      'Аягоз',
-      'Байконыр',
-      'Балхаш',
-      'Булаево',
-      'Державинск',
-      'Ерейментау',
-      'Есик',
-      'Есиль',
-      'Жанаозен',
-      'Жанатас',
-      'Жаркент',
-      'Жезказган',
-      'Жем',
-      'Жетысай',
-      'Житикара',
-      'Зайсан',
-      'Зыряновск',
-      'Казалинск',
-      'Кандыагаш',
-      'Капшагай',
-      'Караганды',
-      'Каражал',
-      'Каратау',
-      'Каркаралинск',
-      'Каскелен',
-      'Кентау',
-      'Кокшетау',
-      'Костанай',
-      'Косшы',
-      'Кулсары',
-      'Курчатов',
-      'Кызылорда',
-      'Ленгер',
-      'Лисаковск',
-      'Макинск',
-      'Мамлютка',
-      'Павлодар',
-      'Петропавловск',
-      'Приозёрск',
-      'Риддер',
-      'Рудный',
-      'Сарань',
-      'Сарканд',
-      'Сарыагаш',
-      'Сатпаев',
-      'Семей',
-      'Сергеевка',
-      'Серебрянск',
-      'Степногорск',
-      'Степняк',
-      'Тайынша',
-      'Талгар',
-      'Талдыкорган',
-      'Тараз',
-      'Текели',
-      'Темиртау',
-      'Темир',
-      'Темиртау',
-      'Тобыл',
-      'Туркестан',
-      'Уральск',
-      'Усть-Каменогорск',
-      'Ушарал',
-      'Уштобе',
-      'Форт-Шевченко',
-      'Хромтау',
-      'Шардара',
-      'Шалкар',
-      'Шар',
-      'Шахтинск',
-      'Шемонаиха',
-      'Шу',
-      'Шымкент',
-      'Щучинск',
-      'Экибастуз',
-      'Эмба'
+      // 'Атбасар',
+      // 'Атырау',
+      // 'Аягоз',
+      // 'Байконыр',
+      // 'Балхаш',
+      // 'Булаево',
+      // 'Державинск',
+      // 'Ерейментау',
+      // 'Есик',
+      // 'Есиль',
+      // 'Жанаозен',
+      // 'Жанатас',
+      // 'Жаркент',
+      // 'Жезказган',
+      // 'Жем',
+      // 'Жетысай',
+      // 'Житикара',
+      // 'Зайсан',
+      // 'Зыряновск',
+      // 'Казалинск',
+      // 'Кандыагаш',
+      // 'Капшагай',
+      // 'Караганды',
+      // 'Каражал',
+      // 'Каратау',
+      // 'Каркаралинск',
+      // 'Каскелен',
+      // 'Кентау',
+      // 'Кокшетау',
+      // 'Костанай',
+      // 'Косшы',
+      // 'Кулсары',
+      // 'Курчатов',
+      // 'Кызылорда',
+      // 'Ленгер',
+      // 'Лисаковск',
+      // 'Макинск',
+      // 'Мамлютка',
+      // 'Павлодар',
+      // 'Петропавловск',
+      // 'Приозёрск',
+      // 'Риддер',
+      // 'Рудный',
+      // 'Сарань',
+      // 'Сарканд',
+      // 'Сарыагаш',
+      // 'Сатпаев',
+      // 'Семей',
+      // 'Сергеевка',
+      // 'Серебрянск',
+      // 'Степногорск',
+      // 'Степняк',
+      // 'Тайынша',
+      // 'Талгар',
+      // 'Талдыкорган',
+      // 'Тараз',
+      // 'Текели',
+      // 'Темиртау',
+      // 'Темир',
+      // 'Темиртау',
+      // 'Тобыл',
+      // 'Туркестан',
+      // 'Уральск',
+      // 'Усть-Каменогорск',
+      // 'Ушарал',
+      // 'Уштобе',
+      // 'Форт-Шевченко',
+      // 'Хромтау',
+      // 'Шардара',
+      // 'Шалкар',
+      // 'Шар',
+      // 'Шахтинск',
+      // 'Шемонаиха',
+      // 'Шу',
+      // 'Шымкент',
+      // 'Щучинск',
+      // 'Экибастуз',
+      // 'Эмба'
     ]
   }),
 
@@ -531,10 +535,7 @@ h1{
     margin-top: 4rem;
 }
 #baner-bonys {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  background-image: url("/bonus.png");
+  
   min-height: 400px;
   color: white;
   display: flex;
@@ -549,6 +550,7 @@ h1 {
   h1 {
     font-size: 2rem;
   }
+
 }
 #bonus-opros .box-opros {
   background-repeat: no-repeat;

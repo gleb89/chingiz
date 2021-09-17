@@ -2,7 +2,7 @@
   <v-container>
     <v-row justify="center">
       <!-- box-filters -->
-      <v-col cols="12" lg="2">
+      <v-col class="bocc-filter" cols="12" lg="2">
         <div class="mobp " style="margin-top:6rem">
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
           <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
@@ -314,11 +314,19 @@ export default {
   .box-products {
     padding-left: 3rem;
   }
-  .box-scrol{
-  overflow: auto;
+
+}
+  .box-products{
+  overflow-x: hidden;
   height: 100vh;
   }
-}
+    .bocc-filter{
+  overflow-x: hidden;
+  height: 100vh;
+  }
+
+::-webkit-scrollbar {display:none;}
+  
 .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
   > .v-input__control
   > .v-input__slot,
