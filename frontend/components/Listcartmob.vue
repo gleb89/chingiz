@@ -1,9 +1,9 @@
 <template>
 <v-container>
-  <v-row justify="center" style="position: relative;">
+  <v-row justify="center" style="position: relative;text-align: center;">
     <div class="next_prev">
-      <v-btn text @click="prev"><img src="/L.png" alt=""></v-btn>
-      <v-btn text @click="next"><img src="/R.png" alt=""></v-btn>
+      <img @click="prev" src="/L.png" alt="">
+      <img @click="next" src="/R.png" alt="">
     </div>
   <v-col style="text-align: -moz-center;" cols="12" md="4" lg="4" v-for="present in listproducts.slice(start,end)" :key="present.id">
     <CardProduct :present="present"/>
@@ -48,13 +48,16 @@
 
 
 <style >
+@media (max-width:500px) {
+  
+
   .next_prev{
 position: absolute;
-width: 100%;
+width: 110%;
 display: flex;
 z-index: 1;
-
 justify-content: space-between;
-top: 8rem;
+top: 18rem;
   }
+}
 </style>

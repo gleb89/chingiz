@@ -8,8 +8,10 @@
   >
   <div style="text-align: start;" @click="onPageProduct(present.id,present.category[0].slug_category)">
     </div>
-    <v-img :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" height="200px"></v-img>
-    <div v-if="hover"  class="text-center" style="position:absolute;left: 8rem;top: 4rem;opacity:1;">
+    <div style="width:100%">
+    <img style="width:20rem" :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" >
+    </div>
+    <div v-if="hover"  class="text-center" style="position:absolute;left: 8rem;top: 10rem;opacity:1;">
                     <v-btn
                     @click="onPageProduct(present.id,present.category[0].slug_category)"
                        style="color:white;opacity:1"
@@ -20,7 +22,7 @@
                         </v-btn>
     </div>
     <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
-      <h4 style="font-size: 0.9rem">{{present.name_precent}}</h4>
+      <h4 class="hh4" style="font-size: 0.9rem">{{present.name_precent}}</h4>
     </v-card-title>
 
     <v-card-subtitle >
@@ -148,5 +150,9 @@ export default {
 .show-btns {
   color: rgb(26, 24, 24) !important;
 }
+
+  .hh4{
+    width: 100%;
+  }
 
 </style>

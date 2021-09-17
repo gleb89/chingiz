@@ -10,12 +10,16 @@
           style="margin-top: 2rem"
           class="d-flex justify-center flex-wrap box-header"
         >
-          <v-text-field
+            <v-autocomplete
             style="margin: 1rem"
             label="Город доставки"
             v-model="city"
+            color="orange"
+            item-color="orange"
+            :items="list_cituys"
             solo
-          ></v-text-field>
+            no-data-text="Ничего не найдено"
+            ></v-autocomplete>
           <v-menu
             ref="menu1"
             v-model="menu1"
@@ -25,6 +29,7 @@
             max-width="290px"
             min-width="auto"
           >
+
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 style="margin: 1rem"
@@ -45,6 +50,7 @@
           </v-menu>
           
           <v-btn
+          @click="onsavecity_pushCatalog"
           class="btnper"
             rounded
             style="margin-top:1rem;height: 3rem;"
@@ -52,7 +58,7 @@
             
             dark
           >
-            <span style="font-size: 12px">перезвоните мне</span>
+            <span style="font-size: 12px">получить подарок</span>
           </v-btn>
           
         </div>
@@ -356,6 +362,98 @@ export default {
     datetime: "",
     date: "",
     city: "",
+    list_cituys:[
+      'Абай',
+      'Акколь',
+      'Аксай',
+      'Аксу',
+      'Актау',
+      'Актобе',
+      'Алга',
+      'Алматы',
+      'Арал',
+      'Аркалык',
+      'Арыс',
+      'Нур-Султан',
+      'Атбасар',
+      'Атырау',
+      'Аягоз',
+      'Байконыр',
+      'Балхаш',
+      'Булаево',
+      'Державинск',
+      'Ерейментау',
+      'Есик',
+      'Есиль',
+      'Жанаозен',
+      'Жанатас',
+      'Жаркент',
+      'Жезказган',
+      'Жем',
+      'Жетысай',
+      'Житикара',
+      'Зайсан',
+      'Зыряновск',
+      'Казалинск',
+      'Кандыагаш',
+      'Капшагай',
+      'Караганды',
+      'Каражал',
+      'Каратау',
+      'Каркаралинск',
+      'Каскелен',
+      'Кентау',
+      'Кокшетау',
+      'Костанай',
+      'Косшы',
+      'Кулсары',
+      'Курчатов',
+      'Кызылорда',
+      'Ленгер',
+      'Лисаковск',
+      'Макинск',
+      'Мамлютка',
+      'Павлодар',
+      'Петропавловск',
+      'Приозёрск',
+      'Риддер',
+      'Рудный',
+      'Сарань',
+      'Сарканд',
+      'Сарыагаш',
+      'Сатпаев',
+      'Семей',
+      'Сергеевка',
+      'Серебрянск',
+      'Степногорск',
+      'Степняк',
+      'Тайынша',
+      'Талгар',
+      'Талдыкорган',
+      'Тараз',
+      'Текели',
+      'Темиртау',
+      'Темир',
+      'Темиртау',
+      'Тобыл',
+      'Туркестан',
+      'Уральск',
+      'Усть-Каменогорск',
+      'Ушарал',
+      'Уштобе',
+      'Форт-Шевченко',
+      'Хромтау',
+      'Шардара',
+      'Шалкар',
+      'Шар',
+      'Шахтинск',
+      'Шемонаиха',
+      'Шу',
+      'Шымкент',
+      'Щучинск',
+      'Экибастуз',
+      'Эмба'
+    ]
   }),
 
   methods: {
@@ -395,6 +493,9 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     oncatalog() {
+      this.$router.push("/"+'catalog/Все_продукты');
+    },
+    onsavecity_pushCatalog(){
       this.$router.push("/"+'catalog/Все_продукты');
     },
     getEvents(event) {
@@ -554,5 +655,8 @@ h1 {
   width: max-content;
   margin-top: 1rem;
   max-width: max-content;
+}
+.theme--light.v-list-item .v-list-item__mask{
+  color:orange;
 }
 </style>

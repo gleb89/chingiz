@@ -55,6 +55,6 @@ display: flex;
 z-index: 1;
 
 justify-content: space-between;
-top: 8rem;
+top: 18rem;
   }
 </style>
