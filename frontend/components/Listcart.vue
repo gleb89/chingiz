@@ -1,25 +1,15 @@
 <template>
-  <v-sheet
-    class="mx-auto"
-    
-  >
-    <v-slide-group
-      v-model="model"
-      class="pa-0"
-      slide-group-prev-basis="12px"
-      active-class="success"
-      show-arrows
-      center-active
-    >
-      <v-slide-item
-        v-for="present in listproducts"
-        :key="present.id"
-        v-slot="{ active, toggle }"
-      >
-<CardProduct :present="present"/>
-      </v-slide-item>
-    </v-slide-group>
-  </v-sheet>
+<v-container>
+  <v-row justify="center" style="position: relative;min-height: 70vh;">
+    <div class="next_prev">
+      <img style="cursor:pointer" @click="prev" src="/L.png" alt="">
+      <img style="cursor:pointer" @click="next" src="/R.png" alt="">
+    </div>
+  <v-col style="text-align: -moz-center;" cols="12" md="4" lg="4" v-for="present in listproducts.slice(start,end)" :key="present.id">
+    <CardProduct :present="present"/>
+  </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>
@@ -27,16 +17,44 @@
     props:['listproducts'],
     data: () => ({
       model: null,
+      start:0,
+      end:3
     }),
+    methods: {
+      prev() {
+        if (this.start === 0){
+            this.start = 3
+            this.end = 6
+        }
+        else{
+            this.start = this.start-3,
+            this.end = this.end-3
+        }
+
+      },
+      next(){
+        if (this.end === 6){
+            this.start = 0
+            this.end = 3
+        }
+        else{
+            this.start = this.start +3,
+            this.end = this.end +3
+        }
+      }
+    },
   }
 </script>
 
 
 <style >
-@media (max-width:500px) {
-    .v-slide-group__next, .v-slide-group__prev {
-    min-width: 3px;
-}
-}
+  .next_prev{
+position: absolute;
+width: 100%;
+display: flex;
+z-index: 1;
 
+justify-content: space-between;
+top: 8rem;
+  }
 </style>

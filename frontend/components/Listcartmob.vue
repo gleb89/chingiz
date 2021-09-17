@@ -1,12 +1,15 @@
 <template>
-    <div id="box-cardmob" class="d-flex flex-nowrap  py-3">
-        <div  v-for="present in listproducts" :key="present.id">
-          <div class="startefect">
-            {{onscr}}
-          </div>
-            <CardProduct :present="present"/>
-        </div>
+<v-container>
+  <v-row justify="center" style="position: relative;">
+    <div class="next_prev">
+      <v-btn text @click="prev"><img src="/L.png" alt=""></v-btn>
+      <v-btn text @click="next"><img src="/R.png" alt=""></v-btn>
     </div>
+  <v-col style="text-align: -moz-center;" cols="12" md="4" lg="4" v-for="present in listproducts.slice(start,end)" :key="present.id">
+    <CardProduct :present="present"/>
+  </v-col>
+  </v-row>
+</v-container>
 </template>
 
 <script>
@@ -14,37 +17,44 @@
     props:['listproducts'],
     data: () => ({
       model: null,
+      start:0,
+      end:1
     }),
-    computed: {
-    onscr() {
-      if (process.browser) {
-        setTimeout(() => {
-      var intersecti = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio <= 0) return;
-            document.querySelector("#box-cardmob");
-            document.querySelector("#box-cardmob").classList.add("listgroup1-dwizh");
-            setTimeout(() => {
-              document.querySelector("#box-cardmob").classList.remove("listgroup1-dwizh");
-            }, 600);
-            
-          });
-      intersecti.observe(document.querySelector(".startefect"));
-        }, 1000);
-      }
+    methods: {
+      prev() {
+        if (this.start === 0){
+            this.start = 5
+            this.end = 6
+        }
+        else{
+            this.start = this.start-1,
+            this.end = this.end-1
+        }
+
       },
-    
+      next(){
+        if (this.end === 6){
+            this.start = 0
+            this.end = 1
+        }
+        else{
+            this.start = this.start +1,
+            this.end = this.end +1
+        }
+      }
     },
   }
 </script>
 
+
 <style >
-    #box-cardmob{
-        overflow-x: scroll;  
-        transition-delay: .5s;
-        transition: .5s linear .5s; 
-    }
-.listgroup1-dwizh{
-  margin-left: 20rem;
-  transition: .5s linear .5s; 
-}
+  .next_prev{
+position: absolute;
+width: 100%;
+display: flex;
+z-index: 1;
+
+justify-content: space-between;
+top: 8rem;
+  }
 </style>

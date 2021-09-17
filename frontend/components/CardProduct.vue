@@ -3,14 +3,13 @@
   <v-card
     style="box-shadow: none;max-height:500px;position: relative;"
     class="ma-4"
-    
-    width="285"
+    width="400"
     
   >
   <div style="text-align: start;" @click="onPageProduct(present.id,present.category[0].slug_category)">
     </div>
     <v-img :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" height="200px"></v-img>
-    <div v-if="hover"  class="text-center" style="position:absolute;left: 5rem;top: 6rem;opacity:1;">
+    <div v-if="hover"  class="text-center" style="position:absolute;left: 8rem;top: 4rem;opacity:1;">
                     <v-btn
                     @click="onPageProduct(present.id,present.category[0].slug_category)"
                        style="color:white;opacity:1"
@@ -20,7 +19,7 @@
                           подробнее
                         </v-btn>
     </div>
-    <v-card-title :class="{ 'on-hover': hover }">
+    <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
       <h4 style="font-size: 0.9rem">{{present.name_precent}}</h4>
     </v-card-title>
 
@@ -39,7 +38,7 @@
         style="color:white"
         rounded
         color="#ff7a00"
-        ><span v-if="reveal">в корзине</span> <span v-if="!reveal">купить</span>
+        ><span v-if="reveal">добавлено</span> <span v-if="!reveal">купить</span>
         <img style="width: 1.5rem;cursor:pointer" src="/shopcart.png" alt="" />
         </v-btn>
         
@@ -67,7 +66,11 @@ export default {
       let headers = {
         "Content-Type": "application/json"
       };
+
      if(this.$store.state.localStorage.uid_auth_user){
+      if(this.reveal){
+      this.$router.push('/cabinet/basket')
+    }
       let data = {
         'id_user':this.$store.state.localStorage.uid_auth_user,
         'precent_id':present_id
@@ -96,6 +99,9 @@ export default {
       }
 
       else{
+      if(this.reveal){
+      this.$router.push('/basket/'+this.$store.state.localStorage.basket.id_basket)
+      }
       let data = {
         'id_basket':this.$store.state.localStorage.basket.id_basket,
         'precent_id':present_id

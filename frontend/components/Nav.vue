@@ -4,7 +4,8 @@
     class="d-flex">
     <div style="padding-right: 3rem">
       <v-img
-        style="padding: 1rem"
+      @click="onHome()"
+        style="padding: 1rem;cursor:pointer"
         contain
         lazy-src="logo.svg"
         max-height="70"
@@ -36,7 +37,7 @@
     <div class="nav-link">
       <span class="text-nav">Контакты</span>
     </div>
-    <div class="nav-link">
+    <div class="nav-link" style="cursor:pointer" @click="onCatalog">
       <img style="width: 1rem" src="/search.svg" alt="" />
     </div>
     <div class="nav-link">
@@ -126,6 +127,9 @@ export default {
   },
 
   methods: {
+    onHome(){
+      this.$router.push('/')
+    },
     onCabinet(){
       this.$router.push('/cabinet')
     },
@@ -150,6 +154,9 @@ export default {
     },
     onPage(url) {
       this.$router.push('/'+url)
+    },
+    onCatalog(){
+      this.$router.push("/"+'catalog/Все_продукты');
     },
     onsign(){
      this.dialog = true

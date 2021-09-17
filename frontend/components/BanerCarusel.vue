@@ -7,7 +7,8 @@
         <p style="margin-top: 1rem;">
           Закажите оригинальный букет с бесплатной доставкой!
         </p>
-                  <v-btn
+              <v-btn
+              @click="onCatalog"
             rounded
             color="#ff7a00"
             style="height: 39px; margin-top: 1rem;margin-bottom: 1.7rem;font-weight: bold;"
@@ -43,6 +44,12 @@ export default {
       ],
     };
   },
+  methods: {
+      onCatalog(){
+      this.$router.push("/"+'catalog/Все_продукты');
+    },
+  },
+
 };
 </script>
 

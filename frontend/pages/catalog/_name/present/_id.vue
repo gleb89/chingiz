@@ -52,6 +52,10 @@
           <p class="ml-1 mt-3">
             {{product.body}}
           </p>
+          <div>
+            <p>Состав корзины:</p>
+            <p>{{product.composition}}</p>
+          </div>
           <!-- card basket -->
           <div class="d-flex flex-wrap">
           <div
@@ -73,7 +77,7 @@
                 border: 1px solid whitesmoke;
               "
             >
-              
+              {{count_present}}
             </div>
             <div style="flex-grow: 1; text-align: center; background: #f4f5f6">
               <v-btn block depressed @click="count_present+=1"> + </v-btn>

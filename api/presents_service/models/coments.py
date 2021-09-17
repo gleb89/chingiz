@@ -25,11 +25,9 @@ class Comments(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     present_id:int = ormar.Integer()
-    present_id2:int = ormar.Integer()
     user_id:int = ormar.Integer(nullable=True,default=None)
     name_user:str = ormar.String(max_length=100)
     phone_user:str = ormar.String(max_length=100)
     email_user:str = ormar.String(max_length=100)
     body:str = ormar.String(max_length=10000)
     moderation:bool = ormar.Boolean(nullable=True,default=False)
-    moderation2:bool = ormar.Boolean(nullable=True,default=False)

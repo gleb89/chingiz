@@ -6,7 +6,7 @@
       
     >
      
-     <v-btn text style="" @click="onPage('/')">
+     <!-- <v-btn text style="" @click="onPage('/')">
      <div>
        <img style="max-width:5rem;margin-top:.3rem" fluid src="/logobtn.png" alt="">
      </div>
@@ -14,9 +14,9 @@
         <span style="color:white;font-size: 15px;" >Главная</span>
      </div>
         
-      </v-btn>
+      </v-btn> -->
       
-      <v-btn icon>
+      <v-btn icon @click="onCatalog">
         <span style="color:white" >Поиск</span>
         <img src="/searchbtn.png" alt="">
       </v-btn>
@@ -118,6 +118,9 @@ export default {
       }
      
       
+    },
+    onCatalog(){
+      this.$router.push("/"+'catalog/Все_продукты');
     },
     onCabinet(){
       this.$router.push('/cabinet')

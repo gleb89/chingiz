@@ -84,7 +84,7 @@
           на постоянную скидку
         </h2>
         <v-btn
-        @click="onBonus"
+        @click="bonys_page"
           rounded
           color="#ff7a00"
           style="height: 39px; margin-top: 2rem"
@@ -107,17 +107,8 @@
         >
           новинки в тренде
         </h2>
-        <Listcart
-          class="d-lg-block d-none"
-          :listproducts="listproducts.slice(-6)"
-        />
-        <div id="ind">
-          <div class="ind2">{{onscr}}</div>
-        <Listcartmob
-          class="d-lg-none d-block"
-          :listproducts="listproducts.slice(-6)"
-        />
-        </div>
+        <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
+        <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
         <div style="text-align: center">
           <v-btn
             @click="oncatalog()"
@@ -278,6 +269,18 @@
               :value="n"
             ></v-radio>
           </v-radio-group>
+              <v-dialog
+                v-model="dialog"
+                persistent
+                max-width="600px"
+                
+              >
+              <v-card style="padding:1rem">
+              <SignIn :dialog_exit="dialog_exit" :close="close"/>
+
+              
+              </v-card>
+              </v-dialog>
           <v-btn
           @click="onBonus"
             rounded
@@ -348,6 +351,7 @@ export default {
     dateFormatted: "",
     menu1: false,
     menu2: false,
+    dialog: false,
     radioGroup: 1,
     datetime: "",
     date: "",
@@ -355,7 +359,22 @@ export default {
   }),
 
   methods: {
+    close(){
+      this.dialog = !this.dialog
+    }, 
+    dialog_exit(){
+      this.dialog = false
+    },
     onBonus(){
+      if(!this.$store.state.localStorage.uid_auth_user){
+        this.dialog = true
+      }
+      else{
+        this.$router.push('/'+'for_bonus')
+      }
+      
+    },
+    bonys_page(){
       this.$router.push('/'+'for_bonus')
     },
     hhh(){

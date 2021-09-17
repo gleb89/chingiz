@@ -8,7 +8,7 @@
         <img style="width:23px" fluid src="/mobapp.png">
       </v-btn>
 
-      <v-toolbar-title><v-img src="/Logo.png"></v-img></v-toolbar-title>
+      <v-toolbar-title><v-img @click="onHome" src="/Logo.png"></v-img></v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -16,7 +16,7 @@
         <img style="width:23px" fluid src="/Telephone.png">
       </v-btn>
 
-      <v-btn icon>
+      <v-btn icon @click="onCatalog">
         <img style="width:23px" fluid src="/Search.png">
       </v-btn>
 
@@ -25,7 +25,15 @@
 
 <script>
 export default {
-  props:['drawerclick']
+  props:['drawerclick'],
+  methods: {
+    onHome(){
+      this.$router.push('/')
+    },
+    onCatalog(){
+      this.$router.push("/"+'catalog/Все_продукты');
+    }
+  },
 }
 </script>
 
