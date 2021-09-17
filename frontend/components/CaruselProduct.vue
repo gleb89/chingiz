@@ -38,7 +38,7 @@ export default {
 
 <style>
 .v-window__next {
-  background: rgba(0, 0, 0, 0.3);
+  background: #FFFFFF;
   border-radius: 50%;
   position: absolute;
   margin: 0 16px;

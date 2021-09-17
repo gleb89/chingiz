@@ -16,11 +16,13 @@
 
 @media (max-width: 500px) {
   .carsmob  .v-window__prev {
+    background: #FFFFFF;
     left: -.9rem;
     
 }
     
   .carsmob  .v-window__next {
+     background: #FFFFFF;
     right: -.9rem;
    
 }
