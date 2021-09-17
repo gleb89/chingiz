@@ -54,8 +54,13 @@ export default {
 </script>
 
 <style>
+.v-window__prev {
+background: white;
+  
+}
 .v-window__next {
-  background: rgba(0, 0, 0, 0.3);
+  background: white;
+  /* background: rgba(0, 0, 0, 0.3); */
   border-radius: 50%;
   position: absolute;
   margin: 0 16px;

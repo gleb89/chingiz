@@ -316,7 +316,8 @@ export default {
   }
 
 }
-  .box-products{
+@media (min-width: 1259px){
+    .box-products{
   overflow-x: hidden;
   height: 100vh;
   }
@@ -324,6 +325,8 @@ export default {
   overflow-x: hidden;
   height: 100vh;
   }
+}
+
 
 ::-webkit-scrollbar {display:none;}
   

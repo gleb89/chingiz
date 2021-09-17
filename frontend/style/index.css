@@ -57,3 +57,11 @@ html{
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.v-window__prev {
+  background: white;
+    
+  }
+  .v-window__next {
+    background: white;
+ 
+  }
