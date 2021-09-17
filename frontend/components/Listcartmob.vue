@@ -53,7 +53,7 @@
 
   .next_prev{
 position: absolute;
-width: 110%;
+width: 100%;
 display: flex;
 z-index: 1;
 justify-content: space-between;
