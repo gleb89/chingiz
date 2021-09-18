@@ -1,7 +1,8 @@
 <template>
   <v-app-bar
   id="app-fot"
-      absolute
+      fixed
+      
       color="white"
     >
       <v-btn  @click="drawerclick()" icon>
@@ -38,5 +39,7 @@ export default {
 </script>
 
 <style>
-
+#app-fot{
+  
+}
 </style>

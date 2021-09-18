@@ -4,9 +4,10 @@
     <div class="nav-d">
       <Nav />
       </div>
-      <div class="nav-m">
+      <div class="nav-m" >
         <Navmobile :drawerclick="drawerclick"/>
         <v-navigation-drawer
+        
       v-model="drawer"
       absolute
       temporary

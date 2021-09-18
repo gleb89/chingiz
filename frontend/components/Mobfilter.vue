@@ -1,5 +1,39 @@
 <template>
-  <v-row justify="center">
+<div>
+  <v-row justify="center" style="margin-top:1rem">
+    <v-col class="box-cat rounded-lg text-center" @click="onfilterslug('Все_продукты')" cols="6">
+      <img src="/mobca.png" alt="" /><p
+      class="text-center"
+      style="font-size: .9rem;font-weight: bold;"
+        >Все корзины
+        {{ selected_list }}
+      </p>
+      </v-col>
+  
+    <v-col class="box-cat rounded-lg text-center" @click="onfilterslug(category.slug_category)" v-for="category in categories" :key="category.id">
+        <img src="/mobca.png" alt="" /><p
+          class="text-center"
+          style="font-size: .9rem;font-weight: bold;"
+          >{{ category.name_category }}
+        </p>
+      
+     </v-col>
+    
+  </v-row>
+    <v-row justify="center">
+    <v-col>
+              <div>
+          <h2 class="text-left mt-5">
+          <span  v-if="!filter_name && !search">Подарочные корзины({{ listproducts.length }})</span>
+          <span v-if="filter_name && !search">
+            {{ filter_name }} ({{ listproducts.length }})</span
+          >
+          <span v-if="search"
+            >Результат поиска ({{ listproducts.length }})</span
+          >
+        </h2>
+        </div>
+    </v-col>
     <v-dialog
       v-model="dialog"
       fullscreen
@@ -7,20 +41,36 @@
       transition="dialog-bottom-transition"
     >
       <template v-slot:activator="{ on, attrs }">
+
+        <div style="width:100%;background: #F4F5F6;padding-left:.5rem" class="d-flex">
+          <div class="ned">
+                            <v-select
+                            
+          :items="[{'name':'недорогие'}, {'name':'более дорогие'}]"
+          label="Сначала недорогие"
+          item-text="name"
+          dense
+          solo
+        ></v-select>
+            
+          </div>
+
+        
+        <div>
             <v-btn
-            class="btn-mobile-filter"
             v-bind="attrs"
             v-on="on"
-            rounded
-            style="height: 39px; margin: 0.7rem; border-color: #ff7a00;margin-top: 3rem;"
             color="indigo"
-            outlined
-            dark
+            text
+            style="height: 100%"
+            
           >
-            <span style="font-size: 12px; color: black"
-              >Фильтры</span
-            >
+          <span style="color:#676767">Фильтры</span>
+            <img src="/filter.png" alt="">
+              
           </v-btn>
+          </div>
+          </div>
       </template>
       <v-card>
         <v-toolbar
@@ -47,22 +97,7 @@ style="position: fixed;z-index: 2;width: 90%;"
   elevation="13"
   type="success"
 >Фильтр применен</v-alert>
-    <div @click="onfilterslug('Все_продукты')" class="box-filter">
-      <img src="/fructs.png" alt="" /><span :class="{ active: !filter_name }"
-        >Все продукты
-        {{ selected_list }}
-      </span>
-    </div>
-    <hr style="color: #e5e5e5" />
-    <div v-for="category in categories" :key="category.id">
-      <div @click="onfilterslug(category.slug_category)" class="box-filter">
-        <img src="/fructs.png" alt="" /><span
-          :class="{ active: filter_name === category.name_category }"
-          >{{ category.name_category }}
-        </span>
-      </div>
-      <hr style="color: #e5e5e5" />
-    </div>
+
 
     <div style="margin-top: 2rem">
       <h3>Форма:</h3>
@@ -158,6 +193,7 @@ style="position: fixed;z-index: 2;width: 90%;"
       </v-card>
     </v-dialog>
   </v-row>
+  </div>
 </template>
 
 <script>
@@ -173,6 +209,9 @@ export default {
     "clickselect",
     "ads_select",
     "form",
+    "listproducts",
+    "filter_name",
+    "search"
   ],
 
   data() {
@@ -231,8 +270,19 @@ export default {
 .active {
   color: #ff7a00;
 }
+.box-cat{
+  background: #ff7a00;
+  color: white;
+  margin: 3px;
+  max-width: 45%;
+  min-width: 45%;
+}
 .v-input--selection-controls .v-input__slot > .v-label,
 .v-input--selection-controls .v-radio > .v-label {
   min-width: 10rem;
+}
+.ned .theme--light.v-overflow-btn.theme--light.v-overflow-btn > .v-input__control > .v-input__slot {
+    border-color: rgba(0, 0, 0, 0.12);
+    height: 2rem;
 }
 </style>

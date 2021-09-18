@@ -42,6 +42,7 @@
             :listproducts="listproducts"
             :ads_select="ads_select"
             :form="form"
+            :search="search"
             
             />
             
@@ -50,6 +51,7 @@
 
       <!-- box-products -->
       <v-col cols="12" lg="10" class="box-products">
+        <div class="d-none d-lg-block">
         <h2 >
           <span v-if="!filter_name && !search">Все корзины ({{ listproducts.length }})</span>
           <span v-if="filter_name && !search">
@@ -59,10 +61,13 @@
             >Результат поиска ({{ listproducts.length }})</span
           >
         </h2>
+        </div>
         <div class="d-flex flex-wrap mt-6 mb-6">
           <div style="flex-grow: 3; position: relative;width:100%">
+            
             <img
-              style="position: absolute; top: 1.1rem; z-index: 1; right: 1rem"
+            class="searc-inp"
+              style=""
               src="/search .png"
               alt=""
             />
@@ -293,14 +298,7 @@ export default {
 .box-products h2{
   margin-top: 5.2rem;
 }
-@media (max-width:500px){
-    .box-products h2{
-  margin-top: 1rem;
-}
-  .mobp{
-  margin-top: 4rem;
-  }
-}
+
 .box-filter {
   margin-top: 1rem;
   margin-bottom: 0.7rem;
@@ -310,10 +308,28 @@ export default {
 .box-filter span {
   margin-left: 1rem;
 }
+.searc-inp{
+  position: absolute;
+  top: 2rem;
+  z-index: 1;
+  right: 1rem
+  }
+@media (max-width:500px){
+    .box-products h2{
+  margin-top: 1rem;
+}
+  .mobp{
+  margin-top: 4rem;
+  }
+  .searc-inp{
+  top: 2rem;
+  }
+}
 @media (min-width: 500px) {
   .box-products {
     padding-left: 3rem;
   }
+
 
 }
 @media (min-width: 1259px){

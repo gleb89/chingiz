@@ -11,8 +11,9 @@
           style="margin-top: 2rem"
           class="d-flex justify-center flex-wrap box-header"
         >
+        <div class="forinp">
             <v-autocomplete
-            style="margin: 1rem"
+            
             label="Город доставки"
             v-model="city"
             color="orange"
@@ -21,6 +22,8 @@
             solo
             no-data-text="Ничего не найдено"
             ></v-autocomplete>
+            </div>
+            <div class="forinp">
           <v-menu
             ref="menu1"
             v-model="menu1"
@@ -33,7 +36,7 @@
 
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                style="margin: 1rem"
+                
                 v-model="dateFormatted"
                 label="Дата доставки"
                 solo
@@ -49,7 +52,8 @@
               @input="menu1 = false"
             ></v-date-picker>
           </v-menu>
-          
+          </div>
+          <div class="forinp">
           <v-btn
           @click="onsavecity_pushCatalog"
           class="btnper"
@@ -59,15 +63,15 @@
             
             dark
           >
-            <span style="font-size: 12px">получить подарок</span>
+            <span style="font-size: 12px">найти подарок</span>
           </v-btn>
-          
+          </div>
         </div>
       </div>
     </div>
     <section id="best-products" style="margin-bottom:4rem;margin-top:4rem">
       <v-container>
-        <h2 style="font-size: 2.5rem;">популярные корзины и боксы</h2>
+        <h2 >популярные корзины и боксы</h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
@@ -104,15 +108,9 @@
       </div>
     </section>
 </v-parallax>
-    <section id="new-products" style="margin-bottom:4rem;margin-top:4rem">
+    <section id="new-products" >
       <v-container>
         <h2
-          style="
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            padding: 1rem;
-            font-size: 2.5rem;
-          "
         >
           новинки в тренде
         </h2>
@@ -133,21 +131,16 @@
       </v-container>
     </section>
 
-    <section id="slider-banner" style="margin-bottom: 4rem">
+    <section id="slider-banner" style="">
       <v-container style="padding: 1rem">
         <BanerCarusel />
       </v-container>
     </section>
 
-    <section id="whywork" style="margin-bottom: 4rem">
+    <section id="whywork" style="">
       <v-container style="padding: 1rem">
                 <h2
-          style="
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            padding: 1rem;
-            font-size: 2.5rem;
-          "
+                class="head-sect"
         >
           Как это работает
         </h2>
@@ -156,7 +149,7 @@
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">01</span>
           <img src="w1.png" alt="">
-          <img src="Vector.png" alt="">
+          <img class="d-lg-block d-none" src="Vector.png" alt="">
           </div>
           <p style="color:#676767">Выберите ваш <br> оригинальный подарок</p>
         </v-col>
@@ -164,7 +157,7 @@
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">02</span>
            <img src="w2.png" alt="">
-           <img src="Vector.png" alt="">
+           <img class="d-lg-block d-none" src="Vector.png" alt="">
            </div>
            <p style="color:#676767">Выберите способ оплаты <br> и адрес доставки</p>
         </v-col>
@@ -182,10 +175,10 @@
     <section
       id="preimyshestva"
       class=""
-      style="margin-bottom: 4rem"
+      style=""
     >
       <v-container>
-        <h2 style="margin-top: 3rem; padding: 1rem; font-size: 2.5rem">
+        <h2 class="head-sect">
           Наши преимущества
         </h2>
         <div class="dflex" style="padding: 0.5rem">
@@ -239,12 +232,7 @@
     <section id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
       <v-container style="padding: 1rem">
                 <h2
-          style="
-            margin-top: 3rem;
-            margin-bottom: 3rem;
-            padding: 1rem;
-            font-size: 2.5rem;
-          "
+     class="head-sect"
         >
           отзывы
         </h2>
@@ -550,7 +538,18 @@ h1 {
   h1 {
     font-size: 2rem;
   }
-
+.head-sect{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+}
+.head-sect{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    font-size: 2.5rem;
 }
 #bonus-opros .box-opros {
   background-repeat: no-repeat;
@@ -600,7 +599,10 @@ h1 {
   font-weight: bold;
   margin-left: 1rem;
 }
-
+#new-product{
+  margin-bottom:4rem;
+  margin-top:4rem;
+}
 @media(max-width: 500px){
 .btnper{
   width: 50%;
@@ -657,6 +659,34 @@ h1 {
   width: max-content;
   margin-top: 1rem;
   max-width: max-content;
+}
+.forinp{
+  margin: 1rem;
+
+}
+@media (max-width:500px) {
+  .forinp{
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+h2{
+  font-size: 1.5rem;
+  text-align: center;
+}
+  .box-header .theme--light.v-input{
+    width: 90%;
+    max-width: 90%;
+    
+
+  }
+  .box-header .v-text-field.v-text-field--solo .v-input__control {
+  max-width: 90%;
+  margin-left: 1rem;
+  
+  }
 }
 .theme--light.v-list-item .v-list-item__mask{
   color:orange;
