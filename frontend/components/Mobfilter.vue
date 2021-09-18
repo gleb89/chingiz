@@ -42,8 +42,8 @@
     >
       <template v-slot:activator="{ on, attrs }">
 
-        <div style="width:100%;background: #F4F5F6;padding-left:.5rem" class="d-flex">
-          <div class="ned">
+        <div style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: baseline;" class="d-flex">
+          <div class="ned" style="height: 100%">
                             <v-select
                             
           :items="[{'name':'недорогие'}, {'name':'более дорогие'}]"
@@ -56,13 +56,13 @@
           </div>
 
         
-        <div>
+        <div style="height: 100%">
             <v-btn
             v-bind="attrs"
             v-on="on"
             color="indigo"
             text
-            style="height: 100%"
+            
             
           >
           <span style="color:#676767">Фильтры</span>
@@ -277,12 +277,5 @@ export default {
   max-width: 45%;
   min-width: 45%;
 }
-.v-input--selection-controls .v-input__slot > .v-label,
-.v-input--selection-controls .v-radio > .v-label {
-  min-width: 10rem;
-}
-.ned .theme--light.v-overflow-btn.theme--light.v-overflow-btn > .v-input__control > .v-input__slot {
-    border-color: rgba(0, 0, 0, 0.12);
-    height: 2rem;
-}
+
 </style>

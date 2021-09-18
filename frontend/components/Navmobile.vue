@@ -1,7 +1,7 @@
 <template>
   <v-app-bar
   id="app-fot"
-      fixed
+      
       
       color="white"
     >

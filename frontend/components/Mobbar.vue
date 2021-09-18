@@ -69,7 +69,7 @@
 
       <v-btn icon style="position: relative;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
     
-        <span style="color: #ff7a00;font-size: .6rem;" >{{basket.summ_present.toLocaleString()}} тг</span>
+        <span style="color: #ff7a00;" >{{basket.summ_present.toLocaleString()}} тг</span>
         <img src="/baskbtn.png" alt="">
       </v-btn>
 
