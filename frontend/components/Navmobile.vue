@@ -100,7 +100,8 @@ export default {
       this.$router.push('/')
     },
     onCatalog(){
-      this.openMenu()
+      let nav = document.querySelector('#nav')
+       nav.classList.remove("expanded");
       this.$router.push("/"+'catalog/Все_продукты');
     },
     onPage(url){
