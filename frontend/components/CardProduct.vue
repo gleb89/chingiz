@@ -11,7 +11,7 @@
     <div style="width:100%;text-align: center;">
     <img style="width:20rem" :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" >
     </div>
-    <div v-if="hover"  class="text-center" style="position:absolute;left: 8rem;top: 10rem;opacity:1;">
+    <div v-if="hover"  class="text-center" style="position:absolute;left: 6rem;top: 10rem;opacity:1;">
                     <v-btn
                     @click="onPageProduct(present.id,present.category[0].slug_category)"
                        style="color:white;opacity:1"
@@ -144,7 +144,6 @@ export default {
 .on-hover{
   opacity: .5;
   transition: opacity .4s ease-in-out;
-
 }
 
 .show-btns {

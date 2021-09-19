@@ -7,13 +7,9 @@
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость...”
         </p>
-        <div
-          style="margin-top: 2rem"
-          class="d-flex justify-center flex-wrap box-header"
-        >
-        <div class="forinp">
+        <div style="display: flex;justify-content: center;flex-wrap: wrap;">
+          <div class="forin">
             <v-autocomplete
-            
             label="Город доставки"
             v-model="city"
             color="orange"
@@ -22,8 +18,9 @@
             solo
             no-data-text="Ничего не найдено"
             ></v-autocomplete>
-            </div>
-            <div class="forinp">
+            
+    </div>
+              <div class="forin">
           <v-menu
             ref="menu1"
             v-model="menu1"
@@ -33,10 +30,9 @@
             max-width="290px"
             min-width="auto"
           >
-
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-                
+
                 v-model="dateFormatted"
                 label="Дата доставки"
                 solo
@@ -52,15 +48,14 @@
               @input="menu1 = false"
             ></v-date-picker>
           </v-menu>
-          </div>
-          <div class="forinp">
+              </div>
+              <div class="forin">
           <v-btn
           @click="onsavecity_pushCatalog"
           class="btnper"
             rounded
-            style="margin-top:1rem;height: 3rem;"
+            style="margin-top:1rem;height: 3rem;width: 15rem;"
             color="#ff7a00"
-            
             dark
           >
             <span style="font-size: 12px">найти подарок</span>
@@ -149,7 +144,7 @@
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">01</span>
           <img src="w1.png" alt="">
-          <img class="d-lg-block d-none" src="Vector.png" alt="">
+          <!-- <img class="d-lg-block d-none" src="Vector.png" alt=""> -->
           </div>
           <p style="color:#676767">Выберите ваш <br> оригинальный подарок</p>
         </v-col>
@@ -157,7 +152,7 @@
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">02</span>
            <img src="w2.png" alt="">
-           <img class="d-lg-block d-none" src="Vector.png" alt="">
+           <!-- <img class="d-lg-block d-none" src="Vector.png" alt=""> -->
            </div>
            <p style="color:#676767">Выберите способ оплаты <br> и адрес доставки</p>
         </v-col>
@@ -500,6 +495,11 @@ export default {
 };
 </script>
 <style>
+.v-text-field.v-text-field--enclosed:not(.v-text-field--rounded) > .v-input__control > .v-input__slot, .v-text-field.v-text-field--enclosed .v-text-field__details {
+    padding: 0 12px;
+    max-width: 100%;
+    min-width: 100%;
+}
 #ind{
     transition-delay: .5s;
     transition: .5s linear .5s; 
@@ -607,11 +607,20 @@ h1 {
   margin-bottom:4rem;
   margin-top:4rem;
 }
+.forin{
+  padding: 1rem;
+}
 @media(max-width: 500px){
 .btnper{
   width: 50%;
   margin-top: 1.3rem
 
+}
+.forin{
+  padding: 0;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  width: 100%;
 }
 }
 
@@ -652,18 +661,8 @@ h1 {
   top: 30%;
   left: 2rem;
 }
-.box-header .v-text-field.v-text-field--solo .v-input__control {
-  min-height: 48px;
-  padding: 0;
-  max-width: max-content;
-}
-.box-header .theme--light.v-input {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  margin-top: 1rem;
-  max-width: max-content;
-}
+
+
 .forinp{
   margin: 1rem;
 
@@ -678,6 +677,7 @@ h1 {
   padding: 1rem;
   margin: 0;
 }
+
 h2{
   font-size: 1.5rem;
   text-align: center;
@@ -687,4 +687,5 @@ h2{
 .theme--light.v-list-item .v-list-item__mask{
   color:orange;
 }
+
 </style>

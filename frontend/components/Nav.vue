@@ -12,7 +12,7 @@
         lazy-src="logo.svg"
         max-height="70"
         max-width="120"
-        src="/logo.svg"
+        src="/Logo.png"
       ></v-img>
     </div>
 

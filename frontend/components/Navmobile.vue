@@ -1,15 +1,15 @@
 <template>
-  <v-app-bar
+<div>
+<v-app-bar
   id="app-fot"
-      absolute
-      
+      fixed
       color="white"
     >
-      <v-btn  @click="drawerclick()" icon>
+      <v-btn  @click="openMenu()" icon>
         <img style="width:23px" fluid src="/mobapp.png">
       </v-btn>
 
-      <v-toolbar-title><v-img @click="onHome" src="/Logo.png"></v-img></v-toolbar-title>
+      <v-toolbar-title><img @click="onHome" src="/Logo.png"></v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -20,26 +20,136 @@
       <v-btn icon @click="onCatalog">
         <img style="width:23px" fluid src="/Search.png">
       </v-btn>
-
     </v-app-bar>
+<nav  id="nav" class="nav">
+        <v-list-item-group
+          active-class="deep-purple--text text--accent-4"
+        >
+          <v-list-item @click="onHome">
+            <v-list-item-icon>
+              <fa style="color:#FF7A00;width: 1.5rem;"  icon="home"></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Главная</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item @click="onPage('catalog/Все_продукты')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;"  icon="th-list"></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Каталог</v-list-item-title>
+          </v-list-item>
+
+              <v-list-item @click="onPage('o_nas')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;"  icon="people-arrows"></fa>
+            </v-list-item-icon>
+            <v-list-item-title>О нас</v-list-item-title>
+          </v-list-item>
+
+            <v-list-item @click="onPage('for_work')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;"  icon="network-wired"></fa>
+            </v-list-item-icon>
+            <v-list-item-title> Доставка и оплата  </v-list-item-title>
+          </v-list-item>
+
+            <v-list-item @click="onPage('for_bonus')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;" icon="coins"></fa>
+            </v-list-item-icon>
+            <v-list-item-title> Бонусы</v-list-item-title>
+          </v-list-item>
+
+             <v-list-item @click="onPage('business')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;" icon="chart-pie"></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Для Бизнеса</v-list-item-title>
+          </v-list-item>
+
+            <v-list-item @click="onPage('#contact')">
+            <v-list-item-icon>
+             <fa style="color:#FF7A00;width: 1.5rem;" icon="address-book"></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Контакты</v-list-item-title> 
+          </v-list-item>
+        </v-list-item-group>
+    </nav>
+    </div>
 </template>
 
 <script>
 export default {
-  props:['drawerclick'],
+  
+  data(){
+    return {
+  
+    }
+  },
   methods: {
-    onHome(){
+     onHome(){
+       this.openMenu()
       this.$router.push('/')
     },
     onCatalog(){
+      this.openMenu()
       this.$router.push("/"+'catalog/Все_продукты');
-    }
+    },
+    onPage(url){
+      this.openMenu()
+      this.$router.push('/'+url)
+    },
+   
+    openMenu() {
+      let nav = document.querySelector('#nav')
+       if (nav.classList.value.includes("expanded")) {
+        nav.classList.remove("expanded");
+        
+       }
+      else{
+      nav.classList.add("expanded");
+      
+      }
+    },
+    closeMenu(args = null) {
+      this.openMenu()
+    },
   },
-}
+};
 </script>
 
-<style>
-#app-fot{
-  
+
+<style scoped>
+.nots{
+  display: none;
+}
+.lang-dialog{
+  background: white;
+  position: absolute;
+  top: 3rem;
+  right: 5rem;
+  box-shadow: 2px 2px 2px 2px #00000063;
+  width: max-content;
+  transition: .5s linear .5s; 
+}
+  .nav {
+    background: white;
+    color: black;
+    cursor: pointer;
+    display: flex;
+    font-size: 2rem;
+    height: 100vh;
+    left: -20rem;
+    padding: 6rem 2rem 2rem 2rem;
+    position: fixed;
+    top: 0;
+    transition: all 0.5s;
+    width: 20rem;
+    z-index: 2;
+    overflow: hidden;
+  }
+  .nav.expanded {
+    left: 0;
+    width: 100%;
 }
 </style>
