@@ -674,26 +674,15 @@ h1 {
   text-align: center;
   display: flex;
   justify-content: center;
-  margin: 0;
+  text-align: center;
   padding: 1rem;
+  margin: 0;
 }
 h2{
   font-size: 1.5rem;
   text-align: center;
 }
-  .box-header .theme--light.v-input{
-    width: 90%;
-    max-width: 90%;
-    min-width: 90%;
-    
 
-  }
-  .box-header .v-text-field.v-text-field--solo .v-input__control {
-  max-width: 90%;
-  min-width: 90%;
-  
-  
-  }
 }
 .theme--light.v-list-item .v-list-item__mask{
   color:orange;
