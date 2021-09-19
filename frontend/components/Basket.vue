@@ -71,6 +71,55 @@
       </tbody>
     </template>
   </v-simple-table>
+
+  <v-simple-table class="d-lg-none d-md-none d-block">
+    <template v-slot:default>
+      <thead>
+  
+      </thead>
+      <tbody style="min-height:5rem">
+        <tr
+          v-for="(item,index) in presents"
+          :key="index"
+        >
+        <p style="position: absolute;">{{ item.name_precent}}</p>
+          <td style="max-width: 4rem;height: 10rem;"><img style="max-width: 4rem;" :src="item.image_precent" alt=""></td>
+          <td style="height: 10rem;"><span style="font-weight: bold;">{{ item.price }}</span> </td>
+                   <td>
+                                                  <div
+            class="d-flex justify-start"
+            style="
+              width: 100%;
+              height: 39px;
+              margin-top: 0.7rem;
+              margin-right: 1rem;
+            "
+          >
+            <div style="flex-grow: 1; text-align: center; background: #f4f5f6">
+              <v-btn block depressed @click="item_remove_count(item.id,index)"> - </v-btn>
+            </div>
+            <div style="flex-grow: 2;text-align: center;border: 1px solid whitesmoke;padding-top: .5rem;"
+            >
+            <span >{{item.count}}</span>
+              
+            </div>
+            <div style="flex-grow: 1; text-align: center; background: #f4f5f6">
+              <v-btn block depressed @click="item_add_count(item.id,index)"> + </v-btn>
+            </div>
+          </div>
+                   </td>
+          <td style="max-width: 4rem;height: 10rem;"> <span style="color:#FF7A00;font-weight: bold;">+200</span></td>
+          <td style="height: 10rem;">
+                          <v-btn @click="delete_present_in_basket(item.id,index)" text>
+                  <img style="max-width: .7rem;" src="/clos.png" alt="">
+              </v-btn>
+          </td>
+
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+
 </div>
 </template>
 
@@ -100,3 +149,7 @@
     },
   }
 </script>
+
+<style lang="" scoped>
+
+</style>
