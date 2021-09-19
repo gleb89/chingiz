@@ -675,20 +675,21 @@ h1 {
   display: flex;
   justify-content: center;
   margin: 0;
+  padding: 1rem;
 }
 h2{
   font-size: 1.5rem;
   text-align: center;
 }
   .box-header .theme--light.v-input{
-    width: 100%;
-    max-width: 100%;
+    width: 90%;
+    max-width: 90%;
     
 
   }
   .box-header .v-text-field.v-text-field--solo .v-input__control {
-  max-width: 100%;
-  margin-left: 1rem;
+  max-width: 90%;
+  
   
   }
 }
