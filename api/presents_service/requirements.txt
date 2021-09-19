@@ -24,7 +24,6 @@ iso8601==0.1.16
 Jinja2==3.0.1
 Mako==1.1.4
 MarkupSafe==2.0.1
-mypy-extensions==0.4.3
 orm==0.1.6
 ormar
 pathspec==0.9.0
