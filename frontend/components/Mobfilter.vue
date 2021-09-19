@@ -43,7 +43,7 @@
       <template v-slot:activator="{ on, attrs }">
 
         <div style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: baseline;" class="d-flex">
-          <div class="ned" style="height: 100%;padding-top:1rem" >
+          <div class="ned" style="height: 100%;padding-top:2rem" >
                             <v-select
                             
           :items="[{'name':'недорогие'}, {'name':'более дорогие'}]"
