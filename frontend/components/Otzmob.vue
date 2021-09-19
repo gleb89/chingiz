@@ -18,14 +18,14 @@
   .carsmob  .v-window__prev {
     background: #FFFFFF;
     top: 85%;
-    left: 4rem;
+    left: 7rem;
     
 }
     
   .carsmob  .v-window__next {
     background: #FFFFFF;
     top: 85%;
-    right: 4rem;
+    right: 7rem;
    
 }
 }
