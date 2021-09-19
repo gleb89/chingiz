@@ -1,9 +1,10 @@
 <template>
   
         <v-card
-        class="rounded-xl"
+        class="rounded-xl co"
             color="#FFFFFF"
-            style="padding:1rem;height: 28remp;width: 18rem;"
+            
+            style="padding:1rem;"
           >
          
             <p class="text-left " style="color:#676767;font-size: 1rem;">
@@ -85,5 +86,17 @@
 </script>
 
 <style>
-
+.co{
+  width: 23rem;
+}
+@media (max-width: 1500px){
+  .co{
+  width: 19rem;
+  }
+}
+@media (max-width: 500px){
+  .co{
+  width: 18rem;
+}
+}
 </style>
