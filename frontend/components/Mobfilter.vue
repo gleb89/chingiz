@@ -45,6 +45,7 @@
         <div style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;" class="d-flex">
           <div class="ned"  >
                             <v-select
+                            style="margin-top:.7rem"
                             
           :items="[{'name':'недорогие'}, {'name':'более дорогие'}]"
           label="Сначала недорогие"
