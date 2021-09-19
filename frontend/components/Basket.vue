@@ -84,7 +84,7 @@
         >
         <p style="position: absolute;">{{ item.name_precent}}</p>
           <td style="max-width: 4rem;height: 10rem;"><img style="max-width: 4rem;" :src="item.image_precent" alt=""></td>
-          <td style="height: 10rem;"><span style="font-weight: bold;">{{ item.price }}</span> </td>
+          <td style="height: 10rem;max-width: 3rem;"><span style="font-weight: bold;">{{ item.price }}</span> </td>
                    <td>
                                                   <div
             class="d-flex justify-start"
@@ -108,8 +108,8 @@
             </div>
           </div>
                    </td>
-          <td style="max-width: 4rem;height: 10rem;"> <span style="color:#FF7A00;font-weight: bold;">+200</span></td>
-          <td style="height: 10rem;">
+          <td style="max-width: 3rem;height: 10rem;width:1rem"> <span style="color:#FF7A00;font-weight: bold;">+200</span></td>
+          <td style="height: 10rem;width:1rem">
                           <v-btn @click="delete_present_in_basket(item.id,index)" text>
                   <img style="max-width: .7rem;" src="/clos.png" alt="">
               </v-btn>
