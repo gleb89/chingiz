@@ -33,9 +33,7 @@ services:
   front:
     restart: always
     build: ./frontend
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
+
 
 
   # pgadmin:
