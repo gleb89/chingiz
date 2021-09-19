@@ -56,7 +56,7 @@
           </div>
 
         
-        <div style="height: 100%" style="padding:.5rem">
+        <div style="height: 100%;padding:.5rem" >
             <v-btn
             v-bind="attrs"
             v-on="on"
