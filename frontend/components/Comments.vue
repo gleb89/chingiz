@@ -139,22 +139,7 @@
 export default {
   props:['comments_list','product_id','add_comment'],
   computed: {
-        onscr() {
-      if (process.browser) {
-        setTimeout(() => {
-      var intersecti = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio <= 0) return;
-            document.querySelector(".boxc-comment");
-            document.querySelector(".boxc-comment").classList.add("listgroup1-dwizh33");
-            setTimeout(() => {
-              document.querySelector(".boxc-comment").classList.remove("listgroup1-dwizh33");
-            }, 600);
-            
-          });
-      intersecti.observe(document.querySelector(".boxc-comment"));
-        }, 1000);
-      }
-      },
+  
   onlformdata() {
       if (
       this.email_user == !this.email_user || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(this.email_user) &&

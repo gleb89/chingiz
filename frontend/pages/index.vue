@@ -307,22 +307,7 @@ export default {
       });
   },
   computed: {
-        onscr() {
-      if (process.browser) {
-        setTimeout(() => {
-      var intersecti = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio <= 0) return;
-            document.querySelector("#ind");
-            document.querySelector("#ind").classList.add("ind3");
-            setTimeout(() => {
-              document.querySelector("#ind").classList.remove("ind3");
-            }, 600);
-            
-          });
-      intersecti.observe(document.querySelector(".ind2"));
-        }, 1000);
-      }
-      },
+  
     listproducts() {
       
       return this.presents;

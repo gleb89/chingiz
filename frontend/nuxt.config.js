@@ -47,10 +47,10 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/fontawesome',
-    // ['nuxt-vuex-localstorage', {
-    //   mode: 'cookie',
-    //   expireHours: 24 //  If not entered, 24 is the default value
-    // }]
+    ['nuxt-vuex-localstorage', {
+      mode: 'cookie',
+      expireHours: 24 //  If not entered, 24 is the default value
+    }]
     // '@nuxtjs/recaptcha',
 
   ],
