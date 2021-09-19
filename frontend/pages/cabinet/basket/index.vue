@@ -1,8 +1,14 @@
 <template>
   <v-container style="padding-top: 4rem">
-    <h2 class="mb-4">Корзина</h2>
-    <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-    <span>Корзина</span>
+    <h2 class="mb-4 d-lg-block d-none">Корзина</h2>
+    <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная/</nuxt-link> 
+    <span class="d-lg-block d-none">Корзина</span>
+
+          <div @click="gopage" class="d-lg-none d-block"
+           style="background: whitesmoke;width: 100%;padding:1rem;color:#7C7C7C">
+            <fa style="font-size: 1rem;" icon="chevron-left"></fa>
+             <span style="margin-left:1rem">Продолжить покупки</span>
+          </div>
    
            <div class="d-block d-lg-none">
     <v-dialog
@@ -136,7 +142,7 @@
             
           </div>
         </v-card>
-                      <v-card
+           <v-card
               class="rounded-xl text-center"
               color="#F4F5F6"
               style="padding:1rem;margin-top: 3rem;margin-bottom: 3rem;"
@@ -170,6 +176,32 @@
           :item_add_count="item_add_count"
           :item_remove_count="item_remove_count"
         />
+                   <v-card
+              class="rounded-xl text-center d-lg-none d-block"
+              color="#F4F5F6"
+              style="padding:1rem;margin-top: 3rem;margin-bottom: 3rem;"
+                elevation="6"
+              >
+              <p>
+                Итого: {{basket.summ_present.toLocaleString()}} тг.
+              </p>
+              <span style="font-size: .9rem;">Товаров в корзине: {{presents.length}} шт</span>
+              <div style="margin-top:1rem">
+             <div>
+                <v-btn
+                @click="remove"
+            rounded
+            
+            style="height: 39px; margin-top: 1.3rem; background: #f4f5f6;color: black;border: 2px solid #ff7a00;"
+            dark
+          >
+            <span style="font-size: .6rem;color:676767">очистить корзину</span>
+          </v-btn>
+              </div>
+  
+             
+              </div>
+              </v-card>
             <div class="text-center" style="padding-top:3rem">
                 <v-btn
             rounded
@@ -273,6 +305,9 @@ export default {
     };
   },
   methods: {
+    gopage(){
+      this.$router.go(-1);
+    },
     onPage(url){
       this.$router.push('/'+url)
     },

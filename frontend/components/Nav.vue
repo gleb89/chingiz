@@ -9,7 +9,7 @@
       @click="onHome()"
         style="padding: 1rem;cursor:pointer"
         contain
-        lazy-src="logo.svg"
+        lazy-src="Logo.png"
         max-height="70"
         max-width="120"
         src="/Logo.png"

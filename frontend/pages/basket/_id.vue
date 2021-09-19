@@ -1,10 +1,14 @@
 <template>
     <v-container style="padding-top:4rem">
-        <h2 class="mb-4">Корзина</h2>
-        <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-          <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
+        <h2  class="mb-4 d-lg-block d-none">Корзина</h2>
+        <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная</nuxt-link> /
+          <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/catalog/Все_продукты"
             >Корзина</nuxt-link
           >
+          <div>
+            <fa style="font-size: 1rem;" icon="chevron-left"></fa>
+             <span>Продолжить покупки</span>
+          </div>
         <v-row justify="center" class="mt-4">
           <v-col cols="12" md="9" lg="9">
               <Basket
