@@ -23,55 +23,63 @@
     </v-app-bar>
 <nav  id="nav" class="nav">
         <v-list-item-group
+        style="width: 100%;"
           active-class="deep-purple--text text--accent-4"
         >
           <v-list-item @click="onHome">
             <v-list-item-icon>
-              <fa style="color:#FF7A00;width: 1.5rem;"  icon="home"></fa>
+              <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="home"></fa>
             </v-list-item-icon>
             <v-list-item-title>Главная</v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
           <v-list-item @click="onPage('catalog/Все_продукты')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;"  icon="th-list"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="th-list"></fa>
             </v-list-item-icon>
             <v-list-item-title>Каталог</v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
               <v-list-item @click="onPage('o_nas')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;"  icon="people-arrows"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="people-arrows"></fa>
             </v-list-item-icon>
             <v-list-item-title>О нас</v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
             <v-list-item @click="onPage('for_work')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;"  icon="network-wired"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="network-wired"></fa>
             </v-list-item-icon>
             <v-list-item-title> Доставка и оплата  </v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
             <v-list-item @click="onPage('for_bonus')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;" icon="coins"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;" icon="coins"></fa>
             </v-list-item-icon>
             <v-list-item-title> Бонусы</v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
              <v-list-item @click="onPage('business')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;" icon="chart-pie"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;" icon="chart-pie"></fa>
             </v-list-item-icon>
             <v-list-item-title>Для Бизнеса</v-list-item-title>
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
             <v-list-item @click="onPage('#contact')">
             <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;" icon="address-book"></fa>
+             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;" icon="address-book"></fa>
             </v-list-item-icon>
             <v-list-item-title>Контакты</v-list-item-title> 
+            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
         </v-list-item-group>
     </nav>
@@ -123,9 +131,7 @@ export default {
 .nots{
   display: none;
 }
-.bb{
-  
-}
+
 .lang-dialog{
   background: white;
   position: absolute;

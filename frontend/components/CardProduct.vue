@@ -11,7 +11,7 @@
     <div style="width:100%;text-align: center;">
     <img style="width:20rem" :class="{ 'on-hover': hover }" class="img"  :src="present.image_precent" >
     </div>
-    <div v-if="hover"  class="text-center" style="position:absolute;left: 6rem;top: 10rem;opacity:1;">
+    <div v-if="hover"  class="text-center onhov" >
                     <v-btn
                     @click="onPageProduct(present.id,present.category[0].slug_category)"
                        style="color:white;opacity:1"
@@ -153,5 +153,16 @@ export default {
   .hh4{
     width: 100%;
   }
+.onhov{
+  position:absolute;
+  left: 9rem;
+  top: 10rem;
+  opacity:1;
+}
+@media (max-width:500px){
+  .onhov{
+  left: 6rem;
 
+}
+}
 </style>
