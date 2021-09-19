@@ -33,8 +33,8 @@ services:
   front:
     restart: always
     build: ./frontend
-    depends_on:
-      - present_api
+    volumes:
+      - ./frontend:/app
 
 
   # pgadmin:
