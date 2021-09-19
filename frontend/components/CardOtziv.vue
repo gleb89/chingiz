@@ -96,7 +96,7 @@
 }
 @media (max-width: 500px){
   .co{
-  width: 18rem;
+  width: 23rem
 }
 }
 </style>
