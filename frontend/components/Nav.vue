@@ -1,19 +1,15 @@
 <template>
   <nav
   class="text-center"
-  style="position: fixed;top: 0;z-index: 1;width:100%;background: white;"
+  style="position: fixed;top: 0;z-index: 1;width:100%;background: white;height: 5rem;"
     >
     <v-container class="d-flex justify-center">
     <div style="padding-right: 3rem">
-      <v-img
+      <img
       @click="onHome()"
-        style="padding: 1rem;cursor:pointer"
-        contain
-        lazy-src="Logo.png"
-        max-height="70"
-        max-width="120"
+        style="cursor:pointer;width: 9rem;"
         src="/Logo.png"
-      ></v-img>
+      >
     </div>
 
     <div class="nav-link box-icon_text">
@@ -24,16 +20,16 @@
         <span class="text-nav">Каталог</span>
       </div> 
     </div>
-    <div @click="onPage('o_nas')"  class="nav-link">
+    <div style="min-width: 5rem;"  @click="onPage('o_nas')"  class="nav-link">
       <span class="text-nav">О нас</span>
     </div>
-    <div @click="onPage('for_work')" class="nav-link">
+    <div style="min-width: 12rem;"  @click="onPage('for_work')" class="nav-link">
       <span class="text-nav">Доставка и оплата </span>
     </div>
     <div @click="onPage('for_bonus')" class="nav-link">
       <span class="text-nav">Бонусы</span>
     </div>
-    <div @click="onPage('business')" class="nav-link">
+    <div style="min-width: 9rem;" @click="onPage('business')" class="nav-link">
       <span class="text-nav">Для Бизнеса</span>
     </div>
     <div class="nav-link">
@@ -43,7 +39,7 @@
       <img style="width: 1rem" src="/search.svg" alt="" />
     </div>
 
-    <div class="nav-link">
+    <div style="min-width: 14rem;" class="nav-link">
       <span class="text-nav">+7 (888) 777 77 88</span>
       <img style="width: 1rem;margin-left:.7rem" src="/tt.png" alt="" />
       <img style="width: 1rem;margin-left:.7rem" src="/ww.png" alt="" />
@@ -92,7 +88,7 @@
       </v-menu>
     </div>
 
-    <div class="nav-link box-icon_text" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
+    <div style="min-width: 6rem;" class="nav-link box-icon_text" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
       <div style="margin-right: 7px">
         <img src="/bascket.svg" alt="" />
       </div>
@@ -191,10 +187,10 @@ export default {
   display: flex;
   background: none;
 }
-@media (max-width:1890px) {
+/* @media (max-width:1890px) {
   .text-nav{
     font-size: .8rem;
   }
-}
+} */
 
 </style>
