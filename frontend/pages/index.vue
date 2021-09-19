@@ -677,13 +677,13 @@ h2{
   text-align: center;
 }
   .box-header .theme--light.v-input{
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     
 
   }
   .box-header .v-text-field.v-text-field--solo .v-input__control {
-  max-width: 90%;
+  max-width: 100%;
   margin-left: 1rem;
   
   }
