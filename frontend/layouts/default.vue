@@ -51,22 +51,24 @@ export default {
 
 <style >
 
-.nav-d {
-  display: none;
-}
-@media (min-width: 1400px) {
+
+@media (min-width: 1406px) {
   .nav-d {
     display: block;
   }
-}
-
-.nav-m {
+  .nav-m {
   display: none;
 }
-@media (max-width: 1399px) {
+}
+
+
+@media (max-width: 1405px) {
   .nav-m {
-    display: block;
+    display:block;
   }
+  .nav-d {
+  display: none;
+}
 }
 
 
