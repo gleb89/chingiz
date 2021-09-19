@@ -7,7 +7,7 @@
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость...”
         </p>
-        <div style="display: flex;justify-content: center;flex-wrap: wrap;">
+        <div style="display: flex;justify-content: center;flex-wrap: wrap;align-items: center;">
           <div class="forin">
             <v-autocomplete
             label="Город доставки"
@@ -49,12 +49,12 @@
             ></v-date-picker>
           </v-menu>
               </div>
-              <div class="forin">
+              <div class="forin"  style="">
           <v-btn
           @click="onsavecity_pushCatalog"
           class="btnper"
             rounded
-            style="margin-top:1rem;height: 3rem;width: 15rem;"
+            style=";height: 3rem;width: 15rem;margin-bottom:.7rem"
             color="#ff7a00"
             dark
           >
@@ -70,15 +70,15 @@
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
-        <div style="text-align: center">
+        <div class="b1" style="text-align: center">
           <v-btn
             @click="oncatalog()"
             rounded
-            color="#ff7a00"
-            style="height: 39px; margin: 0.7rem;margin-top:4rem"
+            
+            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
-            <span style="font-size: 12px">перейти в каталог</span>
+            <span style="font-size: 12px;">перейти в каталог</span>
           </v-btn>
         </div>
       </v-container>
@@ -112,15 +112,15 @@
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
-        <div style="text-align: center">
-          <v-btn
+        <div class="b1" style="text-align: center;margin-bottom:2rem">
+ <v-btn
             @click="oncatalog()"
             rounded
-            color="#ff7a00"
-            style="height: 39px; margin: 0.7rem;margin-top:4rem"
+            
+            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
-            <span style="font-size: 12px">перейти в каталог</span>
+            <span style="font-size: 12px;">перейти в каталог</span>
           </v-btn>
         </div>
       </v-container>
@@ -212,14 +212,14 @@
           </div>
         </div>
         <div style="text-align: center">
-          <v-btn
+ <v-btn
             @click="oncatalog()"
             rounded
-            color="#ff7a00"
-            style="height: 39px; margin: 0.7rem"
+            
+            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
-            <span style="font-size: 12px">перейти в каталог</span>
+            <span style="font-size: 12px;">перейти в каталог</span>
           </v-btn>
         </div>
       </v-container>
@@ -614,6 +614,10 @@ h1 {
 .btnper{
   width: 50%;
   margin-top: 1.3rem
+
+}
+.b1{
+  padding-top: 4rem;
 
 }
 .forin{

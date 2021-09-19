@@ -3,7 +3,7 @@
         <v-card
         class="rounded-xl"
             color="#FFFFFF"
-            style="padding:1rem;height: 300px;width: 380px;"
+            style="padding:1rem;height: 28remp;width: 18rem;"
           >
          
             <p class="text-left " style="color:#676767;font-size: 1rem;">

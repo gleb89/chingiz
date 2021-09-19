@@ -88,7 +88,7 @@
       </v-menu>
     </div>
 
-    <div style="min-width: 6rem;" class="nav-link box-icon_text" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
+    <div style="min-width: 8rem;" class="nav-link box-icon_text" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
       <div style="margin-right: 7px">
         <img src="/bascket.svg" alt="" />
       </div>

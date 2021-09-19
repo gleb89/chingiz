@@ -14,21 +14,7 @@
 
 <style >
 
-@media (max-width: 500px) {
-  .carsmob  .v-window__prev {
-    background: #FFFFFF;
-    top: 85%;
-    left: 8rem;
-    
-}
-    
-  .carsmob  .v-window__next {
-    background: #FFFFFF;
-    top: 85%;
-    right: 8rem;
-   
-}
-}
+
 
 
 </style>
