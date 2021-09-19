@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center" style="margin-top:3rem">
+    <v-row justify="center" style="margin-top:5rem">
       <!-- box-img tovar and name-->
       <v-col cols="12" lg="6" class="box-formob">
         <div>
@@ -108,6 +108,17 @@
       <h2>Похожие товары</h2>
       <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
       <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
+              <div class="b1" style="text-align: center;margin-bottom:2rem">
+ <v-btn
+            @click="oncatalog()"
+            rounded
+            
+            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            dark
+          >
+            <span style="font-size: 12px;">перейти в каталог</span>
+          </v-btn>
+        </div>
     </div>
     <div class="mt-14">
       <Comments :comments_list="comments_list" :product_id="product_id" :add_comment="add_comment"/>
@@ -160,6 +171,9 @@ export default {
     };
   },
   methods: {
+        oncatalog() {
+      this.$router.push("/"+'catalog/Все_продукты');
+    },
     add_comment(data){
       this.comments_all.push(data)
     },
