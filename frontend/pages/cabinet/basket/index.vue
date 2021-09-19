@@ -1,8 +1,12 @@
 <template>
-  <v-container style="padding-top: 4rem">
+  <v-container style="padding-top: 5rem">
     <h2 class="mb-4 d-lg-block d-none">Корзина</h2>
-    <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная/</nuxt-link> 
-    <span class="d-lg-block d-none">Корзина</span>
+     <div class="d-flex">
+        <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная/</nuxt-link> 
+          <span class="d-lg-block d-none" style="color: #303030" 
+            >Корзина</span 
+          >
+          </div>
 
           <div @click="gopage" class="d-lg-none d-block"
            style="background: whitesmoke;width: 100%;padding:1rem;color:#7C7C7C">

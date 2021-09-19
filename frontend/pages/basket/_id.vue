@@ -1,13 +1,16 @@
 <template>
-    <v-container style="padding-top:4rem">
+    <v-container style="padding-top:5rem">
         <h2  class="mb-4 d-lg-block d-none">Корзина</h2>
-        <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная</nuxt-link> /
-          <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/catalog/Все_продукты"
-            >Корзина</nuxt-link
+        <div class="d-flex">
+        <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/">Главная/</nuxt-link> 
+          <span class="d-lg-block d-none" style="color: #303030" 
+            >Корзина</span 
           >
-          <div>
+          </div>
+          <div @click="gopage" class="d-lg-none d-block"
+           style="background: whitesmoke;width: 100%;padding:1rem;color:#7C7C7C">
             <fa style="font-size: 1rem;" icon="chevron-left"></fa>
-             <span>Продолжить покупки</span>
+             <span style="margin-left:1rem">Продолжить покупки</span>
           </div>
         <v-row justify="center" class="mt-4">
           <v-col cols="12" md="9" lg="9">
@@ -138,6 +141,9 @@ export default {
     };
   },
   methods: {
+        gopage(){
+      this.$router.go(-1);
+    },
     item_add_count(pres_id,index){
       this.index = index
       this.ws.send(JSON.stringify(
