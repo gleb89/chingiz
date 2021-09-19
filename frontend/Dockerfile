@@ -3,7 +3,7 @@ FROM node:14.17-alpine3.14
 # Create app directory
 
 WORKDIR /app
-
+COPY package*.json package-lock*.json ./
 # Install app dependencies
 RUN apk update && apk upgrade && apk add git
 RUN rm -rf node_modules package-lock.json && npm install
