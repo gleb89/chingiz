@@ -7,9 +7,7 @@
       <div class="nav-m" >
         <Navmobile :drawerclick="drawerclick"/>
         <v-navigation-drawer
-        
       v-model="drawer"
-      
       absolute
       temporary
     >

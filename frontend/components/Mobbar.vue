@@ -1,7 +1,7 @@
 <template>
 <div>
     <v-bottom-navigation
-      absolute
+      fixed
       background-color="#494A51"
       
     >
