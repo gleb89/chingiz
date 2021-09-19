@@ -52,7 +52,7 @@ export default {
 <style >
 
 
-@media (min-width: 1406px) {
+@media (max-width: 2400px) {
   .nav-d {
     display: block;
   }
