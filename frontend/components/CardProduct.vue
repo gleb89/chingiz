@@ -161,7 +161,7 @@ export default {
 }
 @media (max-width:500px){
   .onhov{
-  left: 7rem;
+  left: 8rem;
 
 }
 }

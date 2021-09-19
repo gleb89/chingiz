@@ -96,7 +96,8 @@ export default {
   },
   methods: {
      onHome(){
-       this.openMenu()
+      let nav = document.querySelector('#nav')
+       nav.classList.remove("expanded");
       this.$router.push('/')
     },
     onCatalog(){
