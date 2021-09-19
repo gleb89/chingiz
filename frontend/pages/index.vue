@@ -511,7 +511,7 @@ export default {
 #header__content {
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover;
+  /* background-size: cover; */
   background-image: url("/header.png");
   min-height: 100vh;
   color: white;
