@@ -1,5 +1,6 @@
 <template>
-  <v-simple-table>
+<div>
+  <v-simple-table class="d-lg-block d-md-block d-none">
     <template v-slot:default>
       <thead>
         <tr>
@@ -70,7 +71,7 @@
       </tbody>
     </template>
   </v-simple-table>
-
+</div>
 </template>
 
 <script>
