@@ -1,6 +1,6 @@
 <template>
   <v-carousel :show-arrows="false" class="carsmob" height="400"  >
-    <v-carousel-item  v-for="comment in 9" :key="comment.id">
+    <v-carousel-item  v-for="comment in 6" :key="comment.id">
       <v-container>
         <v-row justify="center" class="text-center">
           <v-col class="text-center d-flex justify-center"  cols="12"    >
