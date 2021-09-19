@@ -9,7 +9,7 @@
         <v-navigation-drawer
         
       v-model="drawer"
-      fixed
+      
       absolute
       temporary
     >
