@@ -123,6 +123,9 @@ export default {
 .nots{
   display: none;
 }
+.bb{
+  
+}
 .lang-dialog{
   background: white;
   position: absolute;
