@@ -23,7 +23,7 @@
                 ></v-text-field>
               </div>
 
-              <div class="box-btn-podpic" style="padding-top: 1rem;">
+              <div class="box-btn-podpic" style="">
                 <v-btn rounded color="#ff7a00" style="height: 39px" dark>
                   начать покупки
                 </v-btn>
