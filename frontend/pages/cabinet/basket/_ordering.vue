@@ -1,5 +1,5 @@
 <template>
-  <v-container style="padding-top: 5rem">
+  <v-container style="padding-top: 6rem">
     <h2 class="mb-4 d-lg-block d-none">Корзина</h2>
     <div class="d-flex">
       <nuxt-link class="d-lg-block d-none" style="color: #303030" to="/"
@@ -82,7 +82,7 @@
                 alt=""
               />
             </div>
-            <div class="prof d-flex justify-space-between">
+            <div @click="onPage('cabinet/bonus')" class="prof d-flex justify-space-between">
               <p>Бонусы</p>
               <img
                 style="height: 10px;margin-top: .5rem;"
@@ -90,7 +90,7 @@
                 alt=""
               />
             </div>
-            <div class="prof d-flex justify-space-between">
+            <div @click="onsignout"  class="prof d-flex justify-space-between">
               <p>Выйти</p>
               <img
                 style="height: 10px;margin-top: .5rem;"
@@ -163,6 +163,14 @@ export default {
   },
 
   methods: {
+      onsignout(){
+      console.log('out');
+      this.$store.commit("localStorage/setAuthuser", '');
+      this.$store.commit("localStorage/set_summBasket",Number(0));
+      this.$store.commit("localStorage/set_idBasket",Number(0));
+      this.$router.push("/");
+   
+    },
     gopage() {
       this.$router.go(-1);
     },

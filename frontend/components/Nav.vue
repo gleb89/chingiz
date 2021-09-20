@@ -173,6 +173,7 @@ export default {
       this.$store.commit("localStorage/setAuthuser", '');
       this.$store.commit("localStorage/set_summBasket",Number(0));
       this.$store.commit("localStorage/set_idBasket",Number(0));
+      this.$router.push("/");
     }
   },
 }

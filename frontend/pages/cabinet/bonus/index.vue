@@ -1,10 +1,9 @@
 <template>
   <v-container style="padding-top: 6rem;padding-bottom: 4rem">
-    <h2 class="mb-4">История заказов</h2>
+    <h2 class="mb-4">Настройки профиля</h2>
     <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-    <span>История заказов</span>
-   
-       <div class="d-block d-lg-none">
+    <span>Бонусы</span>
+   <div class="d-block d-lg-none">
 
     </div>
     <v-row justify="center" class="mt-4">
@@ -52,7 +51,7 @@
         </v-card>
       </v-col>
       <v-col cols="12" md="9" lg="9">
-        <h2>История заказов</h2>
+        <h2>Бонусы</h2>
       </v-col>
     </v-row>
   </v-container>
@@ -74,23 +73,23 @@ export default {
         return { user_data };
       });
   },
+  data() {
+    return {
+      dialog: false,
+    };
+  },
   methods: {
     onPage(url){
       this.$router.push('/'+url)
     },
-            onsignout(){
+        onsignout(){
       console.log('out');
       this.$store.commit("localStorage/setAuthuser", '');
       this.$store.commit("localStorage/set_summBasket",Number(0));
       this.$store.commit("localStorage/set_idBasket",Number(0));
       this.$router.push("/");
-      
+   
     }
-  },
-  data() {
-    return {
-      dialog: false,
-    };
   },
 }
 </script>

@@ -27,22 +27,11 @@
         <span style="color:white" >Войти</span>
         <img src="/userbtn.png" alt="">
       </v-btn>
-
-       <v-btn @click="onsignout" v-if="userauth" icon >
-      <div class="nav-link box-icon_text">
-    <v-menu
-    
-        bottom
-        offset-y
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
+ <v-btn @click="dialogcabinet = !dialogcabinet" v-if="userauth" icon
             class=""
-            v-bind="attrs"
-            v-on="on"
             style="height: max-content;"
           >
-        <div style="margin-right: 7px;margin-top: 1.2rem;">
+        <div style="margin-right: 7px;margin-top: .65rem;">
         <img style="width: 1.5rem;" src="/login.svg" alt="" />
         <p style="color:white">
           кабинет
@@ -50,22 +39,78 @@
         
       </div>
           </v-btn>
-        </template>
-        <v-list>
-          <v-list-item
-          @click="onCabinet"
+  
+      <v-dialog
+    
+      v-model="dialogcabinet"
+      fullscreen
+      hide-overlay
+      transition="dialog-bottom-transition"
+    >
+      <v-card>
+        <v-toolbar
+          dark
+          color="orange"
+        >
+          <v-btn
+            icon
+            dark
+            @click="dialogcabinet = false"
           >
-            <v-list-item-title>Кабинет</v-list-item-title>
-          </v-list-item>
-           <v-list-item
-           @click="onsignout"
-          >
-            <v-list-item-title>Выйти</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </div>
-      </v-btn>
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+          <v-toolbar-title>Меню пользователя</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+
+   
+          </v-toolbar-items>
+        </v-toolbar>
+                <v-card
+          
+          color="#F4F5F6"
+          style="padding: 1rem;height: 100vh;"
+          elevation="6"
+        >
+          <div class="text-center">
+            <v-avatar size="60px">
+              <img
+                alt="Avatar"
+                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+              />
+            </v-avatar>
+          </div>
+          <p class="text-center" style="color: #ff7a00;margin-top:2rem">780 бонусов</p>
+          <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
+          <p class="text-center">Петров Олег Игоревич</p>
+          <div class="box-profile">
+            <div class="prof d-flex justify-space-between" @click="onPagecabinet('cabinet')">
+              <p>Настройки профиля</p>
+              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
+            </div>
+           <div class="prof d-flex justify-space-between" @click="onPagecabinet('cabinet/basket')">
+              <p>Корзина</p>
+              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
+            </div>
+           <div class="prof d-flex justify-space-between" @click="onPagecabinet('cabinet/history')">
+              <p>История заказов</p>
+              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
+            </div>
+           <div @click="onPagecabinet('cabinet/bonus')" class="prof d-flex justify-space-between">
+              <p>Бонусы</p>
+              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
+            </div>
+           <div @click="onsignout" class="prof d-flex justify-space-between">
+              <p>Выйти</p>
+              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
+            </div>
+            
+          </div>
+        </v-card>
+      </v-card>
+    </v-dialog>
+     
+      
 
       <v-btn icon style="position: relative;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
     
@@ -93,6 +138,7 @@ export default {
   data() {
     return {
       dialog: false,
+      dialogcabinet :false
     };
   },
     computed: {
@@ -106,6 +152,10 @@ export default {
   },
 
     methods: {
+      onPagecabinet(url){
+      this.$router.push('/'+url)
+      this.dialogcabinet = false
+    },
     onBasket(basket_id){
       if(this.$store.state.localStorage.basket.id_basket > 0){
         if(this.$store.state.localStorage.uid_auth_user){
@@ -140,6 +190,7 @@ export default {
       this.$store.commit("localStorage/setAuthuser", '');
       this.$store.commit("localStorage/set_summBasket",Number(0));
       this.$store.commit("localStorage/set_idBasket",Number(0));
+      this.dialogcabinet = false
     }
     },
 }
