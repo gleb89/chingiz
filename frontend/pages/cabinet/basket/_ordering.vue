@@ -113,7 +113,7 @@
           </v-tab-item>
         </v-tabs>
       </v-col>
-              <div class="text-center pt-7 pb-7">
+              <div class="text-center pt-4 pb-7">
               <v-btn
                
                 

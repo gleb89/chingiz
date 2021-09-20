@@ -114,7 +114,7 @@
             <v-btn
               rounded
               color="#ff7a00"
-              style="height: 39px; margin: 0.7rem;color: white;;margin-bottom:1.5rem"
+              style="height: 39px;color: white;;margin-bottom:1.1rem;margin-left:1rem;"
               dark
             >
               <span style="font-size: 12px;">применить</span>
