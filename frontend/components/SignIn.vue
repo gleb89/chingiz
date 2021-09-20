@@ -18,7 +18,7 @@
           class="hello-alert"
           style="box-shadow: 4px 4px 4px #0000004f"
           type="success"
-          >Привет {{ google_name }}</v-alert
+          >Вход выполнен успешно!</v-alert
         >
       </div>
     </div>

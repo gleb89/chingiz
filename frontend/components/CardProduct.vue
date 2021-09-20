@@ -21,6 +21,7 @@
                           подробнее
                         </v-btn>
     </div>
+    <hr>
     <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
       <h4 class="hh4" style="font-size: 0.9rem;text-align: center;">{{present.name_precent}}</h4>
     </v-card-title>
@@ -140,7 +141,12 @@ export default {
   
   opacity: 1;
 }
-
+   hr {
+    border: none; /* Убираем границу для браузера Firefox */
+    color: #E5E5E5; /* Цвет линии для остальных браузеров */
+    background-color: #E5E5E5; /* Цвет линии для браузера Firefox и Opera */
+    height: 1px; /* Толщина линии */
+   }
 .on-hover{
   opacity: .5;
   transition: opacity .4s ease-in-out;

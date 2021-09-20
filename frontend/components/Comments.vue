@@ -11,7 +11,7 @@
 
     <!-- box-comments -->
     <div class="boxc-comment" style="overflow: auto; max-height: 60vh;">
-      {{onscr}}
+     
     <div v-for="comment in comments_list" :key="comment.id" id="comments">
       <v-container>
         <v-row justify="center">

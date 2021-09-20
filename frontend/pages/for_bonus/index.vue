@@ -16,22 +16,9 @@
     <section id="foto-bonus">
           <v-container>
       <v-row justify="center">
-          <v-col cols="12"  class="mt-6">
-            <div
-              class="text-center"
-              style="display: flex; justify-content: center"
-            >
-                <div class="text-center logo-onas">
-                <p class="lozung">Скидки
-                    <br>
-                    за отзывы</p>
-                <p class="box-orange" style="color: "></p>
-              </div>
-              
-            </div>
-                 
+          <v-col cols="12"  class="mt-2"> 
                   <p class="text-center mt-6">
-                      Зачем нам отдавать свои деньги за ваши отзывы?
+                      Как собирать бонусы и за что вы их получаете?
                   </p>
                   
               
@@ -39,8 +26,9 @@
               <v-col cols="12" lg="4" md="4"  class="mt-6">
                   <div >
                       <h5 class="text-center nums">01</h5>
-                      <h4 class="h4_text text-center">Улучшение сервиса</h4>
-                      <p class="text-center other-text">Ваш отзыв и оценка помогает нам улучшить качество продукта</p>
+                      <h4 class="h4_text text-center">за каждый заказ</h4>
+                      <p class="text-center other-text">После каждого успешного заказа <br>
+вы получаете 200 балов</p>
                   </div>
           <v-img fluid src="/b1.png"></v-img>
           
@@ -48,8 +36,8 @@
         <v-col cols="12" lg="4" md="4" class="mt-6">
                         <div>
                       <h5 class="text-center nums">02</h5>
-                      <h4 class="h4_text text-center">Прозрачность бизнеса</h4>
-                      <p class="text-center other-text">Мы за полную прозрачность нашего бизнеса который мы ведем</p>
+                      <h4 class="h4_text text-center">отзыв на сайте</h4>
+                      <p class="text-center other-text">Оставив отзыв на нашем сайте вы <br> получите ещё 200 балов</p>
                   </div>
           <v-img fluid src="/b2.png"></v-img>
           
@@ -57,47 +45,23 @@
         <v-col cols="12" lg="4" md="4" class="mt-6">
                                     <div>
                       <h5 class="text-center nums">03</h5>
-                      <h4 class="h4_text text-center">Социальная ответственность</h4>
-                      <p class="text-center other-text">Вы можете повлиять на решение других наших клиентов</p>
+                      <h4 class="h4_text text-center">отметка в инстаграм</h4>
+                      <p class="text-center other-text">Отметка нашей страницы в инстаграм <br> подарит вам 300 балов</p>
                   </div>
           <v-img fluid src="/b3.png"></v-img>
          
         </v-col>
-                 <v-col cols="12"  class="mt-6">
+                 <v-col cols="12"  class="mt-6" style="min-height:30vh">
             <div
               class="text-center"
               style="display: flex; justify-content: center"
             >
-                <div class="text-center logo-onas">
-                <p class="lozung">Как
-                    <br>
-                    это работает</p>
-                <p class="box-orange" style="left: -2rem;"></p>
+                <div class="text-center">
+                <p class="">Далее, каждые 1 000 балов вы обмениваете на 20% скидки не  зависимо от суммы заказа</p>
               </div>
               
             </div>
-                 <div style="margin-top:2rem">
-                     <div class="text-center">
-                         <img style="width: 3rem;" fluid src="/b5.png">
-                         
-                     </div>
-                     
-                  <p class="text-center mt-6">
-                      Заказав продукты, вы оставляете отзыв <br> и оценку по каждому продукту
-                  </p>
-                  </div>
-                                 <div style="margin-top:2rem">
-                     <div class="text-center">
-                         <img style="width: 3rem;" fluid src="/b5.png">
-                         
-                     </div>
-                     
-                  <p class="text-center mt-6">
-                      Следующий ваш заказ будет посчитан 
-                      <br>
-                    с 5% скидкой на общую сумму заказа
-                  </p>
-                  </div>
+
               
               </v-col>
             </v-row>

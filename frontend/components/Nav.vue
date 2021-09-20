@@ -7,8 +7,8 @@
     <div style="padding-right: 3rem">
       <img
       @click="onHome()"
-        style="cursor:pointer;width: 9rem;"
-        src="/Logo.png"
+        style="cursor:pointer;width: 8rem;"
+        src="/logod.png"
       >
     </div>
 
@@ -146,6 +146,9 @@ export default {
         this.$router.push('/'+basket_id)
         }
         
+      }
+      else{
+        this.$router.push('/'+'basket')
       }
      
       

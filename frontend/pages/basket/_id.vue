@@ -13,7 +13,7 @@
              <span style="margin-left:1rem">Продолжить покупки</span>
           </div>
         <v-row justify="center" class="mt-4">
-          <v-col cols="12" md="9" lg="9">
+          <v-col v-if="presents.length" cols="12" md="9" lg="9">
               <Basket
               :presents="presents"
               :delete_present_in_basket="delete_present_in_basket"
@@ -27,6 +27,9 @@
               <p>Если у вас остались вопросы позвоните нам по номеру, указанному в шапке профиля.</p>
           </div>
           </v-col>
+          <v-col v-if="!presents.length" cols="12" md="9" lg="9">
+        <h4 class="text-center">Корзина пуста</h4>
+        </v-col>
           <v-col cols="12" md="3" lg="3">
               <v-card
               class="rounded-xl"

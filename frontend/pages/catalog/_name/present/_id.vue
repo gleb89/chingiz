@@ -106,8 +106,8 @@
     </v-row>
     <div class="mt-6">
       <h2>Похожие товары</h2>
-      <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
-      <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" />
+        <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
+        <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
               <div class="b1" style="text-align: center;margin-bottom:2rem">
  <v-btn
             @click="oncatalog()"

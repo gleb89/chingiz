@@ -34,6 +34,9 @@ services:
     restart: always
     build: ./frontend
 
+  
+   
+
 
 
   # pgadmin:

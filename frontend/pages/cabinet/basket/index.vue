@@ -103,7 +103,7 @@
       </v-card>
     </v-dialog>
     </div>
-    <v-row justify="center" class="mt-4">
+    <v-row  justify="center" class="mt-4">
       <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
         <v-card
           class="rounded-xl"
@@ -173,7 +173,7 @@
               </div>
               </v-card>
       </v-col>
-      <v-col cols="12" md="9" lg="9">
+      <v-col v-if="presents.length" cols="12" md="9" lg="9">
         <Basket
           :presents="presents"
           :delete_present_in_basket="delete_present_in_basket"
@@ -208,6 +208,8 @@
               </v-card>
             <div class="text-center" style="padding-top:3rem">
                 <v-btn
+                @click="onformuser"
+                
             rounded
             color="#ff7a00"
             style="min-width: 30%;height: 3rem;"
@@ -231,7 +233,11 @@
           </p>
         </div>
       </v-col>
+      <v-col v-if="!presents.length" cols="12" md="9" lg="9">
+        <h4 class="text-center">Корзина пуста</h4>
+        </v-col>
     </v-row>
+
   </v-container>
 </template>
 
@@ -309,6 +315,9 @@ export default {
     };
   },
   methods: {
+    onformuser(){
+      this.$router.push('/cabinet/basket/'+'ordering')
+    },
     gopage(){
       this.$router.go(-1);
     },
