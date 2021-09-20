@@ -50,14 +50,14 @@
       <v-card>
         <v-toolbar
           dark
-          color="orange"
+          color="#494A51"
         >
           <v-btn
             icon
             dark
             @click="dialogcabinet = false"
           >
-            <v-icon>mdi-close</v-icon>
+            <v-icon color="white">mdi-close</v-icon>
           </v-btn>
           <v-toolbar-title>Меню пользователя</v-toolbar-title>
           <v-spacer></v-spacer>
@@ -191,6 +191,7 @@ export default {
       this.$store.commit("localStorage/set_summBasket",Number(0));
       this.$store.commit("localStorage/set_idBasket",Number(0));
       this.dialogcabinet = false
+      this.$router.push('/')
     }
     },
 }
