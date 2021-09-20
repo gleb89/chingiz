@@ -22,7 +22,7 @@
 }
 .v-carousel__controls {
 
-    background: rgb(0 0 0 / 6%);
+    background: rgba(0, 0, 0, 0);
 
 }
 
