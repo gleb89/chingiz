@@ -14,7 +14,7 @@
     <footer id="contact" style="background: #f6f6f6">
       <Foot/>
     </footer>
-    <div class="d-block d-lg-none ">
+    <div class="nav-mnav">
       <Mobbar/>
     </div>
   </v-app>
