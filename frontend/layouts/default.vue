@@ -1,10 +1,10 @@
 <template>
 <v-app >
   <header>
-    <div class="nav-d">
+    <div class="nav-dnav">
       <Nav />
       </div>
-      <div class="nav-m" >
+      <div class="nav-mnav" >
         <Navmobile />
       </div>
   </header>
@@ -53,20 +53,20 @@ export default {
 
 
 @media (max-width: 2400px) {
-  .nav-d {
+  .nav-dnav {
     display: block;
   }
-  .nav-m {
+  .nav-mnav {
   display: none;
 }
 }
 
 
 @media (max-width: 1405px) {
-  .nav-m {
+  .nav-mnav {
     display:block;
   }
-  .nav-d {
+  .nav-dnav {
   display: none;
 }
 }
