@@ -5,63 +5,62 @@
         <v-col cols="12">
           <div>
             <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-            <span style="color: #222121a1">для бизнеса</span>
+            <span style="color: #222121a1">Для бизнеса</span>
           </div>
           <div class="mt-4">
-            <h2 style="font-size:2rem;margin-top: 2rem;">Для бизнес-клиентов </h2>
+            <h2 style="font-size:2rem;margin-top: 2rem;">Для бизнеса </h2>
           </div>
-           
-               <p class="text-left mt-4">
-                   Для наших бизнес-клиентов мы подготовили специальное предложение.
-                    Закажите фрукты для урашения холла гостиницы, свежайшие ягоды
-                     для кондитерской, овощную корзину для вашего офисного фуршета 
-                     или круктовую корзину в качестве подарка для ваших сотрудников.
-                      Для наших бизнес-клиентов мы подготовили специальное предложение.
-                       Закажите фрукты для урашения холла гостиницы, свежайшие ягоды
-                        для кондитерской, овощную корзину
-                для вашего офисного фуршета или круктовую корзину
-                 в качестве подарка для ваших сотрудников.
-               </p>
-           
         </v-col>
+        <v-col cols="12" md="6" lg="6">
+          <div class="d-flex flex-nowrap" style="align-items: center;">
+            <img src="/g1.png" alt="">
+            <h5 style="color:#676767" class="pl-3">Персонализация</h5>
+          </div>
+          <p class="mt-5" >
+            <ul style="color:#ff7b03">
+              <li><span style="color:#676767">Добавление вашего логотипа</span> </li>
+              <li><span style="color:#676767">Добавление имени получателя</span> </li>
+            </ul>
+    
+          </p>
+          </v-col>
+        <v-col cols="12" md="6" lg="6">
+            <div class="d-flex flex-nowrap" style="align-items: center;">
+            <img src="/g2.png" alt="">
+            <h5 style="color:#676767"  class="pl-3">Индивидуальный менеджер</h5>
+          </div>
+          <p class="mt-5"  style="color:#676767" >
+            От начала заказа и до полного получения
+            всех подарков у вас будет одно окно коммуникации
+            для вашего удобства.
+          </p>
+          </v-col>
+
+        <v-col cols="12" md="6" lg="6">
+         <div class="d-flex flex-nowrap" style="align-items: center;">
+            <img src="/g3.png" alt="">
+            <h5 style="color:#676767"  class="pl-3">Прозрачность</h5>
+          </div>
+          <p class="mt-5"  style="color:#676767" >
+            Мы предоставляем полный пакет закрывающей документации
+            в день получения всех подарков.
+          </p>
+          </v-col>
+
+        <v-col cols="12" md="6" lg="6">
+         <div class="d-flex flex-nowrap" style="align-items: center;">
+            <img src="/g4.png" alt="">
+            <h5 style="color:#676767"  class="pl-3">Спец Заказ</h5>
+          </div>
+          <p class="mt-5"  style="color:#676767" >
+            Не нашли, что искали?
+            Дайте нам свои идеи и мы воплотим их в реальность.
+          </p>
+          </v-col>
+
       </v-row>
     </v-container>
-    <section id="for-busness">
-          <v-container>
-      <v-row justify="center">
-                            <v-col cols="12" lg="4" md="4"  class="mt-6">
-                                 <v-img fluid src="/bz1.png"></v-img>
-                  <div style="margin-top:2rem">
-                      <h5 class="text-center nums">01</h5>
-                      <h4 class="h4_text text-center">HoReCa</h4>
-                      <p class="text-center other-text">Мы соединяем наш опыт, экспертизу, энергию и навыки с цифровыми технологиями для создания лучшей цены, качества и сервиса.</p>
-                  </div>
-         
-          
-        </v-col>
-        <v-col cols="12" lg="4" md="4" class="mt-6">
-            <v-img fluid src="/bz2.png"></v-img>
-                        <div style="margin-top:2rem">
-                      <h5 class="text-center nums">02</h5>
-                      <h4 class="h4_text text-center">Доставка в офис</h4>
-                      <p class="text-center other-text">Мы соединяем наш опыт, экспертизу, энергию и навыки с цифровыми технологиями для создания лучшей цены, качества и сервиса.</p>
-                  </div>
-          
-          
-        </v-col>
-        <v-col cols="12" lg="4" md="4" class="mt-6">
-             <v-img fluid src="/bz3.png"></v-img>
-                                    <div style="margin-top:2rem">
-                      <h5 class="text-center nums">03</h5>
-                      <h4 class="h4_text text-center">Фруктовые корзины на подарок</h4>
-                      <p class="text-center other-text">Мы соединяем наш опыт, экспертизу, энергию и навыки с цифровыми технологиями для создания лучшей цены, качества и сервиса.</p>
-                  </div>
-         
-         
-        </v-col>
-            </v-row>
-    </v-container>
-    </section>
+ 
   </div>
 </template>
 
