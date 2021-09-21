@@ -1,5 +1,5 @@
 <template>
-  <div id="onas">
+  <div style="margin-bottom:4rem">
     <v-container>
       <v-row justify="center">
         <v-col cols="12">
