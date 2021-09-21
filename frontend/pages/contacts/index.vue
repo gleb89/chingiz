@@ -111,8 +111,8 @@
               <span style="font-size: 12px;">отправить</span>
             </v-btn>
               </div>
-              <div>
-                  <p style="font-size: .9rem;">
+              <div class="text-center">
+                  <p class="text-center" style="font-size: .9rem;">
                       Нажимая кнопку “Отправить”, <br> Вы даёте 
                     согласие на обработку персональных данных
                   </p>
