@@ -21,7 +21,7 @@
     width: 24px;
 }
 .v-carousel__controls {
-    background: none;
+    background: rgba(244, 237, 237, 0.3);
 }
 
 </style>
