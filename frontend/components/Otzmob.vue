@@ -1,4 +1,5 @@
 <template>
+<div id="cars">
   <v-carousel :show-arrows="false" class="carsmob" height="400"  >
     <v-carousel-item  v-for="comment in 6" :key="comment.id">
       <v-container>
@@ -10,6 +11,7 @@
       </v-container>
     </v-carousel-item>
   </v-carousel>
+  </div>
 </template>
 
 <style >
@@ -20,8 +22,8 @@
     font-size: 24px;
     width: 24px;
 }
-.v-carousel__controls {
-    background: white;
+#cars .v-carousel__controls {
+    background: #f4f5f6;
 }
 
 </style>
