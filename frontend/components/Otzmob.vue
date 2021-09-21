@@ -21,9 +21,7 @@
     width: 24px;
 }
 .v-carousel__controls {
-
-    background: white;
-
+    background: border-box;
 }
 
 </style>
