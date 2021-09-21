@@ -78,7 +78,7 @@
             height="620"
               style="background: #F4F5F6;width:100%;padding:2rem"
             >
-              <h4 style="font-size: 1.5rem;" class="text-center">
+              <h4 style="font-size: 1.5rem;" class="text-center mb-4">
                 Задать вопрос
               </h4>
               <v-text-field
