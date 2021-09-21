@@ -74,7 +74,7 @@
             </v-avatar>
             <h3 class="ml-4">Способы оплаты:</h3>
           </div>
-          <!--  -->
+          <!-- ff -->
           <v-row justify="center">
             <v-col class="d-flex justify-center" cols="12" md="4" lg="4">
                     <v-card style="width: 20rem;height: 13rem;" class="rounded-xl">
