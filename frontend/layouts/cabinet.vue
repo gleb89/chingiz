@@ -61,7 +61,7 @@
             <v-list-item-title>Для Бизнеса</v-list-item-title>
           </v-list-item>
 
-            <v-list-item @click="onPage('/#contact')">
+            <v-list-item @click="onPage('/contacts')">
             <v-list-item-icon>
              <fa style="color:#FF7A00" icon="address-book"></fa>
             </v-list-item-icon>

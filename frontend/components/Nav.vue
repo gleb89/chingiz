@@ -32,7 +32,7 @@
     <div style="min-width: 9rem;" @click="onPage('business')" class="nav-link">
       <span class="text-nav">Для Бизнеса</span>
     </div>
-    <div class="nav-link">
+    <div class="nav-link" @click="onPage('contacts')">
       <span class="text-nav">Контакты</span>
     </div>
     <div class="nav-link" style="cursor:pointer" @click="onCatalog">

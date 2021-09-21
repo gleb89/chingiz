@@ -74,7 +74,7 @@
             <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
-            <v-list-item @click="onPage('#contact')">
+            <v-list-item @click="onPage('contacts')">
             <v-list-item-icon>
              <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;" icon="address-book"></fa>
             </v-list-item-icon>
