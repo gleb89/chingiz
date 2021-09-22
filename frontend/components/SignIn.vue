@@ -124,6 +124,29 @@ export default {
       let headers = {
         "Content-Type": "application/json"
       };
+      if(this.$store.state.localStorage.basket.id_basket > 0){
+        console.log('hello');let data = {
+          "id": 0,
+          "uid_firebase":uid_user ,
+          "email": email
+
+      }
+      this.$axios
+        .$post(`present/users/`, data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          this.$store.commit("localStorage/setAuthuser", String(resp.user.uid_firebase));
+          this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
+          this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          return true
+        })
+        .catch(function (error) {
+          console.log(error);
+          return false
+        });
+      }
+      else{
       let data = {
           "id": 0,
           "uid_firebase":uid_user ,
@@ -144,6 +167,7 @@ export default {
           console.log(error);
           return false
         });
+        }
     },
     createUser_phoneauth(uid_user,phone){
       let headers = {
