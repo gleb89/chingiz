@@ -50,6 +50,7 @@
               </div>
               <div>
                 <v-btn
+                @click="dialog = true"
             rounded
             color="#ff7a00"
             style="height: 39px; margin-top: 1.3rem"
@@ -75,6 +76,18 @@
               </div>
               </v-card>
           </v-col>
+          <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="600px"
+      
+    >
+    <v-card style="padding:1rem">
+    <SignIn :dialog_exit="dialog_exit" :close="close"/>
+
+    
+    </v-card>
+    </v-dialog>
                  </v-row>
       </v-container>
    
@@ -101,6 +114,9 @@ export default {
   },
   computed: {
     basket(){
+      if(this.$store.state.localStorage.uid_auth_user){
+        this.$router.push('/cabinet/basket')
+      }
       return this.$store.state.localStorage.basket
     },
     presents(){
@@ -113,7 +129,8 @@ export default {
     return {
       data_present:[],
       ws: null,
-      index:null
+      index:null,
+      dialog: false
     };
   },
   mounted: function () {
@@ -144,6 +161,12 @@ export default {
     };
   },
   methods: {
+    close(){
+      this.dialog = !this.dialog
+    },
+    dialog_exit(){
+      this.dialog = false
+    },
         gopage(){
       this.$router.go(-1);
     },

@@ -7,6 +7,7 @@
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость...”
         </p>
+        
         <div style="display: flex;justify-content: center;flex-wrap: wrap;align-items: center;">
           <div class="forin">
             <v-autocomplete
