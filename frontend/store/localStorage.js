@@ -2,10 +2,10 @@
 // store/localStorage.js
 export const state = () => ({
   jwtToken : '',
-  uid_auth_user:process.server ? '' : !!'',
+  uid_auth_user:'',
   basket:{ 
-    id_basket:process.server ? '' : !!localStorage.getItem('id_basket') || 0,
-    summ_present:process.server ? '' : !!localStorage.getItem('summ_present') || 0
+    id_basket: 0,
+    summ_present:0
   }
   })
 
