@@ -20,7 +20,7 @@ async def get_all():
 async def get_one(basket_id:int):
     return await HistoryBasket.objects.get_or_none(basket_id=basket_id)
 
-@history_router.post('/add_history/{basket_id}')
+# @history_router.post('/add_history/{basket_id}')
 async def add_basket_in_history(basket_id:int):
     history = await get_one(basket_id)
     basket = await Basket.objects.get(id=basket_id)
@@ -41,5 +41,5 @@ async def add_basket_in_history(basket_id:int):
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):
     await add_basket_in_history(basket_id)
-    return RedirectResponse("http://http://api-booking.ru/cabinet/oplata")
+    return RedirectResponse("http://api-booking.ru/cabinet/oplata")
 

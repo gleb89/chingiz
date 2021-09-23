@@ -103,8 +103,9 @@
       </v-col>
       <v-col cols="12" md="9" lg="9">
         <v-tabs color="orange" left>
-          <v-tab>Для физ. лиц</v-tab>
-          <v-tab>Для юр. лиц</v-tab>
+         
+          <v-tab @click="onofizplata">Для физ. лиц</v-tab>
+          <v-tab @click="onourplata">Для юр. лиц</v-tab>
           <v-tab-item>
             <Oplatafiz :presents_in_basket="presents_in_basket" />
           </v-tab-item>
@@ -116,7 +117,7 @@
               <div class="text-center pt-4 pb-7">
               <v-btn
                
-                
+                @click="oplatacheck"
             rounded
             color="#ff7a00"
             style="min-width: 30%;height: 3rem;"
@@ -154,6 +155,8 @@ export default {
   },
   data() {
     return {
+      fizoplata:true,
+      uroplata:false,
       tab: null,
       data_present: [],
       ws: null,
@@ -163,6 +166,24 @@ export default {
   },
 
   methods: {
+    onofizplata(){
+      this.fizoplata = true
+      this.uroplata = false
+    },
+    onourplata(){
+      this.fizoplata = false
+      this.uroplata = true
+    },
+    oplatacheck(){
+      if(this.fizoplata){
+        let basket_id = this.$store.state.localStorage.basket.id_basket
+        window.location.href = `http://api-booking.ru:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+
+      }
+      else{
+        console.log('ur');
+      }
+    },
       onsignout(){
       console.log('out');
       this.$store.commit("localStorage/setAuthuser", '');
