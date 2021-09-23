@@ -51,16 +51,13 @@
           </div>
         </v-card>
       </v-col>
-      <v-col cols="12" md="9" lg="9">
+      <v-col v-if="history_data[0]" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-       
-        <div v-for="i in history_data" :key="i.id">
-          <div v-for="n in i.history.baskets" :key="n.id">
-            <p>dffdfd{{n}}</p>
-          </div>
-          
-          
-        </div>
+            <History :data_history="history_data[0].history.baskets"/>
+      </v-col>
+        <v-col v-if="!history_data[0]" cols="12" md="9" lg="9">
+        <h2>История заказов</h2>
+            <p>У вас еще нет истории заказов</p>
       </v-col>
     </v-row>
   </v-container>
