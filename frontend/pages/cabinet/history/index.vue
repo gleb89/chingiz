@@ -51,13 +51,9 @@
           </div>
         </v-card>
       </v-col>
-      <v-col v-if="history_data[0]" cols="12" md="9" lg="9">
+      <v-col cols="12" md="9" lg="9">
         <h2>История заказов</h2>
             <History :data_history="history_data[0].history.baskets"/>
-      </v-col>
-        <v-col v-if="!history_data[0]" cols="12" md="9" lg="9">
-        <h2>История заказов</h2>
-            <p>У вас еще нет истории заказов</p>
       </v-col>
     </v-row>
   </v-container>
