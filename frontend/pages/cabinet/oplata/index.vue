@@ -14,7 +14,7 @@ export default {
         
             setTimeout(() => {
                 this.$store.commit("localStorage/set_summBasket",Number(0));
-                this.$router.push('/cabinet/history')
+                this.$router.push('/'+'cabinet/history')
             }, 2000);
         },
     },
