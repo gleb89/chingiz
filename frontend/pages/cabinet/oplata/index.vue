@@ -11,10 +11,9 @@
 export default {
     methods: {
         redirectHistory() {
-        
             setTimeout(() => {
                 this.$store.commit("localStorage/set_summBasket",Number(0));
-                this.$router.push('/')
+                window.location.href = `http://api-booking.ru/`
                 
             }, 2000);
         },
