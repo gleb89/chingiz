@@ -31,7 +31,7 @@ async def add_basket_in_history(basket_id:int):
         pass
     else:
         history = await HistoryBasket(basket_id=basket_id,history={'baskets':[]}).save()
-    dict_history = history.history.get('baskets')
+    dict_history = history.get('baskets')
 
     dict_history.append([basket.count_present_item.get('presents')])
     await basket.update(count_present_item={'presents':[]})
