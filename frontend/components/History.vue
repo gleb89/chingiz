@@ -10,13 +10,13 @@
             Оплата
           </th>
           <th class="text-left">
-            N чека
+            N-чека
           </th>
           <th class="text-left">
             Бонусы
           </th>
           <th class="text-left">
-            Сумма в чеке
+            Сумма
           </th>
         </tr>
       </thead>
@@ -28,11 +28,11 @@
           :class="{ active: index % 2 }"
           
         >
-          <td style="height: 5rem;" ><span class="tdd">05.05.2021</span> </td>
+          <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.dict_basket.date).toLocaleDateString()}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">EL{{Math.floor(Math.random()*(1,90))}}</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">+300</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">{{item_summ(item)}} тг</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">EL{{item.dict_basket.zakaz_num}}</span> </td>
+          <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+300</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">{{item_summ(item.dict_basket.present_basket).toLocaleString()}} тг</span> </td>
         </tr>
       </tbody>
     </template>

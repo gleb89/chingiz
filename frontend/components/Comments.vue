@@ -19,7 +19,7 @@
             <div class="card-comments-user">
               <div class="d-flex flex-wrap">
                 <div style="flex-grow: 1">
-                  <span>{{comment.name_user}} | 05.06.2021</span>
+                  <span>{{comment.name_user}} | {{new Date(comment.timestamp).toLocaleDateString()}}</span>
                 </div>
               </div>
               <div class="text-comment">

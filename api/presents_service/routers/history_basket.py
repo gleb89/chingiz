@@ -1,6 +1,7 @@
 from models.users import Users
 from fastapi import APIRouter
 from fastapi.responses import RedirectResponse
+import datetime
 
 
 from models.basket_users import Basket
@@ -28,7 +29,7 @@ async def get_one(basket_id:int):
 async def get_history(basket_id:int):
     return await HistoryBasket.objects.get_or_none(basket_id=basket_id)
 
-# @history_router.post('/add_history/{basket_id}')
+
 async def add_basket_in_history(basket_id:int):
     history = await get_history(basket_id)
     basket = await Basket.objects.get(id=basket_id)
@@ -36,15 +37,29 @@ async def add_basket_in_history(basket_id:int):
     
     new_points = len(basket.count_present_item.get('presents'))*300
     if history:
-        dict_history = history.history.get('baskets')
+        element_num = history.end_zakaz_num[-1]
+        zakaz_num = str(history.id)+str(basket.id)+str(user.id)+'-'+str(int(element_num) + 1)
     else:
-        history = await HistoryBasket(basket_id=basket_id,history={'baskets':[]}).save()
-    dict_history = history.history.get('baskets')
-
-    dict_history.append(basket.count_present_item.get('presents'))
+        history = await HistoryBasket(basket_id=basket_id,end_zakaz_num='',history=[]).save()
+        zakaz_num = str(history.id)+str(basket.id)+str(user.id)+'-'+'1'
+    await history.update(end_zakaz_num = zakaz_num)
+    dict_basket = basket.count_present_item.get('presents')
+    list_history = history.history
+    list_history.append(
+                   {
+                'dict_basket':{
+                    'present_basket':dict_basket,
+                    'date':str(datetime.datetime.now()),
+                    'zakaz_num':zakaz_num 
+                    }
+                }
+            )
+    
     await basket.update(count_present_item={'presents':[]})
     await user.update(points = user.points + new_points)
-    return await history.update(history = {'baskets':dict_history})
+    return await history.update(
+        history = list_history
+        )
 
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):

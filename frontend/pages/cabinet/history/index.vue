@@ -51,11 +51,12 @@
           </div>
         </v-card>
       </v-col>
-      <v-col v-if="history_data .length" cols="12" md="9" lg="9">
+ 
+      <v-col v-if="history_data[0].history.length" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-            <History :data_history="history_data[0].history.baskets"/>
+            <History :data_history="history_data[0].history"/>
       </v-col>
-      <v-col v-if="!history_data.length" cols="12" md="9" lg="9">
+      <v-col v-if="!history_data[0].history.length" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
       </v-col>

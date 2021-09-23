@@ -20,4 +20,5 @@ class HistoryBasket(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     basket_id = ormar.Integer()
-    history = ormar.JSON(default={},nullable=True)
+    history = ormar.JSON(default=[],nullable=True)
+    end_zakaz_num: str = ormar.String(max_length=1000, null=True)
