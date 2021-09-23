@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  data_pr:
+  data_present:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
@@ -24,15 +24,15 @@ services:
     # command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080"
    
     depends_on: 
-      - data_pr
+      - data_present
     volumes:
       - ./api/presents_service:/app/presents
 
 #
 
-  # front:
-  #   restart: always
-  #   build: ./frontend
+  front:
+    restart: always
+    build: ./frontend
 
   
    
