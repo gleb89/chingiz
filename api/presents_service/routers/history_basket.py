@@ -20,6 +20,11 @@ async def get_all():
 async def get_one(basket_id:int):
     return await HistoryBasket.objects.filter(basket_id=basket_id).all()
 
+@history_router.delete('/{basket_id}')
+async def get_one(basket_id:int):
+    history = await HistoryBasket.objects.get_or_none(basket_id=basket_id)
+    await history.delete()
+
 
 async def get_history(basket_id:int):
     return await HistoryBasket.objects.get_or_none(basket_id=basket_id)
@@ -37,7 +42,7 @@ async def add_basket_in_history(basket_id:int):
         history = await HistoryBasket(basket_id=basket_id,history={'baskets':[]}).save()
     dict_history = history.history.get('baskets')
 
-    dict_history.append([basket.count_present_item.get('presents')])
+    dict_history.append(i for i in [basket.count_present_item.get('presents')])
     await basket.update(count_present_item={'presents':[]})
     await user.update(points = user.points + new_points)
     return await history.update(history = {'baskets':dict_history})
