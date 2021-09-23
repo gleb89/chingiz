@@ -113,5 +113,5 @@ async def delete(fairbase_id: str)->None:
     """
     - Удаляет юсера по **fairbase_id**
     """
-    user =  await Users.objects.get_or_none(id=fairbase_id)
+    user =  await Users.objects.get_or_none(uid_firebase=fairbase_id)
     return await user.delete()
