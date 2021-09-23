@@ -109,7 +109,7 @@ async def get_one(fairbase_id: str)->Users:
 
 
 @app.delete('/{fairbase_id}')
-async def delete(fairbase_id: int)->None:
+async def delete(fairbase_id: str)->None:
     """
     - Удаляет юсера по **fairbase_id**
     """
