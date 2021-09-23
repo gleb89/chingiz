@@ -18,7 +18,7 @@ async def get_all():
 
 @history_router.get('/{basket_id}')
 async def get_one(basket_id:int):
-    return await HistoryBasket.objects.filter(basket_id=basket_id)
+    return await HistoryBasket.objects.filter(basket_id=basket_id).all()
 
 # @history_router.post('/add_history/{basket_id}')
 async def add_basket_in_history(basket_id:int):
