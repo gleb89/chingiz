@@ -15,6 +15,7 @@ export default {
             setTimeout(() => {
                 this.$store.commit("localStorage/set_summBasket",Number(0));
                 this.$router.push('/'+'cabinet/history')
+                window.location.href = `http://api-booking.ru/cabinet/history`
             }, 2000);
         },
     },
