@@ -28,7 +28,7 @@ async def add_basket_in_history(basket_id:int):
     
     new_points = len(basket.count_present_item.get('presents'))*300
     if history:
-        dict_history = history.history.get('baskets')
+        pass
     else:
         history = await HistoryBasket(basket_id=basket_id,history={'baskets':[]}).save()
     dict_history = history.history.get('baskets')

@@ -53,6 +53,14 @@
       </v-col>
       <v-col cols="12" md="9" lg="9">
         <h2>История заказов</h2>
+       
+        <div v-for="i in history_data" :key="i.id">
+          <div v-for="n in i.history.baskets" :key="n.id">
+            <p>dffdfd{{n}}</p>
+          </div>
+          
+          
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -64,14 +72,14 @@ export default {
     const headers = {
       "Content-Type": "application/json",
     };
-    let user_id = store.state.localStorage.uid_auth_user
+    let basket_id = store.state.localStorage.basket.id_basket
     return $axios
-      .$get(`present/users/${user_id}`, {
+      .$get(`present/history/${basket_id}`, {
         headers: headers,
       })
-      .then((user_data) => {
-        console.log(user_data);
-        return { user_data };
+      .then((history_data) => {
+     
+        return { history_data };
       });
   },
   methods: {
