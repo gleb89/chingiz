@@ -13,7 +13,7 @@ export default {
         redirectHistory() {
             setTimeout(() => {
                 this.$store.commit("localStorage/set_summBasket",Number(0));
-                window.location.href = `http://api-booking.ru/`
+                this.$router.replace({ path: '/' })
                 
             }, 2000);
         },
