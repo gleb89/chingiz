@@ -1,5 +1,7 @@
 from models.users import Users
 from fastapi import APIRouter
+from fastapi.responses import RedirectResponse
+
 
 from models.basket_users import Basket
 from models.history_basket import HistoryBasket
@@ -35,3 +37,9 @@ async def add_basket_in_history(basket_id:int):
     await basket.update(count_present_item={'presents':[]})
     await user.update(points = user.points + new_points)
     return await history.update(history = {'baskets':dict_history})
+
+@history_router.get("/oplata/for_end/{basket_id}")
+async def redirect_typer(basket_id:int):
+    await add_basket_in_history(basket_id)
+    return RedirectResponse("http://http://api-booking.ru/cabinet/oplata")
+

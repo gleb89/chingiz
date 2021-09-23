@@ -30,9 +30,9 @@ services:
 
 #
 
-  front:
-    restart: always
-    build: ./frontend
+  # front:
+  #   restart: always
+  #   build: ./frontend
 
   
    
