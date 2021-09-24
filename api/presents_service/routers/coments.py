@@ -20,6 +20,13 @@ async def create(newcomment:Comments):
         user_for_email = None
         user_for_phone = None
     if user_for_phone:
+        await Bonus(
+        user_fairbase_id = user_for_phone.uid_firebase,
+        count_points = 500,
+        enum_povod = f'отзыв на сайте',
+        summ_check = 0,
+        ).save()
+        await user_for_phone.update(points = user_for_phone.points +( user_for_phone.points+300))
         user_id = user_for_phone.id
         if not user_for_phone.email:
             await user_for_phone.update(email = newcomment.email_user)
@@ -29,6 +36,13 @@ async def create(newcomment:Comments):
             await user.update(firstname = newcomment.name_user)
         await user.update(points = user.points + 50)
     if user_for_email:
+        await Bonus(
+        user_fairbase_id = user_for_email.uid_firebase,
+        count_points = 500,
+        enum_povod = f'отзыв на сайте',
+        summ_check = 0,
+        ).save()
+        await user_for_email.update(points = user_for_email.points +( user_for_email.points+300))
         user_id = user_for_email.id
         if not user_for_email.phone:
             await user_for_email.update(phone = newcomment.phone_user)
@@ -47,12 +61,7 @@ async def create(newcomment:Comments):
         phone_user = newcomment.phone_user,
         body = newcomment.body
         ).save()
-    await Bonus(
-        user_fairbase_id = user.uid_firebase,
-        count_points = 500,
-        enum_povod = f'отзыв на сайте',
-        summ_check = 0,
-        ).save()
+
     return comment
 
 
