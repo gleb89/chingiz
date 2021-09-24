@@ -13,6 +13,10 @@ export default {
         redirectHistory() {
             setTimeout(() => {
                 this.$store.commit("localStorage/set_summBasket",Number(0));
+            }, 1000);
+            
+            setTimeout(() => {
+                
                 this.$router.replace({ path: '/cabinet/history' })
                 
             }, 2000);
