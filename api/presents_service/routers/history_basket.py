@@ -24,7 +24,7 @@ async def get_one_history(basket_id:int):
     if len(history)> 0:
         
          
-         return history[0].history[0].items
+         return history[0].history
     else:
          return history
     
