@@ -52,11 +52,11 @@
         </v-card>
       </v-col>
  
-      <v-col v-if="history_data[0].history.length" cols="12" md="9" lg="9">
+      <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
             <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
       </v-col>
-      <v-col v-if="!history_data[0].history.length" cols="12" md="9" lg="9">
+      <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
       </v-col>
