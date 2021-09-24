@@ -15,7 +15,7 @@
       <Foot/>
     </footer>
     <div class="nav-mnav">
-      <Mobbar/>
+      <Mobbar />
     </div>
   </v-app>
 </template>
@@ -27,6 +27,8 @@ export default {
       link:[{rel:"canonical",href:`https://el-bazaar.kz/${this.$route.path}`}]
     }
   },
+
+
   data() {
     return {
       drawer: false,

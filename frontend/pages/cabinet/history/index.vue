@@ -9,47 +9,7 @@
     </div>
     <v-row justify="center" class="mt-4">
       <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
-        <v-card
-          class="rounded-xl"
-          color="#F4F5F6"
-          style="padding: 1rem"
-          elevation="6"
-        >
-          <div class="text-center">
-            <v-avatar size="60px">
-              <img
-                alt="Avatar"
-                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
-              />
-            </v-avatar>
-          </div>
-          <p class="text-center" style="color: #ff7a00;margin-top:2rem">780 бонусов</p>
-          <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
-          <p class="text-center">Петров Олег Игоревич</p>
-          <div class="box-profile">
-            <div class="prof d-flex justify-space-between" @click="onPage('cabinet')">
-              <p>Настройки профиля</p>
-              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
-            </div>
-           <div class="prof d-flex justify-space-between" @click="onPage('cabinet/basket')">
-              <p>Корзина</p>
-              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
-            </div>
-           <div class="prof d-flex justify-space-between" @click="onPage('cabinet/history')">
-              <p>История заказов</p>
-              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
-            </div>
-           <div @click="onPage('cabinet/bonus')" class="prof d-flex justify-space-between">
-              <p>Бонусы</p>
-              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
-            </div>
-           <div @click="onsignout" class="prof d-flex justify-space-between">
-              <p>Выйти</p>
-              <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
-            </div>
-            
-          </div>
-        </v-card>
+      <CardUser :user_data="user_data"/> 
       </v-col>
  
       <v-col v-if="history_data.length > 0" cols="12" md="9" lg="9">
@@ -66,19 +26,14 @@
 
 <script>
 export default {
-      asyncData({ $axios,store}) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    let basket_id = store.state.localStorage.basket.id_basket
-    return $axios
-      .$get(`present/history/${basket_id}`, {
-        headers: headers,
-      })
-      .then((history_data) => {
-     
-        return { history_data };
-      });
+  async asyncData({ $axios, store }) {
+    const history_data = await $axios.get(
+      `present/history/${store.state.localStorage.basket.id_basket}`
+    );
+    const user_data = await $axios.get(
+      `present/users/${store.state.localStorage.uid_auth_user}`
+    );
+    return { history_data: history_data.data, user_data: user_data.data };
   },
   methods: {
     onPageHistory(zakaz_num){

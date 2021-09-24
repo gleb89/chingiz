@@ -80,7 +80,8 @@
               />
             </v-avatar>
           </div>
-          <p class="text-center" style="color: #ff7a00;margin-top:2rem">780 бонусов</p>
+          {{retbonus()}}
+          <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{bonus_count}} бонусов</p>
           <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
           <p class="text-center">Петров Олег Игоревич</p>
           <div class="box-profile">
@@ -135,10 +136,12 @@
 
 <script>
 export default {
+
   data() {
     return {
       dialog: false,
-      dialogcabinet :false
+      dialogcabinet :false,
+      bonus_count:0
     };
   },
     computed: {
@@ -169,6 +172,20 @@ export default {
      
       
     },
+
+    retbonus() {
+        this.$axios
+        .$get(`present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+         this.bonus_count = resp.points
+
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
+  },
     onCatalog(){
       this.$router.push("/"+'catalog/Все_продукты');
     },
