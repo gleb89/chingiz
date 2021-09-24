@@ -22,7 +22,7 @@ async def get_all():
 async def get_one_history(basket_id:int):
     history = await HistoryBasket.objects.filter(basket_id=basket_id).all()
     # try:
-    return history.id
+    return history[0]
     # except:
     #     return history
     
