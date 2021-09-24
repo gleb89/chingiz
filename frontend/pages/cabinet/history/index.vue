@@ -35,14 +35,9 @@ export default {
     const history_data  = await $axios.get(
       `present/history/${store.state.localStorage.basket.id_basket}`
     );
-    let hist
-    try {
-      hist = history_data.data[0].history 
-    } catch (error) {
-       hist = []
-    }
+
     
-    return { user_data: user_data.data, history_data : hist};
+    return { user_data: user_data.data, history_data : history_data};
   },
   methods: {
     onPageHistory(zakaz_num){
