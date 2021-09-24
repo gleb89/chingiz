@@ -134,8 +134,13 @@ export default {
       return this.$store.state.localStorage.basket;
     },
     presents() {
+      try {
       this.data_present = this.presents_in_basket.count_present_item.presents;
-      return this.data_present;
+        return this.data_present;
+      } catch (error) {
+        return this.data_present;
+      }
+
     },
   },
   data() {

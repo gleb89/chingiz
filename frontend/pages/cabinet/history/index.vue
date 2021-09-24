@@ -37,7 +37,7 @@ export default {
     );
 
     
-    return { user_data: user_data.data, history_data : history_data};
+    return { user_data: user_data.data, history_data : history_data.data};
   },
   methods: {
     onPageHistory(zakaz_num){
