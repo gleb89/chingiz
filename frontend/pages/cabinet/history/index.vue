@@ -11,13 +11,12 @@
       <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
       <CardUser :user_data="user_data"/> 
       </v-col>
-      <span v-if="count === 0"> {{onHistory()}}</span>
-
+ 
       <v-col v-if="history_data.length > 0" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
             <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
       </v-col>
-      <v-col v-if="history_data.length ===0" cols="12" md="9" lg="9">
+      <v-col v-if="history_data.length <1" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
       </v-col>
@@ -38,21 +37,13 @@ export default {
     
     return {user_data: user_data.data };
   },
-  methods: {
-    onHistory(){
-        this.$axios
-        .$get(`present/history/${this.$store.state.localStorage.basket.id_basket}`,{
-          
-        })
-        .then((resp) => {
-         this.history_data  = resp
-         this.count = 1
-
-        })
-        .catch(function (error) {
-         console.log(error);
-        });
+    async fetch() {
+      this.history_data= await fetch(
+        `http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
+      ).then(res => res.json())
     },
+  fetchOnServer: false,
+  methods: {
     onPageHistory(zakaz_num){
           this.$router.push('/cabinet/history/'+zakaz_num)
           console.log(zakaz_num);
@@ -72,8 +63,7 @@ export default {
   data() {
     return {
       dialog: false,
-      history_data:[],
-      count:0
+      history_data:[]
     };
   },
 }
