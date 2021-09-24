@@ -19,7 +19,8 @@ from routers import (
     users,
     basket,
     coments,
-    history_basket
+    history_basket,
+    bonus
     )   
 
 
@@ -112,8 +113,13 @@ app.include_router(
 app.include_router(
     coments.comment_router
 )
+
 app.include_router(
     history_basket.history_router
+)
+
+app.include_router(
+    bonus.bonus_router
 )
 
 

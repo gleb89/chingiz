@@ -54,7 +54,7 @@
  
       <v-col v-if="history_data[0].history.length" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-            <History :data_history="history_data[0].history"/>
+            <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
       </v-col>
       <v-col v-if="!history_data[0].history.length" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
@@ -81,6 +81,10 @@ export default {
       });
   },
   methods: {
+    onPageHistory(zakaz_num){
+          this.$router.push('/cabinet/history/'+zakaz_num)
+          console.log(zakaz_num);
+        },
     onPage(url){
       this.$router.push('/'+url)
     },

@@ -22,17 +22,20 @@
       </thead>
       <tbody>
         <tr
-            style="color:black;"
+        
+            style="color:black;cursor:pointer"
           v-for="(item,index) in data_history"
           :key="index"
-          :class="{ active: index % 2 }"
-          
+          :class="{ activel: index % 2 }"
+          @click="onPageHistory(item.dict_basket.zakaz_num)"
         >
+        
           <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.dict_basket.date).toLocaleDateString()}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.dict_basket.zakaz_num}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+300</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">{{item_summ(item.dict_basket.present_basket).toLocaleString()}} тг</span> </td>
+       
         </tr>
       </tbody>
     </template>
@@ -41,7 +44,7 @@
 
 <script>
 export default {
-    props:['data_history'],
+    props:['data_history','onPageHistory'],
     methods: {
         item_summ(items) {
             let summ = 0
@@ -50,11 +53,12 @@ export default {
             }
             return summ
         },
+  
     },
 }
 </script>
 
-<style >
+<style scoped>
     @media (max-width:500px){
         .tdd{
             font-size: .7rem;
@@ -62,8 +66,12 @@ export default {
         }
         
     }
-.active{
-    background: gray;
+/* AIzaSyBA_gkIXK0VDwh4kC6Ip_RcEjsu60bW2Ok */
+/* 991019846898-a5mgag4e7atbdl2infioliaqhn3n99sp.apps.googleusercontent.com */
+/* bWB7SIQeyl7BhORR0wZRZG3Q */
+.activel{
+    background: rgb(240, 236, 236);
     color: black;
 }
 </style>
+

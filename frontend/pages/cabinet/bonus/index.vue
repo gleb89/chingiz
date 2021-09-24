@@ -52,6 +52,12 @@
       </v-col>
       <v-col cols="12" md="9" lg="9">
         <h2>Бонусы</h2>
+        <div v-if="bonus_data.length > 0">
+        <Bonus :bonus_data="bonus_data"/>
+        </div>
+        <div v-if="bonus_data.length === 0">
+        <h3 class="text-center">У вас еще нет бонусных баллов</h3>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -64,13 +70,13 @@ export default {
       "Content-Type": "application/json",
     };
     let user_id = store.state.localStorage.uid_auth_user
+    
     return $axios
-      .$get(`present/users/${user_id}`, {
+      .$get(`present/bonus/${user_id}`, {
         headers: headers,
       })
-      .then((user_data) => {
-        console.log(user_data);
-        return { user_data };
+      .then((bonus_data) => {
+        return { bonus_data };
       });
   },
   data() {

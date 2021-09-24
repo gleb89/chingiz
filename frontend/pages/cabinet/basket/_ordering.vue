@@ -107,52 +107,37 @@
           <v-tab @click="onofizplata">Для физ. лиц</v-tab>
           <v-tab @click="onourplata">Для юр. лиц</v-tab>
           <v-tab-item>
-            <Oplatafiz :presents_in_basket="presents_in_basket" />
+  
+            <Oplatafiz
+             :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
           </v-tab-item>
           <v-tab-item>
-            <Oplataur :presents_in_basket="presents_in_basket" />
+            <Oplataur :presents_in_basket="presents_in_basket" :oplatacheck="oplatacheck"/>
           </v-tab-item>
         </v-tabs>
       </v-col>
-              <div class="text-center pt-4 pb-7">
-              <v-btn
-               
-                @click="oplatacheck"
-            rounded
-            color="#ff7a00"
-            style="min-width: 30%;height: 3rem;"
-            dark
-          >
-            <span style="font-size: .6rem">перейти к оформлению</span>
-          </v-btn>
-            </div>
+              
     </v-row>
   </v-container>
 </template>
 
 <script>
-let headers = {
-  "Content-Type": "application/json"
-};
 export default {
-  asyncData({ $axios, route, store }) {
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const id_basket = store.state.localStorage.basket.id_basket;
-    return $axios
-      .$get(`present/users/basket/${id_basket}`, {
-        headers: headers
-      })
-      .then(presents_in_basket => {
-        return { presents_in_basket };
-      });
+  async asyncData({ $axios, store }) {
+    const presents_in_basket = await $axios.get(
+      `present/users/basket/${store.state.localStorage.basket.id_basket}`
+    );
+    const user_data = await $axios.get(
+      `present/users/${store.state.localStorage.uid_auth_user}`
+    );
+    return { presents_in_basket: presents_in_basket.data, user_data: user_data.data };
   },
   computed: {
     basket() {
       return this.$store.state.localStorage.basket;
     }
   },
+
   data() {
     return {
       fizoplata:true,
@@ -161,7 +146,9 @@ export default {
       data_present: [],
       ws: null,
       index: null,
-      dialog: false
+      dialog: false,
+      
+      
     };
   },
 
@@ -176,8 +163,7 @@ export default {
     },
     oplatacheck(){
       if(this.fizoplata){
-        let basket_id = this.$store.state.localStorage.basket.id_basket
-        window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+       
 
       }
       else{

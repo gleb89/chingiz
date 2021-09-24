@@ -15,12 +15,14 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     script: [
-      // {
-      //   src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js",
-      //   src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js",
-      //   // src: "/__/firebase/init.js",
-      // }
+      {
+        // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js",
+        // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js",
+        // // src: "/__/firebase/init.js",
+      }
     ],
+
+
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]

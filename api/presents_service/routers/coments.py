@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from models.coments import Comments
 from models.users import Users
+from models.bonus import Bonus
 
 
 comment_router = APIRouter(
@@ -45,6 +46,12 @@ async def create(newcomment:Comments):
         name_user = newcomment.name_user,
         phone_user = newcomment.phone_user,
         body = newcomment.body
+        ).save()
+    await Bonus(
+        user_fairbase_id = user.uid_firebase,
+        count_points = 500,
+        enum_povod = f'отзыв на сайте',
+        summ_check = 0,
         ).save()
     return comment
 

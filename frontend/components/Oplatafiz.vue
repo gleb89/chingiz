@@ -1,5 +1,7 @@
 <template>
-  <v-form>
+  <v-form    
+    ref="form"
+    v-model="valid">
     <v-container>
       <v-row>
         <v-col cols="12" sm="12" md="12">
@@ -11,25 +13,35 @@
           </div>
         </v-col>
         <v-col cols="12" sm="6" md="6">
-          <v-text-field label="*Имя" solo style="min-width:100%"></v-text-field>
+          <v-text-field
+           label="*Имя"
+           v-model="name"
+           :rules="[(v) => !!v || 'Не может быть пустым']"
+            solo style="min-width:100%"
+            ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-            label="* Номер телефона"
+            label="* Номер телефона" 
+            v-model="phone"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             style="min-width:100%"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-            label="* Фамилия"
+            label="* Фамилия" 
+            v-model="familyname"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             style="min-width:100%"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-            label="E-mail"
+            label="E-mail" 
+            v-model="email"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -45,17 +57,21 @@
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-text-field
+          id="searchTextField"
             label="* Укажите адрес доставки"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
+            v-model="adress" 
             style="min-width:100%"
           ></v-text-field>
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-textarea
             solo
-            style="min-width:100%"
+            style="min-width:100%" 
             name="input-7-4"
             label="Комментарий"
+            v-model="text_comment"
           ></v-textarea>
         </v-col>
         <!-- способ оплаты -->
@@ -69,8 +85,10 @@
           </div>
         </v-col>
         <v-col cols="12" sm="12" md="12">
-          <v-radio-group background-color="transparent" style="min-width:100%">
-            <v-radio
+          <v-radio-group v-model="oplata_methods" background-color="transparent" style="min-width:100%">
+            
+            <v-radio 
+            
               v-for="n in [
                 'Kaspi, K2, Kaspi Pay',
                 'Оплатить картой Visa / Master Card'
@@ -93,8 +111,10 @@
           </div>
         </v-col>
         <v-col cols="12" sm="12" md="12">
-          <v-radio-group background-color="transparent" style="min-width:100%">
+          <v-radio-group v-model="spis_bonus"  background-color="transparent" style="min-width:100%">
+            
             <v-radio
+            
               v-for="n in ['Не использовать', 'Списать бонусы']"
               :key="n"
               color="orange"
@@ -103,22 +123,21 @@
             ></v-radio>
           </v-radio-group>
         </v-col>
-        <v-col cols="12" sm="12" md="12" style="background: #F4F5F6;">
-          <div class="d-flex flex-wrap" style="align-items: center;">
-            <v-text-field
-              label="Укажите, сколько бонусов вы хотите списать"
-              solo
-              class="bonusform"
-              style=""
-            ></v-text-field>
-            <v-btn
-              rounded
-              color="#ff7a00"
-              style="height: 39px;color: white;;margin-bottom:1.8rem;margin-left:1rem;"
-              dark
-            >
-              <span style="font-size: 12px;">применить</span>
-            </v-btn>
+        <v-col v-if="spis_bonus === 'Списать бонусы'" cols="12" sm="12" md="12" style="background: #F4F5F6;">
+        <div style="width:100%">
+      <p >Укажите, сколько бонусов вы хотите списать</p>
+      <v-slider
+      style="width:100%"
+      
+        v-model="count_spis_bonus"
+        color="orange"
+        step="1"
+        track 
+        thumb-label="always"
+        :max="user_data.points"
+        min="0"
+      ></v-slider>
+
           </div>
         </v-col>
         <!-- Ваш заказ -->
@@ -247,12 +266,28 @@
             <div style="text-align: end;">
                 <p>Итого: {{basket.summ_present.toLocaleString()}} тг</p>
                 <p>Доставка: 500 тг.</p>
-                <p>Бонусы: - 700 тг.</p>
-                <h3 style="color:#676767">Всего к оплате: 350 000 тг.</h3>
+                 <p v-if="spis_bonus != 'Списать бонусы'" >Бонусы: - 0 тг.</p>
+                <h3 v-if="spis_bonus != 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{basket.summ_present + 500}} тг.</h3>
+                <p v-if="spis_bonus === 'Списать бонусы'" >Бонусы: - {{count_spis_bonus}} тг.</p>
+                <h3 v-if="spis_bonus === 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{(basket.summ_present + 500)-count_spis_bonus}} тг.</h3>
             </div>
 
 
         </v-col>
+        <div class="text-center pt-4 pb-7 mb-6" style="width: 100%;">
+            <v-btn
+               
+            
+            
+            @click="validate"
+            rounded
+            color="#ff7a00"
+            style="min-width: 30%;height: 3rem;"
+            dark
+          >
+            <span style="font-size: .6rem">перейти к оформлению</span>
+          </v-btn>
+            </div>
       </v-row>
     </v-container>
     
@@ -260,26 +295,90 @@
 </template>
 
 <script>
+
 export default {
-  props: ["presents_in_basket"],
+// head() {
+//     return {
+//       script: [
+//         {src: `https://maps.googleapis.com/maps/api/js?key=bWB7SIQeyl7BhORR0wZRZG3Q&callback=initMap&libraries=places&v=weekly`}
+//       ]
+//     };
+//   },
+//   mounted() {
+//     var input = this.$refs.searchTextField; //.getElementById('searchTextField');
+//     new google.maps.places.Autocomplete(input);
+//   },
+  props: ["presents_in_basket",'user_data','oplatacheck'],
   data() {
     return {
+      valid: true,
       scrol: false,
+      name:'',
+      count_spis_bonus:this.user_data.points/2,
+      spis_bonus:null,
+      oplata_methods:null,
+      text_comment:'',
+      adress:'',
+      email:'',
+      familyname:'',
+      phone:''
     };
   },
     computed: {
     basket() {
       return this.$store.state.localStorage.basket;
     },
+      onlformdata() {
+        
+      if (
+        this.name &&
+        this.phone &&
+        this.familyname &&
+        this.adress &&
+        this.oplata_methods  
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+
   
+  },
+  methods: {
+      validate () {
+        this.$refs.form.validate()
+        if(this.$refs.form.validate()){
+          this.oplatacheckfiz()
+        }
+        else{
+          console.log('0000');
+        }
+      },
+    oplatacheckfiz() {
+      let data = {
+      'name':this.name,
+      'count_spis_bonus':this.count_spis_bonus,
+      'spis_bonus':this.spis_bonus,
+      'oplata_methods':this.oplata_methods,
+      'text_comment':this.text_comment,
+      'adress':this.adress,
+      'email':this.email,
+      'familyname':this.familyname,
+      'phone':this.phone
+      }
+      console.log(data);
+       let basket_id = this.$store.state.localStorage.basket.id_basket
+        window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .bonusform {
-  max-width: 70%;
-  min-width: 70%;
+  max-width: 100%;
+  min-width: 100%;
 }
 @media (max-width: 500px) {
   .bonusform {
@@ -287,4 +386,5 @@ export default {
     min-width: 100%;
   }
 }
+
 </style>

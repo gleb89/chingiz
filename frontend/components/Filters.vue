@@ -165,7 +165,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .active {
   color: #ff7a00;
 }
