@@ -1,6 +1,6 @@
 <template>
   <v-container style="padding-top: 6rem;padding-bottom: 4rem">
-    <h2 class="mb-4">Настройки профиля</h2>
+    <h2 class="mb-4">Бонусы</h2>
     <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
     <span>Бонусы</span>
    <div class="d-block d-lg-none">

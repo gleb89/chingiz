@@ -20,7 +20,8 @@ async def get_all():
 
 @history_router.get('/{basket_id}')
 async def get_one(basket_id:int):
-    return await HistoryBasket.objects.filter(basket_id=basket_id).all()
+    history = await HistoryBasket.objects.filter(basket_id=basket_id).all()
+    return history[0]
     
 @history_router.delete('/{basket_id}')
 async def get_one(basket_id:int):
