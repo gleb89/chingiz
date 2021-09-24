@@ -12,10 +12,11 @@
       <CardUser :user_data="user_data"/> 
       </v-col>
 
+
       <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-        {{history_data[0].history}}
-            <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
+        
+            <History :data_history="history_data" :onPageHistory="onPageHistory"/>
       </v-col>
       <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
@@ -32,9 +33,16 @@ export default {
       `present/users/${store.state.localStorage.uid_auth_user}`
     );
     const history_data  = await $axios.get(
-      `http://api-booking.ru:8080/api/v1/present/history/${store.state.localStorage.basket.id_basket}`
+      `present/history/${store.state.localStorage.basket.id_basket}`
     );
-    return { user_data: user_data.data, history_data : history_data.data };
+    let hist
+    try {
+      hist = history_data.data[0].history 
+    } catch (error) {
+       hist = []
+    }
+    
+    return { user_data: user_data.data, history_data : hist};
   },
   methods: {
     onPageHistory(zakaz_num){
