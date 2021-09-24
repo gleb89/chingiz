@@ -11,16 +11,16 @@
       <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
       <CardUser :user_data="user_data"/> 
       </v-col>
-{{history_data}}
-      <!-- <v-col v-if="history_data[0].history" cols="12" md="9" lg="9">
+
+      <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
         {{history_data[0].history}}
             <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
       </v-col>
-      <v-col v-if="!history_data[0].history" cols="12" md="9" lg="9">
+      <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
-      </v-col> -->
+      </v-col>
     </v-row>
   </v-container>
 </template>
