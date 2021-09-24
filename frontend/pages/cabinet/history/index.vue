@@ -26,21 +26,33 @@
 
 <script>
 export default {
-  async asyncData({ $axios, store }) {
-    // const history_data = await $axios.get(
-    //   `present/history/${store.state.localStorage.basket.id_basket}`
-    // );
-    const user_data = await $axios.get(
-      `present/users/${store.state.localStorage.uid_auth_user}`
-    );
-
-    
-    return {user_data: user_data.data };
+     asyncData({ $axios,store}) {
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    let basket_id = store.state.localStorage.basket.id_basket
+    return $axios
+      .$get(`present/history/${basket_id}`, {
+        headers: headers,
+      })
+      .then((history_data) => {
+     
+        return { history_data };
+      });
   },
-    async fetch() {
-      this.history_data= await fetch(
-        `http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
-      ).then(res => res.json())
+
+
+      async fetch() {
+      this.user_data = await fetch(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`).then(res =>
+        res.json()
+        
+      )
+    },
+      async fetch() {
+      this.user_data = await fetch(`http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`).then(res =>
+        res.json()
+        
+      )
     },
   fetchOnServer: false,
   methods: {
@@ -63,7 +75,7 @@ export default {
   data() {
     return {
       dialog: false,
-      history_data:[]
+      user_data:[]
     };
   },
 }
