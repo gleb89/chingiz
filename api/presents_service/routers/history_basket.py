@@ -59,14 +59,14 @@ async def add_basket_in_history(basket_id:int):
     list_history = history.history
     summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
     list_history.append(
-                   {
-                'dict_basket':{
+                   
+                {
                     'present_basket':dict_basket,
                     'date':str(datetime.datetime.now()),
                     'zakaz_num':zakaz_num ,
                     'summa':sum(summ),
                     }
-                }
+                
             )
     
     await basket.update(count_present_item={'presents':[]})
