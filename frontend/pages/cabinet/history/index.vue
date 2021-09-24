@@ -12,11 +12,12 @@
       <CardUser :user_data="user_data"/> 
       </v-col>
  
-      <v-col v-if="history_data.length > 0" cols="12" md="9" lg="9">
+      <v-col v-if="bonus_data.length > 0" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-            <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
+        {{bonus_data}}
+            <!-- <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/> -->
       </v-col>
-      <v-col v-if="history_data.length <1" cols="12" md="9" lg="9">
+      <v-col v-if="bonus_data.length <1" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
       </v-col>
@@ -26,35 +27,15 @@
 
 <script>
 export default {
-     asyncData({ $axios,store}) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    let basket_id = store.state.localStorage.basket.id_basket
-    return $axios
-      .$get(`present/history/${basket_id}`, {
-        headers: headers,
-      })
-      .then((history_data) => {
-     
-        return { history_data };
-      });
+  async asyncData({ $axios, store }) {
+    const user_data = await $axios.get(
+      `present/users/${store.state.localStorage.uid_auth_user}`
+    );
+    const bonus_data  = await $axios.get(
+      `present/bonus/${store.state.localStorage.uid_auth_user}`
+    );
+    return { user_data: user_data.data, bonus_data : bonus_data.data };
   },
-
-
-      async fetch() {
-      this.user_data = await fetch(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`).then(res =>
-        res.json()
-        
-      )
-    },
-      async fetch() {
-      this.user_data = await fetch(`http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`).then(res =>
-        res.json()
-        
-      )
-    },
-  fetchOnServer: false,
   methods: {
     onPageHistory(zakaz_num){
           this.$router.push('/cabinet/history/'+zakaz_num)
