@@ -30,7 +30,7 @@
           @click="onPageHistory(item.dict_basket.zakaz_num)"
         >
         
-          <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.dict_basket.date).toLocaleDateString()||'25.06.2021'}}</span> </td>
+          <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.dict_basket.date).toISOString().slice(0, 10)}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.dict_basket.zakaz_num}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>

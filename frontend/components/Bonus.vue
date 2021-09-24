@@ -25,7 +25,7 @@
           :key="index"
           :class="{ active: index % 2 }"
         >
-                  <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.timestamp).toLocaleDateString()||'25.06.2021'}}</span> </td>
+                  <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.timestamp).toISOString().slice(0, 10)}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">{{item.enum_povod}}</span> </td>
 
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">{{item.count_points}}</span> </td>
