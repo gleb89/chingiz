@@ -36,7 +36,7 @@ export default {
       `present/history/${store.state.localStorage.basket.id_basket}`
     );
 
-    
+    console.log(2222,user_data.data);
     return { user_data: user_data.data, history_data : history_data.data};
   },
   methods: {
