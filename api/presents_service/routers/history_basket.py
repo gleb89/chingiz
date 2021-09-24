@@ -23,7 +23,8 @@ async def get_one_history(basket_id:int):
     history = await HistoryBasket.objects.filter(basket_id=basket_id).all()
     if len(history)> 0:
         
-         v =  [i.dict_basket for i in history[0].history[0]]
+         v =  [i['dict_basket'] for i in history[0].history[0]]
+         return v
     else:
          return history
     
