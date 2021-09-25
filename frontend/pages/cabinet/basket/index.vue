@@ -21,6 +21,7 @@
     <v-row  justify="center" class="mt-4">
       <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
       <CardUser :user_data="user_data"/>
+      
            <v-card
               class="rounded-xl text-center"
               color="#F4F5F6"
@@ -234,7 +235,7 @@ export default {
       this.ws.send(
         JSON.stringify({
           message: "add_count",
-          basket_id: this.presents_in_basket.id,
+          basket_id: this.$store.state.localStorage.basket.id_basket,
           present_id: pres_id,
         })
       );
@@ -244,7 +245,7 @@ export default {
       this.ws.send(
         JSON.stringify({
           message: "remove_count",
-          basket_id: this.presents_in_basket.id,
+          basket_id: this.$store.state.localStorage.basket.id_basket,
           present_id: pres_id,
         })
       );
@@ -253,7 +254,7 @@ export default {
       this.ws.send(
         JSON.stringify({
           message: "remove_all",
-          basket_id: this.presents_in_basket.id,
+          basket_id: this.$store.state.localStorage.basket.id_basket,
           present_id: 0,
           clear: "remove",
         })
@@ -264,7 +265,7 @@ export default {
       this.ws.send(
         JSON.stringify({
           message: "remove_one",
-          basket_id: this.presents_in_basket.id,
+          basket_id: this.$store.state.localStorage.basket.id_basket,
           present_id: pres_id,
         })
       );
