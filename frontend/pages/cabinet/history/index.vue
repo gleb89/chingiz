@@ -15,8 +15,7 @@
 
       <v-col v-if="history_data[0]" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-        {{history_data[0].history}}
-            <!-- <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/> -->
+            <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
       </v-col>
       <v-col v-if="!history_data[0]" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>

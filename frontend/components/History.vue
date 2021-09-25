@@ -30,7 +30,7 @@
           @click="onPageHistory(item.zakaz_num)"
         >
         
-          <td style="height: 5rem;" ><span class="tdd">{{ new Date(item.date).toISOString().slice(0, 10)}}</span> </td>
+          <td style="height: 5rem;" ><span class="tdd">24-09-2021</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.zakaz_num}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>
