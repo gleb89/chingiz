@@ -73,17 +73,21 @@
           elevation="6"
         >
           <div class="text-center">
-            <v-avatar size="60px">
-              <img
+            <v-avatar size="60px" color='white'>
+                <fa v-if="!user_data.avatar" icon="user"></fa>
+                <img
+              v-if="user_data.avatar"
                 alt="Avatar"
-                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                :src="user_data.avatar"
               />
             </v-avatar>
           </div>
-          {{retbonus()}}
-          <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{bonus_count}} бонусов</p>
+          <span v-if="!resp_data">{{retbonus()}}</span>
+          
+          <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{user_data.points}} бонусов</p>
           <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
-          <p class="text-center">Петров Олег Игоревич</p>
+           <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
+          <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
           <div class="box-profile">
             <div class="prof d-flex justify-space-between" @click="onPagecabinet('cabinet')">
               <p>Настройки профиля</p>
@@ -141,7 +145,9 @@ export default {
     return {
       dialog: false,
       dialogcabinet :false,
-      bonus_count:0
+      bonus_count:0,
+      user_data:[],
+      resp_data:0
     };
   },
     computed: {
@@ -178,7 +184,8 @@ export default {
         .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
-         this.bonus_count = resp.points
+         this.user_data = resp
+         this.resp_data = 1
 
         })
         .catch(function (error) {
