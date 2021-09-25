@@ -1,13 +1,13 @@
 from typing import List
 
-from fastapi import APIRouter
+from fastapi import APIRouter ,File, UploadFile
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
 from models.users import Users
 from models.basket_users import Basket
 from routers.basket import add_present_for_basket
-
+from logics.users import image_add
 
 app = APIRouter(
     prefix="/api/v1/present/users",
@@ -106,6 +106,31 @@ async def get_one(fairbase_id: str)->Users:
     - Возвращает юсера по **fairbase_id**
     """
     return await Users.objects.get_or_none(uid_firebase=fairbase_id)
+
+
+@app.post('/upload_firstname/{firstname}/{fairbase_id}')
+async def get_one(firstname:str,fairbase_id: str)->Users:
+    """
+    - Возвращает юсера по **fairbase_id**
+    """
+    user =  await Users.objects.get_or_none(uid_firebase=fairbase_id)
+    if user:
+        return await user.update(firstname=firstname)
+    else:
+        return user
+
+
+@app.post('/upload_avatar/{fairbase_id}')
+async def get_one(fairbase_id: str, image: UploadFile = File(...))->Users:
+    """
+    - Возвращает юсера по **fairbase_id**
+    """
+    user =  await Users.objects.get_or_none(uid_firebase=fairbase_id)
+    if user:
+        avatar = await image_add(image)
+        return await user.update(avatar=avatar)
+    else:
+        return user
 
 
 @app.delete('/{fairbase_id}')
