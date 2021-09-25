@@ -300,7 +300,7 @@ export default {
     };
 
     return $axios
-      .$get(`present/`, {
+      .$get(`http://82.148.17.12:8080/api/v1/present/`, {
         headers: headers,
       })
       .then((presents) => {

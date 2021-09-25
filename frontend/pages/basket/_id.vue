@@ -104,7 +104,7 @@ export default {
     };
     const id_basket = route.params.id;
       return $axios
-        .$get(`present/users/basket/${id_basket}`, {
+        .$get(`http://82.148.17.12:8080/api/v1/present/users/basket/${id_basket}`, {
           headers: headers,
         })
         .then((presents_in_basket) => {

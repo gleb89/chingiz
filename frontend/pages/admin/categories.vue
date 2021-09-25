@@ -152,7 +152,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`present/categories/`, {
+      .$get(`http://82.148.17.12:8080/api/v1/present/categories/`, {
         headers: headers,
       })
       .then((category_presents) => {
@@ -204,7 +204,7 @@ export default {
        };
        
       this.$axios
-        .$post(`present/categories/`,data ,{
+        .$post(`http://82.148.17.12:8080/api/v1/present/categories/`,data ,{
           headers: headers
         })
         .then((resp) => {
@@ -248,7 +248,7 @@ export default {
        Object.assign(this.items[this.editedIndex], this.editedItem);
 
       this.$axios
-        .$get(`present/categories/update/${this.editedItem.id}?name_category=${this.editedItem.name_category}`, {
+        .$get(`http://82.148.17.12:8080/api/v1/present/categories/update/${this.editedItem.id}?name_category=${this.editedItem.name_category}`, {
           headers: headers
         })
         .then((resp) => {
@@ -274,7 +274,7 @@ export default {
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`present/categories/${this.editedItem.id}`,{
+        .$delete(`http://82.148.17.12:8080/api/v1/present/categories/${this.editedItem.id}`,{
           headers: headers
         })
         .then((resp) => {

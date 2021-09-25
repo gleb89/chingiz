@@ -53,10 +53,10 @@
 export default {
   async asyncData({ $axios, store }) {
     const presents_in_basket = await $axios.get(
-      `present/users/basket/${store.state.localStorage.basket.id_basket}`
+      `http://82.148.17.12:8080/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
     );
     const user_data = await $axios.get(
-      `present/users/${store.state.localStorage.uid_auth_user}`
+      `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
     return { presents_in_basket: presents_in_basket.data, user_data: user_data.data };
   },

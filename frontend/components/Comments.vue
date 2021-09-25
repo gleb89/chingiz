@@ -175,7 +175,7 @@ export default {
           "body": this.body
         }
       this.$axios
-        .$post(`present/comments/`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/comments/`, data, {
           headers: headers,
         })
         .then((resp) => {

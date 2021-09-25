@@ -175,7 +175,7 @@ export default {
 
     retbonus() {
         this.$axios
-        .$get(`present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
          this.bonus_count = resp.points

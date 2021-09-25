@@ -344,10 +344,10 @@ export default {
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
-      `present/`
+      `http://82.148.17.12:8080/api/v1/present/`
     );
     const data_filter= await $axios.get(
-      `present/filter/all`
+      `http://82.148.17.12:8080/api/v1/present/filter/all`
     );
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
@@ -500,7 +500,7 @@ export default {
       bodyFormData.append("reason_for_precent_id", this.reason.id);
 
       this.$axios
-        .$post(`present/`, bodyFormData, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -576,7 +576,7 @@ export default {
       }
 
       this.$axios
-        .$put(`present/${this.editedItem.id}`, bodyFormData, {
+        .$put(`http://82.148.17.12:8080/api/v1/present/${this.editedItem.id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -600,7 +600,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`present/${this.editedItem.id}`, {
+        .$delete(`http://82.148.17.12:8080/api/v1/present/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

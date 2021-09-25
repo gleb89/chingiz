@@ -15,7 +15,8 @@
 
       <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
-            <History :data_history="history_data" :onPageHistory="onPageHistory"/>
+        {{history_data}}
+            <!-- <History :data_history="history_data" :onPageHistory="onPageHistory"/> -->
       </v-col>
       <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
@@ -29,13 +30,13 @@
 export default {
   async asyncData({ $axios, store }) {
     const user_data = await $axios.get(
-      `present/users/${store.state.localStorage.uid_auth_user}`
+      `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
     const history_data  = await $axios.get(
-      `present/history/${store.state.localStorage.basket.id_basket}`
+      `http://82.148.17.12:8080/api/v1/present/history/${store.state.localStorage.basket.id_basket}`
     );
 
-    console.log(2222,user_data.data);
+    console.log(55,history_data.data);
     return { user_data: user_data.data, history_data : history_data.data};
   },
   methods: {

@@ -61,8 +61,8 @@ export default {
     },
   },
   axios: {
-    baseURL: 'http://82.148.17.12:8080/api/v1/'
-    // baseURL:"http://testlocal.com:8080/api/v1/"
+    // baseURL: 'http://82.148.17.12:8080/api/v1/'
+    // baseURL:"http://localhost:8000/api/v1/"
     // baseURL:"http://localhost:8080/api/v1/"
     },
 

@@ -132,7 +132,7 @@ export default {
 
       }
       this.$axios
-        .$post(`present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -154,7 +154,7 @@ export default {
 
       }
       this.$axios
-        .$post(`present/users/`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -181,7 +181,7 @@ export default {
 
       }
       this.$axios
-        .$post(`present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
