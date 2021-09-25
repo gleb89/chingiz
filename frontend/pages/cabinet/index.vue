@@ -11,24 +11,26 @@
       <CardUser :user_data="user_data"/>
       </v-col>
       <v-col cols="12" md="9" lg="9">
-        <h2 class="text-center">Настройки профиля</h2>
+        <h2 class="text-center d-lg-block d-none">Настройки профиля</h2>
         {{property}}
 <div style="width:100%" class="d-flex justify-center">
-    <form  @submit.prevent="onNAme">
+    <form class="forms"   @submit.prevent="onNAme">
         <v-text-field
+        
+        
           v-model="name"
           :counter="10"
             required
           label="Имя"
         ></v-text-field>
-        <div class="text-center pt-4 pb-7 mb-6" style="width: 100%;">
+        <div class="text-right pt-4 pb-7 mb-6" style="width: 100%;">
             <v-btn
              
             type="submit"
             
             rounded
             color="#ff7a00"
-            style="min-width: 30%;height: 3rem;"
+            style="min-width: 20%;height: 2rem;"
             dark
           >
             <span style="font-size: .6rem">сохранить</span>
@@ -80,7 +82,7 @@
           </v-btn>
             </div>
       </form>  -->
-     <form   @submit.prevent="onAvatar">
+     <form class="forms"   @submit.prevent="onAvatar">
       <v-file-input
       required
       v-model="avatar"
@@ -89,13 +91,13 @@
       prepend-icon="mdi-camera"
       label="аватар"
       ></v-file-input>
-        <div class="text-center pt-4 pb-7 mb-6" style="width: 100%;">
+        <div class="text-right pt-4 pb-7 mb-6" style="width: 100%;">
             <v-btn
             type="submit"
             
             rounded
             color="#ff7a00"
-            style="min-width: 30%;height: 3rem;"
+            style="min-width: 20%;height: 2rem;"
             dark
           >
             <span style="font-size: .6rem">сохранить</span>
@@ -207,5 +209,10 @@ export default {
 <style >
 .prof{
   cursor: pointer;
+}
+@media (max-width: 500px) {
+  .forms{
+    width: 100%;
+  }
 }
 </style>

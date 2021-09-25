@@ -87,6 +87,9 @@ export default {
       this.$store.commit("localStorage/set_summBasket",Number(0));
       this.$store.commit("localStorage/set_idBasket",Number(0));
       this.$router.push("/");
+      localStorage.removeItem('id_basket');
+      localStorage.removeItem('uid_auth_user');
+      localStorage.removeItem('summ_present');
    
     },
     onPage(url) {

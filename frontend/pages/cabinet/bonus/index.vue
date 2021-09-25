@@ -11,7 +11,7 @@
       <CardUser :user_data="user_data"/>
       </v-col>
       <v-col cols="12" md="9" lg="9">
-        <h2>Бонусы</h2>
+        <h2 class="d-lg-block d-none">Бонусы</h2>
         <div v-if="bonus_data.length > 0">
         <Bonus :bonus_data="bonus_data"/>
         </div>
