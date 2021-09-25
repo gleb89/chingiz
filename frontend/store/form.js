@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const form = await this.$axios
-        .$get(`present/filter/all`,{
+        .$get(`http://82.148.17.12:8080/api/v1/present/filter/all`,{
           headers: headers
         })
         commit('setform',form)

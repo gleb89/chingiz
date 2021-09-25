@@ -1,3 +1,4 @@
+
 <template>
   <v-container style="padding-top: 6rem">
     <h2 class="mb-4 d-lg-block d-none">Корзина</h2>
@@ -136,11 +137,16 @@ export default {
     presents() {
       try {
       this.data_present = this.presents_in_basket.count_present_item.presents;
-        return this.data_present;
+        
       } catch (error) {
-        return this.data_present;
+        if(process.client){
+        if (this.coun === 0){
+          this.onhist()
+        }
+          
       }
-
+      }
+      return this.data_present;
     },
   },
   data() {
@@ -149,6 +155,7 @@ export default {
       ws: null,
       index: null,
       dialog: false,
+      coun:0
     };
   },
   mounted: function () {
@@ -190,6 +197,21 @@ export default {
     };
   },
   methods: {
+
+      async onhist(){
+      console.log(44,this.$store.state.localStorage.basket.id_basket);
+
+          await this.$axios.get(
+     `http://82.148.17.12:8080/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
+    )
+    .then((resp) =>{
+      this.data_present = resp.data.count_present_item.presents
+      this.coun = 1
+    }),
+      (error) => {
+        console.log('error');
+      }
+  },
             onsignout(){
       console.log('out');
       this.$store.commit("localStorage/setAuthuser", '');

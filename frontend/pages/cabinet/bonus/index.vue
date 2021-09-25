@@ -31,8 +31,7 @@ export default {
       `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
     const bonus_data  = await $axios.get(
-      'http://82.148.17.12:8080/api/v1/present/bonus/dBJ4LOAz8cZIMhUgqlYqIluHgdJ2'
-      // `present/bonus/${store.state.localStorage.uid_auth_user}`
+      `http://82.148.17.12:8080/api/v1/present/bonus/${store.state.localStorage.uid_auth_user}`
     );
     return { user_data: user_data.data, bonus_data : bonus_data.data };
   },

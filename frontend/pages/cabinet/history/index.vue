@@ -15,6 +15,7 @@
 
       <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2>История заказов</h2>
+        {{$store.state.localStorage.basket.id_basket}}
         {{history_data}}
             <!-- <History :data_history="history_data" :onPageHistory="onPageHistory"/> -->
       </v-col>
@@ -32,14 +33,45 @@ export default {
     const user_data = await $axios.get(
       `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
+  
+    let id_basket = store.state.localStorage.basket.id_basket
     const history_data  = await $axios.get(
-      `http://82.148.17.12:8080/api/v1/present/history/${store.state.localStorage.basket.id_basket}`
+      `http://82.148.17.12:8080/api/v1/present/history/${id_basket}`
     );
-
-    console.log(55,history_data.data);
-    return { user_data: user_data.data, history_data : history_data.data};
+    return { user_data: user_data.data, history : history_data.data};
+  
+  },
+  computed: {
+    history_data() {
+      if(process.client){
+        if (this.coun === 0){
+          this.onhist()
+        }
+          
+      }
+      else{
+      this.history_da = this.history 
+      }
+      return this.history_da
+    },
+  
   },
   methods: {
+    async onhist(){
+      console.log(44,this.$store.state.localStorage.basket.id_basket);
+
+          await this.$axios.get(
+     `http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
+    )
+    .then((resp) =>{
+      this.history_da= resp
+      this.coun = 1
+    }),
+      (error) => {
+            console.log(error);
+      }
+  },
+    
     onPageHistory(zakaz_num){
           this.$router.push('/cabinet/history/'+zakaz_num)
           console.log(zakaz_num);
@@ -59,7 +91,9 @@ export default {
   data() {
     return {
       dialog: false,
-      user_data:[]
+      user_data:[],
+      history_da:[],
+      coun :0
     };
   },
 }

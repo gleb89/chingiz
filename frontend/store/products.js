@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const products = await this.$axios
-        .$get(`present/`,{
+        .$get(`http://82.148.17.12:8080/api/v1/present/`,{
           headers: headers
         })
         commit('setproducts',products)
