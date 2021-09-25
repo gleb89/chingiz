@@ -77,7 +77,7 @@
           <v-list-item
           @click="onCabinet"
           >
-            <v-list-item-title>Кабинет</v-list-item-title>
+            <v-list-item-title>  Кабинет</v-list-item-title>
           </v-list-item>
            <v-list-item
            @click="onsignout"

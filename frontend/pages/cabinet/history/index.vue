@@ -41,7 +41,7 @@ export default {
   },
   computed: {
     history_data() {
-      if(process.client){
+      if(process.browser){
         if (this.coun === 0){
           this.onhist()
         }

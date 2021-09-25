@@ -10,6 +10,7 @@
   </header>
     <main style="min-height:100vh">
       <Nuxt />
+      
     </main>
     <footer id="contact" style="background: #f6f6f6">
       <Foot/>

@@ -6,10 +6,12 @@
           elevation="6"
         >
           <div class="text-center">
-            <v-avatar size="60px">
-              <img
+            <v-avatar size="60px" color='white'>
+                <fa v-if="!user_data.avatar" icon="user"></fa>
+                <img
+              v-if="user_data.avatar"
                 alt="Avatar"
-                src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+                :src="user_data.avatar"
               />
             </v-avatar>
           </div>
@@ -19,7 +21,8 @@
           <div style="font-weight: bold;width:100%" class="text-center">
             El-Bazaar
           </div>
-          <p class="text-center">Петров Олег Игоревич</p>
+          <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
+          <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
           <div class="box-profile">
             <div
               class="prof d-flex justify-space-between"
