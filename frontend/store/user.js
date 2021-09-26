@@ -1,6 +1,6 @@
 export const state = () => {
     return {
-      users:[],
+      user:[],
   
   
   
@@ -8,8 +8,8 @@ export const state = () => {
   }
   
   export const mutations = {
-    setusers (state,users) {
-    state.users = users
+    setusers (state,user) {
+    state.user = user
   
     },
   
@@ -21,17 +21,17 @@ export const state = () => {
         const headers = {
             "Content-Type": "application/json"
           };
-        const users = await this.$axios
-        .$get(`http://82.148.17.12:8080/api/v1/present/users/`,{
+        const user = await this.$axios
+        .$get(`http://82.148.17.12:8080/api/v1/present/users/ftUmWOQkGzanvINTDFAlXPaYcIJ3`,{
           headers: headers
         })
-        commit('setusers',users)
+        commit('setusers',user)
   
     }
   }
   
   export const getters = {
-    users: s => s.users,
+    users: s => s.user,
   
   
   }

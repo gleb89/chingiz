@@ -1,12 +1,14 @@
 <template>
 <v-app >
   <header>
+    
     <div class="nav-dnav">
       <Nav />
       </div>
       <div class="nav-mnav" >
         <Navmobile />
       </div>
+      
   </header>
     <main style="min-height:100vh">
       <Nuxt />
@@ -16,7 +18,7 @@
       <Foot/>
     </footer>
     <div class="nav-mnav">
-      <Mobbar />
+      <Mobbar :user_data="user_data"/>
     </div>
   </v-app>
 </template>
@@ -34,6 +36,7 @@ export default {
     return {
       drawer: false,
       group: null,
+      user_data:[]
     };
   },
   mounted() {
@@ -42,6 +45,8 @@ export default {
     const id_basket = localStorage.getItem('id_basket')
     const uid_auth_user = localStorage.getItem('uid_auth_user')
     const summ_present =  localStorage.getItem('summ_present')
+    
+    
     if(id_basket){
       console.log('id basket');
       this.$store.commit("localStorage/set_idBasket",Number(id_basket));
@@ -49,6 +54,7 @@ export default {
    if(uid_auth_user){
      console.log('uid_auth_user');
     this.$store.commit("localStorage/setAuthuser",String(uid_auth_user));
+    this.retbonus()
  }
  if(summ_present){
    console.log('summ_present');
@@ -56,6 +62,19 @@ export default {
 }
    },
   methods: {
+    retbonus() {
+        this.$axios
+        .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+         this.user_data = resp
+
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
+  },
       onHome(){ 
       this.$router.push('/')
     },

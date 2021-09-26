@@ -82,7 +82,8 @@
               />
             </v-avatar>
           </div>
-          <span v-if="!resp_data">{{retbonus()}}</span>
+          
+          
           
           <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{user_data.points}} бонусов</p>
           <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
@@ -140,13 +141,13 @@
 
 <script>
 export default {
-
+props:['user_data'],
   data() {
     return {
       dialog: false,
       dialogcabinet :false,
       bonus_count:0,
-      user_data:[],
+      
       resp_data:0
     };
   },
@@ -179,20 +180,7 @@ export default {
       
     },
 
-    retbonus() {
-        this.$axios
-        .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
-        })
-        .then((resp) => {
-         this.user_data = resp
-         this.resp_data = 1
 
-        })
-        .catch(function (error) {
-         console.log(error);
-        });
-
-  },
     onCatalog(){
       this.$router.push("/"+'catalog/Все_продукты');
     },
