@@ -48,6 +48,20 @@
             <v-list-item-title>Категории подарков</v-list-item-title>
           </v-list-item>
 
+           <v-list-item @click="onadminPage('/admin/users')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='list-ol'></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Пользователи</v-list-item-title>
+          </v-list-item>
+
+           <v-list-item @click="onadminPage('/admin/comments')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='list-ol'></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Комментарии</v-list-item-title>
+          </v-list-item>
+
            <v-list-item @click="onadminPage('/admin/orders')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-ol'></fa>
