@@ -18,7 +18,7 @@
       <Foot/>
     </footer>
     <div class="nav-mnav">
-      <Mobbar :user_data="user_data"/>
+      <Mobbar />
     </div>
   </v-app>
 </template>
@@ -36,7 +36,7 @@ export default {
     return {
       drawer: false,
       group: null,
-      user_data:[]
+     
     };
   },
   mounted() {
@@ -55,6 +55,7 @@ export default {
      console.log('uid_auth_user');
     this.$store.commit("localStorage/setAuthuser",String(uid_auth_user));
     this.retbonus()
+    
  }
  if(summ_present){
    console.log('summ_present');
@@ -67,7 +68,9 @@ export default {
         .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
-         this.user_data = resp
+          console.log(resp);
+        this.$store.commit("user/setusers",resp);
+         
 
         })
         .catch(function (error) {

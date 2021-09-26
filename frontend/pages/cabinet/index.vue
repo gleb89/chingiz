@@ -145,6 +145,7 @@ export default {
         })
         .then((resp) => {
           this.user_data.avatar= resp.avatar
+          this.$store.commit("user/setusers",resp);
         })
         .catch(function (error) {
           console.log(error);
@@ -162,6 +163,7 @@ export default {
         })
         .then((resp) => {
           this.user_data.firstname = resp.firstname
+          this.$store.commit("user/setusers",resp);
         })
         .catch(function (error) {
           console.log(error);

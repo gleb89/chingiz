@@ -82,8 +82,7 @@
               />
             </v-avatar>
           </div>
-          
-          
+         
           
           <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{user_data.points}} бонусов</p>
           <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
@@ -141,17 +140,20 @@
 
 <script>
 export default {
-props:['user_data'],
+
   data() {
     return {
       dialog: false,
       dialogcabinet :false,
       bonus_count:0,
-      
+     
       resp_data:0
     };
   },
     computed: {
+      user_data(){
+        return this.$store.state.user.user
+      },
       basket(){
       return this.$store.state.localStorage.basket
     },
