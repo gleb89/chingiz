@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const users = await this.$axios
-        .$get(`http://localhost:8080/api/v1/present/users/`,{
+        .$get(`http://82.148.17.12:8080/api/v1/present/users/`,{
           headers: headers
         })
         commit('setusers',users)

@@ -16,7 +16,9 @@
           <v-text-field
           v-model="name"
           :rules="[(v) => !!v || 'Не может быть пустым']"
-            label="* Контактное лицо"
+            label="Контактное лицо"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -25,7 +27,9 @@
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
           v-model="phone"
-            label="* Номер телефона"
+            label="Номер телефона"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -34,7 +38,9 @@
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
           v-model="name_company"
-            label="* Наименование организации"
+            label="Наименование организации"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -43,7 +49,9 @@
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
           v-model="email"
-            label="* E-mail"
+            label="E-mail"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -52,7 +60,9 @@
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
           v-model="bank_benefic"
-            label="* Банк бенефицара"
+            label="Банк бенефицара"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -61,7 +71,9 @@
           <v-text-field
           v-model="bin_bank"
           :rules="[(v) => !!v || 'Не может быть пустым']"
-            label="* БИН"
+            label="БИН"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -70,7 +82,9 @@
           <v-text-field
           v-model="bik_bank"
           :rules="[(v) => !!v || 'Не может быть пустым']"
-            label="* БИК"
+            label="БИК"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -79,7 +93,9 @@
           <v-text-field
           v-model="iik_bank"
           :rules="[(v) => !!v || 'Не может быть пустым']"
-            label="* ИИК"
+            label="ИИК"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -88,7 +104,9 @@
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
           v-model="cod_platezh"
-            label="* Код назначения платежа"
+            label="Код назначения платежа"
+                   class="prep"
+              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -96,8 +114,10 @@
         <v-col cols="12" sm="6" md="6">
           <v-text-field
           :rules="[(v) => !!v || 'Не может быть пустым']"
+                 class="prep"
+              prepend-inner-icon="*"
           v-model="kbe"
-            label="* КБе"
+            label="КБе"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -115,10 +135,12 @@
         <v-col cols="12" sm="12" md="12">
           <v-text-field
           id="searchTextField"
-            label="* Укажите адрес доставки"
+            label="Укажите адрес доставки"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             v-model="adress" 
+                   class="prep"
+              prepend-inner-icon="*"
             style="min-width:100%"
           ></v-text-field>
         </v-col>
@@ -166,18 +188,10 @@
             <h3 class="ml-4">Активировать бонусы</h3>
           </div>
         </v-col>
+
+
         <v-col cols="12" sm="12" md="12">
-          <v-radio-group v-model="spis_bonus"  background-color="transparent" style="min-width:100%">
-            
-            <v-radio
-            
-              v-for="n in ['Не использовать', 'Списать бонусы']"
-              :key="n"
-              color="orange"
-              :label="`${n}`"
-              :value="n"
-            ></v-radio>
-          </v-radio-group>
+  
         </v-col>
         <v-col v-if="spis_bonus === 'Списать бонусы'" cols="12" sm="12" md="12" style="background: #F4F5F6;">
         <div style="width:100%">
@@ -196,12 +210,55 @@
 
           </div>
         </v-col>
+
+        <!-- дата доставки -->
+                <v-col cols="12" sm="12" md="12">
+          <div class="d-flex mt-6" style="align-items: center;">
+            <v-avatar color="#FF7A00" size="32">
+              <span class="white--text text-h5">5</span>
+            </v-avatar>
+            <h3 class="ml-4">Дата доставки</h3>
+          </div>
+        </v-col>
+
+         <v-col cols="12" sm="12" md="12">
+           <v-menu
+            ref="menu1"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
+            v-model="menu1"
+            :close-on-content-click="false"
+            transition="scale-transition"
+            offset-y
+            max-width="1000px"
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+              class="prep"
+              prepend-inner-icon="*"
+                v-model="data_dostavki"
+                
+                label="Дата доставки"
+                solo
+                v-bind="attrs"
+                @blur="date = parseDate(data_dostavki)"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              locale="ru"
+              v-model="date"
+              no-title
+              @input="menu1 = false"
+            ></v-date-picker>
+          </v-menu>
+        </v-col>
         <!-- Ваш заказ -->
 
         <v-col cols="12" sm="12" md="12">
           <div class="d-flex mt-6" style="align-items: center;">
             <v-avatar color="#FF7A00" size="32">
-              <span class="white--text text-h5">5</span>
+              <span class="white--text text-h5">6</span>
             </v-avatar>
             <h3 class="ml-4">Ваш заказ</h3>
           </div>
@@ -353,11 +410,20 @@
 <script>
 export default {
   props: ["presents_in_basket",'user_data','oplatacheck'],
-  data() {
+    watch: {
+    date(val) {
+      this.data_dostavki = this.formatDate(this.date);
+    },
+  },
+  data(vm) {
       return {
+   date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10),
           scrol: false,
           valid: true,
           scrol: false,
+          menu1:false,
           name:'',
           count_spis_bonus:this.user_data.points/2,
           spis_bonus:null,
@@ -374,6 +440,7 @@ export default {
           iik_bank:'',
           cod_platezh:'',
           kbe:'',
+          data_dostavki:''
       };
   },
   computed: {
@@ -392,6 +459,7 @@ export default {
         this.bik_bank &&
         this.iik_bank &&
         this.cod_platezh &&
+        this.data_dostavki &&
         this.kbe 
       ) {
         return true;
@@ -402,6 +470,18 @@ export default {
   
   },
   methods: {
+        formatDate(date) {
+      if (!date) return null;
+
+      const [year, month, day] = date.split("-");
+      return `${month}/${day}/${year}`;
+    },
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    },
       validate () {
         this.$refs.form.validate()
         if(this.$refs.form.validate()){
@@ -429,16 +509,17 @@ export default {
       "iik_bank": this.iik_bank,
       "cod_platezh": this.cod_platezh,
       "kbe": this.kbe,
+      'data_dostavki':this.data_dostavki
       }
-      console.log(data);
+     
       
       this.$axios
-        .$post(`http://localhost:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
           console.log(resp);
            let basket_id = this.$store.state.localStorage.basket.id_basket
-        // window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+        window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
         })
         .catch(function (error) {
           console.log(error);
@@ -459,5 +540,14 @@ export default {
     max-width: 100%;
     min-width: 100%;
   }
+}
+.theme--light.v-input {
+    width: 100%;
+    margin-top: 1rem;
+}
+.prep .v-icon.v-icon {
+
+  
+    color: #ff7a00;
 }
 </style>

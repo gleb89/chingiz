@@ -14,7 +14,9 @@
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-           label="*Имя"
+           label="Имя"
+                  class="prep"
+              prepend-inner-icon="*"
            v-model="name"
            :rules="[(v) => !!v || 'Не может быть пустым']"
             solo style="min-width:100%"
@@ -22,7 +24,9 @@
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-            label="* Номер телефона" 
+            label="Номер телефона" 
+                   class="prep"
+              prepend-inner-icon="*"
             v-model="phone"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
@@ -31,7 +35,9 @@
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-            label="* Фамилия" 
+            label="Фамилия"
+                   class="prep"
+              prepend-inner-icon="*" 
             v-model="familyname"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
@@ -58,7 +64,9 @@
         <v-col cols="12" sm="12" md="12">
           <v-text-field
           id="searchTextField"
-            label="* Укажите адрес доставки"
+            label="Укажите адрес доставки"
+                   class="prep"
+              prepend-inner-icon="*"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             v-model="adress" 
@@ -140,12 +148,55 @@
 
           </div>
         </v-col>
+
+        <!-- дата доставки -->
+                <v-col cols="12" sm="12" md="12">
+          <div class="d-flex mt-6" style="align-items: center;">
+            <v-avatar color="#FF7A00" size="32">
+              <span class="white--text text-h5">5</span>
+            </v-avatar>
+            <h3 class="ml-4">Дата доставки</h3>
+          </div>
+        </v-col>
+
+         <v-col cols="12" sm="12" md="12">
+           <v-menu
+            ref="menu1"
+            v-model="menu1"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
+            :close-on-content-click="false"
+            transition="scale-transition"
+            offset-y
+            width="1000px"
+            max-width="1000px"
+            min-width="auto"
+          >
+            <template v-slot:activator="{ on, attrs }">
+              <v-text-field
+                v-model="data_dostavki"
+                label="Дата доставки"
+                       class="prep"
+              prepend-inner-icon="*"
+                solo
+                v-bind="attrs"
+                @blur="date = parseDate(data_dostavki)"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <v-date-picker
+              locale="ru"
+              v-model="date"
+              no-title
+              @input="menu1 = false"
+            ></v-date-picker>
+          </v-menu>
+        </v-col>
         <!-- Ваш заказ -->
 
         <v-col cols="12" sm="12" md="12">
           <div class="d-flex mt-6" style="align-items: center;">
             <v-avatar color="#FF7A00" size="32">
-              <span class="white--text text-h5">5</span>
+              <span class="white--text text-h5">6</span>
             </v-avatar>
             <h3 class="ml-4">Ваш заказ</h3>
           </div>
@@ -309,10 +360,20 @@ export default {
 //     new google.maps.places.Autocomplete(input);
 //   },
   props: ["presents_in_basket",'user_data','oplatacheck'],
-  data() {
+
+    watch: {
+    date(val) {
+      this.data_dostavki = this.formatDate(this.date);
+    },
+  },
+  data(vm) {
     return {
+   date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10),
       valid: true,
       scrol: false,
+      menu1:false,
       name:'',
       count_spis_bonus:this.user_data.points/2,
       spis_bonus:null,
@@ -321,7 +382,8 @@ export default {
       adress:'',
       email:'',
       familyname:'',
-      phone:''
+      phone:'',
+      data_dostavki:''
     };
   },
     computed: {
@@ -335,6 +397,7 @@ export default {
         this.phone &&
         this.familyname &&
         this.adress &&
+        this.data_dostavki &&
         this.oplata_methods  
       ) {
         return true;
@@ -346,6 +409,18 @@ export default {
   
   },
   methods: {
+        formatDate(date) {
+      if (!date) return null;
+
+      const [year, month, day] = date.split("-");
+      return `${month}/${day}/${year}`;
+    },
+    parseDate(date) {
+      if (!date) return null;
+
+      const [month, day, year] = date.split("/");
+      return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+    },
       validate () {
         this.$refs.form.validate()
         if(this.$refs.form.validate()){
@@ -367,7 +442,9 @@ export default {
       'phone_user':this.phone,
       'summa':(this.basket.summ_present + 500)-this.count_spis_bonus,
       "fiz_oplata": true,
+      'data_dostavki':this.data_dostavki
       }
+
       
       
       this.$axios
@@ -398,5 +475,13 @@ export default {
     min-width: 100%;
   }
 }
+.theme--light.v-input {
+    width: 100%;
+    margin-top: 1rem;
+}
+.prep .v-icon.v-icon {
 
+  
+    color: #ff7a00;
+}
 </style>

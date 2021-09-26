@@ -13,15 +13,15 @@
       </v-col>
 
 
-
-      <v-col v-if="history_data" cols="12" md="9" lg="9">
+sdsdsdsds{{data_history}}
+      <!-- <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2 class="d-lg-block d-none">История заказов</h2>
             <History :data_history="history_data" :onPageHistory="onPageHistory"/>
       </v-col>
       <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
-      </v-col>
+      </v-col> -->
     </v-row>
   </v-container>
 </template>

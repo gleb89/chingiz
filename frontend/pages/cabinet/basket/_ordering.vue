@@ -34,12 +34,13 @@
          
           <v-tab @click="onofizplata">Для физ. лиц</v-tab>
           <v-tab @click="onourplata">Для юр. лиц</v-tab>
-          <v-tab-item>
+         
+          <v-tab-item v-if="presents_in_basket.count_present_item ">
   
             <Oplatafiz
              :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
           </v-tab-item>
-          <v-tab-item>
+          <v-tab-item v-if="presents_in_basket.count_present_item ">
             <Oplataur :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
           </v-tab-item>
         </v-tabs>
@@ -58,11 +59,22 @@ export default {
     const user_data = await $axios.get(
       `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
-    return { presents_in_basket: presents_in_basket.data, user_data: user_data.data };
+    return { presents_in: presents_in_basket.data, user_data: user_data.data };
   },
   computed: {
     basket() {
       return this.$store.state.localStorage.basket;
+    },
+    presents_in_basket(){
+      if(process.browser){
+        if (this.coun === 0){
+          this.onhist()
+        }
+      }
+      else{
+        this.presents_indata = []
+      }
+      return this.presents_indata
     }
   },
 
@@ -75,12 +87,29 @@ export default {
       ws: null,
       index: null,
       dialog: false,
+      presents_indata:[],
+      coun:0
       
       
     };
   },
 
   methods: {
+    async onhist(){
+      console.log(44,this.$store.state.localStorage.basket.id_basket);
+    if(this.$store.state.localStorage.basket.id_basket){
+          await this.$axios.get(
+    `http://82.148.17.12:8080/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
+    )
+    .then((resp) =>{
+      this.presents_indata= resp.data
+      this.coun = 1
+    }),
+      (error) => {
+            console.log(error);
+      }
+      }
+  },
     onofizplata(){
       this.fizoplata = true
       this.uroplata = false

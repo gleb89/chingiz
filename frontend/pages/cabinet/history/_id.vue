@@ -5,16 +5,42 @@
     <nuxt-link style="color: #303030" to="/cabinet/history">История заказов</nuxt-link> /
     <span>Заказ N {{$route.params.id}}</span>
    
-       <div class="d-block d-lg-none">
 
-    </div>
     <v-row justify="center" class="mt-4">
-      <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
-   
+      
+             <v-col class="d-none d-lg-block" cols="12" md="3" lg="3">
+      <CardUser :user_data="user_data"/>
       </v-col>
+      <v-col class="" cols="12" md="8" lg="8">
+        <h2>Заказ N {{$route.params.id}}</h2>
+        <HistOne :items="history"/>
+        <div style="text-align: end;">
+          <h4>
+            Итого: {{history.summa}} тг
+          </h4>
+        </div>
+      </v-col>
+
+
  
     </v-row>
   </v-container>
 </template>
+
+<script>
+export default {
+
+    async asyncData({ $axios,route, store }) {
+    const user_data = await $axios.get(
+      `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
+    );
+    const pk = route.params.id;
+    const  history = await $axios.get(
+      `http://82.148.17.12:8080/api/v1/present/history/onehistory/${pk}`
+    );
+    return { user_data: user_data.data, history : history.data };
+  },
+}
+</script>
 
 

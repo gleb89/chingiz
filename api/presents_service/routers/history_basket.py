@@ -19,13 +19,19 @@ async def get_all():
     return await HistoryBasket.objects.all()
 
 @history_router.get('/{basket_id}')
-async def get_one_history(basket_id:int):
+async def get_one_history_for_basket(basket_id:int):
     history = await HistoryBasket.objects.filter(self_basket__id=basket_id).all()
     return history
+
+@history_router.get('/onehistory/{pk}')
+async def get_one_history(pk:int):
+    print(444)
+    history = await HistoryBasket.objects.get_or_none(id=pk)
+    return history
     
-@history_router.delete('/{basket_id}')
-async def get_one(basket_id:int):
-    history = await HistoryBasket.objects.get_or_none(basket_id=basket_id)
+@history_router.delete('/{pk}')
+async def get_one(pk:int):
+    history = await HistoryBasket.objects.get_or_none(id=pk)
     await history.delete()
 
 async def get_history(basket_id:int):
