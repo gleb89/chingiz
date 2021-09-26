@@ -95,21 +95,24 @@
 
 <script>
 export default {
-      asyncData({ $axios,store, error }) {
-    const headers = {
-        "Content-Type": "application/json"
-      };
+    //   asyncData({ $axios,store, error }) {
+    // const headers = {
+    //     "Content-Type": "application/json"
+    //   };
       
-       return $axios
-        .$get(`http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`, {
-          headers: headers
-        })
-        .then(
-          user_data => {
-            return {user_data}
-          })
-      },
+    //    return $axios
+    //     .$get(`http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`, {
+    //       headers: headers
+    //     })
+    //     .then(
+    //       user_data => {
+    //         return {user_data}
+    //       })
+    //   },
   computed: {
+      user_data(){
+        return this.$store.state.user.user
+      },
     property() {
       if(this.user_data){
       this.em = this.user_data.email
@@ -128,6 +131,7 @@ export default {
       avatar:null,
       name:'',
       phoneNumber:'',
+      
       errors:'поле не может быть пустым'
     };
   },
@@ -144,7 +148,7 @@ export default {
           headers: headers,
         })
         .then((resp) => {
-          this.user_data.avatar= resp.avatar
+          // this.user_data.avatar= resp.avatar
           this.$store.commit("user/setusers",resp);
         })
         .catch(function (error) {
@@ -162,7 +166,7 @@ export default {
           headers: headers,
         })
         .then((resp) => {
-          this.user_data.firstname = resp.firstname
+          // this.user_data.firstname = resp.firstname
           this.$store.commit("user/setusers",resp);
         })
         .catch(function (error) {

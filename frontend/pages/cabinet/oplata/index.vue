@@ -11,12 +11,8 @@
 export default {
     methods: {
         redirectHistory() {
-    
-            
-            setTimeout(() => {
-                
+            setTimeout(() => { 
                 this.$router.replace({ path: '/cabinet/history' })
-                
             }, 2000);
         },
     },

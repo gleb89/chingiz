@@ -293,24 +293,17 @@
 </template>
 
 <script>
-export default {
-  asyncData({ $axios, route, error }) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
 
-    return $axios
-      .$get(`http://82.148.17.12:8080/api/v1/present/`, {
-        headers: headers,
-      })
-      .then((presents) => {
-        return { presents };
-      });
+export default {
+  async fetch({ store }) {
+    if (store.getters["products/products"].length === 0) {
+      await store.dispatch("products/fetch");
+    }
   },
   computed: {
   
     listproducts() {
-      
+      this.presents = this.$store.getters["products/products"]
       return this.presents;
     },
     computedDateFormatted() {
@@ -328,6 +321,7 @@ export default {
       .toISOString()
       .substr(0, 10),
     dateFormatted: "",
+    presents: [],
     menu1: false,
     menu2: false,
     dialog: false,

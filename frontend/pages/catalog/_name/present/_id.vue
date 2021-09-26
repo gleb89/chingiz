@@ -182,6 +182,7 @@ export default {
         "Content-Type": "application/json"
       };
      if(this.$store.state.localStorage.uid_auth_user){
+       if(!this.reveal){
       let data = {
         'id_user':this.$store.state.localStorage.uid_auth_user,
         'precent_id':present_id
@@ -210,9 +211,15 @@ export default {
         });
         
       }
-
       else{
-      let data = {
+        this.$router.push('/cabinet/basket')
+      }
+     }
+      else{
+        
+
+      if(!this.reveal){
+              let data = {
         'id_basket':this.$store.state.localStorage.basket.id_basket,
         'precent_id':present_id
       }
@@ -221,7 +228,7 @@ export default {
           headers: headers,
         })
         .then((resp) => {
-          console.log(resp.basket_id);
+          console.log(11111,resp.basket_id);
           if(this.$store.state.localStorage.basket.id_basket > 0){
             this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
           }
@@ -236,6 +243,10 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+        }
+        else{
+          this.$router.push('/basket/'+this.$store.state.localStorage.basket.id_basket)
+        }
         } 
     }
   },

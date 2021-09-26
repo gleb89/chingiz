@@ -70,8 +70,6 @@ export default {
         .then((resp) => {
           console.log(resp);
         this.$store.commit("user/setusers",resp);
-         
-
         })
         .catch(function (error) {
          console.log(error);
