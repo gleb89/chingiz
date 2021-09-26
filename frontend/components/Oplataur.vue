@@ -526,8 +526,8 @@ export default {
         })
         .then((resp) => {
           console.log(resp);
-           let basket_id = this.$store.state.localStorage.basket.id_basket
-        window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+           this.$store.commit("localStorage/set_summBasket",Number(0));
+        this.$router.push('/cabinet/oplata')
         })
         .catch(function (error) {
           console.log(error);

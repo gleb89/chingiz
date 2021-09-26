@@ -11,9 +11,7 @@
 export default {
     methods: {
         redirectHistory() {
-            setTimeout(() => {
-                this.$store.commit("localStorage/set_summBasket",Number(0));
-            }, 1000);
+    
             
             setTimeout(() => {
                 
