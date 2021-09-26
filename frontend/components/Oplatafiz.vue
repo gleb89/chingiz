@@ -442,7 +442,7 @@ export default {
       'phone_user':this.phone,
       'summa':(this.basket.summ_present + 500)-this.count_spis_bonus,
       "fiz_oplata": true,
-      'data_dostavki':this.data_dostavki
+      'data_dostavki':String(this.data_dostavki) 
       }
 
       

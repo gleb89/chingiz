@@ -509,7 +509,7 @@ export default {
       "iik_bank": this.iik_bank,
       "cod_platezh": this.cod_platezh,
       "kbe": this.kbe,
-      'data_dostavki':this.data_dostavki
+      'data_dostavki':String(this.data_dostavki) 
       }
      
       
