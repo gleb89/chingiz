@@ -188,10 +188,18 @@
             <h3 class="ml-4">Активировать бонусы</h3>
           </div>
         </v-col>
-
-
         <v-col cols="12" sm="12" md="12">
-  
+          <v-radio-group v-model="spis_bonus"  background-color="transparent" style="min-width:100%">
+            
+            <v-radio
+            
+              v-for="n in ['Не использовать', 'Списать бонусы']"
+              :key="n"
+              color="orange"
+              :label="`${n}`"
+              :value="n"
+            ></v-radio>
+          </v-radio-group>
         </v-col>
         <v-col v-if="spis_bonus === 'Списать бонусы'" cols="12" sm="12" md="12" style="background: #F4F5F6;">
         <div style="width:100%">
@@ -514,7 +522,7 @@ export default {
      
       
       this.$axios
-        .$post(`82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
           console.log(resp);
