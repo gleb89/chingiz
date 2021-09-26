@@ -43,4 +43,4 @@ class HistoryBasket(ormar.Model):
     timestamp: datetime.datetime = ormar.DateTime(
                 default=datetime.datetime.now()
                                                 )
-    # data_dostavki:str = ormar.String(max_length=1000,nullable=True, null=True)
+    data_dostavki:str = ormar.String(max_length=1000,nullable=True, null=True)
