@@ -29,8 +29,11 @@
           :class="{ activel: index % 2 }"
           @click="onPageHistory(item.id)"
         >
+        
           <td style="height: 5rem;" ><span class="tdd">{{new Date(item.timestamp).toLocaleDateString()}}</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
+          <td style="height: 5rem;"  ><span v-if="item.fiz_oplata" class="tdd">физ.опл</span>
+          <span v-if="item.ur_oplata" class="tdd">юр.опл</span>
+           </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.id}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">{{item.summa.toLocaleString()}} тг</span> </td>
