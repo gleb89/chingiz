@@ -41,13 +41,23 @@
             </div>
           </v-col>
           <v-col cols="12" md="4" lg="4">
-            <div class="d-flex" style="align-items: last baseline;">
+            <div class="d-flex" style="align-items: center;">
               <div>
-                <img style="width: 2rem;" src="/c1.png" alt="" />
+                <img style="width: 2rem;" src="/c3.png" alt="" />
               </div>
               <div class="ml-3">
-                <span style="color:#B2B2B2">электронная почта</span>
-                <p style="font-weight: bold;">botaboutique@gmail.com</p>
+                <span style="color:#B2B2B2">мы в мессенджерах</span>
+                <div class="d-flex">
+                  <div class="d-flex ">
+                    <span>Telegram</span>
+                    <img src="/ts.png" alt="">
+                    
+                  </div>
+                   <div class="d-flex ml-3">
+                     <span>WhatsApp</span>
+                    <img src="/ws.png" alt="">
+                  </div>
+                </div>
               </div>
             </div>
           </v-col>

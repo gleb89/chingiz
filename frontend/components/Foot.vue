@@ -42,7 +42,8 @@
         <v-row justify="center">
           <v-col cols="12" md="6" class="box-p" lg="1"></v-col>
           <v-col cols="12" md="6" lg="2">
-            <span>Публичная оферта</span>
+            <nuxt-link to="/oferta"><span>Публичная оферта</span></nuxt-link>
+            
           </v-col>
           <v-col cols="12" md="6" lg="2">
             <span>Хочу в вашу команду</span>
@@ -59,7 +60,8 @@
             <span>Конфиденциальность</span>
           </v-col>
           <v-col cols="12" md="6" lg="2">
-            <span>Контакты</span>
+            <nuxt-link to="/contacts"><span>Контакты</span></nuxt-link>
+            
           </v-col>
           <v-col cols="12" md="6" lg="2">
             <span>Вопрос-ответ</span>
