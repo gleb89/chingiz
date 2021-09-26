@@ -27,14 +27,13 @@
           v-for="(item,index) in data_history"
           :key="index"
           :class="{ activel: index % 2 }"
-          @click="onPageHistory(item.zakaz_num)"
+          @click="onPageHistory(item.id)"
         >
-        
-          <td style="height: 5rem;" ><span class="tdd">{{ item.date.slice(0, 10)}}</span> </td>
+          <td style="height: 5rem;" ><span class="tdd">{{new Date(item.timestamp).toLocaleDateString()}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">безнал.</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">EL{{item.zakaz_num}}</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">EL{{item.id}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">{{item_summ(item.present_basket).toLocaleString()}} тг</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">{{item.summa.toLocaleString()}} тг</span> </td>
        
         </tr>
       </tbody>

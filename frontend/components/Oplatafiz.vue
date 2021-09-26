@@ -357,19 +357,31 @@ export default {
       },
     oplatacheckfiz() {
       let data = {
-      'name':this.name,
-      'count_spis_bonus':this.count_spis_bonus,
-      'spis_bonus':this.spis_bonus,
-      'oplata_methods':this.oplata_methods,
-      'text_comment':this.text_comment,
-      'adress':this.adress,
-      'email':this.email,
-      'familyname':this.familyname,
-      'phone':this.phone
+      'name_user':this.name,
+      'oplata_user':this.oplata_methods,
+      'comment_user':this.text_comment,
+      'adress_user':this.adress,
+      'bonus_user':this.count_spis_bonus,
+      'email_user2':this.email,
+      'famaly_name_user':this.familyname,
+      'phone_user':this.phone,
+      'summa':(this.basket.summ_present + 500)-this.count_spis_bonus,
+      "fiz_oplata": true,
       }
-      console.log(data);
-       let basket_id = this.$store.state.localStorage.basket.id_basket
+      
+      
+      this.$axios
+        .$post(`http://82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        })
+        .then((resp) => {
+          this.user_data.avatar= resp.avatar
+           let basket_id = this.$store.state.localStorage.basket.id_basket
         window.location.href = `http://82.148.17.12:8080/api/v1/present/history/oplata/for_end/${basket_id}`
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      
     },
   },
 };

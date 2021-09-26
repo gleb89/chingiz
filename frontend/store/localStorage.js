@@ -3,6 +3,7 @@
 export const state = () => ({
   jwtToken : '',
   uid_auth_user:'',
+  id_basket: 1,
   basket:{ 
     id_basket: 0,
     summ_present:0

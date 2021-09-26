@@ -13,11 +13,12 @@
       </v-col>
 
 
-      <v-col v-if="history_data[0]" cols="12" md="9" lg="9">
+
+      <v-col v-if="history_data" cols="12" md="9" lg="9">
         <h2 class="d-lg-block d-none">История заказов</h2>
-            <History :data_history="history_data[0].history" :onPageHistory="onPageHistory"/>
+            <History :data_history="history_data" :onPageHistory="onPageHistory"/>
       </v-col>
-      <v-col v-if="!history_data[0]" cols="12" md="9" lg="9">
+      <v-col v-if="!history_data" cols="12" md="9" lg="9">
         <h2 class="text-center">История заказов отсутсвует</h2>
           
       </v-col>
@@ -28,17 +29,17 @@
 <script>
 export default {
   async asyncData({ $axios, store }) {
+    
     const user_data = await $axios.get(
       `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
     );
   
-    let id_basket = store.state.localStorage.basket.id_basket
-    const history_data  = await $axios.get(
-      `http://82.148.17.12:8080/api/v1/present/history/${id_basket}`
-    );
-    return { user_data: user_data.data, history : history_data.data};
+   
+ 
+    return {user_data :  user_data.data};
   
   },
+  
   computed: {
     history_data() {
       if(process.browser){
@@ -48,7 +49,7 @@ export default {
           
       }
       else{
-      this.history_da = this.history 
+      this.history_da = []
       }
       return this.history_da
     },
@@ -57,7 +58,7 @@ export default {
   methods: {
     async onhist(){
       console.log(44,this.$store.state.localStorage.basket.id_basket);
-
+    if(this.$store.state.localStorage.basket.id_basket){
           await this.$axios.get(
      `http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
     )
@@ -67,6 +68,7 @@ export default {
     }),
       (error) => {
             console.log(error);
+      }
       }
   },
     

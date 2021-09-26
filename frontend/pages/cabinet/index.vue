@@ -62,27 +62,9 @@
       
      </form> -->
      </div>
-      <div style="width:100%" class="d-flex justify-center">
-     <!-- <form v-if="!em"  @submit.prevent="onEmail">
-        <v-text-field
-          v-model="email"
-          label="E-mail"
-          required
-        ></v-text-field>
-        <div class="text-center pt-4 pb-7 mb-6" style="width: 100%;">
-            <v-btn
-            type="submit"
-            
-            rounded
-            color="#ff7a00"
-            style="min-width: 30%;height: 3rem;"
-            dark
-          >
-            <span style="font-size: .6rem">сохранить</span>
-          </v-btn>
-            </div>
-      </form>  -->
-     <form class="forms"   @submit.prevent="onAvatar">
+
+     <div style="width:100%" class="d-flex justify-center">
+     <form class="forms"  style=""  @submit.prevent="onAvatar">
       <v-file-input
       required
       v-model="avatar"

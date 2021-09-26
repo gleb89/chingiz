@@ -20,7 +20,7 @@ async def get_all():
 
 @history_router.get('/{basket_id}')
 async def get_one_history(basket_id:int):
-    history = await HistoryBasket.objects.filter(basket_id=basket_id).all()
+    history = await HistoryBasket.objects.filter(self_basket__id=basket_id).all()
     return history
     
 @history_router.delete('/{basket_id}')
@@ -37,47 +37,30 @@ async def get_history_one_artical(history_art:str,basket_id:int):
     history_zakaz = [zakaz for zakaz in history.history if zakaz['dict_basket']['zakaz_num']== history_art][0]
     return history_zakaz
 
-async def add_basket_in_history(basket_id:int):
-    history = await get_history(basket_id)
+
+@history_router.post("/oplata/{basket_id}")
+async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
+    
+    oplata_data =  await HistoryBasket(**oplata_data.dict()).save()
     basket = await Basket.objects.get(id=basket_id)
     user = await Users.objects.get(basket_user__id = basket_id)
     
     new_points = len(basket.count_present_item.get('presents'))*500
-    if history:
-        element_num = history.end_zakaz_num[-1]
-        zakaz_num = str(history.id)+str(basket.id)+str(user.id)+'-'+str(int(element_num) + 1)
-    else:
-        history = await HistoryBasket(basket_id=basket_id,end_zakaz_num='',history=[]).save()
-        zakaz_num = str(history.id)+str(basket.id)+str(user.id)+'-'+'1'
-    await history.update(end_zakaz_num = zakaz_num)
     dict_basket = basket.count_present_item.get('presents')
-    list_history = history.history
     summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
-    list_history.append(
-                   
-                {
-                    'present_basket':dict_basket,
-                    'date':str(datetime.datetime.now()),
-                    'zakaz_num':zakaz_num ,
-                    'summa':sum(summ),
-                    }
-                
-            )
-    
+    await oplata_data.update(history = dict_basket)
     await basket.update(count_present_item={'presents':[]})
     await user.update(points = user.points + new_points)
     await Bonus(
         user_fairbase_id = user.uid_firebase,
         count_points = 500,
-        enum_povod = f'заказ EL{zakaz_num}',
+        enum_povod = f'заказ EL{oplata_data.id}',
         summ_check = sum(summ),
         ).save()
-    return await history.update(
-        history = list_history
-        )
+    await basket.history.add(oplata_data)
+    return oplata_data
 
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):
-    await add_basket_in_history(basket_id)
     return RedirectResponse("http://api-booking.ru/cabinet/oplata")
 
