@@ -362,7 +362,7 @@ export default {
       'comment_user':this.text_comment,
       'adress_user':this.adress,
       'bonus_user':this.count_spis_bonus,
-      'email_user2':this.email,
+      'email_user':this.email,
       'famaly_name_user':this.familyname,
       'phone_user':this.phone,
       'summa':(this.basket.summ_present + 500)-this.count_spis_bonus,

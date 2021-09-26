@@ -40,7 +40,7 @@
              :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
           </v-tab-item>
           <v-tab-item>
-            <Oplataur :presents_in_basket="presents_in_basket" :oplatacheck="oplatacheck"/>
+            <Oplataur :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
           </v-tab-item>
         </v-tabs>
       </v-col>
