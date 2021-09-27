@@ -52,9 +52,6 @@
             persistent
             transition="dialog-bottom-transition"
           >
- 
-
-   
             <div
             
               style="text-align: end;color:white;"
@@ -162,15 +159,11 @@ export default {
 <style scoped> 
 
 @media (max-width: 1000px) {
-  .bclosed{
-    display: none;
+  #contacts{
+    margin-bottom: 5rem;
   }
 }
-@media (min-width: 1000px) {
-  .bclosemob{
-    display: none;
-  }
-}
+
 
 #contacts span {
   font-weight: bold;
