@@ -29,6 +29,7 @@ headers = {
 
 @precent_router.post('/')
 async def create(
+    prevue_name: str = Form(...),
     name_precent: str = Form(...),
     price: int = Form(...),
     composition: str = Form(...),
@@ -42,6 +43,7 @@ async def create(
     ):
     new_image = await image_add(image)
     new_present = await Present.objects.create(
+        prevue_name = prevue_name,
         name_precent = name_precent,
         price = price,
         composition = composition,
@@ -117,6 +119,7 @@ async def get_one(id: int):
 @precent_router.put('/{id}') 
 async def update_one(
     id:int,
+    prevue_name: str = Form(None),
     name_precent: str = Form(None),
     price: int = Form(None),
     composition: str = Form(None),
@@ -142,6 +145,8 @@ async def update_one(
         await present.update(image_precent = new_image)
     if body:
         await present.update(body= body)
+    if prevue_name:
+        await present.update(prevue_name = prevue_name)
     if name_precent:
         await present.update(name_precent = name_precent)
     if price:

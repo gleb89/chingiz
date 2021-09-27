@@ -39,6 +39,11 @@
                 {{ all_filter }}
                 <v-col cols="12">
                   <v-form ref="form_com_children" lazy-validation>
+                        <v-text-field
+                          v-model="prevue_name"
+                          :rules="[(v) => !!v || 'Не может быть пустым']"
+                          label="превью корзины(напр:подарочная корзина)"
+                        ></v-text-field>
                     <v-text-field
                       v-model="name_precent"
                       label="Название подарочной корзины"
@@ -174,6 +179,12 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
+                   <v-col cols="12" sm="6" md="12">
+                        <v-text-field
+                          v-model="editedItem.prevue_name"
+                          label="превью корзины(напр:подарочная корзина)"
+                        ></v-text-field>
+                      </v-col>
                       <v-col cols="12" sm="6" md="12">
                         <v-text-field
                           v-model="editedItem.name_precent"
@@ -358,6 +369,7 @@ export default {
     img_open :false,
     composition: "",
     image_precent: null,
+    prevue_name:'',
     categories: [],
     category: {},
     body:'',
@@ -380,6 +392,7 @@ export default {
     dialogDelete: false,
     headers: [
       { text: "Артикул", value: "id" },
+      { text: "Превью Названия", value: "prevue_name" },
       { text: "Название", value: "name_precent" },
       { text: "Изображение", value: "image", sortable: false },
       { text: "Цена(тг)", value: "price" },
@@ -442,6 +455,7 @@ export default {
         this.form.id &&
         this.type.id &&
         this.reason.id &&
+        prevue_name &&
         this.body
       ) {
         return true;
@@ -489,6 +503,7 @@ export default {
       };
 
       let bodyFormData = new FormData();
+      bodyFormData.append("name_precent", this.prevue_name);
       bodyFormData.append("name_precent", this.name_precent);
       bodyFormData.append("price", Number(this.price));
       bodyFormData.append("composition", this.composition);
@@ -547,6 +562,7 @@ export default {
       Object.assign(this.items[this.editedIndex], this.editedItem);
 
       let bodyFormData = new FormData();
+      bodyFormData.append("name_precent", this.editedItem.prevue_name);
       bodyFormData.append("name_precent", this.editedItem.name_precent);
       bodyFormData.append("body", this.editedItem.body);
       bodyFormData.append("price", Number(this.editedItem.price));
