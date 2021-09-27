@@ -1,6 +1,6 @@
-sudo docker-compose run present_api alembic revision --autogenerate -m "first"
 
-sudo docker-compose run present_api alembic upgrade head
+docker-compose run present_api  alembic revision --autogenerate -m "New Migration" 
+docker-compose run present_api alembic upgrade head
 
 в случае ошибки Target database is not up to date 
 sudo docker-compose run present_api alembic stamp head

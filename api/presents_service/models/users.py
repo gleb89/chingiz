@@ -27,5 +27,5 @@ class Users(ormar.Model):
     points:int = ormar.Integer(nullable=True,default=0)
     timestamp: datetime.datetime = ormar.DateTime(
                 default=datetime.datetime.now()
-                                                )
+                                                )                                  
     
