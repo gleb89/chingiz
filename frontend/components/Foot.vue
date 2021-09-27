@@ -37,20 +37,97 @@
         </v-row>
       </v-container>
     </section>
-    <section id="contacts" style="background: white; padding-top: 2rem;min-height:20vh">
+    <section
+      id="contacts"
+      style="background: white; padding-top: 2rem;min-height:20vh"
+    >
       <v-container>
         <v-row justify="center">
           <v-col cols="12" md="6" class="box-p" lg="1"></v-col>
           <v-col cols="12" md="6" lg="2">
             <nuxt-link to="/oferta"><span>Публичная оферта</span></nuxt-link>
-            
+          </v-col>
+          <v-dialog
+            v-model="comand_dialog"
+            persistent
+            transition="dialog-bottom-transition"
+          >
+                      <div
+            class="bclosemob"
+              style="text-align: end;color:white;position: absolute;z-index: 1;right: 2rem;top: 0;"
+            >
+              <span style="cursor:pointer" @click="comand_dialog = false"
+                >закрыть</span
+              >
+
+              <v-btn @click="comand_dialog = false" style="color:white" text
+                ><v-icon>mdi-close</v-icon></v-btn
+              >
+            </div>
+            <div
+            class="bclosed"
+              style="text-align: end;color:white;position: absolute;z-index: 1;right: 2rem;top: 1rem;"
+            >
+              <span style="cursor:pointer" @click="comand_dialog = false"
+                >закрыть</span
+              >
+
+              <v-btn @click="comand_dialog = false" style="color:white" text
+                ><v-icon>mdi-close</v-icon></v-btn
+              >
+            </div>
+            <v-card class="box-comand d-flex" style="padding:2rem;align-items: center;">
+              <v-row justify="center">
+                <v-col cols="12" class="text-center" >
+                <h4 style="color: white;font-size: 2rem;">Хочу в вашу команду!</h4>
+                </v-col>
+                <v-col cols="12" md="4" lg="4">
+                  <v-text-field
+                    :rules="[v => !!v || 'Не может быть пустым']"
+                    label="ФИО"
+                    solo
+                    style="min-width:100%"
+                  ></v-text-field>
+                <v-file-input
+                style="margin-top:2rem"
+                class="append "
+                 label="Прикрепить файл"
+                  solo
+                  prepend-icon=""
+                  append-icon="mdi-cloud-upload"
+                ></v-file-input>
+                </v-col>
+                <v-col cols="12" md="4" lg="4" style="padding: 1rem;">
+                  
+                  <v-textarea
+                  
+                    solo
+                    name="input-7-4"
+                    label="Комментарий"
+                    
+                  ></v-textarea>
+                  
+                </v-col>
+                <v-col cols="12" class="text-center">
+                  <v-btn rounded color="#ff7a00" style="height: 3rem;" dark>
+                    <span style="font-size: .6rem">перейти к оформлению</span>
+                  </v-btn>
+
+                  <p style="font-size:.7rem" class="pt-6">
+                    Указывая свои данные, Вы соглашаетесь с нашей <br />
+                    Политикой конфиденциальности
+                  </p>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-dialog>
+          <v-col cols="12" md="6" lg="2">
+            <span @click="comand_dialog = !comand_dialog"
+              >Хочу в вашу команду</span
+            >
           </v-col>
           <v-col cols="12" md="6" lg="2">
-            <span>Хочу в вашу команду</span>
-          </v-col>
-            <v-col cols="12" md="6" lg="2">
             <nuxt-link to="/contacts"><span>Контакты</span></nuxt-link>
-            
           </v-col>
           <v-col cols="12" md="6" lg="2" class="box-phone">
             <span>+7 (888) 777 77 88</span>
@@ -69,16 +146,51 @@
           </v-col>
         </v-row>
       </v-container>
-      <div class="text-center" style="position: absolute;bottom: 0;width: 100%;background: #f2f2f2;">
-        <p class="text-center">© 2021 сервис оригинальных подарков.bota-boutique </p>
+      <div
+        class="text-center"
+        style="position: absolute;bottom: 0;width: 100%;background: #f2f2f2;"
+      >
+        <p class="text-center">
+          © 2021 сервис оригинальных подарков.bota-boutique
+        </p>
       </div>
     </section>
   </div>
 </template>
 
-<style>
+<script>
+export default {
+  data() {
+    return {
+      comand_dialog: false
+    };
+  }
+};
+</script>
+
+<style scoped> 
+
+@media (max-width: 1000px) {
+  .bclosed{
+    display: none;
+  }
+}
+@media (min-width: 1000px) {
+  .bclosemob{
+    display: none;
+  }
+}
+
 #contacts span {
   font-weight: bold;
+}
+.box-comand {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url("/coms.png");
+  min-height: 60vh;
+  min-width: 90%;
 }
 .dop-col {
   display: none;
