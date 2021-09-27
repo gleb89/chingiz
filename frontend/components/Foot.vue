@@ -52,21 +52,12 @@
             persistent
             transition="dialog-bottom-transition"
           >
-                      <div
-            class="bclosemob"
-              style="text-align: end;color:white;position: absolute;z-index: 1;right: 2rem;top: 0;"
-            >
-              <span style="cursor:pointer" @click="comand_dialog = false"
-                >закрыть</span
-              >
+ 
 
-              <v-btn @click="comand_dialog = false" style="color:white" text
-                ><v-icon>mdi-close</v-icon></v-btn
-              >
-            </div>
+   
             <div
             class="bclosed"
-              style="text-align: end;color:white;position: absolute;z-index: 1;right: 2rem;top: 1rem;"
+              style="text-align: end;color:white;"
             >
               <span style="cursor:pointer" @click="comand_dialog = false"
                 >закрыть</span
