@@ -56,7 +56,7 @@
 
    
             <div
-            class="bclosed"
+            
               style="text-align: end;color:white;"
             >
               <span style="cursor:pointer" @click="comand_dialog = false"
