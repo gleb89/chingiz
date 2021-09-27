@@ -455,7 +455,7 @@ export default {
         this.form.id &&
         this.type.id &&
         this.reason.id &&
-        prevue_name &&
+        this.prevue_name &&
         this.body
       ) {
         return true;
@@ -503,7 +503,7 @@ export default {
       };
 
       let bodyFormData = new FormData();
-      bodyFormData.append("name_precent", this.prevue_name);
+      bodyFormData.append("prevue_name", this.prevue_name);
       bodyFormData.append("name_precent", this.name_precent);
       bodyFormData.append("price", Number(this.price));
       bodyFormData.append("composition", this.composition);
@@ -562,7 +562,7 @@ export default {
       Object.assign(this.items[this.editedIndex], this.editedItem);
 
       let bodyFormData = new FormData();
-      bodyFormData.append("name_precent", this.editedItem.prevue_name);
+      bodyFormData.append("prevue_name", this.editedItem.prevue_name);
       bodyFormData.append("name_precent", this.editedItem.name_precent);
       bodyFormData.append("body", this.editedItem.body);
       bodyFormData.append("price", Number(this.editedItem.price));

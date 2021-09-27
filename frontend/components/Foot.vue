@@ -37,7 +37,7 @@
         </v-row>
       </v-container>
     </section>
-    <section id="contacts" style="background: white; padding-top: 2rem">
+    <section id="contacts" style="background: white; padding-top: 2rem;min-height:20vh">
       <v-container>
         <v-row justify="center">
           <v-col cols="12" md="6" class="box-p" lg="1"></v-col>
@@ -48,25 +48,15 @@
           <v-col cols="12" md="6" lg="2">
             <span>Хочу в вашу команду</span>
           </v-col>
-          <v-col cols="12" md="6" lg="2">
-            <span>Помощь</span>
-          </v-col>
-          <v-col cols="12" md="6" lg="5" class="box-phone">
-            <span>+7 (888) 777 77 88</span>
-          </v-col>
-
-          <v-col cols="12" md="6" class="box-p" lg="1"></v-col>
-          <v-col cols="12" md="6" lg="2">
-            <span>Конфиденциальность</span>
-          </v-col>
-          <v-col cols="12" md="6" lg="2">
+            <v-col cols="12" md="6" lg="2">
             <nuxt-link to="/contacts"><span>Контакты</span></nuxt-link>
             
           </v-col>
-          <v-col cols="12" md="6" lg="2">
-            <span>Вопрос-ответ</span>
+          <v-col cols="12" md="6" lg="2" class="box-phone">
+            <span>+7 (888) 777 77 88</span>
           </v-col>
-          <v-col cols="12" md="6" lg="5" class="box-phone">
+
+          <v-col cols="12" md="6" lg="3" class="box-phone">
             <img style="height: 14px; width: 20px" src="/vk.png" />
             <img
               style="height: 14px; width: 14px; margin-left: 3px"
@@ -79,6 +69,9 @@
           </v-col>
         </v-row>
       </v-container>
+      <div class="text-center" style="position: absolute;bottom: 0;width: 100%;background: #f2f2f2;">
+        <p class="text-center">© 2021 сервис оригинальных подарков.bota-boutique </p>
+      </div>
     </section>
   </div>
 </template>

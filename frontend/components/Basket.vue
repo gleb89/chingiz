@@ -82,7 +82,7 @@
           v-for="(item,index) in presents"
           :key="index"
         >
-        <p style="position: absolute;">{{ item.name_precent}}</p>
+        <p style="position: absolute;">{{item.prevue_name}}: {{ item.name_precent}}</p>
           <td style="max-width: 4rem;height: 10rem;"><img style="max-width: 4rem;" :src="item.image_precent" alt=""></td>
           <td style="height: 10rem;max-width: 3rem;"><span style="font-weight: bold;">{{ item.price }}</span> </td>
                    <td>

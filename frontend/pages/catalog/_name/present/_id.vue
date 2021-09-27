@@ -11,7 +11,8 @@
           >/
           <span>{{ product.name_precent }}</span>
         </div>
-        <h2 class="mt-6">{{ product.name_precent }}</h2>
+        <h2 class="mt-6">{{ product.prevue_name }}</h2>
+        <h2 class="">"{{ product.name_precent }}"</h2>
         <div style="position: relative">
           <v-img
             fluid
@@ -34,11 +35,11 @@
             <span>{{ product.id }}</span>
           </div>
           <div style="padding-top: 1rem;">
-            <span  class="ml-1">Цена: {{ product.price.toLocaleString() }} тг</span>
+            <span style="font-weight: bold;"  class="ml-1">Цена: {{ product.price.toLocaleString() }} тг</span>
           </div>
           <!-- nalicie -->
           <div class="d-flex mt-4">
-            <span class="ml-1">Наличие</span>
+            <span style="font-weight: bold;" class="ml-1">Наличие</span>
             <v-img
               class="mr-3 ml-4 mt-1"
               fluid
@@ -49,12 +50,16 @@
             ></v-img>
             <span>есть в наличии</span>
           </div>
-          <p class="ml-1 mt-3">
+          <p class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
+          <p class="ml-1 mt-1">
+            
             {{product.body}}
           </p>
           <div>
-            <p>Состав корзины:</p>
-            <p>{{product.composition}}</p>
+            <p style="font-weight: bold;">Состав корзины:</p>
+            <p v-for="(comp,index) in product.composition.split(/\d+/g)" :key="index">
+            <span v-if="index">{{index}}</span>{{comp}}
+            </p>
           </div>
           <!-- card basket -->
           <div class="d-flex flex-wrap">
