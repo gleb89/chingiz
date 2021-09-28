@@ -94,7 +94,7 @@ export default {
 <style >
 
 
-@media (max-width: 2400px) {
+@media (max-width: 2800px) {
   .nav-dnav {
     display: block;
   }
