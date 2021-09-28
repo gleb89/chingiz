@@ -4,7 +4,7 @@ docker-compose run present_api  alembic revision --autogenerate -m "New Migratio
 docker-compose run present_api alembic upgrade head
 
 в случае ошибки Target database is not up to date 
-sudo docker-compose run present_api alembic stamp head
+docker-compose run present_api alembic stamp head
 
 
 courers
@@ -13,4 +13,4 @@ docker-compose run courier_api  alembic revision --autogenerate -m "New Migratio
 docker-compose run courier_api alembic upgrade head
 
 в случае ошибки Target database is not up to date 
-sudo docker-compose run courier_api alembic stamp head
+docker-compose run courier_api alembic stamp head
