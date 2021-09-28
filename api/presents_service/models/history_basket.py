@@ -25,7 +25,7 @@ class HistoryBasket(ormar.Model):
     famaly_name_user:str = ormar.String(max_length=100,nullable=True, null=True)
     fiz_oplata:bool = ormar.Boolean(nullable=True,default=False)
     ur_oplata:bool = ormar.Boolean(nullable=True,default=False)
-    summa: int = ormar.Integer()
+    summa: int = ormar.BigInteger(default=0)
     phone_user:str = ormar.String(max_length=100,nullable=True, null=True)
     email_user:str = ormar.String(max_length=1000,nullable=True, null=True)
     adress_user:str = ormar.String(max_length=100,nullable=True, null=True)
