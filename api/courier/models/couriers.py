@@ -11,6 +11,7 @@ from pydantic import BaseModel, validator
 
 
 from config.database import metadata, database
+from models.orders import Orders
 
 
 
@@ -54,19 +55,22 @@ class Couriers(ormar.Model):
         database = database
 
     id: int = ormar.Integer(primary_key=True)
-    name: str = ormar.String(max_length=100)
+    name: str = ormar.String(max_length=100,nullable=True, null=True)
     hash_password:str = ormar.String(max_length=100)
-    email:str = ormar.String(max_length=100)
+    email:str = ormar.String(max_length=100,nullable=True, null=True)
     adress_propiski:str = ormar.String(max_length=1000)
     adress_prozjivania:str = ormar.String(max_length=1000)
     phone_courier:str = ormar.String(max_length=1000)
-    phone_family_people:str = ormar.String(max_length=1000)
+    phone_family_people:str = ormar.String(max_length=1000,nullable=True, null=True)
+    orders: Optional[Orders] = ormar.ManyToMany(
+        Orders,  related_name="self_zakaz",nullable=True
+    )
 
-    @validator('password')
-    def hash_password(cls, pw: str) -> str:
-        if is_hash(pw):
-            return pw
-        return hash_password(pw)
+    # @validator('hash_password')
+    # def hash_password(cls, pw: str) -> str:
+    #     if is_hash(pw):
+    #         return pw
+    #     return hash_password(pw)
 
     class Config:
         orm_mode = True

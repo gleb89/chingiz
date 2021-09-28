@@ -445,21 +445,21 @@ export default {
       'data_dostavki':String(this.data_dostavki) 
       }
 
-      console.log((this.basket.summ_present + 500)-this.count_spis_bonus);
       
-      // this.$axios
-      //   .$post(`http://82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
-      //   })
-      //   .then((resp) => {
-      //     this.user_data.avatar= resp.avatar
+      
+      this.$axios
+        .$post(`http://82.148.17.12:8080/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        })
+        .then((resp) => {
+          this.user_data.avatar= resp.avatar
 
-      //      this.$store.commit("localStorage/set_summBasket",Number(0));
-      //   this.$router.push('/cabinet/oplata')
+        this.$store.commit("localStorage/set_summBasket",Number(0));
+        this.$router.push('/cabinet/oplata')
         
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       
     },
   },
