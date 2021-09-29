@@ -323,7 +323,7 @@
         </template>
         <!-- изображение -->
           <template v-slot:item.image="{ item }">
-          <img  style="width: 10rem;" :src="item.image_precent" alt="">
+          <img  style="width: 10rem;" :src="item.image_precent" alt="none">
 
         </template>
         <!-- изменить удалить -->

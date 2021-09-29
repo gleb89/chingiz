@@ -69,12 +69,6 @@
             <v-list-item-title>Заказы</v-list-item-title>
           </v-list-item>
 
-           <v-list-item @click="onadminPage('/admin/send_order')">
-            <v-list-item-icon>
-              <fa class="mt-1" icon='location-arrow'></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Отправить заказ курьеру</v-list-item-title> 
-          </v-list-item>
 
            <v-list-item @click="onadminPage('/admin/all_couries')">
             <v-list-item-icon>
@@ -83,12 +77,6 @@
             <v-list-item-title>Курьеры</v-list-item-title> 
           </v-list-item>
 
-           <v-list-item @click="onadminPage('/admin/add_courie_order')">
-            <v-list-item-icon>
-              <fa class="mt-1" icon='user-plus'></fa>
-            </v-list-item-icon>
-            <v-list-item-title>Добавить курьера</v-list-item-title>
-          </v-list-item>
 
         </v-list-item-group>
       </v-list>
