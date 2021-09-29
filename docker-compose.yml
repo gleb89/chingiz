@@ -86,7 +86,7 @@ services:
     volumes:
       - ./data/nginx:/etc/nginx/conf.d
       # - ./data/certbot/conf:/etc/letsencrypt
-      # - ./data/certbot/www:/var/www/certbot
+      ## - ./data/certbot/www:/var/www/certbot
     depends_on:
       - present_api
       - courier_api
