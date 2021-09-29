@@ -13,12 +13,10 @@ orders_router = APIRouter(
 )
 
 
-@orders_router.post('/{history_id}/{courier_id}')
-async def create(history_id: int, courier_id:int):
+@orders_router.post('/create/{courier_id}')
+async def create(order_new:Orders, courier_id:int):
     courier = await Couriers.objects.get(id = courier_id)
-    order = await Orders(
-        history_id = history_id,
-        ).save()
+    order = await order_new.save()
     await courier.orders.add(order)
     return order
 
@@ -32,13 +30,16 @@ async def get_all():
 @orders_router.get('/{id}')
 async def get_one(id: int):
     return await Orders.objects.get_or_none(id=id)
+    
 
 
 @orders_router.put('/{id}')
 async def update_one(id: int, image: UploadFile = File(...)):
-    order =  await Orders.objects.get_or_none(id=id)
+    order =  await Orders.objects.prefetch_related(['self_zakaz']).get_or_none(id=id)
     photo_dostavka = await image_add(image)
-    return await order.update(dostavleno = True,photo_dostavka = photo_dostavka)
+    await order.update(dostavleno = True,photo_dostavka = photo_dostavka)
+    id_user =  order.self_zakaz[0].id
+    return await Couriers.objects.prefetch_related(['orders']).get_or_none(id=id_user)
 
 @orders_router.delete('/{id}')
 async def delete(id: int):
