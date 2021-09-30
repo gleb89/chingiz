@@ -74,7 +74,8 @@ async def redirect_typer(basket_id:int):
 @history_router.put('/send_curer/{pk}')
 async def send_curer_history_data(pk:int, data:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
-    print(data)
+    print(data['courier_name'])
+    print(data['courier_id'])
     # return await history.update(
     #     admin_send_curer = True,
     #     send_id_curer = int(data['courier_id']),
