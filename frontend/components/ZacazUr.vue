@@ -99,7 +99,7 @@
         </span>
       </template>
         <template v-slot:item.photo_otchet="{ item }">
-       <img :src="item.photo_otchet" alt="еще не доставлено">
+       <img style="max-width: 6rem;" :src="item.photo_otchet" alt="еще не доставлено">
        
       </template>
     </v-data-table>
