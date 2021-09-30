@@ -71,13 +71,13 @@ async def redirect_typer(basket_id:int):
     return RedirectResponse("http://api-booking.ru/cabinet/oplata")
 
 
-@history_router.put('/send_curer/{pk}/{send_id_curer}/{send_name_curer}')
-async def send_curer_history_data(pk:int, send_id_curer:int, send_name_curer:str):
+@history_router.put('/send_curer/{pk}')
+async def send_curer_history_data(pk:int, data:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
     return await history.update(
         admin_send_curer = True,
-        send_id_curer = send_id_curer,
-        send_name_curer = send_name_curer
+        send_id_curer = int(data['courier_id']),
+        send_name_curer = str(data['courier_name'])
         )
 
 @history_router.put('/otchet_photo_curer/{pk}')

@@ -18,7 +18,11 @@ async def create(order_new:Orders, courier_id:int):
     order = await order_new.save()
     await courier.orders.add(order)
     httpx.put(
-        f'http://present_api:8000/api/v1/present/history/send_curer/{order_new.history_id}/{courier_id}/{courier.name}',
+        f'http://present_api:8000/api/v1/present/history/send_curer/{order_new.history_id}',
+         json={
+             'courier_id': courier_id,
+            'courier_name': courier.name
+             }
          )
     return order
 
