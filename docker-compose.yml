@@ -60,9 +60,9 @@ services:
     volumes:
       - ./api/courier:/app/courier
 
-  front:
-    restart: always
-    build: ./frontend
+  # front:
+  #   restart: always
+  #   build: ./frontend
 
   
    

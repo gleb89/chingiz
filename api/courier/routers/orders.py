@@ -1,6 +1,5 @@
-
 from fastapi import APIRouter, File, UploadFile
-
+import httpx
 
 from models.orders import Orders
 from models.couriers import Couriers
@@ -18,6 +17,9 @@ async def create(order_new:Orders, courier_id:int):
     courier = await Couriers.objects.get(id = courier_id)
     order = await order_new.save()
     await courier.orders.add(order)
+    httpx.put(
+        f'http://present_api:8000/api/v1/present/history/send_curer/{order_new.history_id}/{courier_id}/{courier.name}',
+         )
     return order
 
 
@@ -39,6 +41,10 @@ async def update_one(id: int, image: UploadFile = File(...)):
     photo_dostavka = await image_add(image)
     await order.update(dostavleno = True,photo_dostavka = photo_dostavka)
     id_user =  order.self_zakaz[0].id
+    httpx.put(
+        f'http://present_api:8000/api/v1/present/history/otchet_photo_curer/{order.history_id}',
+        json={'image': photo_dostavka}
+         )
     return await Couriers.objects.prefetch_related(['orders']).get_or_none(id=id_user)
 
 @orders_router.delete('/{id}')

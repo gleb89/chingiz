@@ -61,3 +61,5 @@ uvloop==0.16.0
 watchgod==0.7
 websockets==9.1
 requests
+httpx 
+httplib2

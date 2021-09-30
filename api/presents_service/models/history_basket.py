@@ -20,7 +20,11 @@ class HistoryBasket(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     history = ormar.JSON(default=[],nullable=True)
-    dostavka:bool = ormar.Boolean(nullable=True,default=False)
+    admin_bool_dostavka:bool = ormar.Boolean(nullable=True,default=False)
+    admin_send_curer:bool = ormar.Boolean(nullable=True,default=False)
+    photo_otchet:str = ormar.String(max_length=1000,nullable=True, null=True)
+    send_id_curer: int = ormar.Integer(nullable=True, null=True)
+    send_name_curer: int = ormar.Integer(nullable=True, null=True)
     name_user:str = ormar.String(max_length=100,nullable=True, null=True)
     famaly_name_user:str = ormar.String(max_length=100,nullable=True, null=True)
     fiz_oplata:bool = ormar.Boolean(nullable=True,default=False)

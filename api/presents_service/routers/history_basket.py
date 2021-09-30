@@ -1,5 +1,4 @@
-from models.users import Users
-from fastapi import APIRouter
+from fastapi import APIRouter,File, UploadFile
 from fastapi.responses import RedirectResponse
 import datetime
 
@@ -7,7 +6,8 @@ import datetime
 from models.basket_users import Basket
 from models.history_basket import HistoryBasket
 from routers.bonus import *
-
+from models.users import Users
+from logics.history import image_add
 
 history_router = APIRouter(
     prefix="/api/v1/present/history",
@@ -69,4 +69,29 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):
     return RedirectResponse("http://api-booking.ru/cabinet/oplata")
+
+
+@history_router.put('/send_curer/{pk}/{send_id_curer}/{send_name_curer}')
+async def send_curer_history_data(pk:int, send_id_curer:int, send_name_curer:str):
+    history = await HistoryBasket.objects.get_or_none(id=pk)
+    return await history.update(
+        admin_send_curer = True,
+        send_id_curer = send_id_curer,
+        send_name_curer = send_name_curer
+        )
+
+@history_router.put('/otchet_photo_curer/{pk}')
+async def photo_otchet_curer(pk:int,photo:dict):
+    history = await HistoryBasket.objects.get_or_none(id=pk)
+    return await history.update(
+        photo_otchet = photo['image']
+        )
+   
+
+@history_router.put('admin_bool_dostavka/{pk}')
+async def boll_admin_dostavka(pk:int):
+    history = await HistoryBasket.objects.get_or_none(id=pk)
+    return await history.update(
+        admin_bool_dostavka = True
+        )
 
