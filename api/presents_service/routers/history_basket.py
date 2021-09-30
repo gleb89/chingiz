@@ -79,7 +79,7 @@ async def send_curer_history_data(pk:int, data:dict):
     return await history.update(
         admin_send_curer = True,
         send_id_curer = pk_curer,
-        send_name_curer = name
+        # send_name_curer = name
         )
 
 @history_router.put('/otchet_photo_curer/{pk}')
