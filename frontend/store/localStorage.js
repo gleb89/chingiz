@@ -4,6 +4,8 @@ export const state = () => ({
   jwtToken : '',
   uid_auth_user:'',
   id_basket: 1,
+  city:'',
+  date:'',
   basket:{ 
     id_basket: 0,
     summ_present:0
@@ -28,6 +30,14 @@ export const state = () => ({
     set_summBasket (state, summ ) {
       localStorage.setItem('summ_present',summ) 
       state.basket.summ_present = summ
+    },
+    set_Sity(state, city){
+      localStorage.setItem('city',city) 
+      state.basket.city = city
+    },
+    set_Date(state, date){
+      localStorage.setItem('date',date) 
+      state.basket.date = date
     }
   
   }

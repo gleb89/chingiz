@@ -437,7 +437,7 @@ export default {
           spis_bonus:null,
           oplata_methods:null,
           text_comment:'',
-          adress:'',
+          adress:localStorage.getItem('city')||'',
           email:'',
           familyname:'',
           phone:'',
@@ -448,7 +448,7 @@ export default {
           iik_bank:'',
           cod_platezh:'',
           kbe:'',
-          data_dostavki:''
+          data_dostavki:localStorage.getItem('date')||''
       };
   },
   computed: {

@@ -463,6 +463,8 @@ export default {
       this.$router.push("/"+'catalog/Все_продукты');
     },
     onsavecity_pushCatalog(){
+      this.$store.commit("localStorage/set_Sity",this.city);
+      this.$store.commit("localStorage/set_Date",this.date);
       this.$router.push("/"+'catalog/Все_продукты');
     },
     getEvents(event) {

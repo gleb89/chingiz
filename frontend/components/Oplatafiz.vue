@@ -379,11 +379,11 @@ export default {
       spis_bonus:null,
       oplata_methods:null,
       text_comment:'',
-      adress:'',
+      adress:localStorage.getItem('city')||'',
       email:'',
       familyname:'',
       phone:'',
-      data_dostavki:''
+      data_dostavki:localStorage.getItem('date')||''
     };
   },
     computed: {
