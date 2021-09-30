@@ -89,6 +89,7 @@ export default {
   data() {
     return {
       headers: [
+        { text: " id курьера", value: "id" },
         { text: "Имя", value: "name" },
         { text: "email", value: "email" },
         { text: "телефон", value: "phone_courier" },

@@ -37,7 +37,7 @@
         <v-divider></v-divider>
         <v-card-text style="height: 300px;">
           <v-radio-group
-            v-model="curer_id"
+            v-model="curer"
             column
           >
           <div style="margin-bottom: 4rem;"  v-for="(curer,index) in curers" :key="index">
@@ -53,7 +53,7 @@
             <v-radio
            
               label="Выбрать"
-              :value="curer.id"
+              :value="curer"
             ></v-radio>
           </div>
  
@@ -89,10 +89,18 @@
           смотреть
         </v-btn>
       </template>
-      <template v-slot:item.curers_list="{ item }">
-        <v-btn @click="openCurer(item)" text>
+      <template v-slot:item.admin_send_curer="{ item,index }">
+       
+        <v-btn v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
           выбрать
         </v-btn>
+        <span v-if="item.admin_send_curer">отправлен курьеру c id :{{item.send_id_curer}}/
+          имя: {{item.send_name_curer}}/
+        </span>
+      </template>
+        <template v-slot:item.photo_otchet="{ item }">
+       <img :src="item.photo_otchet" alt="еще не доставлено">
+       
       </template>
     </v-data-table>
   </div>
@@ -116,16 +124,17 @@ export default {
      { text: "Итого(тг)", value: "summa" },
      { text: "Дата доставки", value: "data_dostavki" },
        { text: "подарки в заказе ", value: "pres_list", sortable: false },
-        { text: "Отправить курьеру", value: "curers_list", sortable: false }
-      //   { text: "Изображение", value: "form_precent[0].name_form", sortable: false },
+        { text: "Отправить курьеру", value: "admin_send_curer" },
+        { text: "Фото-очет", value: "photo_otchet", sortable: false },
     //   { text: "Изменить/ удалить", value: "actions", sortable: false },
     //   { text: "перейти", value: "onpage", sortable: false },
     ],
       presents_for_zakaz: [],
       dialog_pres: false,
-      curer_id:0,
+      curer:{},
       history_data:{},
-      dialog:false
+      dialog:false,
+      ind:null
     };
   },
   methods: {
@@ -133,7 +142,8 @@ export default {
       this.presents_for_zakaz = presents;
       this.dialog_pres = true;
     },
-    openCurer(item){
+    openCurer(item,index){
+        this.ind = index
         this.history_data = item
         this.dialog = true
         
@@ -148,13 +158,16 @@ export default {
                 "email_user": this.history_data.email_user,
                 "adress_user": this.history_data.adress_user
         }
+
         this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/couriers/orders/create/${this.curer_id}`, data, {
+        .$post(`http://82.148.17.12:8080/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {
             console.log(data);
-            
+            this.data_history_fiz[this.ind].admin_send_curer = true
+            this.data_history_fiz[this.ind].send_id_curer = this.curer.id
+            this.data_history_fiz[this.ind].send_name_curer = this.curer.name
             this.dialog = false
         })
         .catch(function (error) {
