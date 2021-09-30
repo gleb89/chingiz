@@ -74,13 +74,13 @@ async def redirect_typer(basket_id:int):
 @history_router.put('/send_curer/{pk}')
 async def send_curer_history_data(pk:int, data:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
-    print(data['courier_name'])
-    print(data['courier_id'])
-    # return await history.update(
-    #     admin_send_curer = True,
-    #     send_id_curer = int(data['courier_id']),
-    #     send_name_curer = str(data['courier_name'])
-    #     )
+    name = str(data['courier_name'])
+    pk_curer = int(data['courier_id'])
+    return await history.update(
+        admin_send_curer = True,
+        send_id_curer = pk_curer,
+        send_name_curer = name
+        )
 
 @history_router.put('/otchet_photo_curer/{pk}')
 async def photo_otchet_curer(pk:int,photo:dict):
