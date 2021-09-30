@@ -15,7 +15,7 @@
     <div v-for="comment in comments_list" :key="comment.id" id="comments">
       <v-container>
         <v-row justify="center">
-          <v-col cols="12">
+          <v-col v-if="comment.moderation" cols="12">
             <div class="card-comments-user">
               <div class="d-flex flex-wrap">
                 <div style="flex-grow: 1">
