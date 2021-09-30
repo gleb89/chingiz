@@ -20,8 +20,8 @@ async def create(order_new:Orders, courier_id:int):
     httpx.put(
         f'http://present_api:8000/api/v1/present/history/send_curer/{order_new.history_id}',
          json={
-             'courier_id': courier_id,
-            'courier_name': courier.name
+            'courier_id': int(courier_id),
+            'courier_name': str(courier.name)
              }
          )
     return order
