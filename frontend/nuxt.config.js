@@ -24,7 +24,7 @@ export default {
 
 
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
     ]
   },
 
@@ -32,6 +32,14 @@ export default {
   css: [
     '@/style/index.css'
   ],
+  pwa: {
+    manifest: {
+      name: 'Bota Boutique',
+      short_name: 'Bota Boutique',
+      lang: 'ru',
+      display: 'standalone',
+    },
+  },
   plugins: ['~/plugins/firebase.js'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   // plugins: ['@/plugins/firebase'],
@@ -49,6 +57,7 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/fontawesome',
+    '@nuxtjs/pwa',
     // '@nuxtjs/recaptcha',
 
   ],
