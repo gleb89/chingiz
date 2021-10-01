@@ -63,8 +63,7 @@ services:
   front:
     restart: always
     build: ./frontend
-    volumes:
-      - ./frontend:/app
+
 
   
    
