@@ -53,7 +53,7 @@
             ></v-date-picker>
           </v-menu>
           </v-col>  
-          <v-col  cols="12" lg="4" md="4" class="d-flex b-b" style="align-items: center;margin-bottom: 1rem;">
+          <v-col  cols="12" lg="4" md="4" class="d-flex b-b" style="align-items: center;margin-bottom: 2rem;">
           <v-btn
           @click="onsavecity_pushCatalog"
           depressed
