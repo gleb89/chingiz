@@ -60,7 +60,8 @@ export default {
       display: 'standalone',
       icons: [
         {
-            fileNAme:'Logo.png'
+            fileNAme:'Logo.png',
+            sizes:[64, 120, 144, 152, 192, 384, 512]
         }
     ]
     },
