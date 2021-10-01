@@ -60,10 +60,7 @@ export default {
       display: 'standalone',
       icons: [
         {
-            src: 'Logo.png',
-            sizes: '196x196',
-            type: 'image/png',
-            purpose: 'any maskable'
+            fileNAme:'Logo.png'
         }
     ]
     },
