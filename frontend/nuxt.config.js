@@ -58,6 +58,14 @@ export default {
       short_name: 'Bota Boutique',
       lang: 'ru',
       display: 'standalone',
+      icons: [
+        {
+            src: 'Logo.png',
+            sizes: '196x196',
+            type: 'image/png',
+            purpose: 'any maskable'
+        }
+    ]
     },
   },
   plugins: ['~/plugins/firebase.js'],
