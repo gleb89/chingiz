@@ -7,8 +7,8 @@
     <div style="padding-right: 3rem">
       <img
       @click="onHome()"
-        style="cursor:pointer;width: 8rem;"
-        src="/logod.png"
+        style="cursor:pointer;width: 10rem;"
+        src="/logo.svg"
       >
     </div>
 
@@ -182,6 +182,8 @@ export default {
 <style >
 .text-nav {
   font-size: 14px;
+  color: #676767;
+  font-weight: bold;
 }
 .nav-link {
   padding: 1rem;

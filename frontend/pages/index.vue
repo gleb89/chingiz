@@ -1,9 +1,9 @@
 <template>
   <div>
     
-    <div id="header__content">
+    <div style="margin-top:3rem" id="header__content">
       <div style="text-alignt: center; width: 100%">
-        <h1>лучший сервис оригинальных подарков</h1>
+        <h1>ЛУЧШИЙ СЕРВИС ОРИГИНАЛЬНЫХ ПОДАРКОВ</h1>
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость...”
         </p>
@@ -55,7 +55,7 @@
           @click="onsavecity_pushCatalog"
           class="btnper"
             rounded
-            style=";height: 3rem;width: 15rem;margin-bottom:1.8rem"
+            style=";height: 3rem;width: 15rem;margin-bottom:2rem"
             color="#ff7a00"
             dark
           >
@@ -67,7 +67,7 @@
     </div>
     <section id="best-products" style="margin-bottom:4rem;margin-top:4rem">
       <v-container>
-        <h2 >популярные корзины и боксы</h2>
+        <h2 >ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
@@ -88,9 +88,9 @@
     <section id="baner-bonys">
       <div style="width: 100%">
         <h2 style="font-size: 2.5rem">
-          собери бонусы
+         СОБЕРИ БОНУСЫ
           <br />
-          на постоянную скидку
+          НА ОРИГИНАЛЬНЫЙ ПОДАРОК
         </h2>
         <v-btn
         @click="bonys_page"
@@ -108,7 +108,7 @@
       <v-container>
         <h2
         >
-          новинки в тренде
+          НОВИНКИ В ТРЕНДЕ
         </h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
@@ -520,10 +520,7 @@ h1 {
   h1 {
     font-size: 2rem;
   }
-  #header__content {
-  background-image: url("/headm.png");
 
-}
 .head-sect{
     margin-top: 1rem;
     margin-bottom: 1rem;
