@@ -1,28 +1,48 @@
+// import colors from 'vuetify/es5/util/colors'
+
+// export default {
+//   // Global page headers: https://go.nuxtjs.dev/config-head
+//   head: {
+//     titleTemplate: 'elbazar-service',
+//     title: 'elbazar-service',
+//     htmlAttrs: {
+//       lang: 'en'
+//     },
+//     meta: [
+//       { charset: 'utf-8' },
+//       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+//       { hid: 'description', name: 'description', content: '' },
+//       { name: 'format-detection', content: 'telephone=no' }
+//     ],
+//     script: [
+//       {
+//         // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js",
+//         // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js",
+//         // // src: "/__/firebase/init.js",
+//       }
+//     ],
+
+
+//     link: [
+//       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
+//     ]
+//   },
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
+  ssr: true,
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'elbazar-service',
-    title: 'elbazar-service',
-    htmlAttrs: {
-      lang: 'en'
-    },
+    titleTemplate: 'Подарки',
+    title: 'Подарки',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
-    script: [
-      {
-        // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js",
-        // src: "https://www.gstatic.com/firebasejs/8.6.7/firebase-analytics.js",
-        // // src: "/__/firebase/init.js",
-      }
-    ],
-
-
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
     ]
