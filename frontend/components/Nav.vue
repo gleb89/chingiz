@@ -3,58 +3,60 @@
   class="text-center"
   style="position: fixed;top: 0;z-index: 1;width:100%;background: white;height: 5rem;"
     >
-    <v-container class="d-flex justify-center">
-    <div style="padding-right: 3rem">
+    <v-container >
+      <v-row justify="center">
+    <v-col class="mr-lg-8" lg="2" md="1" xl="3" style="text-align: start;">
       <img
       @click="onHome()"
-        style="cursor:pointer;width: 10rem;"
+        style="cursor:pointer;width: 12rem;"
         src="/logo.svg"
       >
-    </div>
+    </v-col>
 
-    <div class="nav-link box-icon_text">
+   <v-col class="d-flex justify-center nav-li">
       <div style="margin-right: 7px">
         <img src="/menu.png" alt="" />
       </div>
       <div @click="onPage('catalog/Все_продукты')">
-        <span class="text-nav">Каталог</span>
+        <span class="text-nav">КАТАЛОГ</span>
       </div> 
-    </div>
-    <div style="min-width: 5rem;"  @click="onPage('o_nas')"  class="nav-link">
-      <span class="text-nav">О нас</span>
-    </div>
-    <div style="min-width: 12rem;"  @click="onPage('for_work')" class="nav-link">
-      <span class="text-nav">Доставка и оплата </span>
-    </div>
-    <div @click="onPage('for_bonus')" class="nav-link">
-      <span class="text-nav">Бонусы</span>
-    </div>
-    <div style="min-width: 9rem;" @click="onPage('business')" class="nav-link">
-      <span class="text-nav">Для Бизнеса</span>
-    </div>
-    <div class="nav-link" @click="onPage('contacts')">
-      <span class="text-nav">Контакты</span>
-    </div>
-    <div class="nav-link" style="cursor:pointer" @click="onCatalog">
-      <img style="width: 1rem" src="/search.svg" alt="" />
-    </div>
+    </v-col>
+    <v-col @click="onPage('for_work')" class="d-flex justify-center nav-li" >
+   
+      <span class="text-nav">ДОСТАВКА И ОПЛАТА </span>
+   </v-col>
+   <v-col @click="onPage('for_bonus')"  class="d-flex justify-center nav-li">
+      <span class="text-nav">БОНУСЫ</span>
+      </v-col>
+      <v-col @click="onPage('business')"  class="d-flex justify-center nav-li">
+      <span class="text-nav">ДЛЯ БИЗНЕСА</span>
+    </v-col>
+    <v-col @click="onPage('contacts')"  class="d-flex justify-center nav-li" style="margin-right: .7em;">
+    
+      <span class="text-nav">КОНТАКТЫ</span>
+   </v-col>
+   <v-col @click="onCatalog"  class="d-flex justify-center nav-li" style="margin-left: .7em;">
+    
+      <img style="width: 1.5rem;" src="/search.svg" alt="" />
+    </v-col>
 
-    <div style="min-width: 14rem;" class="nav-link">
-      <span class="text-nav">+7 (888) 777 77 88</span>
-      <img style="width: 1rem;margin-left:.7rem" src="/tt.png" alt="" />
-      <img style="width: 1rem;margin-left:.7rem" src="/ww.png" alt="" />
-    </div>
-            
-    <div class="nav-link box-icon_text" v-if="!userauth">
+   <v-col  class="d-flex justify-center nav-li" style="margin-left: 1em;">
+      <span class="d-xl-block d-lg-none">+7 (888) 777 77 88</span>
+      <img class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
+      <img style="margin-left:.7rem;width:23px" src="/telegram.svg" alt="" />
+      <img style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
+    </v-col>
+      <v-col v-if="!userauth"  class="d-flex flex-nowrap justify-center nav-li" style="margin-left: .7em;">
+    
       <div style="margin-right: 7px">
         <img src="/login.svg" alt="" />
       </div>
       <div  @click="onsign">
         <span class="text-nav">Войти</span>
       </div>
-    </div>
+    </v-col>
   
-      <div class="nav-link box-icon_text" v-if="userauth">
+  <v-col v-if="userauth"  class="d-flex justify-center nav-li" style="margin-left: .7em;">
     <v-menu
     
         bottom
@@ -86,16 +88,16 @@
           </v-list-item>
         </v-list>
       </v-menu>
-    </div>
-
-    <div style="min-width: 8rem;" class="nav-link box-icon_text" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
+    </v-col>
+<v-col @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)"  class="d-flex flex-nowrap justify-center nav-li">
+   
       <div style="margin-right: 7px">
         <img src="/bascket.svg" alt="" />
       </div>
       <div>
         <span class="text-nav">{{basket.summ_present.toLocaleString()}} тг</span>
       </div>
-    </div>
+    </v-col>
     <v-dialog
       v-model="dialog"
       persistent
@@ -108,7 +110,9 @@
     
     </v-card>
     </v-dialog>
+    </v-row>
     </v-container>
+
   </nav>
 </template>
 
@@ -180,10 +184,16 @@ export default {
 </script>
 
 <style >
+
 .text-nav {
-  font-size: 14px;
+  
   color: #676767;
   font-weight: bold;
+}
+@media (max-width: 1906px) {
+  .text-nav {
+    font-size: .8em;
+}
 }
 .nav-link {
   padding: 1rem;
@@ -192,6 +202,12 @@ export default {
 .box-icon_text {
   display: flex;
   background: none;
+}
+.nav-li{
+  align-items: center;
+  cursor:pointer;
+  min-width: max-content;
+  max-width: max-content;
 }
 /* @media (max-width:1890px) {
   .text-nav{

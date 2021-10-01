@@ -63,6 +63,8 @@ services:
   front:
     restart: always
     build: ./frontend
+    volumes:
+      - ./frontend:/app
 
   
    
@@ -90,7 +92,7 @@ services:
     depends_on:
       - present_api
       - courier_api
-      # - front
+      - front
     ports:
       - "8080:8080"
       - "80:80"

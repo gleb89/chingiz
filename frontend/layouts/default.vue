@@ -114,7 +114,7 @@ export default {
 }
 
 
-@media (max-width: 1405px) {
+@media (max-width: 1460px) {
   .nav-mnav {
     display:block;
   }

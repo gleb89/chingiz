@@ -7,10 +7,11 @@
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость...”
         </p>
-        
-        <div style="display: flex;justify-content: center;flex-wrap: wrap;align-items: center;">
-          <div class="forin">
+        <v-container>
+          <v-row justify="center">
+        <v-col  cols="12" lg="4" md="4">
             <v-autocomplete
+            class="rounded-lg"
             label="Город доставки"
             v-model="city"
             color="orange"
@@ -20,9 +21,11 @@
             no-data-text="Ничего не найдено"
             ></v-autocomplete>
             
-    </div>
-              <div class="forin">
+  </v-col>
+  <v-col  cols="12" lg="4" md="4">
           <v-menu
+          
+          style=""
             ref="menu1"
             v-model="menu1"
             :close-on-content-click="false"
@@ -33,7 +36,7 @@
           >
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
-
+                class="rounded-lg"
                 v-model="dateFormatted"
                 label="Дата доставки"
                 solo
@@ -49,25 +52,26 @@
               @input="menu1 = false"
             ></v-date-picker>
           </v-menu>
-              </div>
-              <div class="forin"  style="">
+          </v-col>  
+          <v-col  cols="12" lg="4" md="4" class="d-flex b-b" style="align-items: center;margin-bottom: 1rem;">
           <v-btn
           @click="onsavecity_pushCatalog"
-          class="btnper"
+          depressed
             rounded
-            style=";height: 3rem;width: 15rem;margin-bottom:2rem"
+            style=";height: 3rem;width: 15rem;"
             color="#ff7a00"
             dark
           >
             <span style="font-size: 12px">найти подарок</span>
           </v-btn>
-          </div>
-        </div>
+          </v-col>
+         </v-row>
+        </v-container>
       </div>
     </div>
     <section id="best-products" style="margin-bottom:4rem;margin-top:4rem">
       <v-container>
-        <h2 >ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
+        <h2 class="head-sect">ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
@@ -75,8 +79,8 @@
           <v-btn
             @click="oncatalog()"
             rounded
-            
-            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            depressed
+            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -87,7 +91,7 @@
 <v-parallax  src="/bonus.png">
     <section id="baner-bonys">
       <div style="width: 100%">
-        <h2 style="font-size: 2.5rem">
+        <h2 style="font-size: 2.5em">
          СОБЕРИ БОНУСЫ
           <br />
           НА ОРИГИНАЛЬНЫЙ ПОДАРОК
@@ -96,7 +100,7 @@
         @click="bonys_page"
           rounded
           color="#ff7a00"
-          style="height: 39px; margin-top: 2rem"
+          style="height: 59px;min-width: 20%; margin-top: 2rem"
           dark
         >
           <span style="font-size: 12px">узнать подробности</span>
@@ -107,6 +111,7 @@
     <section id="new-products" >
       <v-container>
         <h2
+        class="head-sect"
         >
           НОВИНКИ В ТРЕНДЕ
         </h2>
@@ -117,8 +122,8 @@
  <v-btn
             @click="oncatalog()"
             rounded
-            
-            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            depressed
+            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -138,7 +143,7 @@
                 <h2
                 class="head-sect"
         >
-          Как это работает
+          КАК ЭТО РАБОТАЕТ
         </h2>
         <v-row>
         <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
@@ -170,12 +175,12 @@
 
     <section
       id="preimyshestva"
-      class=""
+      class="e"
       style=""
     >
       <v-container>
         <h2 class="head-sect">
-          Наши преимущества
+          НАШИ ПРЕИМУЩЕСТВА
         </h2>
         <div class="dflex" style="padding: 0.5rem">
           <div style="padding: 1rem; position: relative">
@@ -216,8 +221,8 @@
  <v-btn
             @click="oncatalog()"
             rounded
-            
-            style="height: 39px; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            depressed
+            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -240,13 +245,13 @@
       <v-container class="box-opros">
         <div style="padding: 2rem; padding-top: 4rem">
           <h2 style="color: #ff7a00; font-size: 2.7rem">Бонусы за опрос!</h2>
-          <p style="margin-top: 3rem">
+          <p style="margin-top: 3rem;font-weight: bold;color:#505050">
             Войдите в личный кабинет, пройдите опрос и получите
             <span style="color: #ff7a00; font-weight: bold">50 бонусов.</span>
             <br />
             Копите бонусы и обменивайте на овощи и фрукты!*
           </p>
-          <p style="margin-top: 3rem">Ваш любимый праздник?</p>
+          <p style="margin-top: 3rem;font-weight: bold;font-size:1.3em;color:#505050">Ваш любимый праздник?</p>
 
           <v-radio-group v-model="radioGroup" background-color="transparent">
             <v-radio
@@ -279,12 +284,12 @@
           @click="onBonus"
             rounded
             color="#ff7a00"
-            style="height: 39px; margin-top: 1.7rem; margin-bottom: 1.7rem"
+            style="height: 59px; margin-top: 1.7rem; margin-bottom: 1.7rem;min-width:15%"
             dark
           >
             <span style="font-size: 12px">получить бонусы</span>
           </v-btn>
-          <p>* Подробности акции ищите в разделе “Бонусы”. 1 бонус = 1 ТГ</p>
+          <p style="color:#505050;font-weight: bold;">* Подробности акции ищите в разделе “Бонусы”. 1 бонус = 1 ТГ</p>
         </div>
       </v-container>
     </section>
@@ -532,7 +537,7 @@ h1 {
     margin-top: 3rem;
     margin-bottom: 3rem;
     padding: 1rem;
-    font-size: 2.5rem;
+    font-size: 2em;
 }
 #bonus-opros .box-opros {
   background-repeat: no-repeat;
@@ -670,5 +675,19 @@ h2{
 .theme--light.v-list-item .v-list-item__mask{
   color:orange;
 }
-
+@media (max-width: 959px) {
+  .b-b{
+    justify-content: center;
+  }
+}
+.v-application--is-ltr .v-input--selection-controls__input{
+    background: white;
+    border: 50%;
+    border-radius: 100%;
+    border-color: #f4e5de;
+    border: 1px solid #f4e7e0;
+}
+.v-input--selection-controls .v-input__slot > .v-label, .v-input--selection-controls .v-radio > .v-label{
+  font-weight: bold;
+}
 </style>
