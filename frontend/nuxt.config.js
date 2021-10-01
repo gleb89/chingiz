@@ -61,7 +61,7 @@ export default {
       icons: [
         {
             fileNAme:'Logo.png',
-            sizes:[64, 120, 144, 152, 192, 384, 512]
+            // sizes:[64, 120, 144, 152, 192, 384, 512]
         }
     ]
     },
