@@ -29,7 +29,7 @@ export default {
       name: 'Bota Boutique',
       short_name: 'Bota Boutique',
       lang: 'ru',
-      display: 'standalone',
+      display: 'browser'
 
     },
   },
