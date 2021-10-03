@@ -89,6 +89,7 @@ export default {
   methods: {
 async apps(){
 const workbox = await window.$workbox;
+console.log('wwww');
 if (workbox) {
   workbox.addEventListener('installed', (event) => {
     console.log('worbox');
