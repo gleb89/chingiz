@@ -1,0 +1,37 @@
+export const state = () => {
+    return {
+      products:[],
+  
+  
+  
+    }
+  }
+  
+  export const mutations = {
+    setproducts (state,products) {
+    state.products = products
+  
+    },
+  
+  
+  }
+  
+  export const actions = {
+    async fetch({commit,state}){
+        const headers = {
+            "Content-Type": "application/json"
+          };
+        const products = await this.$axios
+        .$get(`http://82.148.17.12:8080/api/v1/present/`,{
+          headers: headers
+        })
+        commit('setproducts',products)
+  
+    }
+  }
+  
+  export const getters = {
+    products: s => s.products,
+  
+  
+  }

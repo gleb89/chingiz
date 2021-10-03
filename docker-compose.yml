@@ -63,7 +63,15 @@ services:
   front:
     restart: always
     build: ./frontend
+    ports:
+      - 3002:3000
 
+  admin:
+    restart: always
+    build: ./admin
+    ports:
+      - 3001:3000
+      
 
   
    
@@ -92,8 +100,10 @@ services:
       - present_api
       - courier_api
       - front
+      - admin
     ports:
       - "8080:8080"
+      - "3000:3000"
       - "80:80"
       - "443:443"
   #   command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
