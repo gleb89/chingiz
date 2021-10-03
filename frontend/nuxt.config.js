@@ -56,7 +56,9 @@ export default {
     // '@nuxtjs/recaptcha',
 
   ],
-
+  server: {
+    port: 80
+  },
   
   fontawesome:{
     component:'fa',
