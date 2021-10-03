@@ -15,7 +15,7 @@ RUN npm install
 RUN npm run build
 
 ENV HOST 0.0.0.0
-EXPOSE 3000
+EXPOSE 80
 
 # start command
 CMD [ "npm", "start" ]

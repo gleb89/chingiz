@@ -89,9 +89,11 @@ export default {
     height: '2px'
   },
 
-
+  server: {
+    host: 80 // default: localhost
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    publicPath: '/admin/',
+    
   }
 }
