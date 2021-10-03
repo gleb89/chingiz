@@ -42,6 +42,18 @@ export default {
   mounted() {
 
     if(!process.client) return;
+    let deferredPrompt;
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      // Prevent the mini-infobar from appearing on mobile
+      e.preventDefault();
+      // Stash the event so it can be triggered later.
+      deferredPrompt = e;
+      // Update UI notify the user they can install the PWA
+      showInstallPromotion();
+      // Optionally, send analytics event that PWA install promo was shown.
+      console.log(`'beforeinstallprompt' event was fired.`);
+    });
     const id_basket = localStorage.getItem('id_basket')
     const uid_auth_user = localStorage.getItem('uid_auth_user')
     const summ_present =  localStorage.getItem('summ_present')
