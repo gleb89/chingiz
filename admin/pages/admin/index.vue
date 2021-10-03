@@ -9,7 +9,7 @@ export default {
         mounted: function () {
     if (!this.$store.state.localStorage.jwtToken.length) {
         console.log(55);
-      this.$router.push('/admin/list_presents')
+      this.$router.push('/')
     }
     if (this.$store.state.localStorage.jwtToken.length) {
         console.log(88);
