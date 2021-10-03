@@ -90,7 +90,7 @@ export default {
   },
 
   server: {
-    host: 80 // default: localhost
+    host: "80" // default: localhost
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
