@@ -101,7 +101,7 @@ export default {
     //   };
       
     //    return $axios
-    //     .$get(`http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`, {
+    //     .$get(`https://api-booking.ru/api/v1/present/users/${store.state.localStorage.uid_auth_user}`, {
     //       headers: headers
     //     })
     //     .then(
@@ -144,7 +144,7 @@ export default {
       let bodyFormData = new FormData();
       bodyFormData.append("image", this.avatar);
       this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/users/upload_avatar/${this.$store.state.localStorage.uid_auth_user}`, bodyFormData, {
+        .$post(`https://api-booking.ru/api/v1/present/users/upload_avatar/${this.$store.state.localStorage.uid_auth_user}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -162,7 +162,7 @@ export default {
       };
 
       this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/users/upload_firstname/${this.name}/${this.$store.state.localStorage.uid_auth_user}`, {
+        .$post(`https://api-booking.ru/api/v1/present/users/upload_firstname/${this.name}/${this.$store.state.localStorage.uid_auth_user}`, {
           headers: headers,
         })
         .then((resp) => {

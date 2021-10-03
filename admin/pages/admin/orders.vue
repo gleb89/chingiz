@@ -24,9 +24,9 @@ export default {
   layout: "admin",
   async asyncData({ route, $axios }) {
     let history_data = await $axios.get(
-      `http://82.148.17.12:8080/api/v1/present/history/`
+      `https://api-booking.ru/api/v1/present/history/`
     );
-    let curers = await $axios.get(`http://82.148.17.12:8080/api/v1/couriers/`);
+    let curers = await $axios.get(`https://api-booking.ru/api/v1/couriers/`);
 
     return { history_data: history_data.data, curers: curers.data };
   },

@@ -28,7 +28,7 @@
 export default {
   // async asyncData({ $axios, store }) {
   //   const user_data = await $axios.get(
-  //     `http://82.148.17.12:8080/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
+  //     `https://api-booking.ru/api/v1/present/users/${store.state.localStorage.uid_auth_user}`
   //   );
   //   return {user_data :  user_data.data};
   
@@ -57,7 +57,7 @@ export default {
       console.log(44,this.$store.state.localStorage.basket.id_basket);
     if(this.$store.state.localStorage.basket.id_basket){
           await this.$axios.get(
-     `http://82.148.17.12:8080/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
+     `https://api-booking.ru/api/v1/present/history/${this.$store.state.localStorage.basket.id_basket}`
     )
     .then((resp) =>{
       this.history_da= resp.data

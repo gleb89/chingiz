@@ -83,7 +83,7 @@ export default {
         'precent_id':present_id
       }
         this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/users/basket/user_basket/add`,data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/basket/user_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {
@@ -114,7 +114,7 @@ export default {
         'precent_id':present_id
       }
       this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/users/basket/anonim_basket/add`,data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/basket/anonim_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {

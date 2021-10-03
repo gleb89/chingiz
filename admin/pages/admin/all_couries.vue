@@ -82,7 +82,7 @@ export default {
 
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
-    let curers = await $axios.get(`http://82.148.17.12:8080/api/v1/couriers/`);
+    let curers = await $axios.get(`https://api-booking.ru/api/v1/couriers/`);
 
     return { curers: curers.data };
   },
@@ -121,7 +121,7 @@ export default {
       };
       console.log(data);
 this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/couriers/`, data, {
+        .$post(`https://api-booking.ru/api/v1/couriers/`, data, {
     
         })
         .then((data) => {

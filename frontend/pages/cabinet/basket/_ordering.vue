@@ -54,7 +54,7 @@
 export default {
   async asyncData({ $axios, store }) {
     const presents_in_basket = await $axios.get(
-      `http://82.148.17.12:8080/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
+      `https://api-booking.ru/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
     );
 
     return { presents_in: presents_in_basket.data};
@@ -100,7 +100,7 @@ export default {
       console.log(44,this.$store.state.localStorage.basket.id_basket);
     if(this.$store.state.localStorage.basket.id_basket){
           await this.$axios.get(
-    `http://82.148.17.12:8080/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
+    `https://api-booking.ru/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
     )
     .then((resp) =>{
       this.presents_indata= resp.data

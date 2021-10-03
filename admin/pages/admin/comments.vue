@@ -33,7 +33,7 @@ export default {
     layout: "admin",
   async asyncData({ route, $axios }) {
     const comments = await $axios.get(
-      `http://82.148.17.12:8080/api/v1/present/comments/`
+      `https://api-booking.ru/api/v1/present/comments/`
     );
     return {comments:comments.data};
   },
@@ -63,7 +63,7 @@ export default {
 
       this.$axios
         .$post(
-          `http://82.148.17.12:8080/api/v1/present/comments/moderation/${id}/${moderation}`,
+          `https://api-booking.ru/api/v1/present/comments/moderation/${id}/${moderation}`,
           {
             headers: headers,
           }

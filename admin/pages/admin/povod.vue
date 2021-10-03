@@ -153,7 +153,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`http://82.148.17.12:8080/api/v1/present/reason/`, {
+      .$get(`https://api-booking.ru/api/v1/present/reason/`, {
         headers: headers,
       })
       .then((reason_presents) => {
@@ -205,7 +205,7 @@ export default {
        };
        
       this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/reason/`,data ,{
+        .$post(`https://api-booking.ru/api/v1/present/reason/`,data ,{
           headers: headers
         })
         .then((resp) => {
@@ -249,7 +249,7 @@ export default {
        Object.assign(this.items[this.editedIndex], this.editedItem);
 
       this.$axios
-        .$get(`http://82.148.17.12:8080/api/v1/present/reason/update/${this.editedItem.id}?name_reason=${this.editedItem.name_reason}`, {
+        .$get(`https://api-booking.ru/api/v1/present/reason/update/${this.editedItem.id}?name_reason=${this.editedItem.name_reason}`, {
           headers: headers
         })
         .then((resp) => {
@@ -275,7 +275,7 @@ export default {
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`http://82.148.17.12:8080/api/v1/present/reason/${this.editedItem.id}`,{
+        .$delete(`https://api-booking.ru/api/v1/present/reason/${this.editedItem.id}`,{
           headers: headers
         })
         .then((resp) => {

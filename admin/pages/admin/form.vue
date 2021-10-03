@@ -154,7 +154,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`http://82.148.17.12:8080/api/v1/present/form_product/`, {
+      .$get(`https://api-booking.ru/api/v1/present/form_product/`, {
         headers: headers,
       })
       .then((form_presents) => {
@@ -206,7 +206,7 @@ export default {
       };
 
       this.$axios
-        .$post(`http://82.148.17.12:8080/api/v1/present/form_product/`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/form_product/`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -250,7 +250,7 @@ export default {
 
       this.$axios
         .$get(
-          `http://82.148.17.12:8080/api/v1/present/form_product/update/${this.editedItem.id}?name_form=${this.editedItem.name_form}`,
+          `https://api-booking.ru/api/v1/present/form_product/update/${this.editedItem.id}?name_form=${this.editedItem.name_form}`,
           {
             headers: headers,
           }
@@ -276,7 +276,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`http://82.148.17.12:8080/api/v1/present/form_product/${this.editedItem.id}`, {
+        .$delete(`https://api-booking.ru/api/v1/present/form_product/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

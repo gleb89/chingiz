@@ -103,7 +103,7 @@ if (workbox) {
 },
     retbonus() {
         this.$axios
-        .$get(`http://82.148.17.12:8080/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(resp);
