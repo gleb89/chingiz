@@ -145,7 +145,7 @@ export default {
   },
   mounted: function () { 
     let self = this;
-    this.ws = new WebSocket("ws://82.148.17.12:8080/ws/present/search");
+    this.ws = new WebSocket("wss://api-booking.ru/ws/present/search");
     this.ws.onmessage = (event) => {
       console.log("message");
       self.list_products = JSON.parse(event.data);
