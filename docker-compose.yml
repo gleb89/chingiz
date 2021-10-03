@@ -63,14 +63,12 @@ services:
   front:
     restart: always
     build: ./frontend
-    ports:
-      - 3001:3000
+
 
   admin:
     restart: always
     build: ./admin
-    ports:
-      - 3002:3000
+  
       
 
   
