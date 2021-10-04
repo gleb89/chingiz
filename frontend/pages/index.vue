@@ -538,7 +538,7 @@ h1 {
     margin-top: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.875em;
 }
 }
 .head-sect{
@@ -559,6 +559,11 @@ h1 {
   display: flex;
   align-items: center;
   text-align: center; */
+}
+@media (max-width: 500px){
+  #bonus-opros .box-opros {
+    background-image: url("/oprmob.png");
+  }
 }
 #scorosite .box-scoro {
   background-repeat: no-repeat;
@@ -607,6 +612,10 @@ h1 {
   width: 50%;
   margin-top: 1.3rem
 
+}
+h2{
+  font-size: 1.875em;
+  
 }
 .b1{
   padding-top: 4rem;
