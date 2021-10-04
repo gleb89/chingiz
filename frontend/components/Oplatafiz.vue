@@ -379,7 +379,7 @@ const defaultBounds = {
 const input = document.getElementById("searchTextField");
 const options = {
   bounds: defaultBounds,
-  componentRestrictions: { country: "ru" },
+  componentRestrictions: { country: "kz" },
   fields: ["address_components", "geometry", "icon", "name"],
   strictBounds: false,
   types: ["establishment"],
