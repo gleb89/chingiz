@@ -36,7 +36,7 @@
            </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.id}}</span> </td>
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">{{item.summa.toLocaleString()}} тг</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">{{String(item.summa).toLocaleString()}} тг</span> </td>
        
         </tr>
       </tbody>
