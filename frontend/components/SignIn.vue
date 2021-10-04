@@ -203,7 +203,7 @@ export default {
 
       }
       this.$axios
-        .$post(`present/users/`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {

@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const allfilter = await this.$axios
-        .$get(`present/filter/all`,{
+        .$get(`https://api-booking.ru/api/v1/present/filter/all`,{
           headers: headers
         })
         commit('setallfilter',allfilter)
