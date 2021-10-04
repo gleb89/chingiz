@@ -239,7 +239,7 @@
       </v-container>
     </section>
     <section id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
-      <v-container style="padding-top: 3rem;">
+      <v-container >
                 <h2
      class="head-sect"
         >
