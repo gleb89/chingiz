@@ -1,5 +1,5 @@
 <template>
- <v-form ref="form_com_children" lazy-validation>
+ <v-form ref="form_com_children" lazy-validation style="padding: 1rem;">
      <h3>Вход в админ панель</h3>
           <v-text-field
             v-model="name"
