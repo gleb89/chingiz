@@ -447,19 +447,19 @@ export default {
       console.log(data);
       
       
-      // this.$axios
-      //   .$post(`https://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
-      //   })
-      //   .then((resp) => {
-      //     this.user_data.avatar= resp.avatar
+      this.$axios
+        .$post(`https://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        })
+        .then((resp) => {
+          console.log(resp);
 
-      //   this.$store.commit("localStorage/set_summBasket",Number(0));
-      //   this.$router.push('/cabinet/oplata')
+        this.$store.commit("localStorage/set_summBasket",Number(0));
+        this.$router.push('/cabinet/oplata')
         
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       
     },
   },
