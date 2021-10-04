@@ -1,5 +1,5 @@
 <template>
-  <v-carousel id="cars" height="400"  hide-delimiters style="position:relitative;">
+  <v-carousel id="cars" height="600"  hide-delimiters style="position:relitative;">
    
     <v-carousel-item  >
       <v-container>
@@ -34,20 +34,5 @@
 </template>
 
 <style scoped>
-.v-window__next {
-    background: rgba(0,0,0,.3);
-    border-radius: 50%;
-    position: absolute;
-    margin: 0 16px;
-    top: 30%;
-    z-index: 1;
-}
-.v-window__prev {
-    background: rgba(0,0,0,.3);
-    border-radius: 50%;
-    position: absolute;
-    margin: 0 16px;
-    top: 30%;
-    z-index: 1;
-}
+
 </style>
