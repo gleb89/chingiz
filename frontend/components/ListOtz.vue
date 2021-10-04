@@ -1,5 +1,5 @@
 <template>
-  <v-carousel id="cars" height="600"  hide-delimiters style="position:relitative;">
+  <v-carousel id="cars" height="400"  hide-delimiters style="position:relitative;">
    
     <v-carousel-item  >
       <v-container>
