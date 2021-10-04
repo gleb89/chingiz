@@ -188,7 +188,7 @@ export default {
 .text-nav {
   
   color: #676767;
-  font-weight: bold;
+  font-weight: 500;
 }
 @media (max-width: 1906px) {
   .text-nav {
