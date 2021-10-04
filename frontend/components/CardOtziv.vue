@@ -61,7 +61,7 @@
       </v-card>
     </v-dialog>
 
-            <div class="text-left" style="position: absolute;bottom: 1em;">
+            <div class="text-left" style="">
               <v-btn class="text-left" style="color: #c4c4c4;font-size: .7rem;" @click="dialog = true" text>
                Читать полностью
               </v-btn>
@@ -88,16 +88,26 @@
 <style>
 .co{
   width: 80%;
+  min-height: 35vh;
 }
 @media (max-width: 2500px){
   .co{
   width: 80%;
-  height: 50vh;
+  min-height: 30vh;
+ 
+  }
+}
+@media (max-width: 1900px){
+  .co{
+  width: 80%;
+  min-height: 50vh;
+ 
   }
 }
 @media (max-width: 500px){
   .co{
   width: 100%;
+  min-height: 50vh;
 }
 }
 </style>

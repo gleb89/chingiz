@@ -433,7 +433,7 @@ export default {
           scrol: false,
           menu1:false,
           name:'',
-          count_spis_bonus:this.user_data.points/2,
+          count_spis_bonus:0,
           spis_bonus:null,
           oplata_methods:null,
           text_comment:'',
@@ -461,6 +461,7 @@ export default {
         this.name &&
         this.phone &&
         this.adress &&
+        this.email &&
         this.name_company &&
         this.bank_benefic &&
         this.bin_bank &&
@@ -500,6 +501,8 @@ export default {
         }
       },
     oplatacheckfiz() {
+      let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
+      let bonuusadd = this.presents_in_basket.count_present_item.presents.length*500
       let data = {
       'name_user':this.name,
       'oplata_user':this.oplata_methods,
@@ -508,7 +511,7 @@ export default {
       'bonus_user':this.count_spis_bonus,
       'email_user':this.email,
       'phone_user':this.phone,
-      'summa':(this.basket.summ_present + 500)-this.count_spis_bonus,
+      'summa':Number(sum),
       "ur_oplata": true,
       "name_company": this.name_company,
       "bank_benefic": this.bank_benefic,
@@ -517,7 +520,8 @@ export default {
       "iik_bank": this.iik_bank,
       "cod_platezh": this.cod_platezh,
       "kbe": this.kbe,
-      'data_dostavki':String(this.data_dostavki) 
+      'data_dostavki':String(this.data_dostavki) ,
+      'spisbonuys':Number(this.count_spis_bonus)
       }
      
       

@@ -46,7 +46,7 @@
       </div>
 
       <div class="form-otziv pt-6 rounded-xl" style="padding: 2rem">
-        <h3 class="text-center">Ваша оценка:</h3>
+        <h3 class="text-center">Ваш  отзыв:</h3>
   
         <!-- form -->
         <div>

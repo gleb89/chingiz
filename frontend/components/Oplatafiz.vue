@@ -37,9 +37,9 @@
           <v-text-field
             label="Фамилия"
                    class="prep"
-              prepend-inner-icon="*" 
+      
             v-model="familyname"
-            :rules="[(v) => !!v || 'Не может быть пустым']"
+            
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -48,6 +48,8 @@
           <v-text-field
             label="E-mail" 
             v-model="email"
+            prepend-inner-icon="*" 
+            :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -395,7 +397,7 @@ export default {
       if (
         this.name &&
         this.phone &&
-        this.familyname &&
+        this.email &&
         this.adress &&
         this.data_dostavki &&
         this.oplata_methods  
@@ -433,7 +435,7 @@ export default {
     oplatacheckfiz() {
       let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
       let bonuusadd = this.presents_in_basket.count_present_item.presents.length*500
-      console.log(sum);
+
       let data = {
       'name_user':this.name,
       'oplata_user':this.oplata_methods,
@@ -448,7 +450,7 @@ export default {
       'data_dostavki':String(this.data_dostavki) ,
       'spisbonuys':Number(this.count_spis_bonus)
       }
-      console.log(data);
+      
       
       
       this.$axios
