@@ -440,7 +440,7 @@ export default {
       'email_user':this.email,
       'famaly_name_user':this.familyname,
       'phone_user':this.phone,
-      'summa':80000,
+      'summa':Number(80000),
       "fiz_oplata": true,
       'data_dostavki':String(this.data_dostavki) 
       }
