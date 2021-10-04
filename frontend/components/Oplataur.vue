@@ -508,7 +508,7 @@ export default {
       'oplata_user':this.oplata_methods,
       'comment_user':this.text_comment,
       'adress_user':this.adress,
-      'bonus_user':this.count_spis_bonus,
+      'bonus_user':bonuusadd ,
       'email_user':this.email,
       'phone_user':this.phone,
       'summa':Number(sum),

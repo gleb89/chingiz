@@ -350,17 +350,17 @@
 <script>
 
 export default {
-// head() {
-//     return {
-//       script: [
-//         {src: `https://maps.googleapis.com/maps/api/js?key=bWB7SIQeyl7BhORR0wZRZG3Q&callback=initMap&libraries=places&v=weekly`}
-//       ]
-//     };
-//   },
-//   mounted() {
-//     var input = this.$refs.searchTextField; //.getElementById('searchTextField');
-//     new google.maps.places.Autocomplete(input);
-//   },
+head() {
+    return {
+      script: [
+        {src: `https://maps.googleapis.com/maps/api/js?key=bWB7SIQeyl7BhORR0wZRZG3Q&callback=initMap&libraries=places&v=weekly`}
+      ]
+    };
+  },
+  mounted() {
+    var input = this.$refs.searchTextField; //.getElementById('searchTextField');
+    new google.maps.places.Autocomplete(input);
+  },
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
 
     watch: {
