@@ -417,7 +417,7 @@
 
 <script>
 export default {
-  props: ["presents_in_basket",'user_data','oplatacheck'],
+  props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
     watch: {
     date(val) {
       this.data_dostavki = this.formatDate(this.date);
@@ -531,6 +531,7 @@ export default {
         .then((resp) => {
           console.log(resp);
            this.$store.commit("localStorage/set_summBasket",Number(0));
+           this.retbonus()
         this.$router.push('/cabinet/oplata')
         })
         .catch(function (error) {

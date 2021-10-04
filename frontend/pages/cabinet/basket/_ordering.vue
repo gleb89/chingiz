@@ -38,10 +38,18 @@
           <v-tab-item v-if="presents_in_basket.count_present_item ">
   
             <Oplatafiz
-             :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
+             :presents_in_basket="presents_in_basket"
+              :user_data="user_data"
+               :oplatacheck="oplatacheck"
+              :retbonus="retbonus"
+              />
           </v-tab-item>
           <v-tab-item v-if="presents_in_basket.count_present_item ">
-            <Oplataur :presents_in_basket="presents_in_basket" :user_data="user_data" :oplatacheck="oplatacheck"/>
+            <Oplataur
+             :presents_in_basket="presents_in_basket"
+              :user_data="user_data"
+              :retbonus="retbonus"
+               :oplatacheck="oplatacheck"/>
           </v-tab-item>
         </v-tabs>
       </v-col>
@@ -110,6 +118,19 @@ export default {
             console.log(error);
       }
       }
+  },
+      retbonus() {
+        this.$axios
+        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+          console.log(resp);
+        this.$store.commit("user/setusers",resp);
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
   },
     onofizplata(){
       this.fizoplata = true

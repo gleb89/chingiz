@@ -152,13 +152,16 @@ export default {
     };
   },
   mounted() {
-    if(!process.client) return;
-    this.user_data_list = this.$store.state.user.user
+    setTimeout(() => {
+      this.retbonus()
+     
+    }, 1000);
+    
   },
   
     computed: {
       user_data(){
-        return this.user_data_list
+        return this.$store.state.user.user
       },
       basket(){
       return this.$store.state.localStorage.basket
@@ -170,6 +173,19 @@ export default {
   },
 
     methods: {
+    retbonus() {
+        this.$axios
+        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+          console.log(resp);
+        this.$store.commit("user/setusers",resp);
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
+  },
       onPagecabinet(url){
       this.$router.push('/'+url)
       this.dialogcabinet = false

@@ -361,7 +361,7 @@ export default {
 //     var input = this.$refs.searchTextField; //.getElementById('searchTextField');
 //     new google.maps.places.Autocomplete(input);
 //   },
-  props: ["presents_in_basket",'user_data','oplatacheck'],
+  props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
 
     watch: {
     date(val) {
@@ -460,6 +460,7 @@ export default {
           console.log(resp);
 
         this.$store.commit("localStorage/set_summBasket",Number(0));
+        this.retbonus()
         this.$router.push('/cabinet/oplata')
         
         })
