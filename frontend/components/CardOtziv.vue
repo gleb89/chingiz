@@ -87,16 +87,16 @@
 
 <style>
 .co{
-  width: 23rem;
+  width: 80%;
 }
 @media (max-width: 1500px){
   .co{
-  width: 19rem;
+  width: 80%;
   }
 }
 @media (max-width: 500px){
   .co{
-  width: 23rem
+  width: 100%;
 }
 }
 </style>

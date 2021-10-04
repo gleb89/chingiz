@@ -146,21 +146,29 @@
           КАК ЭТО РАБОТАЕТ
         </h2>
         <v-row>
-        <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
+        <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem;position: relative;">
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">01</span>
           <img src="w1.png" alt="">
-          <!-- <img class="d-lg-block d-none" src="Vector.png" alt=""> -->
           </div>
+          <div>
           <p style="color:#676767">Выберите ваш <br> оригинальный подарок</p>
+          
+          </div>
+          <img style="position: absolute;right: 0;bottom: 8em;" class="d-lg-block d-none" src="Vector.png" alt="">
+            
         </v-col>
-        <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
+        <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem;position: relative;">
           <div>
           <span style="font-size: 4rem;color: #FF7A00;">02</span>
            <img src="w2.png" alt="">
-           <!-- <img class="d-lg-block d-none" src="Vector.png" alt=""> -->
            </div>
+           <div>
            <p style="color:#676767">Выберите способ оплаты <br> и адрес доставки</p>
+           
+           </div>
+            <img style="position: absolute;right: 0;bottom: 8em;" class="d-lg-block d-none" src="Vector.png" alt="">
+            
         </v-col>
         <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
           <div>
@@ -185,18 +193,18 @@
         <div class="dflex" style="padding: 0.5rem">
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
-              <img style="height: 4rem; width: 4rem" src="one.png" alt="" />
+              <img style="height: 4rem; width: 4rem" src="pp1.svg" alt="" />
               <p class="textp">
                 Самый <br />
                 большой <br />
                 ассортимент
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="preim1.png" />
+            <img style="max-width: 100%;width: 35rem;" src="one.png" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
-              <img style="height: 4rem; width: 4rem" src="two.png" alt="" />
+              <img style="height: 4rem; width: 4rem" src="pp2.svg" alt="" />
               <p class="textp">
                 География <br />
                 доставки <br />
@@ -204,17 +212,17 @@
                 каждый день
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="preim2.png" />
+            <img style="max-width: 100%;width: 35rem;" src="two.png" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
-              <img style="height: 4rem; width: 4rem" src="thre.png" alt="" />
+              <img style="height: 4rem; width: 4rem" src="pp3.svg" alt="" />
               <p class="textp">
                 доставка <br />
                 до двери
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="preim3.png" />
+            <img style="max-width: 100%;width: 35rem;" src="thre.png" />
           </div>
         </div>
         <div style="text-align: center">
@@ -251,9 +259,9 @@
             <br />
             Копите бонусы и обменивайте на овощи и фрукты!*
           </p>
-          <p style="margin-top: 3rem;font-weight: bold;font-size:1.3em;color:#505050">Ваш любимый праздник?</p>
+          <p style="margin-top: 3rem;font-weight: bold;font-size:1em;color:#505050">Ваш любимый праздник?</p>
 
-          <v-radio-group v-model="radioGroup" background-color="transparent">
+          <v-radio-group  v-model="radioGroup" background-color="transparent">
             <v-radio
               v-for="n in [
                 'День Рождения',
@@ -687,7 +695,5 @@ h2{
     border-color: #f4e5de;
     border: 1px solid #f4e7e0;
 }
-.v-input--selection-controls .v-input__slot > .v-label, .v-input--selection-controls .v-radio > .v-label{
-  font-weight: bold;
-}
+
 </style>

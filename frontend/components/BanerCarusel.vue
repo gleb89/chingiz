@@ -53,20 +53,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .v-window__prev {
 background: white;
   
 }
-.v-window__next {
-  background: white;
-  /* background: rgba(0, 0, 0, 0.3); */
-  border-radius: 50%;
-  position: absolute;
-  margin: 0 16px;
-  top: calc(50% - 20px);
-  z-index: 1;
-  right: 0;
+.v-window__next, .v-window__prev {
+    background: rgba(0,0,0,.3);
+    border-radius: 50%;
+    position: absolute;
+    margin: 0 16px;
+    top: 50%;
+    z-index: 1;
 }
 .box-text-carusel{
   /* background: aliceblue; */
