@@ -120,6 +120,19 @@ export default {
     };
   },
   methods: {
+    retbonus() {
+        this.$axios
+        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+          console.log(resp);
+        this.$store.commit("user/setusers",resp);
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
+  },
     createUser_googleauth(uid_user,email){
       let headers = {
         "Content-Type": "application/json"
@@ -168,6 +181,7 @@ export default {
           return false
         });
         }
+      this.retbonus()
     },
     createUser_phoneauth(uid_user,phone){
       let headers = {
@@ -217,6 +231,7 @@ export default {
           return false
         });
         }
+      this.retbonus()
     },
     close_dialog(){
       this.close()
