@@ -36,6 +36,7 @@ class HistoryBasket(ormar.Model):
     comment_user:str = ormar.String(max_length=1000,nullable=True, null=True)
     oplata_user:str = ormar.String(max_length=1000,nullable=True, null=True)
     bonus_user:str = ormar.String(max_length=1000,nullable=True, null=True)
+    spisbonuys:int = ormar.BigInteger(default=0,nullable=True, null=True)
     name_company:str = ormar.String(max_length=1000,nullable=True, null=True)
     bank_benefic:str = ormar.String(max_length=1000,nullable=True, null=True)
     bin_bank:str = ormar.String(max_length=1000,nullable=True, null=True)
