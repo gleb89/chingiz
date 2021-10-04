@@ -446,7 +446,7 @@ export default {
       'summa':Number(sum),
       "fiz_oplata": true,
       'data_dostavki':String(this.data_dostavki) ,
-      'spisbonuys':this.count_spis_bonus
+      'spisbonuys':Number(this.count_spis_bonus)
       }
       console.log(data);
       

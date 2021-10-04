@@ -57,6 +57,7 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
     await oplata_data.update(history = dict_basket)
     await basket.update(count_present_item={'presents':[]})
     await user.update(points = user.points + new_points)
+    await user.update(points = user.points -oplata_data.spisbonuys)
     await Bonus(
         user_fairbase_id = user.uid_firebase,
         count_points = oplata_data.bonus_user,
