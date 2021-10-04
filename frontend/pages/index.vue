@@ -253,7 +253,7 @@
       <v-container class="box-opros">
         <div style="padding: 2rem; padding-top: 4rem">
           <h2 style="color: #ff7a00; font-size: 2.7rem">Бонусы за опрос!</h2>
-          <p style="margin-top: 3rem;font-weight: bold;color:#505050">
+          <p style="margin-top: 3rem;font-weight: 500;;color:#505050">
             Войдите в личный кабинет, пройдите опрос и получите
             <span style="color: #ff7a00; font-weight: bold">50 бонусов.</span>
             <br />
