@@ -59,7 +59,7 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
     await user.update(points = user.points + new_points)
     await Bonus(
         user_fairbase_id = user.uid_firebase,
-        count_points = 500,
+        count_points = oplata_data.bonus_user,
         enum_povod = f'заказ EL{oplata_data.id}',
         summ_check = sum(summ),
         ).save()

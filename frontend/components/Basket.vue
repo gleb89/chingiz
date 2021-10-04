@@ -57,7 +57,7 @@
           </div>
           </td>
           <td>
-              <span style="color:#FF7A00;font-weight: bold;">+200</span>
+              <span style="color:#FF7A00;font-weight: bold;">+500</span>
           </td>
           <td>
               {{item.price.toLocaleString()}}

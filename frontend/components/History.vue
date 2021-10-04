@@ -35,7 +35,7 @@
           <span v-if="item.ur_oplata" class="tdd">юр.опл</span>
            </td>
           <td style="height: 5rem;"  ><span class="tdd">EL{{item.id}}</span> </td>
-          <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+500</span> </td>
+          <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">+{{item.bonus_user}}</span> </td>
           <td style="height: 5rem;"  ><span class="tdd">{{item.summa}} тг</span> </td>
        
         </tr>

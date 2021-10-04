@@ -303,7 +303,7 @@
                   <td style="height: 10rem;" v-if="scrol">{{ item.count }} шт</td>
 
                   <td style="height: 10rem;" v-if="scrol">
-                    <span style="color:#FF7A00;font-weight: bold;">+200</span>
+                    <span style="color:#FF7A00;font-weight: bold;">+500</span>
                   </td>
                   <td v-if="scrol">
                     {{ item.price.toLocaleString() }} тг
@@ -432,14 +432,14 @@ export default {
       },
     oplatacheckfiz() {
       let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
-      
+      let bonuusadd = presents_in_basket.count_present_item.presents.length*500
       console.log(sum);
       let data = {
       'name_user':this.name,
       'oplata_user':this.oplata_methods,
       'comment_user':this.text_comment,
       'adress_user':this.adress,
-      'bonus_user':this.count_spis_bonus,
+      'bonus_user':bonuusadd ,
       'email_user':this.email,
       'famaly_name_user':this.familyname,
       'phone_user':this.phone,
