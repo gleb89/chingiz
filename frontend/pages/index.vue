@@ -80,7 +80,7 @@
             @click="oncatalog()"
             rounded
             depressed
-            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -100,7 +100,7 @@
         @click="bonys_page"
           rounded
           color="#ff7a00"
-          style="height: 59px;min-width: 20%; margin-top: 2rem"
+          style="height: 49px;min-width: 20%; margin-top: 2rem"
           dark
         >
           <span style="font-size: 12px">узнать подробности</span>
@@ -123,7 +123,7 @@
             @click="oncatalog()"
             rounded
             depressed
-            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -230,7 +230,7 @@
             @click="oncatalog()"
             rounded
             depressed
-            style="height: 59px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
             <span style="font-size: 12px;">перейти в каталог</span>
@@ -292,7 +292,7 @@
           @click="onBonus"
             rounded
             color="#ff7a00"
-            style="height: 59px; margin-top: 1.7rem; margin-bottom: 1.7rem;min-width:15%"
+            style="height: 49px; margin-top: 1.7rem; margin-bottom: 1.7rem;min-width:15%"
             dark
           >
             <span style="font-size: 12px">получить бонусы</span>
