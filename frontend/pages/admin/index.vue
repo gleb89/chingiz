@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  layout: "admin",
+  layout: "loginadmin",
         mounted: function () {
     if (!this.$store.state.localStorage.jwtToken.length) {
         console.log(55);
