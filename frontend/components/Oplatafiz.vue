@@ -431,6 +431,8 @@ export default {
         }
       },
     oplatacheckfiz() {
+      let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
+      console.log(sum);
       let data = {
       'name_user':this.name,
       'oplata_user':this.oplata_methods,
@@ -440,7 +442,7 @@ export default {
       'email_user':this.email,
       'famaly_name_user':this.familyname,
       'phone_user':this.phone,
-      'summa':String((this.basket.summ_present + 500)-this.count_spis_bonus),
+      'summa':Number(sum),
       "fiz_oplata": true,
       'data_dostavki':String(this.data_dostavki) 
       }
