@@ -432,7 +432,7 @@ export default {
       },
     oplatacheckfiz() {
       let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
-      let bonuusadd = presents_in_basket.count_present_item.presents.length*500
+      let bonuusadd = this.presents_in_basket.count_present_item.presents.length*500
       console.log(sum);
       let data = {
       'name_user':this.name,
