@@ -358,15 +358,34 @@ export default {
 //     };
 //   },
 mounted: function () {
-		var defaultBounds = new google.maps.LatLngBounds(
-		new google.maps.LatLng(43.238949, 76.889709),
-		new google.maps.LatLng(-33.8474, 151.2631));
-		var input = document.getElementById('searchTextField');
-		var options = {
-			bounds: defaultBounds,
-			types: ['establishment']
-		};
-		this.autocomplete = new google.maps.places.Autocomplete(input, options);
+  // const center = { lat: 50.064192, lng: -130.605469 };
+	// 	var defaultBounds = new google.maps.LatLngBounds(
+	// 	new google.maps.LatLng(43.238949, 76.889709),
+	// 	new google.maps.LatLng(-33.8474, 151.2631));
+	// 	var input = document.getElementById('searchTextField');
+	// 	var options = {
+	// 		bounds: defaultBounds,
+	// 		types: ['establishment']
+	// 	};
+	// 	this.autocomplete = new google.maps.places.Autocomplete(input, options);
+const center = { lat: 43.238949, lng: 76.889709 };
+// Create a bounding box with sides ~10km away from the center point
+const defaultBounds = {
+  north: center.lat + 0.1,
+  south: center.lat - 0.1,
+  east: center.lng + 0.1,
+  west: center.lng - 0.1,
+};
+const input = document.getElementById("searchTextField");
+const options = {
+  bounds: defaultBounds,
+  componentRestrictions: { country: "ru" },
+  fields: ["address_components", "geometry", "icon", "name"],
+  strictBounds: false,
+  types: ["establishment"],
+};
+const autocomplete = new google.maps.places.Autocomplete(input, options);
+
 	},
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
 
