@@ -151,13 +151,7 @@ export default {
       resp_data:0
     };
   },
-  mounted() {
-    setTimeout(() => {
-      this.retbonus()
-     
-    }, 1000);
-    
-  },
+
   
     computed: {
       user_data(){
@@ -173,19 +167,7 @@ export default {
   },
 
     methods: {
-    retbonus() {
-        this.$axios
-        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
-        })
-        .then((resp) => {
-          console.log(resp);
-        this.$store.commit("user/setusers",resp);
-        })
-        .catch(function (error) {
-         console.log(error);
-        });
 
-  },
       onPagecabinet(url){
       this.$router.push('/'+url)
       this.dialogcabinet = false

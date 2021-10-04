@@ -125,7 +125,7 @@ export default {
         .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
-          console.log(resp);
+          console.log(111111,resp);
         this.$store.commit("user/setusers",resp);
         })
         .catch(function (error) {
@@ -152,6 +152,7 @@ export default {
           this.$store.commit("localStorage/setAuthuser", String(resp.user.uid_firebase));
           this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
           this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          this.retbonus()
           return true
         })
         .catch(function (error) {
@@ -174,6 +175,7 @@ export default {
           this.$store.commit("localStorage/setAuthuser", String(resp.user.uid_firebase));
           this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
           this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          this.retbonus()
           return true
         })
         .catch(function (error) {
@@ -181,7 +183,7 @@ export default {
           return false
         });
         }
-      this.retbonus()
+      
     },
     createUser_phoneauth(uid_user,phone){
       let headers = {
@@ -202,6 +204,7 @@ export default {
           this.$store.commit("localStorage/setAuthuser", String(resp.user.uid_firebase));
           this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
           this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          this.retbonus()
           return true
         })
         .catch(function (error) {
@@ -224,6 +227,7 @@ export default {
           this.$store.commit("localStorage/setAuthuser", String(resp.user.uid_firebase));
           this.$store.commit("localStorage/set_summBasket",Number(resp.summa));
           this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
+          this.retbonus()
           return true
         })
         .catch(function (error) {
@@ -231,7 +235,7 @@ export default {
           return false
         });
         }
-      this.retbonus()
+      
     },
     close_dialog(){
       this.close()
