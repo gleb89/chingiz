@@ -90,7 +90,7 @@
   width: 80%;
   min-height: 30vh;
 }
-@media (max-width: 2500px){
+@media (max-width: 2600px){
   .co{
   width: 80%;
   min-height: 20vh;
