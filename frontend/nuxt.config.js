@@ -20,7 +20,7 @@ export default {
     ],
     script: [
       {
-        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCQFKwVLvTw3-ovzOWm1UUAHeIVyDkW2t4&libraries=places'
+        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCBP60arzPqfc9KOGXVLp5A_5CN4idyqCc&libraries=places'
       }
     ]
   },
