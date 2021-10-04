@@ -88,26 +88,26 @@
 <style>
 .co{
   width: 80%;
-  min-height: 35vh;
+  min-height: 30vh;
 }
 @media (max-width: 2500px){
   .co{
   width: 80%;
-  min-height: 30vh;
+  
  
   }
 }
 @media (max-width: 1900px){
   .co{
   width: 80%;
-  min-height: 50vh;
+  
  
   }
 }
 @media (max-width: 500px){
   .co{
   width: 100%;
-  min-height: 50vh;
+  
 }
 }
 </style>
