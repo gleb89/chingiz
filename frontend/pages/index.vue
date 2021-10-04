@@ -91,7 +91,7 @@
 <v-parallax  src="/bonus.png">
     <section id="baner-bonys">
       <div style="width: 100%">
-        <h2 style="font-size: 2.5em">
+        <h2 class="ban">
          СОБЕРИ БОНУСЫ
           <br />
           НА ОРИГИНАЛЬНЫЙ ПОДАРОК
@@ -607,13 +607,17 @@ h1 {
 .forin{
   padding: 1rem;
 }
+.ban{
+  font-size: 2.4em;
+  
+}
 @media(max-width: 500px){
 .btnper{
   width: 50%;
   margin-top: 1.3rem
 
 }
-h2{
+.ban{
   font-size: 1.875em;
   
 }
