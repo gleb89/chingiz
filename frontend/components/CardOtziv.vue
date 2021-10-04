@@ -93,6 +93,7 @@
 @media (max-width: 2500px){
   .co{
   width: 80%;
+  min-height: 20vh;
   
  
   }

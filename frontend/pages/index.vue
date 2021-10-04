@@ -243,7 +243,7 @@
                 <h2
      class="head-sect"
         >
-          отзывы
+         ОТЗЫВЫ
         </h2>
         <ListOtz class="d-none d-lg-block"/>
         <Otzmob class="d-block d-lg-none"/>
