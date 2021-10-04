@@ -375,7 +375,7 @@ export default {
       scrol: false,
       menu1:false,
       name:'',
-      count_spis_bonus:this.user_data.points/2,
+      count_spis_bonus:0,
       spis_bonus:null,
       oplata_methods:null,
       text_comment:'',
@@ -431,7 +431,8 @@ export default {
         }
       },
     oplatacheckfiz() {
-      let sum = (this.basket.summ_present + 500)
+      let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
+      -this.count_spis_bonus
       console.log(sum);
       let data = {
       'name_user':this.name,
@@ -442,7 +443,7 @@ export default {
       'email_user':this.email,
       'famaly_name_user':this.familyname,
       'phone_user':this.phone,
-      'summa':Number(sum-this.count_spis_bonus),
+      'summa':Number(sum),
       "fiz_oplata": true,
       'data_dostavki':String(this.data_dostavki) 
       }
