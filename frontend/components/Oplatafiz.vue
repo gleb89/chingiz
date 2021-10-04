@@ -350,17 +350,24 @@
 <script>
 
 export default {
-head() {
-    return {
-      script: [
-        {src: `https://maps.googleapis.com/maps/api/js?key=bWB7SIQeyl7BhORR0wZRZG3Q&callback=initMap&libraries=places&v=weekly`}
-      ]
-    };
-  },
-  mounted() {
-    var input = this.$refs.searchTextField; //.getElementById('searchTextField');
-    new google.maps.places.Autocomplete(input);
-  },
+// head() {
+//     return {
+//       script: [
+//         {src: `https://maps.googleapis.com/maps/api/js?key=bWB7SIQeyl7BhORR0wZRZG3Q&callback=initMap&libraries=places&v=weekly`}
+//       ]
+//     };
+//   },
+mounted: function () {
+		var defaultBounds = new google.maps.LatLngBounds(
+		new google.maps.LatLng(-33.8902, 151.1759),
+		new google.maps.LatLng(-33.8474, 151.2631));
+		var input = document.getElementById('searchTextField');
+		var options = {
+			bounds: defaultBounds,
+			types: ['establishment']
+		};
+		this.autocomplete = new google.maps.places.Autocomplete(input, options);
+	},
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
 
     watch: {

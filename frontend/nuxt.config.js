@@ -17,6 +17,11 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
+    ],
+    script: [
+      {
+        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCQFKwVLvTw3-ovzOWm1UUAHeIVyDkW2t4&libraries=places'
+      }
     ]
   },
 
