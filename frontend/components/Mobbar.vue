@@ -146,13 +146,19 @@ export default {
       dialog: false,
       dialogcabinet :false,
       bonus_count:0,
+      user_data_list:[],
      
       resp_data:0
     };
   },
+  mounted() {
+    if(!process.client) return;
+    this.user_data_list = this.$store.state.user.user
+  },
+  
     computed: {
       user_data(){
-        return this.$store.state.user.user
+        return this.user_data_list
       },
       basket(){
       return this.$store.state.localStorage.basket
