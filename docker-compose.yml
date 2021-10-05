@@ -65,8 +65,8 @@ services:
     build: ./frontend
     ports:
       - 3001:3000
-    volumes:
-        - ./frontend/:/app
+    # volumes:
+    #     - ./frontend/:/app
 
   # admin:
   #   restart: always
