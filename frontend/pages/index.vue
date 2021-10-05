@@ -291,6 +291,28 @@
         </h2>
         <ListOtz class="d-none d-lg-block" />
         <Otzmob class="d-block d-lg-none" />
+        <div class="d-flex text-center justify-center flex-wrap" style="padding-bottom: 2em;">
+          <v-btn
+            @click="oncatalog()"
+            rounded
+            depressed
+             color="#ff7a00"
+              
+            style="height: 49px;min-width: 20%; margin: 0.7rem;border: 2px solid #ff7a00;"
+            dark
+          >
+            <span style="font-size: 12px;">написать отзыв</span>
+          </v-btn>
+          <v-btn
+            @click="oncatalog()"
+            rounded
+            depressed
+            style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            dark
+          >
+            <span style="font-size: 12px;">перейти в каталог</span>
+          </v-btn>
+        </div>
       </v-container>
     </section>
     <section id="bonus-opros">
