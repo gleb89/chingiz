@@ -368,7 +368,7 @@ mounted: function () {
 	// 		types: ['establishment']
 	// 	};
 	// 	this.autocomplete = new google.maps.places.Autocomplete(input, options);
-const center = { lat: 43.238949, lng: 76.889709 };
+const center = {  lat: 40.749933, lng: -73.98633 };
 // Create a bounding box with sides ~10km away from the center point
 const defaultBounds = {
   north: center.lat + 0.1,
@@ -386,6 +386,7 @@ const options = {
 
 };
 const autocomplete = new google.maps.places.Autocomplete(input, options);
+autocomplete.setTypes("address")
 
 	},
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
@@ -521,3 +522,4 @@ const autocomplete = new google.maps.places.Autocomplete(input, options);
     color: #ff7a00;
 }
 </style>
+
