@@ -2,7 +2,7 @@
   <div>
     <section class="box-email">
       <v-container>
-        <v-row justify="center">
+        <v-row >
           <v-col cols="12" md="6" lg="1" class="box-phone"></v-col>
           <v-col cols="12" lg="4" style="padding-top: 3rem">
             <h2 style="font-size: 2.3rem">
@@ -29,7 +29,7 @@
                 </v-btn>
               </div>
             </div>
-            <p style="font-size: 0.8rem">
+            <p style="font-size: 0.8rem;padding-top: 1em;">
               Нажимая кнопку "подписаться", вы даёте согласие на обработку
               персональных данных
             </p>
@@ -157,7 +157,11 @@ export default {
 </script>
 
 <style scoped> 
-
+.v-application a {
+    cursor: pointer;
+    text-decoration: none;
+    color: #676767;
+}
 @media (max-width: 1000px) {
   #contacts{
     margin-bottom: 5rem;

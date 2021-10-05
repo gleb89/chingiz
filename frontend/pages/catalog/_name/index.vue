@@ -310,7 +310,7 @@ export default {
 }
 .searc-inp{
   position: absolute;
-  top: 2rem;
+  top: 1.3em;
   z-index: 1;
   right: 1rem
   }
@@ -320,9 +320,6 @@ export default {
 }
   .mobp{
   margin-top: 4rem;
-  }
-  .searc-inp{
-  top: 2rem;
   }
 }
 @media (min-width: 500px) {
