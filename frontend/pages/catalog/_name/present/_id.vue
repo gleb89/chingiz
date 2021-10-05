@@ -136,10 +136,10 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let product = await $axios.get(
-       `https://api-booking.ru/api/v1/present/${product_id}`
+       `http://api-booking.ru/api/v1/present/${product_id}`
     );
     const comments = await $axios.get(
-      `https://api-booking.ru/api/v1/present/comments/all/${product_id}`
+      `http://api-booking.ru/api/v1/present/comments/all/${product_id}`
     );
     return { product: product.data,comments:comments.data,product_id};
   },
@@ -193,7 +193,7 @@ export default {
         'precent_id':present_id
       }
         this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/users/basket/user_basket/add`,data, {
+        .$post(`http://api-booking.ru/api/v1/present/users/basket/user_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {
@@ -229,7 +229,7 @@ export default {
         'precent_id':present_id
       }
       this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/users/basket/anonim_basket/add`,data, {
+        .$post(`http://api-booking.ru/api/v1/present/users/basket/anonim_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {

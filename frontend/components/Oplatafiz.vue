@@ -482,7 +482,7 @@ const autocomplete = new google.maps.places.Autocomplete(input, options);
       
       
       this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
           console.log(resp);

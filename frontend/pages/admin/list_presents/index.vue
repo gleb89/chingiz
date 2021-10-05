@@ -355,10 +355,10 @@ export default {
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
-      `https://api-booking.ru/api/v1/present/`
+      `http://api-booking.ru/api/v1/present/`
     );
     const data_filter= await $axios.get(
-      `https://api-booking.ru/api/v1/present/filter/all`
+      `http://api-booking.ru/api/v1/present/filter/all`
     );
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
@@ -515,7 +515,7 @@ export default {
       bodyFormData.append("reason_for_precent_id", this.reason.id);
 
       this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/`, bodyFormData, {
+        .$post(`http://api-booking.ru/api/v1/present/`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -592,7 +592,7 @@ export default {
       }
 
       this.$axios
-        .$put(`https://api-booking.ru/api/v1/present/${this.editedItem.id}`, bodyFormData, {
+        .$put(`http://api-booking.ru/api/v1/present/${this.editedItem.id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -616,7 +616,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`https://api-booking.ru/api/v1/present/${this.editedItem.id}`, {
+        .$delete(`http://api-booking.ru/api/v1/present/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

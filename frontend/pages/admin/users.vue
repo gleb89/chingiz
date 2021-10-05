@@ -30,7 +30,7 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let users = await $axios.get(
-       `https://api-booking.ru/api/v1/present/users/`
+       `http://api-booking.ru/api/v1/present/users/`
     );
 
     return { users:users.data};

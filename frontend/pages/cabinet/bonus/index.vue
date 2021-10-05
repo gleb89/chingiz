@@ -29,7 +29,7 @@ export default {
   async asyncData({ $axios, store }) {
 
     const bonus_data  = await $axios.get(
-      `https://api-booking.ru/api/v1/present/bonus/${store.state.localStorage.uid_auth_user}`
+      `http://api-booking.ru/api/v1/present/bonus/${store.state.localStorage.uid_auth_user}`
     );
     return {bonus_data : bonus_data.data };
   },

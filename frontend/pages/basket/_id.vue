@@ -104,7 +104,7 @@ export default {
     };
     const id_basket = route.params.id;
       return $axios
-        .$get(`https://api-booking.ru/api/v1/present/users/basket/${id_basket}`, {
+        .$get(`http://api-booking.ru/api/v1/present/users/basket/${id_basket}`, {
           headers: headers,
         })
         .then((presents_in_basket) => {
