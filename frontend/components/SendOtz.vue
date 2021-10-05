@@ -132,7 +132,7 @@ export default {
 
         if(this.onlformdata()){
           this.Send()
-          this.otzivclick()
+          
         }
         else{
           console.log(444);
@@ -161,7 +161,8 @@ export default {
           this.alert = true
         setTimeout(() => {
           this.alert = false
-        }, 2000);
+          this.otzivclick()
+        }, 4000);
         })
         .catch(function (error) {
           console.log("error");
