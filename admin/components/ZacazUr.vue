@@ -168,7 +168,7 @@ export default {
                 "adress_user": this.history_data.adress_user
         }
         this.$axios
-        .$post(`http://api-booking.ru/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`http://80.249.151.147/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {

@@ -104,7 +104,7 @@ export default {
     };
     const id_basket = route.params.id;
       return $axios
-        .$get(`http://api-booking.ru/api/v1/present/users/basket/${id_basket}`, {
+        .$get(`http://80.249.151.147/api/v1/present/users/basket/${id_basket}`, {
           headers: headers,
         })
         .then((presents_in_basket) => {
@@ -135,7 +135,7 @@ export default {
   },
   mounted: function () {
     let self = this; 
-    this.ws = new WebSocket("wss://api-booking.ru/ws/present/basket");
+    this.ws = new WebSocket("wss://80.249.151.147/ws/present/basket");
     // this.ws = new WebSocket("ws://localhost:8080/ws/present/basket");
     this.ws.onmessage = (event) => {
       let response = JSON.parse(event.data)
