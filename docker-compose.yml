@@ -1,64 +1,64 @@
 version: '3'
 
 services:
-  # data_present:
-  #   restart: always
-  #   image: "postgres:13.4-alpine"
-  #   restart: always
-  #   volumes:
-  #       - ./present_data/:/var/lib/postgresql/data/
-  #   environment:
-  #       - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
-  #       - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
-  #       - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
-  #   ports:
-  #       - "5431:5432"
+  data_present:
+    restart: always
+    image: "postgres:13.4-alpine"
+    restart: always
+    volumes:
+        - ./present_data/:/var/lib/postgresql/data/
+    environment:
+        - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
+        - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
+        - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
+    ports:
+        - "5431:5432"
 
 
-  # data_courier:
-  #   restart: always
-  #   image: "postgres:13.4-alpine"
-  #   restart: always
-  #   volumes:
-  #       - ./data_courier/:/var/lib/postgresql/data/
-  #   environment:
-  #       - POSTGRES_USER=${COURIER_POSTGRES_USER}
-  #       - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
-  #       - POSTGRES_DB=${COURIER_POSTGRES_DB}
-  #   ports:
-  #       - "5433:5432"
+  data_courier:
+    restart: always
+    image: "postgres:13.4-alpine"
+    restart: always
+    volumes:
+        - ./data_courier/:/var/lib/postgresql/data/
+    environment:
+        - POSTGRES_USER=${COURIER_POSTGRES_USER}
+        - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
+        - POSTGRES_DB=${COURIER_POSTGRES_DB}
+    ports:
+        - "5433:5432"
 
 
 
-  # present_api:
-  #   restart: always
-  #   build: ./api/presents_service
-  #   env_file:
-  #     - .env
-  #   # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
-  #   command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-  #   ports:
-  #     - 8001:8000
+  present_api:
+    restart: always
+    build: ./api/presents_service
+    env_file:
+      - .env
+    # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8080
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8001:8000
 
-  #   depends_on: 
-  #     - data_present
-  #   volumes:
-  #     - ./api/presents_service:/app/presents
+    depends_on: 
+      - data_present
+    volumes:
+      - ./api/presents_service:/app/presents
 
-  # courier_api:
-  #   restart: always
-  #   build: ./api/courier
-  #   env_file:
-  #     - .env
-  #   # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
-  #   command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-  #   ports:
-  #     - 8002:8000
+  courier_api:
+    restart: always
+    build: ./api/courier
+    env_file:
+      - .env
+    # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8002:8000
 
-  #   depends_on: 
-  #     - data_courier
-  #   volumes:
-  #     - ./api/courier:/app/courier
+    depends_on: 
+      - data_courier
+    volumes:
+      - ./api/courier:/app/courier
 
   front:
     restart: always
@@ -100,8 +100,8 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     depends_on:
-      # - present_api
-      # - courier_api
+      - present_api
+      - courier_api
       - front
       # - admin
     ports:
