@@ -4,7 +4,7 @@
         class="rounded-xl co"
             color="#FFFFFF"
             
-            style="padding:1rem;"
+            style="padding:1rem;min-height: 300px;"
           >
          
             <p class="text-left " style="color:#676767;font-size: 1rem;">

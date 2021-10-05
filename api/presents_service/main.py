@@ -20,7 +20,8 @@ from routers import (
     basket,
     coments,
     history_basket,
-    bonus
+    bonus,
+    commentsservice
     )   
 
 
@@ -113,6 +114,9 @@ app.include_router(
 app.include_router(
     coments.comment_router
 )
+app.include_router(
+    commentsservice.comment_router
+)
 
 app.include_router(
     history_basket.history_router
@@ -121,6 +125,7 @@ app.include_router(
 app.include_router(
     bonus.bonus_router
 )
+
 
 
 

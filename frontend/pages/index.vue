@@ -291,9 +291,10 @@
         </h2>
         <ListOtz class="d-none d-lg-block" />
         <Otzmob class="d-block d-lg-none" />
-        <div class="d-flex text-center justify-center flex-wrap" style="padding-bottom: 2em;">
+        <SendOtz  :otzivclick="otzivclick" :otziv="otziv"/>
+        <div class=" buttun d-flex text-center justify-center flex-wrap" >
           <v-btn
-            @click="oncatalog()"
+            @click="otziv = true"
             rounded
             depressed
              color="#ff7a00"
@@ -402,6 +403,7 @@ export default {
     radioGroup: 1,
     datetime: "",
     date: "",
+    otziv:false,
     city: "",
     list_cituys: [
       // 'Абай',
@@ -498,6 +500,9 @@ export default {
   }),
 
   methods: {
+    otzivclick(){
+      this.otziv = !this.otziv
+    },
     close() {
       this.dialog = !this.dialog;
     },
@@ -731,6 +736,9 @@ h1 {
 .forinp {
   margin: 1rem;
 }
+.buttun{
+  padding-bottom: 2em;
+}
 @media (max-width: 500px) {
   .forinp {
     width: 100%;
@@ -741,7 +749,10 @@ h1 {
     padding: 1rem;
     margin: 0;
   }
-
+.buttun{
+  padding-top: 2em;
+  padding-bottom: 0;
+}
   h2 {
     font-size: 1.5rem;
     text-align: center;
