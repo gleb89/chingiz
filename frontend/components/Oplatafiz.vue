@@ -380,9 +380,10 @@ const input = document.getElementById("searchTextField");
 const options = {
   bounds: defaultBounds,
   componentRestrictions: { country: "kz" },
-  fields: ["address_components", "geometry", "icon", "name"],
-  strictBounds: false,
-  types: ["establishment"],
+    fields: ["formatted_address", "geometry", "name"],
+    strictBounds: false,
+    types: ["establishment"],
+
 };
 const autocomplete = new google.maps.places.Autocomplete(input, options);
 

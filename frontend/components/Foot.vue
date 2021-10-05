@@ -18,6 +18,7 @@
                 <v-text-field
                   label="E-mail"
                   class="text-green"
+                  v-model="email"
                   outlined
                   dense
                 ></v-text-field>
