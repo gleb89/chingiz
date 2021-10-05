@@ -112,6 +112,9 @@
 </template>
 
 <script>
+      const headers = {
+        "Content-Type": "application/json"
+      };
 export default {
     props:['otzivclick','otziv'],
     data() {
