@@ -382,11 +382,11 @@ const options = {
   componentRestrictions: { country: "kz" },
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
-    types: ["establishment"],
+    types: ["address"],
 
 };
 const autocomplete = new google.maps.places.Autocomplete(input, options);
-autocomplete.setTypes("address")
+// autocomplete.setTypes("address")
 
 	},
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
@@ -522,4 +522,3 @@ autocomplete.setTypes("address")
     color: #ff7a00;
 }
 </style>
-
