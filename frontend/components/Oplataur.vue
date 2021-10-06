@@ -134,13 +134,14 @@
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-text-field
-          id="searchTextField"
-            label="Укажите адрес доставки"
+          id="searchTextField2"
+          label="Укажите адрес доставки"
+          placeholder=""
+            class="prep"
+            prepend-inner-icon="*"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             v-model="adress" 
-                   class="prep"
-              prepend-inner-icon="*"
             style="min-width:100%"
           ></v-text-field>
         </v-col>
@@ -417,6 +418,29 @@
 
 <script>
 export default {
+mounted: function () {
+
+ 
+const center = {  lat: 40.749933, lng: -73.98633 };
+const defaultBounds = {
+  north: center.lat + 0.1,
+  south: center.lat - 0.1,
+  east: center.lng + 0.1,
+  west: center.lng - 0.1,
+};
+const input = document.getElementById("searchTextField2");
+const options = {
+  bounds: defaultBounds,
+  componentRestrictions: { country: "kz" },
+    fields: ["formatted_address", "geometry", "name"],
+    strictBounds: false,
+    types: ["address"],
+
+};
+const autocomplete = new google.maps.places.Autocomplete(input, options);
+// autocomplete.setTypes("address")
+
+	},
   props: ["presents_in_basket",'user_data','oplatacheck','retbonus'],
     watch: {
     date(val) {

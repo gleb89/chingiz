@@ -66,14 +66,16 @@
         <v-col cols="12" sm="12" md="12">
           <v-text-field
           id="searchTextField"
-            label="Укажите адрес доставки"
-                   class="prep"
-              prepend-inner-icon="*"
+          label="Укажите адрес доставки"
+          placeholder=""
+            class="prep"
+            prepend-inner-icon="*"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
             v-model="adress" 
             style="min-width:100%"
           ></v-text-field>
+      
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-textarea
@@ -358,18 +360,9 @@ export default {
 //     };
 //   },
 mounted: function () {
-  // const center = { lat: 50.064192, lng: -130.605469 };
-	// 	var defaultBounds = new google.maps.LatLngBounds(
-	// 	new google.maps.LatLng(43.238949, 76.889709),
-	// 	new google.maps.LatLng(-33.8474, 151.2631));
-	// 	var input = document.getElementById('searchTextField');
-	// 	var options = {
-	// 		bounds: defaultBounds,
-	// 		types: ['establishment']
-	// 	};
-	// 	this.autocomplete = new google.maps.places.Autocomplete(input, options);
+
+ 
 const center = {  lat: 40.749933, lng: -73.98633 };
-// Create a bounding box with sides ~10km away from the center point
 const defaultBounds = {
   north: center.lat + 0.1,
   south: center.lat - 0.1,
@@ -521,4 +514,5 @@ const autocomplete = new google.maps.places.Autocomplete(input, options);
   
     color: #ff7a00;
 }
+
 </style>

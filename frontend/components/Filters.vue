@@ -16,6 +16,17 @@
       </div>
       <hr style="color: #e5e5e5" />
     </div>
+      <div v-for="reason in form.reason_for_precent" :key="reason.id">
+      <div @click="reason_id = reason.id" class="box-filter">
+        <img style="height: 30px;width: 30px;" src="/cat1.png" alt="" />
+
+        <span
+        :class="{ active: reason_id === reason.id}"
+          >{{ reason.name_reason }}
+        </span>
+      </div>
+      <hr style="color: #e5e5e5" />
+    </div>
 
     <div style="margin-top: 2rem">
       <h3>Форма:</h3>
@@ -47,7 +58,7 @@
       </div>
     </div>
 
-    <div style="margin-top: 2rem">
+    <!-- <div style="margin-top: 2rem">
       <h3>Повод:</h3>
       <div class="mt-4">
         <v-checkbox
@@ -60,7 +71,7 @@
           :value="n.id"
         ></v-checkbox>
       </div>
-    </div>
+    </div> -->
 
     <div style="margin-top: 2rem">
       <h3>Цена</h3>

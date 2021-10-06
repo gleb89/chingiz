@@ -151,7 +151,8 @@
 export default {
   data() {
     return {
-      comand_dialog: false
+      comand_dialog: false,
+      email:''
     };
   }
 };
