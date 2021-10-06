@@ -289,7 +289,7 @@ export default {
         bodyFormData.append("name_category", this.name_category);
       }
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
+        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
