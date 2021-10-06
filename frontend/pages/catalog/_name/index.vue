@@ -49,7 +49,7 @@
        
       </v-col>
 
-      <!-- box-products -->
+      <!-- box-productsr -->
       <v-col cols="12" lg="10" class="box-products">
         <div class="d-none d-lg-block">
         <h2 >
