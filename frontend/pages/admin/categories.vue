@@ -284,24 +284,22 @@ export default {
       if (this.image_precent) {
         bodyFormData.append("image", this.image_precent);
       }
-      if (this.image_precent) {
-        bodyFormData.append("image", this.image_precent);
-      }this.name_category
+
       if (this.name_category) {
         bodyFormData.append("name_category", this.name_category);
       }
-      this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
-          headers: headers
-        })
-        .then((resp) => {
-         console.log(resp);
+      // this.$axios
+      //   .$put(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
+      //     headers: headers
+      //   })
+      //   .then((resp) => {
+      //    console.log(resp);
           
-        })
-        .catch(function (error) {
-         console.log(error);
-        });
-     
+      //   })
+      //   .catch(function (error) {
+      //    console.log(error);
+      //   });
+     console.log(bodyFormData);
 
       this.close();
     },

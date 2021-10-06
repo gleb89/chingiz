@@ -43,13 +43,14 @@ async def update_one(
     image: UploadFile = File(None),
     admin = Depends(jwt_auth)
     ):
-    category = await Categories.objects.get(id=id)
+    category = await Categories.objects.get_or_none(id=id)
     if image:
-        icon = await image_add(image)
-        await category.update(icon = icon)
+        # icon = await image_add(image)
+        # await category.update(icon = icon)
+        print(image)
     if name_category:
         print(name_category)
-        await category.update(name_category = name_category)
+        # await category.update(name_category = name_category)
     return await Categories.objects.get(id=id)
 
 
