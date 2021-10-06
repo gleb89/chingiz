@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Depends,File, UploadFile
+from fastapi import APIRouter,Depends, File, UploadFile,Form
 
 
 
@@ -33,10 +33,22 @@ async def get_one(id: int):
     return await Reason.objects.get_or_none(id=id)
 
 
-@reason_precent.get('/update/{id}')
-async def update_one(id:int,name_reason:str,admin = Depends(jwt_auth)):
-    types = await Reason.objects.get(id=id)
-    return await types.update(name_reason = name_reason)
+@reason_precent.put('/update/{id}')
+async def update_one(
+    id:int,
+    name_reason: str = Form(None),
+    image: UploadFile = File(None),
+    admin = Depends(jwt_auth)
+    ):
+    reason = await Reason.objects.get_or_none(id=id)
+    if image:
+        icon = await image_add(image)
+        await reason.update(icon = icon)
+    if name_reason:
+        await reason.update(
+            name_reason = name_reason,
+            )
+    return await Reason.objects.all()
 
 
 @reason_precent.delete('/{id}')

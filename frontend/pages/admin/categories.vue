@@ -295,7 +295,7 @@ export default {
         })
         .then((resp) => {
          console.log(resp);
-         this.editedItem.icon = resp.icon
+         this.category_presents = resp
           
         })
         .catch(function (error) {
