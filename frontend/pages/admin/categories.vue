@@ -283,6 +283,7 @@ export default {
       let bodyFormData = new FormData();
       if (this.image_precent) {
         bodyFormData.append("image", this.image_precent);
+        this.editedItem.reason_for_precent[0] = this.reason;
       }
 
       
@@ -293,6 +294,8 @@ export default {
           headers: headers
         })
         .then((resp) => {
+          this.items = resp
+          this.editedItem.icon = resp.icon;
          console.log(resp);
           
         })

@@ -52,7 +52,7 @@ async def update_one(
             name_category = name_category,
             slug_category = "".join(name_category.split()),
             )
-    return await Categories.objects.all()
+    return await Categories.objects.get_or_none(id=id)
 
 
 @categories_router.delete('/{id}')
