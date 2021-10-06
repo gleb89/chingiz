@@ -45,7 +45,18 @@
                         label="Название категории корзины"
                       ></v-text-field>
                     </v-col>
-
+                    <v-col cols="12">
+                                        <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      required
+                      @change="selectFile"
+                      label="Загрузите изображение"
+                    ></v-file-input>
+                </v-col>
                   </v-row>
           </v-container>
         </v-card-text>
@@ -134,6 +145,10 @@
           </v-dialog>
         </v-toolbar>
       </template>
+                <template v-slot:item.icon="{ item }">
+          <img  style="width: 10rem;" :src="item.icon" alt="none">
+
+        </template>
       <!-- изменить удалить -->
       <template v-slot:item.actions="{ item }">
         <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
@@ -163,12 +178,21 @@ export default {
   data: () => ({
     name_category: '',
     dialog: false,
+    rulesImage: [
+      (value) =>
+        !value ||
+        value.size < 2000000 ||
+        "Avatar size should be less than 2 MB!",
+    ],
     dialog_send:false,
     dialogDelete: false,
+    image_precent:null,
     headers: [
       { text: "id формы", value: "id" },
       { text: "Название", value: "name_category" },
+       { text: "Изображение", value: "icon", sortable: false },
       { text: "Изменить/ удалить", value: "actions", sortable: false },
+     
     ],
     items: [],
     search: '',
@@ -195,16 +219,16 @@ export default {
   methods: {
       createForm(){
           this.dialog_send = false
-          let data = {
-              name_category:this.name_category
-          }
+  
+          let bodyFormData = new FormData();
+          bodyFormData.append("image", this.image_precent);
           let headers = {
          "Content-Type": "application/json",
         "Authorization":this.$store.state.localStorage.jwtToken
        };
        
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories/`,data ,{
+        .$post(`http://api-booking.ru/api/v1/present/categories?category_name=${this.name_category}`,bodyFormData ,{
           headers: headers
         })
         .then((resp) => {
@@ -246,9 +270,18 @@ export default {
        };
        
        Object.assign(this.items[this.editedIndex], this.editedItem);
-
+      let bodyFormData = new FormData();
+      if (this.image_precent) {
+        bodyFormData.append("image", this.image_precent);
+      }
+      if (this.image_precent) {
+        bodyFormData.append("image", this.image_precent);
+      }this.name_category
+      if (this.name_category) {
+        bodyFormData.append("name_category", this.name_category);
+      }
       this.$axios
-        .$get(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}?name_category=${this.editedItem.name_category}`, {
+        .$put(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
           headers: headers
         })
         .then((resp) => {

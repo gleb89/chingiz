@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends,File, UploadFile,Form
 
 
 
 from models.category import Categories
 from shemas.categories import CreateCategory
 from logics.jwt_token import jwt_auth
+from logics.category import image_add
 
 categories_router = APIRouter(
     prefix="/api/v1/present/categories",
@@ -14,11 +15,13 @@ categories_router = APIRouter(
 
 
 @categories_router.post('/')
-async def create(category: CreateCategory,admin = Depends(jwt_auth)):
+async def create(category_name: str,image: UploadFile = File(...),admin = Depends(jwt_auth)):
     if admin:
+        icon = await image_add(image)
         new_category = Categories.objects.create(
-            name_category=category.name_category,
-            slug_category = "".join(category.name_category.split())
+            name_category=category_name,
+            slug_category = "".join(category_name.split()),
+            icon = icon
             )
         return await new_category
 
@@ -33,11 +36,20 @@ async def get_one(id: int):
     return await Categories.objects.get_or_none(id=id)
 
 
-@categories_router.get('/update/{id}')
-async def update_one(id:int,name_category:str,admin = Depends(jwt_auth)):
+@categories_router.put('/update/{id}')
+async def update_one(
+    id:int,
+    name_category:str = Form(None),
+    image: UploadFile = File(None),
+    admin = Depends(jwt_auth)
+    ):
     category = await Categories.objects.get(id=id)
-    
-    return await category.update(name_category=name_category)
+    if image:
+        icon = await image_add(image)
+        await category.update(icon = icon)
+    if name_category:
+        await category.update(name_category=name_category)
+    return await Categories.objects.get(id=id)
 
 
 @categories_router.delete('/{id}')

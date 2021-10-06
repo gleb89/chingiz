@@ -1,9 +1,10 @@
-from fastapi import APIRouter,Depends
+from fastapi import APIRouter,Depends,File, UploadFile
 
 
 
 from models.reason_for_precent import Reason
 from logics.jwt_token import jwt_auth
+from logics.category import image_add
 
 
 reason_precent = APIRouter(
@@ -14,8 +15,12 @@ reason_precent = APIRouter(
 
 
 @reason_precent.post('/')
-async def create(newformproduct: Reason,admin = Depends(jwt_auth)):
-    return await newformproduct.save()
+async def create(name_reason: str,image: UploadFile = File(...),admin = Depends(jwt_auth)):
+    icon = await image_add(image)
+    return await Reason.objects.create(
+        name_reason = name_reason,
+        icon = icon
+    )
 
 
 @reason_precent.get('/')

@@ -21,6 +21,7 @@ class Reason(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     name_reason: str = ormar.String(max_length=1000)
+    icon: str = ormar.String(max_length=1000,null=True)
 
 
     class Config:

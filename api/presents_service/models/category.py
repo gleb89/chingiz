@@ -23,6 +23,7 @@ class Categories(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     name_category: str = ormar.String(max_length=1000, null=True)
     slug_category: str = ormar.String(max_length=250,default='slug')
+    icon: str = ormar.String(max_length=1000,null=True)
 
     class Config:
         orm_mode = True
