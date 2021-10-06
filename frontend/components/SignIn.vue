@@ -122,7 +122,7 @@ export default {
   methods: {
     retbonus() {
         this.$axios
-        .$get(`http://80.249.151.147/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(111111,resp);
@@ -145,7 +145,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://80.249.151.147/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -168,7 +168,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://80.249.151.147/api/v1/present/users/`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -197,7 +197,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://80.249.151.147/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -220,7 +220,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://80.249.151.147/api/v1/present/users/`, data, {
+        .$post(`https://api-booking.ru/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {

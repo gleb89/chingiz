@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(80.249.151.147 www.80.249.151.147)
+domains=(api-booking.ru www.api-booking.ru)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="glebhleb89@icloud.com" # Adding a valid address is strongly recommended

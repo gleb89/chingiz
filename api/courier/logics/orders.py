@@ -1,7 +1,7 @@
 import shutil
 import datetime
 # host = 'http://localhost:8080'
-host = 'http://80.249.151.147'
+host = 'https://api-booking.ru'
 
 async def image_add(image):
     data = str(datetime.datetime.now()).replace(" ", "")

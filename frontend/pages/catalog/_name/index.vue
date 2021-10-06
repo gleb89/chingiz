@@ -116,7 +116,7 @@ export default {
     const name_slug = route.params.name;
     if (name_slug === "Все_продукты") {
       return $axios
-        .$get(`http://80.249.151.147/api/v1/present/`, {
+        .$get(`https://api-booking.ru/api/v1/present/`, {
           headers: headers,
         })
         .then((products) => {
@@ -125,7 +125,7 @@ export default {
     } else {
       return $axios
         .$get(
-          `http://80.249.151.147/api/v1/present/?slug_category=${encodeURIComponent(name_slug)}`,
+          `https://api-booking.ru/api/v1/present/?slug_category=${encodeURIComponent(name_slug)}`,
           {
             headers: headers,
           }
@@ -145,7 +145,7 @@ export default {
   },
   mounted: function () { 
     let self = this;
-    this.ws = new WebSocket("ws://80.249.151.147/ws/present/search");
+    this.ws = new WebSocket("wss://api-booking.ru/ws/present/search");
     this.ws.onmessage = (event) => {
       console.log("message");
       self.list_products = JSON.parse(event.data);
