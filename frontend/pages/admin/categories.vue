@@ -288,18 +288,18 @@ export default {
       if (this.name_category) {
         bodyFormData.append("name_category", this.name_category);
       }
-      // this.$axios
-      //   .$put(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
-      //     headers: headers
-      //   })
-      //   .then((resp) => {
-      //    console.log(resp);
+      this.$axios
+        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`,bodyFormData, {
+          headers: headers
+        })
+        .then((resp) => {
+         console.log(resp);
           
-      //   })
-      //   .catch(function (error) {
-      //    console.log(error);
-      //   });
-     console.log(bodyFormData);
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+     
 
       this.close();
     },

@@ -36,7 +36,7 @@ async def get_one(id: int):
     return await Categories.objects.get_or_none(id=id)
 
 
-@categories_router.put('/update/{id}')
+@categories_router.post('/update/{id}')
 async def update_one(
     id:int,
     name_category:str = Form(None),
@@ -45,12 +45,12 @@ async def update_one(
     ):
     category = await Categories.objects.get_or_none(id=id)
     if image:
-        # icon = await image_add(image)
-        # await category.update(icon = icon)
         print(image)
+        icon = await image_add(image)
+        await category.update(icon = icon)
     if name_category:
         print(name_category)
-        # await category.update(name_category = name_category)
+        await category.update(name_category = name_category)
     return await Categories.objects.get(id=id)
 
 
