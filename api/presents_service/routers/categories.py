@@ -44,8 +44,8 @@ async def update_one(
     admin = Depends(jwt_auth)
     ):
     category = await Categories.objects.get_or_none(id=id)
-    print(image)
-    print(name_category)
+    # print(image)
+    # print(name_category)
     # if image:
     #     print(image)
     #     icon = await image_add(image)
