@@ -48,8 +48,11 @@ async def update_one(
         icon = await image_add(image)
         await category.update(icon = icon)
     if name_category:
-        await category.update(name_category = name_category)
-    return await Categories.objects.get_or_none(id=id)
+        await category.update(
+            name_category = name_category,
+            slug_category = "".join(name_category.split()),
+            )
+    return await Categories.objects.all()
 
 
 @categories_router.delete('/{id}')

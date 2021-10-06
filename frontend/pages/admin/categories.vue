@@ -285,9 +285,9 @@ export default {
         bodyFormData.append("image", this.image_precent);
       }
 
-      if (this.name_category) {
-        bodyFormData.append("name_category", this.name_category);
-      }
+      
+      bodyFormData.append("name_category", this.editedItem.name_category);
+      
       this.$axios
         .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`, bodyFormData, {
           headers: headers
