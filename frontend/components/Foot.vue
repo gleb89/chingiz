@@ -175,6 +175,7 @@ export default {
         let data = {
           'email_user':this.email
         }
+        if(this.email){
         this.$axios
         .$post(`http://api-booking.ru/api/v1/present/mailing/`, data, {
           headers: headers,
@@ -189,6 +190,7 @@ export default {
         .catch(function (error) {
           console.log(error);
         });
+        }
       },
     },
 };
