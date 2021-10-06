@@ -44,14 +44,16 @@ async def update_one(
     admin = Depends(jwt_auth)
     ):
     category = await Categories.objects.get_or_none(id=id)
-    if image:
-        print(image)
-        icon = await image_add(image)
-        await category.update(icon = icon)
-    if name_category:
-        print(name_category)
-        await category.update(name_category = name_category)
-    return await Categories.objects.get(id=id)
+    print(image)
+    print(name_category)
+    # if image:
+    #     print(image)
+    #     icon = await image_add(image)
+    #     await category.update(icon = icon)
+    # if name_category:
+    #     print(name_category)
+    #     await category.update(name_category = name_category)
+    # return await Categories.objects.get(id=id)
 
 
 @categories_router.delete('/{id}')
