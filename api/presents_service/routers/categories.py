@@ -44,12 +44,11 @@ async def update_one(
     admin = Depends(jwt_auth)
     ):
     category = await Categories.objects.get_or_none(id=id)
-    print(name_category)
-    # if image:
-    #     icon = await image_add(image)
-    #     await category.update(icon = icon)
-    # if name_category:
-    #     await category.update(name_category = name_category)
+    if image:
+        icon = await image_add(image)
+        await category.update(icon = icon)
+    if name_category:
+        await category.update(name_category = name_category)
     return await Categories.objects.get_or_none(id=id)
 
 
