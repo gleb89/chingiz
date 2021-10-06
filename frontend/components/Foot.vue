@@ -8,11 +8,21 @@
             <h2 style="font-size: 2.3rem">
               Новости <span style="color: #ff7a00"> и акции</span>
             </h2>
+  
             <p style="padding-top: 1.4rem">
               Подпишитесь и получайте выгодные предложения первыми
             </p>
           </v-col>
-          <v-col cols="12" lg="6" style="padding-top: 3rem">
+          <v-col cols="12" lg="6" style="padding-top: 3rem;position: relative;">
+                      <v-alert
+                      v-if="alert"
+                      style="position: absolute;z-index: 1;width: 90%;"
+            v-model="alert"
+            
+              color="orange"
+              elevation="13"
+              type="success"
+            >Вы успешно подписались!</v-alert>
             <div class="box-form">
               <div class="input-box-email">
                 <v-text-field
@@ -25,7 +35,7 @@
               </div>
 
               <div class="box-btn-podpic" style="">
-                <v-btn rounded color="#ff7a00" style="height: 39px" dark>
+                <v-btn @click="onPodpiska" rounded color="#ff7a00" style="height: 39px" dark>
                   начать покупки
                 </v-btn>
               </div>
@@ -152,9 +162,35 @@ export default {
   data() {
     return {
       comand_dialog: false,
-      email:''
+      email:'',
+      alert:false
     };
-  }
+
+  },
+    methods: {
+      onPodpiska() {
+  let headers = {
+        "Content-Type": "application/json"
+      };
+        let data = {
+          'email_user':this.email
+        }
+        this.$axios
+        .$post(`http://api-booking.ru/api/v1/present/mailing/`, data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          
+          this.alert = true
+          setTimeout(() => {
+            this.alert = false
+          }, 2000);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      },
+    },
 };
 </script>
 

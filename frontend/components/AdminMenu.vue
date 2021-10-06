@@ -62,6 +62,13 @@
             <v-list-item-title>Комментарии к подаркам</v-list-item-title>
           </v-list-item>
 
+           <v-list-item @click="onadminPage('/admin/podpiska')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='list-ol'></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Подписки</v-list-item-title>
+          </v-list-item>
+
            <v-list-item @click="onadminPage('/admin/commentserv')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-ol'></fa>

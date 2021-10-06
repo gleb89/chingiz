@@ -35,10 +35,8 @@ export default {
     const comments = await $axios.get(
       `http://api-booking.ru/api/v1/present/comments/`
     );
-    const comments_for_service = await $axios.get(
-      `http://api-booking.ru/api/v1/present/commentsservice/`
-    );
-    return {comments:comments.data,comments_for_service:comments_for_service.data};
+
+    return {comments:comments.data};
   },
   data() {
       return {
