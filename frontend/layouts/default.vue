@@ -89,7 +89,7 @@ export default {
 
     retbonus() {
         this.$axios
-        .$get(`https://api-booking.ru/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`http://80.249.151.147/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(resp);

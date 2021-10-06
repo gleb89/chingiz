@@ -55,7 +55,7 @@ import { mapState } from "vuex";
           "password": this.password
         }
         this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/admin/token-auth`, data, {
+        .$post(`http://80.249.151.147/api/v1/present/admin/token-auth`, data, {
           headers: headers
         })
         .then((token) => {

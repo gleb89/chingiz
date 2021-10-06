@@ -69,7 +69,7 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
 
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):
-    return RedirectResponse("https://api-booking.ru/cabinet/oplata")
+    return RedirectResponse("http://80.249.151.147/cabinet/oplata")
 
 
 @history_router.put('/send_curer/{pk}')

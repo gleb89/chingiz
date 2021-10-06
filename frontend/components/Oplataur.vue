@@ -526,7 +526,7 @@ export default {
      
       
       this.$axios
-        .$post(`https://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://80.249.151.147/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
           console.log(resp);

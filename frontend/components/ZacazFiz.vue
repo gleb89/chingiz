@@ -160,7 +160,7 @@ export default {
         }
 
         this.$axios
-        .$post(`https://api-booking.ru/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`http://80.249.151.147/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {
