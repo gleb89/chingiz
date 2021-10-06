@@ -48,7 +48,8 @@ async def update_one(
         icon = await image_add(image)
         await category.update(icon = icon)
     if name_category:
-        await category.update(name_category=name_category)
+        print(name_category)
+        await category.update(name_category = name_category)
     return await Categories.objects.get(id=id)
 
 

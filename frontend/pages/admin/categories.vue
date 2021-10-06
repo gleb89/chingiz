@@ -53,7 +53,7 @@
                       placeholder="Загрузите изображение"
                       prepend-icon="mdi-camera"
                       required
-                      @change="selectFile"
+                      
                       label="Загрузите изображение"
                     ></v-file-input>
                 </v-col>
@@ -108,6 +108,16 @@
                         v-model="editedItem.name_category"
                         label="Название формы корзины"
                       ></v-text-field>
+                    </v-col>
+                    <v-col cols="12" sm="6" md="12">
+                   <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      label="Загрузите изображение"
+                    ></v-file-input>
                     </v-col>
 
                   </v-row>
@@ -228,7 +238,7 @@ export default {
        };
        
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories?category_name=${this.name_category}`,bodyFormData ,{
+        .$post(`http://api-booking.ru/api/v1/present/categories/?category_name=${this.name_category}`,bodyFormData ,{
           headers: headers
         })
         .then((resp) => {
