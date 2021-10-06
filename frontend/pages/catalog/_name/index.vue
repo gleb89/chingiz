@@ -116,7 +116,7 @@ export default {
     const name_slug = route.params.name;
     if (name_slug === "Все_продукты") {
       return $axios
-        .$get(`http://80.249.151.147/api/v1/present/`, {
+        .$get(`http://api-booking.ru/api/v1/present/`, {
           headers: headers,
         })
         .then((products) => {
@@ -125,7 +125,7 @@ export default {
     } else {
       return $axios
         .$get(
-          `http://80.249.151.147/api/v1/present/?slug_category=${encodeURIComponent(name_slug)}`,
+          `http://api-booking.ru/api/v1/present/?slug_category=${encodeURIComponent(name_slug)}`,
           {
             headers: headers,
           }

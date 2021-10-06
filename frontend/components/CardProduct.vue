@@ -91,7 +91,7 @@ export default {
         };
         this.$axios
           .$post(
-            `http://80.249.151.147/api/v1/present/users/basket/user_basket/add`,
+            `http://api-booking.ru/api/v1/present/users/basket/user_basket/add`,
             data,
             {
               headers: headers
@@ -134,7 +134,7 @@ export default {
         };
         this.$axios
           .$post(
-            `http://80.249.151.147/api/v1/present/users/basket/anonim_basket/add`,
+            `http://api-booking.ru/api/v1/present/users/basket/anonim_basket/add`,
             data,
             {
               headers: headers

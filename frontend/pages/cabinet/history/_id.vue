@@ -34,7 +34,7 @@ export default {
 
     const pk = route.params.id;
     const  history = await $axios.get(
-      `http://80.249.151.147/api/v1/present/history/onehistory/${pk}`
+      `http://api-booking.ru/api/v1/present/history/onehistory/${pk}`
     );
     return {history : history.data };
   },
