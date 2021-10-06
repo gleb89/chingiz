@@ -11,10 +11,19 @@
       </v-col>
   
     <v-col class="box-cat rounded-lg text-center" @click="onfilterslug(category.slug_category)" v-for="category in categories" :key="category.id">
-        <img src="/mobca.png" alt="" /><p
+        <img :src="category.icon" alt="" /><p
           class="text-center"
           style="font-size: .9rem;font-weight: bold;"
           >{{ category.name_category }}
+        </p>
+      
+     </v-col>
+
+    <v-col @click="reason_id = reason.id" class="box-cat rounded-lg text-center" v-for="reason in form.reason_for_precent" :key="reason.id">
+        <img :src="reason.icon" alt="" /><p
+          class="text-center"
+          style="font-size: .9rem;font-weight: bold;"
+          >{{ reason.name_reason }}
         </p>
       
      </v-col>
@@ -132,7 +141,7 @@ style="position: fixed;z-index: 2;width: 90%;"
       </div>
     </div>
 
-    <div style="margin-top: 2rem">
+    <!-- <div style="margin-top: 2rem">
       <h3>Повод:</h3>
       <div class="mt-4">
         <v-checkbox
@@ -146,7 +155,7 @@ style="position: fixed;z-index: 2;width: 90%;"
           :value="n.id"
         ></v-checkbox>
       </div>
-    </div>
+    </div> -->
 
     <div style="margin-top: 2rem">
       <h3>Цена</h3>

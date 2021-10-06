@@ -33,17 +33,13 @@ export default {
     layout: "admin",
   async asyncData({ route, $axios }) {
     const comments = await $axios.get(
-      `http://api-booking.ru/api/v1/present/comments/`
-    );
-    const comments_for_service = await $axios.get(
       `http://api-booking.ru/api/v1/present/commentsservice/`
     );
-    return {comments:comments.data,comments_for_service:comments_for_service.data};
+    return {comments:comments.data};
   },
   data() {
       return {
         headers: [
-        { text: 'к подарку(артикул)', value: 'present_id' },
           { text: 'id пользователя', value: 'user_id' },
            { text: 'имя', value: 'name_user' },
            { text: 'телефон', value: 'phone_user' },
@@ -66,7 +62,7 @@ export default {
 
       this.$axios
         .$post(
-          `http://api-booking.ru/api/v1/present/comments/moderation/${id}/${moderation}`,
+          `http://api-booking.ru/api/v1/present/commentsservice/moderation/${id}/${moderation}`,
           {
             headers: headers,
           }
