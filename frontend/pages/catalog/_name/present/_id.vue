@@ -170,7 +170,7 @@ export default {
   data() {
     return {
       products: this.$store.getters["products/products"],
-      count_present:1,
+      count_present:0,
       reveal:false,
       comments_all:[]
     };
