@@ -283,7 +283,7 @@ export default {
     sortedProductReason(){
        this.list_products = this.list_products.filter((elem) => {
         return (
-          elem.reason_for_precent[0].id === Number(this.reason_id) 
+          elem.reason_for_precent.id === Number(this.reason_id) 
         );
       });
     }

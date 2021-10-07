@@ -1,8 +1,8 @@
 <template>
 <div>
   <v-row justify="center" style="margin-top:1rem">
-    <v-col class="box-cat rounded-lg text-center" @click="onfilterslug('Все_продукты')" cols="6">
-      <img src="/mobca.png" alt="" /><p
+    <v-col  class="box-cat rounded-lg text-center" @click="onfilterslug('Все_продукты')" cols="6">
+      <img style="max-height: 30px;max-width: 30px;"  src="/mobca.png" alt="" /><p
       class="text-center"
       style="font-size: .9rem;font-weight: bold;"
         >Все корзины
