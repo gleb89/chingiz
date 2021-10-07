@@ -10,7 +10,7 @@
     <hr style="color: #e5e5e5" />
     <div v-for="category in categories" :key="category.id">
       <div @click="onfilterslug(category.slug_category,category.id,category.name_category)" class="box-filter">
-        <img style="max-height: 30px;max-width: 30px;" :src="category.icon" alt="" /><span
+        <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="category.icon" alt="" /><span
         :class="{ active: filter_name === category.name_category }"
           
           >{{ category.name_category }}
@@ -21,7 +21,7 @@
     
       <div v-for="reason in reason_present" :key="'A'+reason.id">
       <div @click="onReason(reason.id,reason.name_reason)" class="box-filter">
-        <img style="max-height: 30px;max-width: 30px;" :src="reason.icon" alt="" />
+        <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="reason.icon" alt="" />
         <span
         :class="{ active: filter_name === reason.name_reason }"
           >{{ reason.name_reason }}
