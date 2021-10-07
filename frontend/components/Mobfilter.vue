@@ -2,7 +2,7 @@
 <div>
   <v-row justify="center" style="margin-top:1rem">
     <v-col  class="box-cat rounded-lg text-center" @click="onfilterslug('Все_продукты')" cols="6">
-      <img style="max-height: 30px;max-width: 30px;"  src="/mobca.png" alt="" /><p
+      <img style="height: 30px;width: auto;"  src="/mobca.png" alt="" /><p
       class="text-center"
       style="font-size: .9rem;font-weight: bold;"
         >Все корзины
@@ -11,7 +11,7 @@
       </v-col>
   
     <v-col class="box-cat rounded-lg text-center" @click="onfilterslug(category.slug_category)" v-for="category in categories" :key="category.id">
-        <img style="max-height: 30px;max-width: 30px;" :src="category.icon" alt="" /><p
+        <img style="height: 30px;width: auto;"  :src="category.icon" alt="" /><p
           class="text-center"
           style="font-size: .9rem;font-weight: bold;"
           >{{ category.name_category }}
