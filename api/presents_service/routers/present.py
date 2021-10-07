@@ -1,6 +1,6 @@
 from typing import Optional
 import asyncio
-
+import re
 
 from fastapi import APIRouter, File, UploadFile, Depends, Form
 from fastapi.responses import JSONResponse
@@ -36,7 +36,7 @@ async def create(
     category_id: str = Form(...),
     form_precent_id: str = Form(...),
     type_precent_id: str = Form(...),
-    reason_for_precent_id: str = Form(...),
+    reason_for_precent_id: list = Form(...),
     body :str = Form(...),
     image: UploadFile = File(...),
     # admin = Depends(jwt_auth)
@@ -55,10 +55,15 @@ async def create(
     category = await Categories.objects.get_or_none(id=category_id)
     form_precent = await FormPresent.objects.get_or_none(id=form_precent_id)
     await new_present.type_precent.add(type_precent)
-    await new_present.reason_for_precent.add(reason_for_precent)
     await new_present.category.add(category)
     await new_present.form_precent.add(form_precent)
+    list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
+    list_id_reason = [int(i) for i in list_id_reason]
+    for reason_id in list_id_reason:
+        reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
+        await new_present.reason_for_precent.add(reason_for_precent)
     return new_present
+
 
 
 @precent_router.post('/add-image')

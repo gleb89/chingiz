@@ -126,7 +126,7 @@
                       outlined
                     ></v-select>
                     <span>Выбрать повод подарка</span>
-                    <v-select
+                    <!-- <v-select
                       v-model="reason"
                       :items="reason_for_precent"
                       item-text="name_reason"
@@ -136,7 +136,19 @@
                       single-line
                       label="Выбрать повод подарка"
                       outlined
-                    ></v-select>
+                    ></v-select> -->
+                    
+                   <v-combobox
+                    v-model="select"
+                    :items="reason_for_precent"
+                    label="Выбрать повод подарка"
+                    item-text="name_reason"
+                    item-value="id"
+                    multiple
+                    outlined
+                    return-object
+                    
+                  ></v-combobox>
 
                     <v-btn
                       :disabled="!onlformdata"
@@ -274,7 +286,7 @@
 
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить повод подарка</span>
-                        <v-select
+                        <!-- <v-select
                           v-model="reason"
                           :items="reason_for_precent"
                           item-text="name_reason"
@@ -284,7 +296,18 @@
                           single-line
                           label="Изменить повод подарка"
                           outlined
-                        ></v-select>
+                        ></v-select> -->
+                          <v-combobox
+                        v-model="editedItem.reason_for_precent"
+                        :items="reason_for_precent"
+                        label="Изменить повод подарка"
+                        item-text="name_reason"
+                        item-value="id"
+                        multiple
+                        outlined
+                        return-object
+                        
+                      ></v-combobox>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -371,14 +394,13 @@ export default {
     image_precent: null,
     prevue_name:'',
     categories: [],
+    select: [],
     category: {},
     body:'',
     form_precent: [],
     form: {},
     type_precent: [],
-
     type: {},
-    reason_for_precent: [],
     reason: {},
     dialog_send: false,
     rulesImage: [
@@ -454,7 +476,7 @@ export default {
         this.category.id &&
         this.form.id &&
         this.type.id &&
-        this.reason.id &&
+        this.select &&
         this.prevue_name &&
         this.body
       ) {
@@ -501,7 +523,11 @@ export default {
         "Content-Type": "application/json",
         Authorization: this.$store.state.localStorage.jwtToken,
       };
-
+      let select_id = []
+      for(let i of this.select){
+        select_id.push(i.id)
+      }
+       
       let bodyFormData = new FormData();
       bodyFormData.append("prevue_name", this.prevue_name);
       bodyFormData.append("name_precent", this.name_precent);
@@ -512,10 +538,10 @@ export default {
       bodyFormData.append("form_precent_id", this.form.id);
       bodyFormData.append("type_precent_id", this.type.id);
       bodyFormData.append("body", this.body);
-      bodyFormData.append("reason_for_precent_id", this.reason.id);
+      bodyFormData.append("reason_for_precent_id",String(select_id) );
 
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/`, bodyFormData, {
+        .$post(`http://localhost/api/v1/present/`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -585,10 +611,10 @@ export default {
         this.editedItem.type_precent[0] = this.type;
         this.type = {};
       }
-      if (this.reason.id) {
-        bodyFormData.append("reason_for_precent_id", this.reason.id);
-        this.editedItem.reason_for_precent[0] = this.reason;
-        this.reason = {};
+      if (this.select) {
+        bodyFormData.append("reason_for_precent_id", this.editedItem.reason_for_precent);
+        
+     
       }
 
       this.$axios
