@@ -60,7 +60,6 @@ async def create(
     list_id_reason = [int(i) for i in list_id_reason]
     for reason_id in list_id_reason:
         reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
-        print(reason_for_precent)
         await new_present.reason_for_precent.add(reason_for_precent)
     return new_present
 
@@ -132,9 +131,9 @@ async def update_one(
     form_precent_id: int = Form(None),
     type_precent_id: int= Form(None),
     body: str = Form(None),
-    reason_for_precent_id: int = Form(None),
+    reason_for_precent_id: list = Form(...),
     image: UploadFile = File(None),
-    admin = Depends(jwt_auth)
+    # admin = Depends(jwt_auth)
 
     ):
     present = await Present.objects.select_related(
@@ -144,7 +143,7 @@ async def update_one(
             "type_precent",
             "reason_for_precent"
         ]
-    ).get_or_none(id=id)
+    ).exclude_fields("presentreason").get_or_none(id=id)
     if image:
         new_image = await image_add(image)
         await present.update(image_precent = new_image)
@@ -180,13 +179,16 @@ async def update_one(
         await present.form_precent.add(form_precent)
 
     if reason_for_precent_id:
-        reason_for_precent = await Reason.objects.get_or_none(
-                                    id=reason_for_precent_id
-                                    )
-        await present.reason_for_precent.remove(
-                    present.reason_for_precent[0]
-                    )
-        await present.reason_for_precent.add(reason_for_precent)
+        list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
+        list_id_reason = [int(i) for i in list_id_reason]
+        for reason_id in list_id_reason:
+            reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
+            if reason_for_precent in present.reason_for_precent:
+                pass
+            else:
+               await present.reason_for_precent.add(reason_for_precent)
+
+        
         
     return await get_all()
     
