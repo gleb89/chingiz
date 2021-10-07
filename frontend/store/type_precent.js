@@ -1,6 +1,6 @@
 export const state = () => {
     return {
-      form:[],
+      type_precent:[],
   
   
   
@@ -8,8 +8,8 @@ export const state = () => {
   }
   
   export const mutations = {
-    setform (state,form) {
-    state.form = form
+    settype_precent (state,type_precent) {
+    state.type_precent = type_precent
   
     },
   
@@ -21,17 +21,17 @@ export const state = () => {
         const headers = {
             "Content-Type": "application/json"
           };
-        const form = await this.$axios
-        .$get(`http://api-booking.ru/api/v1/present/form_product/`,{
+        const type_precent = await this.$axios
+        .$get(`http://api-booking.ru/api/v1/present/type/`,{
           headers: headers
         })
-        commit('setform',form)
+        commit('settype_precent',type_precent)
   
     }
   }
   
   export const getters = {
-    form: s => s.form,
+    type_precent: s => s.type_precent,
   
   
   }

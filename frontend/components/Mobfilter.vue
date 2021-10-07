@@ -1,207 +1,245 @@
 <template>
-<div>
-  <v-row justify="center" style="margin-top:1rem">
-    <v-col  class="box-cat rounded-lg text-center" @click="onfilterslug('Все_продукты')" cols="6">
-      <img style="height: 30px;width: auto;"  src="/mobca.png" alt="" /><p
-      class="text-center"
-      style="font-size: .9rem;font-weight: bold;"
-        >Все корзины
-        {{ selected_list }}
-      </p>
-      </v-col>
-  
-    <v-col class="box-cat rounded-lg text-center" @click="onfilterslug(category.slug_category)" v-for="category in categories" :key="category.id">
-        <img style="height: 30px;width: auto;"  :src="category.icon" alt="" /><p
-          class="text-center"
-          style="font-size: .9rem;font-weight: bold;"
-          >{{ category.name_category }}
-        </p>
-      
-     </v-col>
+  <div>
+    <v-row justify="center" style="margin-top:1rem">
+      <v-col
+        class="box-cat rounded-lg text-center"
+        @click="onfilterslug('Все_продукты', 0, '')"
+        cols="6"
+      >
 
-    <v-col @click="reason_id = reason.id" class="box-cat rounded-lg text-center" v-for="reason in form.reason_for_precent" :key="reason.id">
-        <img style="max-height: 30px;max-width: 30px;" :src="reason.icon" alt="" /><p
-          class="text-center"
-          style="font-size: .9rem;font-weight: bold;"
-          >{{ reason.name_reason }}
+      
+        <img style="height: 30px;width: auto;" src="/mobca.png" alt="" />
+        
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          Все подарки
+          {{ selected_list }}
         </p>
-     </v-col>
-    
-  </v-row>
+        
+      </v-col>
+
+      <v-col
+        class="box-cat rounded-lg text-center"
+        @click="
+          onfilterslug(
+            category.slug_category,
+            category.id,
+            category.name_category
+          )
+        "
+        v-for="category in categories.slice(0, 3)"
+        :key="category.id"
+      >
+        <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ category.name_category }}
+        </p>
+      </v-col> 
+
+      <v-col
+      class="box-cat rounded-lg text-center"
+        v-for="reason in reason_present.slice(0, 0)"
+        :key="'A' + reason.id"
+        @click="onReason(reason.id, reason.name_reason)"
+      >
+        <img
+          style="max-height: 30px;max-width: 30px;"
+          :src="reason.icon"
+          alt=""
+        />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ reason.name_reason }}
+        </p>
+      </v-col>
+      <a @click="dialogcategory = true"  style="color: black;margin-top: 1em;text-decoration: underline;">больше категорий</a>
+    </v-row>
     <v-row justify="center">
-    <v-col>
-              <div>
+      
+      <v-col>
+        <div>
           <h2 class="text-left mt-5">
-          <span  v-if="!filter_name && !search">Подарочные корзины({{ listproducts.length }})</span>
+          <span v-if="!filter_name && !search">Все корзины ({{ listproducts.length }})</span>
           <span v-if="filter_name && !search">
             {{ filter_name }} ({{ listproducts.length }})</span
           >
           <span v-if="search"
             >Результат поиска ({{ listproducts.length }})</span
           >
-        </h2>
+          </h2>
         </div>
-    </v-col>
-    <v-dialog
-      v-model="dialog"
-      fullscreen
-      hide-overlay
-      transition="dialog-bottom-transition"
-    >
-      <template v-slot:activator="{ on, attrs }">
+      </v-col>
+      <v-dialog
+        v-model="dialogcategory"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+      >
+        <v-card>
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="dialogcategory = false" >
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Все категории</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items> </v-toolbar-items>
+          </v-toolbar>
+          <div style="margin-top: 4rem;padding: 1rem;">
+            <v-alert
+              v-model="alert"
+              style="position: fixed;z-index: 2;width: 90%;"
+              color="orange"
+              elevation="13"
+              type="success"
+              >Фильтр применен</v-alert
+            >
+<v-row justify="center" style="margin-top:1rem">
+        <v-col
+        class="box-cat rounded-lg text-center"
+        @click="
+          onfilterslugmob(
+            category.slug_category,
+            category.id,
+            category.name_category
+          )
+        "
+        v-for="category in categories"
+        :key="category.id"
+      >
+        <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ category.name_category }}
+        </p>
+      </v-col> 
 
-        <div style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;" class="d-flex">
-          <div class="ned"  >
-                            <v-select
-                            style="margin-top:1rem"
-                            
-          :items="[{'name':'недорогие'}, {'name':'более дорогие'}]"
-          label="Сначала недорогие"
-          item-text="name"
-          dense
-          solo
-        ></v-select>
-            
+      <v-col
+      class="box-cat rounded-lg text-center"
+        v-for="reason in reason_present"
+        :key="'A' + reason.id"
+        @click="onReasonmob(reason.id, reason.name_reason)"
+      >
+        <img
+          style="max-height: 30px;max-width: 30px;"
+          :src="reason.icon"
+          alt=""
+        />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ reason.name_reason }}
+        </p>
+      </v-col>
+</v-row>
+
+           
           </div>
-
-        
-        <div >
-            <v-btn
-            v-bind="attrs"
-            v-on="on"
-            color="indigo"
-            text
-            
-            
+        </v-card>
+      </v-dialog>
+      <v-dialog
+        v-model="dialog"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div
+            style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;"
+            class="d-flex"
           >
-          <span style="color:#676767">Фильтры</span>
-            <img src="/filter.png" alt="">
-              
-          </v-btn>
+            <div class="ned">
+              <v-select
+                style="margin-top:1rem"
+                :items="[{ name: 'недорогие' }, { name: 'более дорогие' }]"
+                label="Сначала недорогие"
+                item-text="name"
+                dense
+                solo
+              ></v-select>
+            </div>
+
+            <div>
+              <v-btn v-bind="attrs" v-on="on" color="indigo" text>
+                <span style="color:#676767">Фильтры</span>
+                <img src="/filter.png" alt="" />
+              </v-btn>
+            </div>
           </div>
+        </template>
+        <v-card>
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="dialog = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Фильтры</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items> </v-toolbar-items>
+          </v-toolbar>
+          <div style="margin-top: 4rem;padding: 1rem;">
+            <v-alert
+              v-model="alert"
+              style="position: fixed;z-index: 2;width: 90%;"
+              color="orange"
+              elevation="13"
+              type="success"
+              >Фильтр применен</v-alert
+            >
+
+            <div style="margin-top: 2rem">
+              <h3>Форма:</h3>
+              <div class="mt-4">
+                <v-checkbox
+                  v-for="n in form"
+                  :key="n.id"
+                  style="height: 1.3rem; width: 20rem"
+                  color="orange"
+                  v-model="form_id"
+                  :label="`${n.name_form}`"
+                  :value="n.id"
+                ></v-checkbox>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem">
+              <h3>Цена</h3>
+              <!-- forms-price-filter -->
+              <div class="mt-4">
+                <div>
+                  <span>от</span>
+                  <v-text-field
+                    v-model="minp"
+                    style="width: 100%"
+                    :label="Math.min(...minmaxPrice()) + ' тг'"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
+                <div>
+                  <span>до</span>
+                  <v-text-field
+                    v-model="maxp"
+                    style="width: 100%"
+                    :label="Math.max(...minmaxPrice()) + ' тг'"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
+              </div>
+
+              <!-- form-check-filter -->
+
+              <!-- button reset filters -->
+              <div class="text-center mt-8">
+                <v-btn
+                  @click="resetfilters()"
+                  rounded
+                  color="#ff7a00"
+                  style="height: 39px; margin: 0.7rem"
+                  dark
+                >
+                  <span style="font-size: 12px">сбросить фильтры</span>
+                </v-btn>
+              </div>
+            </div>
           </div>
-      </template>
-      <v-card>
-        <v-toolbar
-          dark
-          color="orange"
-        >
-          <v-btn
-            icon
-            dark
-            @click="dialog = false"
-          >
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-          <v-toolbar-title>Фильтры</v-toolbar-title>
-          <v-spacer></v-spacer>
-          <v-toolbar-items>
-          </v-toolbar-items>
-        </v-toolbar>
-  <div style="margin-top: 4rem;padding: 1rem;">
-<v-alert
-v-model="alert"
-style="position: fixed;z-index: 2;width: 90%;"
-  color="orange"
-  elevation="13"
-  type="success"
->Фильтр применен</v-alert>
-
-
-    <div style="margin-top: 2rem">
-      <h3>Форма:</h3>
-      <div class="mt-4">
-        <v-checkbox
-        @click="onalert"
-          v-for="n in form.form_precent"
-          :key="n.id"
-          style="height: 1.3rem; width: 20rem"
-          color="orange"
-          v-model="form_id"
-          :label="`${n.name_form}`"
-          :value="n.id"
-        ></v-checkbox>
-      </div>
-    </div>
-
-    <div style="margin-top: 2rem">
-      <h3>Тип:</h3>
-      <div class="mt-4">
-        <v-checkbox
-        @click="onalert"
-          v-for="n in form.type_precent"
-          :key="n.id"
-          style="height: 1.3rem; width: 20rem"
-          color="orange"
-          v-model="type_id"
-          :label="`${n.name_type}`"
-          :value="n.id"
-        ></v-checkbox>
-      </div>
-    </div>
-
-    <!-- <div style="margin-top: 2rem">
-      <h3>Повод:</h3>
-      <div class="mt-4">
-        <v-checkbox
-        @click="onalert"
-          v-for="n in form.reason_for_precent"
-          :key="n.id"
-          style="height: 1.3rem; width: 20rem"
-          color="orange"
-          v-model="reason_id"
-          :label="`${n.name_reason}`"
-          :value="n.id"
-        ></v-checkbox>
-      </div>
-    </div> -->
-
-    <div style="margin-top: 2rem">
-      <h3>Цена</h3>
-      <!-- forms-price-filter -->
-      <div class="mt-4">
-        <div>
-          <span>от</span>
-          <v-text-field
-            v-model="minp"
-            style="width: 100%"
-            :label="Math.min(...minmaxPrice()) + ' тг'"
-            single-line
-            outlined
-          ></v-text-field>
-        </div>
-        <div>
-          <span>до</span>
-          <v-text-field
-            v-model="maxp"
-            style="width: 100%"
-            :label="Math.max(...minmaxPrice()) + ' тг'"
-            single-line
-            outlined
-          ></v-text-field>
-        </div>
-      </div>
-
-      <!-- form-check-filter -->
-   
-
-      <!-- button reset filters -->
-      <div class="text-center mt-8">
-        <v-btn
-          @click="resetfilters()"
-          rounded
-          color="#ff7a00"
-          style="height: 39px; margin: 0.7rem"
-          dark
-        >
-          <span style="font-size: 12px">сбросить фильтры</span>
-        </v-btn>
-      </div>
-    </div>
-  </div>
-      </v-card>
-    </v-dialog>
-  </v-row>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 
@@ -214,50 +252,54 @@ export default {
     "categories",
     "presents",
     "onfilterslug",
+    "listproducts",
     "filter_name",
     "clickselect",
     "ads_select",
+    "reason_present",
+    "onReason",
     "form",
-    "listproducts",
-    "filter_name",
-    "search"
+    "search",
+    "type_precent"
   ],
 
   data() {
     return {
-      alert:false,
-      dialog:false,
+      alert: false,
+      dialog: false,
+      dialogcategory:false,
       selected_list1: [],
       maxp: null,
       minp: null,
       form_id: null,
       type_id: null,
-      reason_id: null,
+      reason_id: null
     };
   },
   computed: {
     selected_list() {
-      this.ads_select(
-        this.selected_list1,
-        this.maxp,
-        this.minp,
-        this.form_id,
-        this.type_id,
-        this.reason_id
-        );
-    },
+      this.ads_select(this.minp, this.maxp, this.form_id);
+    }
   },
 
   methods: {
-    onalert(){
-      this.alert = true
+  onfilterslugmob(slug_category,id,name_category){
+    this.onfilterslug(slug_category,id,name_category)
+    this.dialogcategory = false
+  },
+  onReasonmob(id, name_reason){
+    this.onReason(id, name_reason)
+    this.dialogcategory = false
+  },
+    onalert() {
+      this.alert = true;
       setTimeout(() => {
-        this.alert = false
+        this.alert = false;
       }, 1000);
     },
     resetfilters() {
       this.clickselect();
-      this.dialog = false
+      this.dialog = false;
       this.minp = null;
       this.maxp = null;
       this.form_id = null;
@@ -270,21 +312,24 @@ export default {
         list_price.push(Number(i.price));
       }
       return list_price;
-    },
-  },
+    }
+  }
 };
 </script>
 
-<style >
+<style>
 .active {
   color: #ff7a00;
 }
-.box-cat{
+.box-cat {
   background: #ff7a00;
   color: white;
   margin: 3px;
   max-width: 45%;
   min-width: 45%;
 }
-
+.mdi-close::before {
+    content: "\F0156";
+    color: white;
+}
 </style>

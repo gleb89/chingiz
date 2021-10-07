@@ -7,30 +7,34 @@
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
           <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
             >Каталог</nuxt-link
-          >/
-          <span v-if="!filter_name" style="color: #222121a1">Все корзины</span>
-          <span v-if="filter_name" style="color: #222121a1">{{ filter_name }}</span>
+          >
+          
         </div>
 
         <Mobfilter 
             class="d-block d-lg-none"     
-            :selected="selected"
+           :selected="selected"
             :maxprice="maxprice"
             :minprice="minprice"
             :categories="categories"
             :presents="products"
             :onfilterslug="onfilterslug"
+            :listproducts="listproducts"
             :filter_name="filter_name"
             :clickselect="clickselect"
-            :listproducts="listproducts"
             :ads_select="ads_select"
+            :reason_present="reason_present"
+            :search="search"
+            :onReason="onReason"
             :form="form"
+            :type_precent="type_precent"
          />
 
         <!-- desc filter -->
             
             <Filters
             class="d-none d-lg-block"
+            :listproducts="listproducts"
             :selected="selected"
             :maxprice="maxprice"
             :minprice="minprice"
@@ -39,10 +43,12 @@
             :onfilterslug="onfilterslug"
             :filter_name="filter_name"
             :clickselect="clickselect"
-            :listproducts="listproducts"
             :ads_select="ads_select"
-            :form="form"
+            :reason_present="reason_present"
             :search="search"
+            :onReason="onReason"
+            :form="form"
+            :type_precent="type_precent"
             
             />
             
@@ -85,6 +91,7 @@
         </div>
         <v-container class="box-scrol" >
           <v-row justify="center">
+            
             <v-col
               class="boxs-cardprod"
               v-for="present in listproducts"
@@ -109,84 +116,62 @@
 <script>
 export default {
   transition: "fade",
-  asyncData({ $axios, route, error, $http }) {
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    const name_slug = route.params.name;
-    if (name_slug === "Все_продукты") {
-      return $axios
-        .$get(`http://api-booking.ru/api/v1/present/`, {
-          headers: headers,
-        })
-        .then((products) => {
-          return { products, name_slug };
-        });
-    } else {
-      return $axios
-        .$get(
-          `http://api-booking.ru/api/v1/present/?slug_category=${encodeURIComponent(name_slug)}`,
-          {
-            headers: headers,
-          }
-        )
-        .then((products) => {
-          return { products, name_slug };
-        });
-    }
-  },
+
+
   async fetch({ store }) {
-    if (store.getters["categories/categories"].length === 0) {
-      await store.dispatch("categories/fetch");
+
+    if (store.getters["products/products"].length === 0) {
+      await store.dispatch("products/fetch");
     }
-      if (store.getters["form/form"].length === 0) {
-      await store.dispatch("form/fetch");
+    if (store.getters["allfilter/allfilter"].length === 0) {
+      await store.dispatch("allfilter/fetch");
     }
+
   },
   mounted: function () { 
     let self = this;
     this.ws = new WebSocket("ws://84.38.181.26/ws/present/search");
     this.ws.onmessage = (event) => {
       console.log("message");
-      self.list_products = JSON.parse(event.data);
+      self.products = JSON.parse(event.data);
     };
   },
   computed: {
+
     listproducts() {
-      this.filter_name = this.name_slug_get();
+      
       let self = this;
       if (this.search) {
         this.ws.onopen;
         this.ws.send(this.search);
-      } else {
-        this.list_products = this.products;
       }
-      if (this.selected.length > 0) {
-        this.onselectfilter();
-      }
-      if (this.maxprice && this.minprice) {
-        this.sortedProductPrice();
+      if (!this.search  && this.filter_name === ''){
+        this.products = this.$store.getters["products/products"]
       }
       if (this.form_id) {
         this.sortedProductForm();
       }
-      if (this.type_id) {
-        this.sortedProductType();
-      }
-      if (this.reason_id) {
-        this.sortedProductReason();
-      }
+      if (this.minprice  && this.maxprice) {
+        
+        this.products = this.$store.getters["products/products"].filter((elem) => {
+        return elem.price >= Number(this.minprice) && elem.price <= Number(this.maxprice)
+      });
       
-      return this.list_products;
+      }
+      return this.products
     },
   },
   data() {
     return {
       age: null,
       ws: null,
-      categories: this.$store.getters["categories/categories"],
-      form: this.$store.getters["form/form"],
+      categories: this.$store.getters["allfilter/allfilter"].categories,
+      reason_present: this.$store.getters["allfilter/allfilter"].reason_for_precent,
+      products:this.$store.getters["products/products"],
       search: "",
+      form_id:null,
+      type_precent:[],
+      form:this.$store.getters["allfilter/allfilter"].form_precent,
       maxprice: null,
       minprice: null,
       form_id: null,
@@ -200,23 +185,27 @@ export default {
     };
   },
   methods: {
-    ads_select(list_s,maxp,minp,form_id,type_id,reason_id){  
-      this.selected = list_s
-      this.maxprice = maxp
-      this.minprice = minp
-      this.form_id = form_id
-      this.type_id = type_id
-      this.reason_id = reason_id
-    },
-    name_slug_get() {
-      let cat;
-      for (let i of this.categories) {
-        if (i.slug_category === this.name_slug) {
-          cat = i.name_category;
+    onReason(pk,name_reason){
+      console.log(66);
+      this.filter_name = name_reason
+      this.products = []
+      this.products = this.$store.getters["products/products"].filter((elem) => {
+      for(let i of elem.reason_for_precent){
+        if(i.id == pk){
+          return elem
         }
       }
-      return cat;
+        // return elem.id === pk
+      
+      });
     },
+    ads_select(minp,maxp,form_id){  
+      this.minprice = minp
+      this.maxprice = maxp
+      this.form_id = form_id
+      
+    },
+
     minmaxPrice() {
       let list_price = [];
       for (let i of this.products) {
@@ -226,6 +215,8 @@ export default {
     },
     clickselect() {
       this.search = "";
+      this.filter_name = ""
+      this.products = this.$store.getters["products/products"]
     },
     onsearch() {
       this.list_products.filter((elem) => {
@@ -234,8 +225,20 @@ export default {
           .includes(this.search.toLowerCase());
       });
     },
-    onfilterslug(slug) {
-      this.$router.push("/catalog/" + slug);
+    onfilterslug(slug,pk,name) {
+      
+      if(slug === 'Все_продукты'){
+        this.products = this.$store.getters["products/products"]
+        this.filter_name = ''
+      }
+      else{ 
+      
+      this.products = this.$store.getters["products/products"].filter((elem) => {
+        return elem.category[0].id === pk
+      });
+      this.filter_name = name
+      }
+
     },
     onselectfilter() {
       if (this.selected.length === 1) {
@@ -256,16 +259,9 @@ export default {
         });
       }
     },
-    sortedProductPrice() {
-      this.list_products = this.list_products.filter((elem) => {
-        return (
-          elem.price >= Number(this.minprice) &&
-          elem.price <= Number(this.maxprice)
-        );
-      });
-    },
+ 
     sortedProductForm(){
-       this.list_products = this.list_products.filter((elem) => {
+       this.products = this.$store.getters["products/products"].filter((elem) => {
         return (
           elem.form_precent[0].id === Number(this.form_id) 
         );
@@ -273,8 +269,6 @@ export default {
     },
     sortedProductType(){
        this.list_products = this.list_products.filter((elem) => {
-         
-         
         return (
           elem.type_precent[0].id === Number(this.type_id) 
         );

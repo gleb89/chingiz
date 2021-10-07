@@ -1,38 +1,40 @@
 <template>
   <div style="margin-top: 4rem">
-    <div @click="onfilterslug('Все_продукты')" class="box-filter">
-      <img src="/fructs.png" alt="" /><span :class="{ active: !filter_name }"
-        >Все продукты
+    <div @click="onfilterslug('Все_продукты',0,'')" class="box-filter">
+      <img src="/fructs.png" alt="" /><span 
+      :class="{ active: !filter_name }"
+        >Все подарки
         {{ selected_list }}
       </span>
     </div>
     <hr style="color: #e5e5e5" />
     <div v-for="category in categories" :key="category.id">
-      <div @click="onfilterslug(category.slug_category)" class="box-filter">
+      <div @click="onfilterslug(category.slug_category,category.id,category.name_category)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;" :src="category.icon" alt="" /><span
-          :class="{ active: filter_name === category.name_category }"
+        :class="{ active: filter_name === category.name_category }"
+          
           >{{ category.name_category }}
         </span>
       </div>
       <hr style="color: #e5e5e5" />
     </div>
-      <div v-for="reason in form.reason_for_precent" :key="reason.id">
-      <div @click="reason_id = reason.id" class="box-filter">
+    
+      <div v-for="reason in reason_present" :key="'A'+reason.id">
+      <div @click="onReason(reason.id,reason.name_reason)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;" :src="reason.icon" alt="" />
-
         <span
-        :class="{ active: reason_id === reason.id}"
+        :class="{ active: filter_name === reason.name_reason }"
           >{{ reason.name_reason }}
         </span>
       </div>
       <hr style="color: #e5e5e5" />
-    </div>
+    </div> 
 
     <div style="margin-top: 2rem">
       <h3>Форма:</h3>
       <div class="mt-4">
         <v-checkbox
-          v-for="n in form.form_precent"
+          v-for="n in form"
           :key="n.id"
           style="height: 1.3rem; width: 20rem"
           color="orange"
@@ -41,13 +43,13 @@
           :value="n.id"
         ></v-checkbox>
       </div>
-    </div>
+    </div> 
 
-    <div style="margin-top: 2rem">
+    <!-- <div style="margin-top: 2rem">
       <h3>Тип:</h3>
       <div class="mt-4">
         <v-checkbox
-          v-for="n in form.type_precent"
+          v-for="n in type_precent"
           :key="n.id"
           style="height: 1.3rem; width: 20rem"
           color="orange"
@@ -56,22 +58,9 @@
           :value="n.id"
         ></v-checkbox>
       </div>
-    </div>
+    </div>  -->
 
-    <!-- <div style="margin-top: 2rem">
-      <h3>Повод:</h3>
-      <div class="mt-4">
-        <v-checkbox
-          v-for="n in form.reason_for_precent"
-          :key="n.id"
-          style="height: 1.3rem; width: 20rem"
-          color="orange"
-          v-model="reason_id"
-          :label="`${n.name_reason}`"
-          :value="n.id"
-        ></v-checkbox>
-      </div>
-    </div> -->
+
 
     <div style="margin-top: 2rem">
       <h3>Цена</h3>
@@ -130,7 +119,10 @@ export default {
     "filter_name",
     "clickselect",
     "ads_select",
+    "reason_present",
+    "onReason",
     "form",
+    "type_precent"
   ],
 
   data() {
@@ -146,12 +138,9 @@ export default {
   computed: {
     selected_list() {
       this.ads_select(
-        this.selected_list1,
-        this.maxp,
         this.minp,
-        this.form_id,
-        this.type_id,
-        this.reason_id
+        this.maxp,
+        this.form_id
         );
     },
   },

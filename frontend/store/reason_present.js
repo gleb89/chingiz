@@ -1,6 +1,6 @@
 export const state = () => {
     return {
-      form:[],
+      reason_present:[],
   
   
   
@@ -8,8 +8,8 @@ export const state = () => {
   }
   
   export const mutations = {
-    setform (state,form) {
-    state.form = form
+    setreason_present (state,reason_present) {
+    state.reason_present = reason_present
   
     },
   
@@ -21,17 +21,17 @@ export const state = () => {
         const headers = {
             "Content-Type": "application/json"
           };
-        const form = await this.$axios
-        .$get(`http://api-booking.ru/api/v1/present/form_product/`,{
+        const reason_present = await this.$axios
+        .$get(`http://api-booking.ru/api/v1/present/reason/`,{
           headers: headers
         })
-        commit('setform',form)
+        commit('setreason_present',reason_present)
   
     }
   }
   
   export const getters = {
-    form: s => s.form,
+    reason_present: s => s.reason_present,
   
   
   }
