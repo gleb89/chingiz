@@ -541,7 +541,7 @@ export default {
       bodyFormData.append("reason_for_precent_id",String(select_id) );
 
       this.$axios
-        .$post(`http://localhost/api/v1/present/`, bodyFormData, {
+        .$post(`http://api-booking.ru/api/v1/present/`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
