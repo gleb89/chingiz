@@ -11,7 +11,7 @@
       </v-col>
   
     <v-col class="box-cat rounded-lg text-center" @click="onfilterslug(category.slug_category)" v-for="category in categories" :key="category.id">
-        <img :src="category.icon" alt="" /><p
+        <img style="max-height: 30px;max-width: 30px;" :src="category.icon" alt="" /><p
           class="text-center"
           style="font-size: .9rem;font-weight: bold;"
           >{{ category.name_category }}
@@ -20,12 +20,11 @@
      </v-col>
 
     <v-col @click="reason_id = reason.id" class="box-cat rounded-lg text-center" v-for="reason in form.reason_for_precent" :key="reason.id">
-        <img :src="reason.icon" alt="" /><p
+        <img style="max-height: 30px;max-width: 30px;" :src="reason.icon" alt="" /><p
           class="text-center"
           style="font-size: .9rem;font-weight: bold;"
           >{{ reason.name_reason }}
         </p>
-      
      </v-col>
     
   </v-row>

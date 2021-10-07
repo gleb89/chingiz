@@ -349,6 +349,12 @@
           <img  style="width: 10rem;" :src="item.image_precent" alt="none">
 
         </template>
+          <template v-slot:item.reason_for_precent="{ item }">
+        <div v-for="reason_item in item.reason_for_precent" :key="reason_item.id">
+          <span>{{reason_item.name_reason}}</span>
+        </div>
+          
+        </template>
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
           <v-icon small class="mr-2" @click="editItem(item)">
@@ -427,7 +433,7 @@ export default {
       },
       {
         text: "Повод ",
-        value: "reason_for_precent[0].name_reason",
+        value: "reason_for_precent",
         sortable: false,
       },
       {
@@ -586,7 +592,11 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       Object.assign(this.items[this.editedIndex], this.editedItem);
-
+      let select_id = []
+      for(let i of this.editedItem.reason_for_precent){
+        select_id.push(i.id)
+      }
+      console.log(select_id);
       let bodyFormData = new FormData();
       bodyFormData.append("prevue_name", this.editedItem.prevue_name);
       bodyFormData.append("name_precent", this.editedItem.name_precent);
@@ -611,17 +621,18 @@ export default {
         this.editedItem.type_precent[0] = this.type;
         this.type = {};
       }
-      if (this.select) {
-        bodyFormData.append("reason_for_precent_id", this.editedItem.reason_for_precent);
+      
+      bodyFormData.append("reason_for_precent_id",String(select_id) );
         
      
-      }
+      
 
       this.$axios
         .$put(`http://api-booking.ru/api/v1/present/${this.editedItem.id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
+          console.log(resp);
           this.items = resp;
         })
         .catch(function (error) {

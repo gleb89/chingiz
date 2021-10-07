@@ -135,7 +135,7 @@ export default {
   },
   mounted: function () {
     let self = this; 
-    this.ws = new WebSocket("ws://80.249.151.147/ws/present/basket");
+    this.ws = new WebSocket("ws://84.38.181.26/ws/present/basket");
     // this.ws = new WebSocket("ws://localhost:8080/ws/present/basket");
     this.ws.onmessage = (event) => {
       let response = JSON.parse(event.data)
