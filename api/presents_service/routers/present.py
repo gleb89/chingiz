@@ -51,7 +51,6 @@ async def create(
         body = body
     )
     type_precent = await TypePresent.objects.get_or_none(id=type_precent_id)
-    reason_for_precent = await Reason.objects.get_or_none(id=reason_for_precent_id)
     category = await Categories.objects.get_or_none(id=category_id)
     form_precent = await FormPresent.objects.get_or_none(id=form_precent_id)
     await new_present.type_precent.add(type_precent)
@@ -61,6 +60,7 @@ async def create(
     list_id_reason = [int(i) for i in list_id_reason]
     for reason_id in list_id_reason:
         reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
+        print(reason_for_precent)
         await new_present.reason_for_precent.add(reason_for_precent)
     return new_present
 
