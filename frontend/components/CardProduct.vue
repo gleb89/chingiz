@@ -10,7 +10,7 @@
       ></div>
       <div style="width:100%;text-align: center;">
         <img
-          style="width:20rem"
+          style="height: 16em;width: auto;"
           :class="{ 'on-hover': hover }"
           class="img"
           :src="present.image_precent"
