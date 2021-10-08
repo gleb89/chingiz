@@ -50,12 +50,12 @@
             ></v-img>
             <span>есть в наличии</span>
           </div>
-          <p class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
-          <p class="ml-1 mt-1">
+          <p  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
+          <p  v-if="product.body" class="ml-1 mt-1">
             
             {{product.body}}
           </p>
-          <div>
+          <div v-if="product.composition" >
             <p style="font-weight: bold;">Состав корзины:</p>
             <p v-for="(comp,index) in product.composition.split(/\d+/g)" :key="index">
             <span v-if="index">{{index}}</span>{{comp}}
