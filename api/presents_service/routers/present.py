@@ -29,15 +29,15 @@ headers = {
 
 @precent_router.post('/')
 async def create(
-    prevue_name: str = Form(...),
+    prevue_name: str = Form(None),
     name_precent: str = Form(...),
     price: int = Form(...),
-    composition: str = Form(...),
+    composition: str = Form(None),
     category_id: str = Form(...),
-    form_precent_id: str = Form(...),
-    type_precent_id: str = Form(...),
+    form_precent_id: str = Form(None),
+    type_precent_id: str = Form(None),
     reason_for_precent_id: list = Form(...),
-    body :str = Form(...),
+    body :str = Form(None),
     image: UploadFile = File(...),
     # admin = Depends(jwt_auth)
     ):

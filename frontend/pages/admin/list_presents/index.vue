@@ -41,7 +41,7 @@
                   <v-form ref="form_com_children" lazy-validation>
                         <v-text-field
                           v-model="prevue_name"
-                          :rules="[(v) => !!v || 'Не может быть пустым']"
+                          
                           label="превью корзины(напр:подарочная корзина)"
                         ></v-text-field>
                     <v-text-field
@@ -56,7 +56,7 @@
                       name="input-7-4"
                       v-model="composition"
                       label="Состав подарочной корзины "
-                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      
                       required
                     ></v-textarea>
 
@@ -65,7 +65,7 @@
                       name="input-7-4"
                       v-model="body"
                       label="Описание подарочной корзиныv "
-                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      
                       required
                     ></v-textarea>
 
@@ -477,14 +477,9 @@ export default {
       if (
         this.name_precent &&
         this.price &&
-        this.composition &&
         this.image_precent &&
         this.category.id &&
-        this.form.id &&
-        this.type.id &&
-        this.select &&
-        this.prevue_name &&
-        this.body
+        this.select 
       ) {
         return true;
       } else {
@@ -535,15 +530,28 @@ export default {
       }
        
       let bodyFormData = new FormData();
-      bodyFormData.append("prevue_name", this.prevue_name);
+      
+      if(this.prevue_name){
+        bodyFormData.append("prevue_name", this.prevue_name);
+      }
       bodyFormData.append("name_precent", this.name_precent);
       bodyFormData.append("price", Number(this.price));
-      bodyFormData.append("composition", this.composition);
+      if(this.composition){
+        bodyFormData.append("composition", this.composition);
+      }
+      
       bodyFormData.append("image", this.image_precent);
       bodyFormData.append("category_id", this.category.id);
-      bodyFormData.append("form_precent_id", this.form.id);
-      bodyFormData.append("type_precent_id", this.type.id);
-      bodyFormData.append("body", this.body);
+      if(this.form.id){
+        bodyFormData.append("form_precent_id", this.form.id);
+      }
+      if(this.type.id){
+        bodyFormData.append("type_precent_id", this.type.id);
+      }
+      if(this.body){
+        bodyFormData.append("body", this.body);
+      }
+      
       bodyFormData.append("reason_for_precent_id",String(select_id) );
 
       this.$axios

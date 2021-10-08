@@ -38,7 +38,7 @@ class Present(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     prevue_name: str = ormar.String(max_length=1000,nullable=True,default='')
     name_precent: str = ormar.String(max_length=1000)
-    body: str = ormar.String(max_length=1000,default='')
+    body: str = ormar.String(max_length=1000,nullable=True,default='')
     price: int = ormar.Integer()
     image_precent: str = ormar.String(max_length=1000, nullable=True)
     composition: str = ormar.String(max_length=10000, nullable=True)

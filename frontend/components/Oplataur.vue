@@ -134,16 +134,59 @@
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-text-field
-          id="searchTextField2"
-          label="Укажите адрес доставки"
+          id=""
+          label="Укажите город "
           placeholder=""
             class="prep"
             prepend-inner-icon="*"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             solo
-            v-model="adress" 
+            v-model="city" 
             style="min-width:100%"
           ></v-text-field>
+      
+        </v-col>
+        <v-col cols="12" sm="12" md="12">
+          <v-text-field
+          id=""
+          label="Укажите улицу "
+          placeholder=""
+            class="prep"
+            prepend-inner-icon="*"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
+            solo
+            v-model="stret" 
+            style="min-width:100%"
+          ></v-text-field>
+      
+        </v-col>
+        <v-col cols="12" sm="12" md="12">
+          <v-text-field
+          id=""
+          label="Укажите дом "
+          placeholder=""
+            class="prep"
+            prepend-inner-icon="*"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
+            solo
+            v-model="home" 
+            style="min-width:100%"
+          ></v-text-field>
+      
+        </v-col>
+        <v-col cols="12" sm="12" md="12">
+          <v-text-field
+          id=""
+          label="Укажите квартиру"
+          placeholder=""
+            class="prep"
+            prepend-inner-icon="*"
+            :rules="[(v) => !!v || 'Не может быть пустым']"
+            solo
+            v-model="kvartira" 
+            style="min-width:100%"
+          ></v-text-field>
+      
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-textarea
@@ -421,23 +464,23 @@ export default {
 mounted: function () {
 
  
-const center = {  lat: 40.749933, lng: -73.98633 };
-const defaultBounds = {
-  north: center.lat + 0.1,
-  south: center.lat - 0.1,
-  east: center.lng + 0.1,
-  west: center.lng - 0.1,
-};
-const input = document.getElementById("searchTextField2");
-const options = {
-  bounds: defaultBounds,
-  componentRestrictions: { country: "kz" },
-    fields: ["formatted_address", "geometry", "name"],
-    strictBounds: false,
-    types: ["address"],
+// const center = {  lat: 40.749933, lng: -73.98633 };
+// const defaultBounds = {
+//   north: center.lat + 0.1,
+//   south: center.lat - 0.1,
+//   east: center.lng + 0.1,
+//   west: center.lng - 0.1,
+// };
+// const input = document.getElementById("searchTextField2");
+// const options = {
+//   bounds: defaultBounds,
+//   componentRestrictions: { country: "kz" },
+//     fields: ["formatted_address", "geometry", "name"],
+//     strictBounds: false,
+//     types: ["address"],
 
-};
-const autocomplete = new google.maps.places.Autocomplete(input, options);
+// };
+// const autocomplete = new google.maps.places.Autocomplete(input, options);
 // autocomplete.setTypes("address")
 
 	},
@@ -456,12 +499,16 @@ const autocomplete = new google.maps.places.Autocomplete(input, options);
           valid: true,
           scrol: false,
           menu1:false,
+          kvartira:'',
+          home:'',
+          stret:'',
+          city:localStorage.getItem('city')||'',
           name:'',
           count_spis_bonus:0,
           spis_bonus:null,
           oplata_methods:null,
           text_comment:'',
-          adress:localStorage.getItem('city')||'',
+          adress:'',
           email:'',
           familyname:'',
           phone:'',
@@ -527,6 +574,8 @@ const autocomplete = new google.maps.places.Autocomplete(input, options);
     oplatacheckfiz() {
       let sum = (this.basket.summ_present + 500)-this.count_spis_bonus
       let bonuusadd = this.presents_in_basket.count_present_item.presents.length*500
+      this.adress = 'Город: '+this.city+',Улица: '+this.stret+',Дом: '+this.home+',Квартира: '+this.kvartira
+     
       let data = {
       'name_user':this.name,
       'oplata_user':this.oplata_methods,
