@@ -165,6 +165,7 @@ async def update_one(
         category = await Categories.objects.get_or_none(
                                         id=category_id
                                         )
+
         await present.category.remove(present.category[0])
         await present.category.add(category)
 
@@ -172,14 +173,16 @@ async def update_one(
         type_precent = await TypePresent.objects.get_or_none(
                                         id=type_precent_id
                                         )
-        await present.type_precent.remove(present.type_precent[0])
+        if present.type_precent:
+            await present.type_precent.remove(present.type_precent[0])
         await present.type_precent.add(type_precent)
 
     if form_precent_id:
         form_precent = await FormPresent.objects.get_or_none(
                                         id=form_precent_id
                                         )
-        await present.form_precent.remove(present.form_precent[0])
+        if present.form_precent:
+            await present.form_precent.remove(present.form_precent[0])
         await present.form_precent.add(form_precent)
 
     if reason_for_precent_id:

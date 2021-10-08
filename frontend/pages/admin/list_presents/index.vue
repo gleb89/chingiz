@@ -479,7 +479,7 @@ export default {
         this.price &&
         this.image_precent &&
         this.category.id &&
-        this.select 
+        this.select.length
       ) {
         return true;
       } else {
