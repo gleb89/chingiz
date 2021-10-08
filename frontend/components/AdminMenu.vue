@@ -13,6 +13,14 @@
           v-model="group"
           active-class="deep-purple--text text--accent-4"
         >
+
+
+          <v-list-item @click="onadminPage('/admin/alladmins')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='list-alt'></fa>
+            </v-list-item-icon>
+            <v-list-item-title>Администраторы</v-list-item-title>
+          </v-list-item>
           <v-list-item @click="onadminPage('/admin/list_presents')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-alt'></fa>
