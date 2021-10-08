@@ -48,14 +48,18 @@ async def create(
         price = price,
         composition = composition,
         image_precent = new_image,
-        body = body
+        
     )
-    type_precent = await TypePresent.objects.get_or_none(id=type_precent_id)
+    if type_precent_id:
+        type_precent = await TypePresent.objects.get_or_none(id=type_precent_id)
+        await new_present.type_precent.add(type_precent)
+    
+    if form_precent_id:
+        form_precent = await FormPresent.objects.get_or_none(id=form_precent_id)
+        await new_present.form_precent.add(form_precent)
     category = await Categories.objects.get_or_none(id=category_id)
-    form_precent = await FormPresent.objects.get_or_none(id=form_precent_id)
-    await new_present.type_precent.add(type_precent)
     await new_present.category.add(category)
-    await new_present.form_precent.add(form_precent)
+    
     list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
     list_id_reason = [int(i) for i in list_id_reason]
     for reason_id in list_id_reason:
