@@ -32,6 +32,7 @@ class Admin(ormar.Model):
     users_read:bool = ormar.Boolean(nullable=True,default=False)
     comments_read:bool = ormar.Boolean(nullable=True,default=False)
     podpiska_read:bool = ormar.Boolean(nullable=True,default=False)
+    courer_read:bool = ormar.Boolean(nullable=True,default=False)
 
     courer_change:bool = ormar.Boolean(nullable=True,default=False)
     history_basket_change:bool = ormar.Boolean(nullable=True,default=False)

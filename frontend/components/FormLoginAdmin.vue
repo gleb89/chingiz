@@ -60,6 +60,8 @@ import { mapState } from "vuex";
         })
         .then((token) => {
           this.$store.commit("localStorage/setAuthadmin", `Bearer ${token.access_token}`);
+          this.$store.commit("localStorage/setAuthadmindata", token.admin_data);
+         
           this.$router.push('/admin/list_presents')
         })
         .catch(function (error) {
