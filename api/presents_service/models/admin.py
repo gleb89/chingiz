@@ -43,7 +43,6 @@ class Admin(ormar.Model):
     users_change:bool = ormar.Boolean(nullable=True,default=False)
     comments_change:bool = ormar.Boolean(nullable=True,default=False)
     podpiska_change:bool = ormar.Boolean(nullable=True,default=False)
-    courer_change:bool = ormar.Boolean(nullable=True,default=False)
 
     @validator('password')
     def hash_password(cls, pw: str) -> str:

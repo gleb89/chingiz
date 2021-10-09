@@ -222,12 +222,10 @@ export default {
   },
   methods: {
     updateReadChange(admin_id,key_admin,val){
-    
-      let data = {
-        
-      }
-      data[key_admin] =val
-      console.log(data);
+    let bodyFormData = new FormData();
+    bodyFormData.append(key_admin, val);
+ 
+      console.log(bodyFormData);
     },
     ondialog(){
       this.dialogcreate = true

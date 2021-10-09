@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Form
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
@@ -61,7 +61,66 @@ async def delete_one(id:int):
     return await user.delete()
 
 @admin_router.put('/{id}')
-async def update_one(id:int,admin_key:str,admin_value:bool):
+async def update_one(
+    id:int,
+    history_basket_read:bool = Form(None),
+    present_read:bool = Form(None),
+    filters_present_read:bool = Form(None),
+    users_read:bool = Form(None),
+    comments_read:bool = Form(None),
+    podpiska_read:bool = Form(None),
+    courer_read:bool = Form(None),
+
+    courer_change:bool = Form(None),
+    history_basket_change:bool = Form(None),
+    present_change:bool = Form(None),
+    filters_present_change:bool = Form(None),
+    users_change:bool = Form(None),
+    comments_change:bool = Form(None),
+    podpiska_change:bool = Form(None),
+):
     user = await Admin.objects.get_or_none(id = id)
-    return await user.update(admin_key = admin_value)
+    if history_basket_read:
+        await user.update(history_basket_read = history_basket_read)
+
+    if present_read:
+        await user.update(present_read = present_read)
+
+    if filters_present_read:
+        await user.update(filters_present_read = filters_present_read)
+
+    if users_read:
+        await user.update(users_read = users_read)
+
+    if comments_read:
+        await user.update(comments_read = comments_read)
+
+    if podpiska_read:
+        await user.update(podpiska_read = podpiska_read)
+
+    if courer_read:
+        await user.update(courer_read = courer_read)
+
+    if courer_change:
+        await user.update(courer_change = courer_change)
+
+    if history_basket_change:
+        await user.update(history_basket_change = history_basket_change)
+
+    if present_change:
+        await user.update(present_change= present_change)
+
+    if filters_present_change:
+        await user.update(filters_present_change = filters_present_change)
+
+    if users_change:
+        await user.update(users_change= users_change)
+
+    if comments_change:
+        await user.update(comments_change = comments_change)
+
+    if podpiska_change:
+        await user.update(podpiska_change = podpiska_change)
+    return await Admin.objects.all()
+    
     
