@@ -15,7 +15,7 @@
         >
 
 
-          <v-list-item @click="onadminPage('/admin/alladmins')">
+          <v-list-item v-if="admin_data.admins_read" @click="onadminPage('/admin/alladmins')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-alt'></fa>
             </v-list-item-icon>

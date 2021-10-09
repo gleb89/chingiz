@@ -53,3 +53,9 @@ async def create_token_jwt(admin:AdminLogin):
 async def get_all(name:str,password:str):
     user = await Admin.objects.get_or_none(name=name)
     return verify_password(user.password, password)
+
+
+@admin_router.delete('/{id}')
+async def delete_one(id:int):
+    user = await Admin.objects.get_or_none(id = id)
+    return await user.delete()
