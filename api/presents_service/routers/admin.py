@@ -31,6 +31,7 @@ async def create_token_jwt(admin:AdminLogin):
             'status':True,
             "access_token": access_token,
             "access_token_expires": access_token_expires,
+            "admin_data":user
             }
         json_compatible_item_data = jsonable_encoder(cont)
         return JSONResponse(
