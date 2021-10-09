@@ -91,7 +91,7 @@ async def update_one(
 
     if users_read != None:
         await user.update(users_read = users_read)
-    print(comments_read)
+
     if comments_read != None:
         
         await user.update(comments_read = comments_read)
@@ -116,7 +116,7 @@ async def update_one(
 
     if users_change != None:
         await user.update(users_change= users_change)
-    print(comments_change)
+        
     if comments_change != None:
         
         await user.update(comments_change = comments_change)

@@ -96,6 +96,7 @@
           </td>
 
           <td>
+            
             <v-switch
             @click="updateReadChange(admin.id,key='present_read',admin.present_read)"
             color="success"
@@ -142,16 +143,16 @@
 
           <td>
             <v-switch
+            @click="updateReadChange(admin.id,key='comments_read',admin.comments_read)"
             color="success"
                 label="Чтение"
-                @click="updateReadChange(admin.id,key='сomments_read',admin.сomments_read)"
-                v-model="admin.сomments_read"
+                v-model="admin.comments_read"
                 ></v-switch>
             <v-switch
             color="info"
+                @click="updateReadChange(admin.id,key='comments_change',admin.comments_change)"
                 label="Изменение"
-                @click="updateReadChange(admin.id,key='сomments_change',admin.сomments_change)"
-                v-model="admin.сomments_change"
+                v-model="admin.comments_change"
                 ></v-switch>
           </td>
 
@@ -226,8 +227,9 @@ export default {
         "Content-Type": "application/json",
         Authorization: this.$store.state.localStorage.jwtToken,
       };
+    console.log(key_admin,val);
     let bodyFormData = new FormData();
-    bodyFormData.append(key_admin, val);
+    bodyFormData.append(key_admin,val);
     this.$axios
         .$put(`http://api-booking.ru/api/v1/present/admin/${admin_id}`, bodyFormData, {
           headers: headers,
