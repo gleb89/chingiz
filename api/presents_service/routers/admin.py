@@ -91,9 +91,9 @@ async def update_one(
 
     if users_read != None:
         await user.update(users_read = users_read)
-
+    print(comments_read)
     if comments_read != None:
-        print(comments_read)
+        
         await user.update(comments_read = comments_read)
 
     if podpiska_read != None:
@@ -116,9 +116,9 @@ async def update_one(
 
     if users_change != None:
         await user.update(users_change= users_change)
-
+    print(comments_change)
     if comments_change != None:
-        print(comments_change)
+        
         await user.update(comments_change = comments_change)
 
     if podpiska_change != None:
