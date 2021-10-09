@@ -61,7 +61,7 @@ async def delete_one(id:int):
     return await user.delete()
 
 @admin_router.put('/{id}')
-async def update_one(admin_key:str,admin_value:bool):
+async def update_one(id:int,admin_key:str,admin_value:bool):
     user = await Admin.objects.get_or_none(id = id)
     return await user.update(admin_key = admin_value)
     
