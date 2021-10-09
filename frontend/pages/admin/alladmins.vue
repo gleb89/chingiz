@@ -1,7 +1,62 @@
 <template>
 <div>
     <h2>Администраторы</h2>
-      <v-simple-table class="d-lg-block d-md-block d-none">
+         <div style="width: 100%; padding: 1rem">
+            <v-btn
+              @click="ondialog"
+              class="mx-2"
+              fab
+              color="indigo"
+            >
+              <v-icon dark style="color:white"> mdi-plus </v-icon>
+            </v-btn>
+          </div>
+          <v-dialog v-model="dialogcreate" persistent max-width="600px">
+       <v-card>
+          <v-card-title>
+            
+          </v-card-title>
+          <v-card-text>
+            <v-container class="">
+              <v-row justify="start">
+                <h2 class="text-start">Создать Администратора</h2>
+               
+                <v-col cols="12">
+                  <v-form ref="form_com_children" lazy-validation>
+                        <v-text-field
+                          v-model="name"
+                          
+                          label="Имя администратора"
+                        ></v-text-field>
+                    <v-text-field
+                      v-model="password"
+                      label="пароль"
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      required
+                    ></v-text-field>
+      
+                    <v-btn
+                      :disabled="!onlformdata"
+                      class="mr-4"
+                      @click="sendDataform"
+                    >
+                      Создать
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="blue darken-1" text @click="dialogcreate = false">
+              Отмена
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+          </v-dialog>
+      <v-simple-table class="">
     <template v-slot:default>
       <thead>
         <tr>
@@ -42,13 +97,14 @@
 
           <td>
             <v-switch
+            @click="updateReadChange(admin.id,key='present_read',admin.present_read)"
             color="success"
                 label="Чтение"
                 v-model="admin.present_read"
                 ></v-switch>
             <v-switch
             color="info"
-
+                @click="updateReadChange(admin.id,key='present_change',admin.present_change)"
                 label="Изменение"
                 v-model="admin.present_change"
                 ></v-switch>
@@ -58,11 +114,13 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='filters_present_read',admin.filters_present_read)"
                 v-model="admin.filters_present_read"
                 ></v-switch>
             <v-switch
             color="info"
                 label="Изменение"
+                @click="updateReadChange(admin.id,key='filters_present_change',admin.filters_present_change)"
                 v-model="admin.filters_present_change"
                 ></v-switch>
           </td>
@@ -71,11 +129,13 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='users_read',admin.users_read)"
                 v-model="admin.users_read"
                 ></v-switch>
             <v-switch
             color="info"
                 label="Изменение"
+                @click="updateReadChange(admin.id,key='users_change',admin.users_change)"
                 v-model="admin.users_change"
                 ></v-switch>
           </td>
@@ -84,11 +144,13 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='сomments_read',admin.сomments_read)"
                 v-model="admin.сomments_read"
                 ></v-switch>
             <v-switch
             color="info"
                 label="Изменение"
+                @click="updateReadChange(admin.id,key='сomments_change',admin.сomments_change)"
                 v-model="admin.сomments_change"
                 ></v-switch>
           </td>
@@ -97,6 +159,7 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='podpiska_read',admin.podpiska_read)"
                 v-model="admin.podpiska_read"
                 ></v-switch>
           </td>
@@ -105,11 +168,13 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='courer_read',admin.courer_read)"
                 v-model="admin.courer_read"
                 ></v-switch>
             <v-switch
             color="info"
                 label="Изменение"
+                @click="updateReadChange(admin.id,key='courer_change',admin.courer_change)"
                 v-model="admin.courer_change"
                 ></v-switch>
           </td>
@@ -118,11 +183,13 @@
             <v-switch
             color="success"
                 label="Чтение"
+                @click="updateReadChange(admin.id,key='history_basket_read',admin.history_basket_read)"
                 v-model="admin.history_basket_read"
                 ></v-switch>
             <v-switch
             color="info"
                 label="Изменение"
+                @click="updateReadChange(admin.id,key='history_basket_change',admin.history_basket_change)"
                 v-model="admin.history_basket_change"
                 ></v-switch>
           </td>
@@ -144,12 +211,71 @@ export default {
        `http://api-booking.ru/api/v1/present/admin/`
     );
 
-    return { admins:admins.data};
+    return { admins_list:admins.data};
   },
   data() {
       return {
-        
+        dialogcreate:false,
+        name:'',
+        password:''
       };
   },
+  methods: {
+    updateReadChange(admin_id,key_admin,val){
+    
+      let data = {
+        
+      }
+      data[key_admin] =val
+      console.log(data);
+    },
+    ondialog(){
+      this.dialogcreate = true
+    },
+    sendDataform() {
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken,
+      };
+    let data = {
+      "name":this.name,
+      "password":this.password
+    }
+
+    this.$axios
+        .$post(`http://api-booking.ru/api/v1/present/admin/`, data, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp);
+         this.admins_list.push(resp)
+         this.dialogCreate = false
+        })
+        .catch(function (error) {
+          console.log("error");
+        });
+      
+    },
+  },
+  computed: {
+    admins() {
+      this.admins_list = this.admins_list.filter((elem) => {
+        return elem.superuser == false
+      });
+      return this.admins_list 
+    },
+    onlformdata() {
+      if (
+        this.name &&
+        this.password
+
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+  
+  },
+}
 }
 </script>

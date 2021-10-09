@@ -59,3 +59,9 @@ async def get_all(name:str,password:str):
 async def delete_one(id:int):
     user = await Admin.objects.get_or_none(id = id)
     return await user.delete()
+
+@admin_router.put('/{id}')
+async def update_one(admin_key:str,admin_value:bool):
+    user = await Admin.objects.get_or_none(id = id)
+    return await user.update(admin_key = admin_value)
+    
