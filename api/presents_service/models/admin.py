@@ -26,6 +26,7 @@ class Admin(ormar.Model):
     name: str = ormar.String(max_length=1000)
     password:str = ormar.String(max_length=1000)
     superuser:bool = ormar.Boolean(nullable=True,default=False)
+    admins_read:bool = ormar.Boolean(nullable=True,default=False)
     history_basket_read:bool = ormar.Boolean(nullable=True,default=False)
     present_read:bool = ormar.Boolean(nullable=True,default=False)
     filters_present_read:bool = ormar.Boolean(nullable=True,default=False)
@@ -34,6 +35,7 @@ class Admin(ormar.Model):
     podpiska_read:bool = ormar.Boolean(nullable=True,default=False)
     courer_read:bool = ormar.Boolean(nullable=True,default=False)
 
+    admins_change:bool = ormar.Boolean(nullable=True,default=False)
     courer_change:bool = ormar.Boolean(nullable=True,default=False)
     history_basket_change:bool = ormar.Boolean(nullable=True,default=False)
     present_change:bool = ormar.Boolean(nullable=True,default=False)
