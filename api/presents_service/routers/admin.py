@@ -80,47 +80,48 @@ async def update_one(
     podpiska_change:bool = Form(None),
 ):
     user = await Admin.objects.get_or_none(id = id)
-    if history_basket_read:
+    if history_basket_read != None:
         await user.update(history_basket_read = history_basket_read)
 
-    if present_read:
+    if present_read != None:
         await user.update(present_read = present_read)
 
-    if filters_present_read:
+    if filters_present_read != None:
         await user.update(filters_present_read = filters_present_read)
 
-    if users_read:
+    if users_read != None:
         await user.update(users_read = users_read)
 
-    if comments_read:
+    if comments_read != None:
         await user.update(comments_read = comments_read)
 
-    if podpiska_read:
+    if podpiska_read != None:
         await user.update(podpiska_read = podpiska_read)
 
-    if courer_read:
+    if courer_read != None:
         await user.update(courer_read = courer_read)
 
-    if courer_change:
+    if courer_change != None:
         await user.update(courer_change = courer_change)
 
-    if history_basket_change:
+    if history_basket_change != None:
         await user.update(history_basket_change = history_basket_change)
 
-    if present_change:
+    if present_change != None:
         await user.update(present_change= present_change)
 
-    if filters_present_change:
+    if filters_present_change != None:
         await user.update(filters_present_change = filters_present_change)
 
-    if users_change:
+    if users_change != None:
         await user.update(users_change= users_change)
 
-    if comments_change:
+    if comments_change != None:
         await user.update(comments_change = comments_change)
 
-    if podpiska_change:
+    if podpiska_change != None:
         await user.update(podpiska_change = podpiska_change)
+
     return await Admin.objects.all()
     
     
