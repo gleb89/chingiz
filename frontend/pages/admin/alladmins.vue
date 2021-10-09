@@ -222,10 +222,24 @@ export default {
   },
   methods: {
     updateReadChange(admin_id,key_admin,val){
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken,
+      };
     let bodyFormData = new FormData();
     bodyFormData.append(key_admin, val);
- 
-      console.log(bodyFormData);
+    this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/admin/${admin_id}`, bodyFormData, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp);
+         this.admins_list = resp
+        })
+        .catch(function (error) {
+          console.log("error");
+        });
+    
     },
     ondialog(){
       this.dialogcreate = true
