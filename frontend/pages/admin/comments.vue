@@ -19,6 +19,7 @@
     >
           <template v-slot:item.moderation="{ item }">
               <v-checkbox
+              v-if="admin_data.comments_change"
               @click="onmoderComment(item.id,item.moderation)"
                 v-model="item.moderation"
                 
@@ -38,6 +39,12 @@ export default {
 
     return {comments:comments.data};
   },
+computed: {
+       admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
+
+},
   data() {
       return {
         headers: [

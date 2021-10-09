@@ -57,8 +57,8 @@
           </p>
           <div v-if="product.composition" >
             <p style="font-weight: bold;">Состав корзины:</p>
-            <p v-for="(comp,index) in product.composition.split(/\d+/g)" :key="index">
-            <span v-if="index">{{index}}</span>{{comp}}
+            <p v-for="(comp,index) in product.composition.split(/\d[.]+/g)" :key="index">
+            <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
             </p>
           </div>
           <!-- card basket -->

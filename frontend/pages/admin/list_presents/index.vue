@@ -15,7 +15,7 @@
       {{ get_filters }}
       <v-dialog v-model="dialog_send" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <div style="width: 100%; padding: 1rem">
+          <div v-if="admin_data.present_change" style="width: 100%; padding: 1rem">
             <v-btn
               v-bind="attrs"
               v-on="on"
@@ -50,7 +50,14 @@
                       :rules="[(v) => !!v || 'Не может быть пустым']"
                       required
                     ></v-text-field>
-
+                    <h4 class="mt-6">Перенос строки ,если начало нового пункта начинается с цифры и точки
+                      <br>
+                      пример(1.)
+                    </h4>
+                    <h6>Превью отображения на сайте</h6>
+                   <p v-for="(comp,index) in composition.split(/\d[.]+/g)" :key="index">
+                  <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
+                  </p> 
                     <v-textarea
                       outlined
                       name="input-7-4"
@@ -58,16 +65,20 @@
                       label="Состав подарочной корзины "
                       
                       required
-                    ></v-textarea>
+                    >
+  
+
+                    </v-textarea>
 
                       <v-textarea
                       outlined
                       name="input-7-4"
                       v-model="body"
-                      label="Описание подарочной корзиныv "
+                      label="Описание подарочной корзины"
                       
                       required
                     ></v-textarea>
+
 
                     <v-text-field
                       v-model="price"
@@ -205,6 +216,7 @@
                       </v-col>
 
                         <v-col cols="12" sm="6" md="12">
+
                    <v-textarea
                           outlined
                           name="input-7-4"
@@ -221,11 +233,20 @@
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
+                    <h4 class="mt-6">Перенос строки, если начало нового пункта начинается с цифры и точки
+                      <br>
+                      пример(1.)
+                    </h4>
+                    <h6>Превью отображения на сайте</h6>
+                   <p v-for="(comp,index) in String(editedItem.composition).split(/\d[.]+/g)" :key="index">
+                  <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
+                  </p> 
+                  
                         <v-textarea
                           outlined
                           name="input-7-4"
                           v-model="editedItem.composition"
-                          label="Состав подарочной корзины "
+                          label="Состав подарочной корзины"
                         ></v-textarea>
                       </v-col>
 
@@ -249,13 +270,14 @@
                           persistent-hint
                           return-object
                           single-line
-                          label="Изменить категорию"
+                          :label="category"
                           outlined
                         ></v-select>
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить форму подарка</span>
+                        
                         <v-select
                           v-model="form"
                           :items="form_precent"
@@ -264,7 +286,7 @@
                           persistent-hint
                           return-object
                           single-line
-                          label="Изменить форму подарка"
+                          :label="form"
                           outlined
                         ></v-select>
                       </v-col>
@@ -278,25 +300,15 @@
                           item-value="id"
                           persistent-hint
                           return-object
+                          :label="type"
                           single-line
-                          label="Изменить тип подарка"
+                          
                           outlined
                         ></v-select>
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить повод подарка</span>
-                        <!-- <v-select
-                          v-model="reason"
-                          :items="reason_for_precent"
-                          item-text="name_reason"
-                          item-value="id"
-                          persistent-hint
-                          return-object
-                          single-line
-                          label="Изменить повод подарка"
-                          outlined
-                        ></v-select> -->
                           <v-combobox
                         v-model="editedItem.reason_for_precent"
                         :items="reason_for_precent"
@@ -357,13 +369,13 @@
         </template>
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
+          <v-icon v-if="admin_data.present_change" small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+          <v-icon v-if="admin_data.present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
         </template>
         <template v-slot:item.onpage="{ item }">
-          <div class="text-center">
+          <div  class="text-center">
             <fa
               style="cursor: pointer"
               @click="Onpage(item.id)"
@@ -467,7 +479,9 @@ export default {
   }),
 
   computed: {
- 
+     admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
     all_filter() {
       (this.categories = this.data_filter.categories),
         (this.form_precent = this.data_filter.form_precent),
@@ -574,6 +588,18 @@ export default {
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
+      if(item.type_precent.length > 0){
+        this.type = item.type_precent[0].name_type
+      }
+      if(item.form_precent.length > 0){
+        this.form = item.form_precent[0].name_form
+      }
+      if(item.category.length > 0){
+        this.category  = item.category[0].name_category
+      }
+           
+      
+     
       this.dialog = true;
     },
 
@@ -590,6 +616,9 @@ export default {
 
     close() {
       this.dialog = false;
+      this.type = {}
+      this.form = {}
+      this.category = {}
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;

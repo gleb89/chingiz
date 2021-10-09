@@ -31,6 +31,7 @@ export default {
     return { history_data: history_data.data, curers: curers.data };
   },
   computed: {
+
     data_history_fiz() {
       this.data_fiz = this.history_data.filter(elem => {
         return elem.fiz_oplata === true;

@@ -136,6 +136,8 @@ computed: {
       },
       onExit(){
         this.$store.commit("localStorage/setAuthadmin", '');
+        this.$store.commit("localStorage/setAuthadmindata", {});
+        this.$router.push('/admin')
       }
     },
   }

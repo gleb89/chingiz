@@ -19,7 +19,7 @@
       max-width="600px"
     >
       <template v-slot:activator="{ on, attrs }">
-          <div style="width: 100%;padding: 1rem;">
+          <div v-if="admin_data.filters_present_change" style="width: 100%;padding: 1rem;">
         <v-btn
         v-bind="attrs"
         v-on="on"
@@ -161,8 +161,8 @@
         </template>
       <!-- изменить удалитggь -->
       <template v-slot:item.actions="{ item }">
-        <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
+        <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
       </template>
     </v-data-table>
     </v-card>
@@ -215,6 +215,9 @@ export default {
       this.items = this.category_presents;
       return this.items;
     },
+       admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
   },
 
   watch: {

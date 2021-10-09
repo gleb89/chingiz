@@ -4,7 +4,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
-          <span class="text-h5">Формы корзины</span>
+          
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -57,7 +57,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <div style="width: 100%;padding: 1rem;">
+    <div v-if="admin_data.courer_change" style="width: 100%;padding: 1rem;">
       <v-btn @click="dialog = true" class="mx-2" fab dark color="indigo">
         <v-icon dark style="color:white"> mdi-plus </v-icon>
       </v-btn>
@@ -86,6 +86,12 @@ export default {
 
     return { curers: curers.data };
   },
+computed: {
+     admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
+
+},
   data() {
     return {
       headers: [

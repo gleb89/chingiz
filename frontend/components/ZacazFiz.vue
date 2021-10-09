@@ -90,10 +90,11 @@
         </v-btn>
       </template>
       <template v-slot:item.admin_send_curer="{ item,index }">
-       
-        <v-btn v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
+       <div v-if="admin_data.history_basket_change">
+        <v-btn  v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
           выбрать
         </v-btn>
+        </div>
         <span v-if="item.admin_send_curer">отправлен курьеру c id :{{item.send_id_curer}}/
           имя: {{item.send_name_curer}}/
         </span>
@@ -109,6 +110,12 @@
 <script>
 export default {
   props:['data_history_fiz',"curers"],
+computed: {
+       admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
+
+},
   data() {
     return {
       headers: [
