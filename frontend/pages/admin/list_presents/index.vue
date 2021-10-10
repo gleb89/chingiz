@@ -705,4 +705,10 @@ export default {
 };
 </script>
 
+<style  >
+  .v-data-table-header{
+    background: rgb(236, 224, 253) none repeat scroll 0% 0%;
+  }
+</style>
+
 

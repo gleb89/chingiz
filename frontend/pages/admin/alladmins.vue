@@ -25,8 +25,15 @@
                   <v-form ref="form_com_children" lazy-validation>
                         <v-text-field
                           v-model="name"
-                          
+                        :rules="[(v) => !!v || 'Не может быть пустым']"
+                      required
                           label="Имя администратора"
+                        ></v-text-field>
+                        <v-text-field
+                          v-model="email"
+                        :rules="[(v) => !!v || 'Не может быть пустым']"
+                      required
+                          label="Email администратора"
                         ></v-text-field>
                     <v-text-field
                       v-model="password"
@@ -58,10 +65,13 @@
           </v-dialog>
       <v-simple-table class="">
     <template v-slot:default>
-      <thead>
+      <thead style="background: #ffbc7f;">
         <tr>
           <th style="color:#1F2128" class="text-left">
             имя админа
+          </th>
+          <th style="color:#1F2128" class="text-left">
+            Email админа
           </th>
         <th style="color:#1F2128" class="text-left">
            Подарки
@@ -84,6 +94,13 @@
         <th style="color:#1F2128" class="text-left">
            Заказы
         </th>
+        <th style="color:#1F2128" class="text-left">
+           Измененить пароль
+        </th>
+
+        <th style="color:#1F2128" class="text-left">
+           Удалить администратора
+        </th>
         </tr>
       </thead>
       <tbody>
@@ -94,7 +111,9 @@
           <td>
               {{admin.name}}
           </td>
-
+          <td>
+              {{admin.email}}
+          </td>
           <td>
             
             <v-switch
@@ -194,7 +213,12 @@
                 v-model="admin.history_basket_change"
                 ></v-switch>
           </td>
-         
+         <td class="text-center">
+           <v-icon  small class="mr-2" @click="resetPassw(admin.id)">mdi-pencil</v-icon>
+         </td>
+         <td class="text-center">
+           <v-icon small @click="deleteAdmin(admin.id)"> mdi-delete </v-icon>
+         </td>
         </tr>
       </tbody>
     </template>
@@ -218,10 +242,18 @@ export default {
       return {
         dialogcreate:false,
         name:'',
-        password:''
+        password:'',
+        email:''
       };
   },
   methods: {
+    resetPassw(pk){
+      console.log(pk);
+    },
+    deleteAdmin(pk){
+      console.log(pk);
+    },
+
     updateReadChange(admin_id,key_admin,val){
     const headers = {
         "Content-Type": "application/json",
@@ -253,7 +285,8 @@ export default {
       };
     let data = {
       "name":this.name,
-      "password":this.password
+      "password":this.password,
+      "email":this.email
     }
 
     this.$axios
@@ -262,6 +295,7 @@ export default {
         })
         .then((resp) => {
           console.log(resp);
+          this.dialogcreate = false
          this.admins_list.push(resp)
          this.dialogCreate = false
         })
@@ -281,6 +315,7 @@ export default {
     onlformdata() {
       if (
         this.name &&
+        this.email &&
         this.password
 
       ) {

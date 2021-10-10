@@ -1,19 +1,24 @@
 <template>
+<v-container id="forml">
  <v-form ref="form_com_children" lazy-validation style="padding: 1rem;">
      <h3>Вход в админ панель</h3>
           <v-text-field
-            v-model="name"
-            label="Имя"
+            v-model="email"
+            label="email"
             :rules="[(v) => !!v || 'Не может быть пустым']"
             counter
-            maxlength="20"
+            maxlength="30"
             required
-          ></v-text-field>
-            <v-text-field
+          >
+          </v-text-field>
+          <v-text-field
             v-model="password"
-            label="Пароль"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="[(v) => !!v || 'Не может быть пустым']"
-            required
+            :type="show1 ? 'text' : 'password'"
+            name="input-10-1"
+            label="Введите пароль"
+            @click:append="show1 = !show1"
           ></v-text-field>
           <v-btn
             :disabled="!onloginform"
@@ -24,6 +29,7 @@
           </v-btn>
 
         </v-form>
+</v-container>
 </template>
 
 
@@ -35,12 +41,13 @@ import { mapState } from "vuex";
   export default {
     data: () => ({
       valid: true,
-      name: '',
+      email: '',
       password:'',
+      show1:false
     }),
   computed: {
     onloginform() {
-      if (this.name && this.password) {
+      if (this.email && this.password) {
         return true;
       } else {
         return false;
@@ -51,7 +58,7 @@ import { mapState } from "vuex";
     methods: {
     sendLogin(){
         let data = {
-          "name": this.name,
+          "email": this.email,
           "password": this.password
         }
         this.$axios
@@ -73,3 +80,12 @@ import { mapState } from "vuex";
     },
   }
 </script>
+
+<style scoped>
+  #forml{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+  }
+</style>
