@@ -459,7 +459,7 @@ export default {
         value: "form_precent[0].name_form",
         sortable: false,
       },
-      //   { text: "Изображение", value: "form_precent[0].name_form", sortable: false },
+      //   { text: "Изображени!е", value: "form_precent[0].name_form", sortable: false },
       { text: "Изменить/ удалить", value: "actions", sortable: false },
       { text: "перейти", value: "onpage", sortable: false },
     ],
