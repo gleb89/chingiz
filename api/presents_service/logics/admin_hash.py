@@ -25,5 +25,6 @@ def verify_password(stored_password: str, provided_password: str) -> bool:
                                   provided_password.encode('utf-8'),
                                   salt.encode('ascii'),
                                   100000)
+    
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     return pwdhash == stored_password

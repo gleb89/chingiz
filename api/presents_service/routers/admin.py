@@ -15,7 +15,19 @@ admin_router = APIRouter(
 
 @admin_router.post('/')
 async def create_admin(admin: Admin):
-    return await admin.save()
+    user = await Admin.objects.get_or_none(email=admin.email)
+    if user:
+
+        cont = {
+            'message':'Администратор с таким email уже существует ',
+        }
+        json_compatible_item_data = jsonable_encoder(cont)
+        return JSONResponse(
+        status_code=400,
+        content=json_compatible_item_data
+        )
+    else:
+        return await admin.save()
 
 
 @admin_router.get('/')
@@ -24,7 +36,7 @@ async def get_all():
 
 @admin_router.post('/token-auth')
 async def create_token_jwt(admin:AdminLogin):
-    user = await Admin.objects.get_or_none(name=admin.name)
+    user = await Admin.objects.get_or_none(email=admin.email)
     if verify_password(user.password, admin.password):
         access_token, access_token_expires =  await admin_token.token_password(user.password)
         cont = {
@@ -49,9 +61,9 @@ async def create_token_jwt(admin:AdminLogin):
         content=json_compatible_item_data
         )
 
-@admin_router.get('/{name}')
-async def get_all(name:str,password:str):
-    user = await Admin.objects.get_or_none(name=name)
+@admin_router.get('/{email}')
+async def get_all(email:str,password:str):
+    user = await Admin.objects.get_or_none(email=email)
     return verify_password(user.password, password)
 
 
@@ -125,5 +137,10 @@ async def update_one(
         await user.update(podpiska_change = podpiska_change)
 
     return await Admin.objects.all()
-    
+
+
+@admin_router.put('/password/{id}')
+async def update_password(id:int,password:str = Form(None)):
+    user = await Admin.objects.get_or_none(id = id)
+    return await user.update(password = password)
     

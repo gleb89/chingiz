@@ -24,6 +24,7 @@ class Admin(ormar.Model):
 
     id: int = ormar.Integer(primary_key=True)
     name: str = ormar.String(max_length=1000)
+    email: str = ormar.String(max_length=1000,nullable=True)
     password:str = ormar.String(max_length=1000)
     superuser:bool = ormar.Boolean(nullable=True,default=False)
     admins_read:bool = ormar.Boolean(nullable=True,default=False)
