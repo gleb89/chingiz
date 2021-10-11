@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center">
-      <!-- box-filters -->
+      <!-- box-filterss -->
       <v-col class="bocc-filter" cols="12" lg="2">
         <div class="mobp " style="margin-top:6rem">
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
