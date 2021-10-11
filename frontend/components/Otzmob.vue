@@ -4,7 +4,7 @@
     <v-carousel-item  v-for="comment in 6" :key="comment.id">
       <v-container>
         <v-row justify="center" class="text-center">
-          <v-col class="text-center d-flex justify-center"  cols="12"    >
+          <v-col class="text-center d-flex justify-center b"  cols="12"    >
             <CardOtziv/>
           </v-col>
         </v-row>
