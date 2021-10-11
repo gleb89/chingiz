@@ -99,6 +99,6 @@ async def boll_admin_dostavka(pk:int):
         )
 
 @history_router.put('/succes_olata/{pk}/{oplata}')
-async def succes_oplata_history(pk:int, oplata:int):
+async def success_oplata_history(pk:int, oplata:int):
     history = await HistoryBasket.objects.get_or_none(id=pk)
     return await history.update(succes_oplata = oplata)
