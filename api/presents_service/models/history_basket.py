@@ -11,6 +11,7 @@ from config.database import metadata, database
 class HistoryBasket(ormar.Model):
 
     """ 
+    Таблица Заказов
     """
 
     class Meta:
