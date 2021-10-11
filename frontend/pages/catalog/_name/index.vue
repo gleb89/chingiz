@@ -326,11 +326,13 @@ export default {
 @media (min-width: 1259px){
     .box-products{
   overflow-x: hidden;
-  height: 120vh;
+  min-height: 100vh;
+  height: 100vh;
   }
     .bocc-filter{
   overflow-x: hidden;
-  min-height: max-content;
+  min-height: 100vh;
+  height: 100vh;
   }
 }
 

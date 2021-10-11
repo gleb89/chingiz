@@ -145,7 +145,7 @@
             <v-radio 
             
               v-for="n in [
-                'Kaspi, K2, Kaspi Pay',
+                'Kaspi, KZ, Kaspi Pay',
                 'Оплатить картой Visa / Master Card'
               ]"
               :key="n"
@@ -531,7 +531,12 @@ mounted: function () {
 
         this.$store.commit("localStorage/set_summBasket",Number(0));
         this.retbonus()
-        this.$router.push('/cabinet/oplata')
+        if(this.oplata_methods === 'Kaspi, KZ, Kaspi Pay'){
+          this.$router.push('/cabinet/oplata/kaspioplata')
+        }else{
+          this.$router.push('/cabinet/oplata')
+        }
+        
         
         })
         .catch(function (error) {

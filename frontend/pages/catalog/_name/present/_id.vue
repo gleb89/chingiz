@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-row justify="center" style="margin-top:5rem">
+      
       <!-- box-img tovar and name-->
       <v-col cols="12" lg="6" class="box-formob">
         <div>

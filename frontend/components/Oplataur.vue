@@ -602,10 +602,9 @@ mounted: function () {
         .$post(`http://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
-          console.log(resp);
            this.$store.commit("localStorage/set_summBasket",Number(0));
            this.retbonus()
-        this.$router.push('/cabinet/oplata')
+        this.$router.push('/cabinet/oplata/uroplata')
         })
         .catch(function (error) {
           console.log(error);

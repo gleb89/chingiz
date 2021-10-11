@@ -22,7 +22,8 @@ from routers import (
     history_basket,
     bonus,
     commentsservice,
-    podpicka
+    podpicka,
+    stocks
     )   
 
 
@@ -129,6 +130,10 @@ app.include_router(
 
 app.include_router(
     podpicka.app
+)
+
+app.include_router(
+    stocks.app
 )
 
 

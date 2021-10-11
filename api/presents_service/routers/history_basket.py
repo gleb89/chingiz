@@ -43,6 +43,22 @@ async def get_history_one_artical(history_art:str,basket_id:int):
     history_zakaz = [zakaz for zakaz in history.history if zakaz['dict_basket']['zakaz_num']== history_art][0]
     return history_zakaz
 
+async def spic_bonus_update_bonus(history):
+    dict_basket = history.history
+    new_points = len(dict_basket)*500
+    user_id = history.self_basket[0].user.id
+    user = await Users.objects.get(id = user_id)
+    await user.update(points = user.points + new_points)
+    await user.update(points = user.points - history.spisbonuys)
+    summ = [summ['price'] for summ in dict_basket]
+    
+    await Bonus(
+        user_fairbase_id = user.uid_firebase,
+        count_points = history.bonus_user,
+        enum_povod = f'заказ EL{history.id}',
+        summ_check = sum(summ),
+        ).save()
+   
 
 @history_router.post("/oplata/{basket_id}")
 async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
@@ -51,20 +67,17 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
     basket = await Basket.objects.get(id=basket_id)
     user = await Users.objects.get(basket_user__id = basket_id)
     
-    new_points = len(basket.count_present_item.get('presents'))*500
+    
     dict_basket = basket.count_present_item.get('presents')
-    summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
+    
     await oplata_data.update(history = dict_basket)
     await basket.update(count_present_item={'presents':[]})
-    await user.update(points = user.points + new_points)
-    await user.update(points = user.points -oplata_data.spisbonuys)
-    await Bonus(
-        user_fairbase_id = user.uid_firebase,
-        count_points = oplata_data.bonus_user,
-        enum_povod = f'заказ EL{oplata_data.id}',
-        summ_check = sum(summ),
-        ).save()
+
     await basket.history.add(oplata_data)
+    if oplata_data.oplata_user == 'Оплатить картой Visa / Master Card':
+        print('Оплатить картой Visa / Master Card')
+        await oplata_data.update(succes_oplata = True)
+        await spic_bonus_update_bonus(oplata_data )
     return oplata_data
 
 @history_router.get("/oplata/for_end/{basket_id}")
@@ -82,7 +95,7 @@ async def send_curer_history_data(pk:int, data:dict):
         send_id_curer = pk_curer,
         send_name_curer = name
         )
-#
+
 @history_router.put('/otchet_photo_curer/{pk}')
 async def photo_otchet_curer(pk:int,photo:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
@@ -101,5 +114,7 @@ async def boll_admin_dostavka(pk:int):
 
 @history_router.put('/succes_olata/{pk}/{oplata}')
 async def succes_oplata_history(pk:int, oplata:int):
-    history = await HistoryBasket.objects.get_or_none(id=pk)
+    history = await HistoryBasket.objects.select_related(['self_basket__user']).get_or_none(id=pk)
+    print(history)
+    await spic_bonus_update_bonus(history)
     return await history.update(succes_oplata = oplata)
