@@ -140,7 +140,7 @@ async def update_one(
 
 
 @admin_router.put('/password/{id}')
-async def update_password(id:int,password:str = Form(None)):
+async def update_password(id:int,password:str = Form(...)):
     user = await Admin.objects.get_or_none(id = id)
     return await user.update(password = password)
     

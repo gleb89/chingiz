@@ -63,6 +63,72 @@
           </v-card-actions>
         </v-card>
           </v-dialog>
+          <v-dialog v-model="dialogpassword" persistent max-width="600px">
+       <v-card style="position: relative;">
+          <v-card-title>
+            
+          </v-card-title>
+          <v-card-text>
+            <v-container class="">
+              <v-row justify="start">
+                <h2 class="text-start">Изменение пароля</h2>
+               
+                <v-col cols="12">
+                  <v-form ref="form_com_children" lazy-validation>
+                    <v-text-field
+                      v-model="password"
+                      label="пароль"
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      required
+                    ></v-text-field>
+                <v-alert
+                      
+                      style="position: absolute;z-index: 1;width: 90%;"
+            v-model="alert"
+            
+              color="orange"
+              elevation="13"
+              type="success"
+            >Пароль изменен!</v-alert>
+                    <v-btn
+                      :disabled="!onlformdatapassword"
+                      class="mr-4"
+                      @click="resetPassword"
+                    >
+                      Изменить
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="blue darken-1" text @click="dialogpassword = false">
+              Отмена
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+          </v-dialog>
+    
+                <v-dialog v-model="dialogDelete" max-width="500px">
+              <v-card>
+                <v-card-title class="text-h5"
+                  >Вы действительно хотите удалить администратора?</v-card-title
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="dialogDelete = false"
+                    >Отмена</v-btn
+                  >
+                  <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                    >Да</v-btn
+                  >
+                  <v-spacer></v-spacer>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
       <v-simple-table class="">
     <template v-slot:default>
       <thead style="background: #ffbc7f;">
@@ -214,10 +280,10 @@
                 ></v-switch>
           </td>
          <td class="text-center">
-           <v-icon  small class="mr-2" @click="resetPassw(admin.id)">mdi-pencil</v-icon>
+           <v-icon  small class="mr-2" @click="dialogPassw(admin.id)">mdi-pencil</v-icon>
          </td>
          <td class="text-center">
-           <v-icon small @click="deleteAdmin(admin.id)"> mdi-delete </v-icon>
+           <v-icon small @click="DeleteOpen(admin.id,index)"> mdi-delete </v-icon>
          </td>
         </tr>
       </tbody>
@@ -243,12 +309,73 @@ export default {
         dialogcreate:false,
         name:'',
         password:'',
-        email:''
+        email:'',
+        admin_pk:null,
+        dialogpassword:false,
+        dialogDelete:false,
+        ind:null,
+        alert:false
       };
   },
   methods: {
-    resetPassw(pk){
-      console.log(pk);
+    resetPassword(){
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken,
+      };
+    let bodyFormData = new FormData();
+    bodyFormData.append('password',this.password);
+      this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/admin/password/${this.admin_pk}`, bodyFormData, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp);
+          
+          this.alert = true
+          setTimeout(() => {
+            this.alert = false
+            this.dialogpassword = false
+            this.password = ''
+          }, 2000);
+          
+        })
+        .catch(function (error) {
+          console.log("error");
+        });
+    
+      
+    },
+  deleteItemConfirm(){
+    console.log(this.admin_pk);
+        const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken,
+      };
+    this.$axios
+        .$delete(`http://api-booking.ru/api/v1/present/admin/${this.admin_pk}`, {
+          headers: headers,
+        })
+        .then((resp) => {
+          console.log(resp);
+          this.admins_list.splice(this.ind, 1);
+          this.dialogDelete = false
+        })
+        .catch(function (error) {
+          console.log("error");
+        });
+    
+  },
+    DeleteOpen(pk,index){
+      this.admin_pk = pk
+      this.ind = index
+      this.dialogDelete = true
+      
+    },
+    dialogPassw(pk){
+      this.admin_pk = pk
+      this.dialogpassword = true
+      
     },
     deleteAdmin(pk){
       console.log(pk);
@@ -311,6 +438,16 @@ export default {
         return elem.superuser == false
       });
       return this.admins_list 
+    },
+    onlformdatapassword(){
+      if (
+        this.password
+
+      ) {
+        return true;
+      } else {
+        return false;
+      }
     },
     onlformdata() {
       if (
