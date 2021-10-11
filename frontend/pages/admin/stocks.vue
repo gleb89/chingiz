@@ -348,31 +348,32 @@ export default {
       Object.assign(this.items[this.editedIndex], this.editedItem);
  
       
-      let bodyFormData = new FormData();
+    let bodyFormData = new FormData();
       if(this.image){
           bodyFormData.append("image", this.image);
       }
-    if(this.name_stock){
-          bodyFormData.append("name_stock", this.name_stock);
-      }
-    if(this.body_stock){
-        bodyFormData.append("body_stock", this.body_stock);
-      }
+ 
+          bodyFormData.append("name_stock", this.editedItem.name_stock);
+ 
+    
+        bodyFormData.append("body_stock", this.editedItem.body_stock);
+    
       
-    if(this.conditions){
-        bodyFormData.append("conditions", this.conditions);
-      }
+ 
+        bodyFormData.append("conditions", this.editedItem.conditions);
+   
       
       this.$axios
-        .$put(
-          `http://api-booking.ru/api/v1/present/stocks/${this.editedItem.id}`,
+        .$post(
+          `http://api-booking.ru/api/v1/present/stocks/update/${this.editedItem.id}`,
           bodyFormData,
           {
             headers: headers
           }
         )
         .then(resp => {
-          this.items = resp
+            console.log(resp);
+          this.stocks= resp
         })
         .catch(function (error) {
           console.log(error);
@@ -396,7 +397,7 @@ export default {
           headers: headers,
         })
         .then((resp) => {
-          this.items = resp;
+          
         })
         .catch(function (error) {
           console.log(error);
