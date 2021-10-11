@@ -47,6 +47,7 @@ class HistoryBasket(ormar.Model):
     cod_platezh:str = ormar.String(max_length=1000,nullable=True, null=True)
     kbe:str = ormar.String(max_length=1000,nullable=True, null=True)
     succes_oplata:bool = ormar.Boolean(nullable=True, null=True,default=False)
+    succes_dostavka_curer:bool = ormar.Boolean(nullable=True, null=True,default=False)
     timestamp: datetime.datetime = ormar.DateTime(
                 default=datetime.datetime.now()
                                                 )

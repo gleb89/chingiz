@@ -87,7 +87,8 @@ async def send_curer_history_data(pk:int, data:dict):
 async def photo_otchet_curer(pk:int,photo:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
     return await history.update(
-        photo_otchet = photo['image']
+        photo_otchet = photo['image'],
+        succes_dostavka_curer = True
         )
    
 
