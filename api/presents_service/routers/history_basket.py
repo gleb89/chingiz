@@ -82,7 +82,7 @@ async def send_curer_history_data(pk:int, data:dict):
         send_id_curer = pk_curer,
         send_name_curer = name
         )
-#
+
 @history_router.put('/otchet_photo_curer/{pk}')
 async def photo_otchet_curer(pk:int,photo:dict):
     history = await HistoryBasket.objects.get_or_none(id=pk)
