@@ -68,3 +68,4 @@ async def delete_one(id: int):
         return await stock.delete()
     except:
         pass
+    return await Stocks.objects.all()

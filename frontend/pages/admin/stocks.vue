@@ -377,7 +377,7 @@ export default {
           }
         )
         .then(resp => {
-        this.items.splice(this.editedIndex, 1);
+            this.stocks
           this.dialogDelete = false;
         })
         .catch(function(error) {
