@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h2>Поводы корзин</h2>
+    <h2>Все подарочные корзины</h2>
     <v-card>
       <v-card-title>
         <v-text-field
@@ -11,55 +11,49 @@
           hide-details
         ></v-text-field>
       </v-card-title>
-      <template>
-        <v-row justify="center">
-          <v-dialog v-model="dialog_send" persistent max-width="600px">
-            <template v-slot:activator="{ on, attrs }">
-              <div
-                v-if="admin_data.filters_present_change"
-                style="width: 100%;padding: 1rem;"
-              >
-                <v-btn
-                  v-bind="attrs"
-                  v-on="on"
-                  class="mx-2"
-                  fab
-                  dark
-                  color="indigo"
-                >
-                  <v-icon dark style="color:white"> mdi-plus </v-icon>
-                </v-btn>
-              </div>
-            </template>
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">Акции</span>
-              </v-card-title>
-              <v-card-text>
-                <v-container>
-                  <v-row>
-                    <v-col cols="12">
-                      <v-text-field
+
+      
+      <v-dialog v-model="dialog_send" persistent max-width="600px">
+        <template v-slot:activator="{ on, attrs }">
+          <div v-if="admin_data.present_change" style="width: 100%; padding: 1rem">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              class="mx-2"
+              fab
+              
+              color="indigo"
+            >
+              <v-icon dark style="color:white"> mdi-plus </v-icon>
+            </v-btn>
+          </div>
+        </template>
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">Акции</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container class="">
+              <v-row justify="start">
+                <h2 class="text-start">Добавить акцию</h2>
+               
+                <v-col cols="12">
+                  <v-form ref="form_com_children" lazy-validation>
+                         <v-text-field
                         v-model="name_stock"
                         label="Название акции"
                         :rules="[v => !!v || 'Не может быть пустым']"
                       ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
+                     <v-text-field
                         v-model="body_stock"
                         :rules="[v => !!v || 'Не может быть пустым']"
                         label="Описание акции"
                       ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                      <v-text-field
+                    <v-text-field
                         v-model="conditions"
                         label="Условие акции"
                         :rules="[v => !!v || 'Не может быть пустым']"
                       ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
                       <v-file-input
                         v-model="image"
                         :rules="rulesImage"
@@ -69,30 +63,27 @@
                         required
                         label="Загрузите изображение"
                       ></v-file-input>
-                    </v-col>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
+                    <v-btn
+                      :disabled="!onlformdata"
+                      class="mr-4"
+                      @click="sendDataform"
+                    >
+                      Создать
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
 
-                <v-btn color="blue darken-1" text @click="dialog_send = false">
-                  Отмена
-                </v-btn>
-                <v-btn
-                  :disabled="!onlformd"
-                  color="blue darken-1"
-                  text
-                  @click="createForm"
-                >
-                  Сохранить
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        </v-row>
-      </template>
-
+            <v-btn color="blue darken-1" text @click="dialog_send = false">
+              Отмена
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
       <v-data-table
         id="list-table"
         :headers="headers"
@@ -113,23 +104,23 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12">
+                   <v-col cols="12">
                         <v-text-field
-                          v-model="name_stock"
+                          v-model="editedItem.name_stock"
                           label="Название акции"
                           
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="body_stock"
+                          v-model="editedItem.body_stock"
                           
                           label="Описание акции"
                         ></v-text-field>
                       </v-col>
                       <v-col cols="12">
                         <v-text-field
-                          v-model="conditions"
+                          v-model="editedItem.conditions"
                           label="Условие акции"
                           
                         ></v-text-field>
@@ -164,7 +155,7 @@
             <v-dialog v-model="dialogDelete" max-width="500px">
               <v-card>
                 <v-card-title class="text-h5"
-                  >Вы действительно хотите тип корзины?</v-card-title
+                  >Вы действительно хотите удалить корзину?</v-card-title
                 >
                 <v-card-actions>
                   <v-spacer></v-spacer>
@@ -180,34 +171,30 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <template v-slot:item.imagess="{ item }">
-          <img style="width: 10rem;" :src="item.image" alt="none" />
+        <!-- изображение -->
+          <template v-slot:item.imagess="{ item }">
+          <img  style="width: 10rem;" :src="item.image" alt="none">
+
         </template>
+
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
-          <v-icon
-            small
-            class="mr-2"
-            @click="editItem(item)"
-          >
+          <v-icon small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon
-            v-if="admin_data.filters_present_change"
-            small
-            @click="deleteItem(item)"
-          >
-            mdi-delete
-          </v-icon>
+          <v-icon  small @click="deleteItem(item)"> mdi-delete </v-icon>
         </template>
+ 
       </v-data-table>
     </v-card>
   </v-container>
 </template>
-
+ 
 <script>
+import { mapState } from "vuex";
 export default {
   layout: "admin",
+
   asyncData({ $axios }) {
     const headers = {
       "Content-Type": "application/json"
@@ -222,7 +209,15 @@ export default {
   },
 
   data: () => ({
-    name_stock: "",
+    name_precent: "",
+    price: null,
+    img_open :false,
+    composition: "",
+ 
+   
+    dialog: false,
+    dialogDelete: false,
+     name_stock: "",
     body_stock: "",
     conditions: "",
     dialog: false,
@@ -243,65 +238,87 @@ export default {
         value.size < 8000000 ||
         "Avatar size should be less than 8 MB!"
     ],
+    items: [],
     search: "",
     editedIndex: -1,
-    editedItem: {}
+    editedItem: {},
+    categories: [],
+    category: {},
+    image: null,
+    form_precent: [],
+    form: {},
+    type_precent: [],
+    type: {},
+    reason_for_precent: [],
+    reason: {},
   }),
 
   computed: {
-    get_items() {
-      this.items = this.stocks;
-      return this.items;
-    },
-    admin_data() {
-      return this.$store.state.localStorage.admin_data;
-    },
-    onlformd() {
-      if (this.name_stock && this.body_stock && this.conditions && this.image) {
+     admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
+   
+    onlformdata() {
+       if (this.name_stock && this.body_stock && this.conditions && this.image) {
         return true;
       } else {
         return false;
       }
-    }
+    },
+
+    get_items() {
+      this.items = this.stocks ;
+      return this.items;
+    },
   },
 
   watch: {
     dialog(val) {
       val || this.close();
     },
-    // dialogDelete(val) {
-    //   val || this.closeDelete();
-    // }
+    dialogDelete(val) {
+      val || this.closeDelete();
+    },
   },
 
   methods: {
-    createForm() {
-      this.dialog_send = false;
-      let bodyFormData = new FormData();
+    onImage(image){
+        // <img src="image_precent"/>
+        console.log(image);
+        return 'hhh'
+      },
+    selectFile() {
+
+    },
+    sendDataform() {
+ 
+    let bodyFormData = new FormData();
       bodyFormData.append("image", this.image);
       bodyFormData.append("name_stock", this.name_stock);
       bodyFormData.append("body_stock", this.body_stock);
       bodyFormData.append("conditions", this.conditions);
-
       let headers = {
         "Content-Type": "application/json",
         Authorization: this.$store.state.localStorage.jwtToken
       };
-
       this.$axios
         .$post(`http://api-booking.ru/api/v1/present/stocks/`, bodyFormData, {
           headers: headers
         })
-        .then(resp => {
-          this.items.push(resp);
+        .then((resp) => {
+          
+          this.items.push(resp) 
+          this.dialog_send = false;
         })
-        .catch(function(error) {
-          console.log(error);
+        .catch(function (error) {
+          console.log("error");
         });
     },
+
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
+
       this.dialog = true;
     },
 
@@ -326,10 +343,11 @@ export default {
     save() {
       let headers = {
         "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
+        Authorization: this.$store.state.localStorage.jwtToken,
       };
-
       Object.assign(this.items[this.editedIndex], this.editedItem);
+ 
+      
       let bodyFormData = new FormData();
       if(this.image){
           bodyFormData.append("image", this.image);
@@ -337,7 +355,6 @@ export default {
     if(this.name_stock){
           bodyFormData.append("name_stock", this.name_stock);
       }
-
     if(this.body_stock){
         bodyFormData.append("body_stock", this.body_stock);
       }
@@ -355,9 +372,9 @@ export default {
           }
         )
         .then(resp => {
-          
+          this.items = resp
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
 
@@ -365,32 +382,34 @@ export default {
     },
 
     closeDelete() {
-      
-    //   this.$nextTick(() => {
-    //     this.editedItem = Object.assign({}, this.defaultItem);
-    //     this.editedIndex = -1;
-    //   });
-      console.log(this.editedItem.id);
       this.dialogDelete = false;
+      this.$nextTick(() => {
+        this.editedItem = Object.assign({}, this.defaultItem);
+        this.editedIndex = -1;
+      });
       let headers = {
         "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
+        Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(
-          `http://api-booking.ru/api/v1/present/stocks/${this.editedItem.id}`,
-          {
-            headers: headers
-          }
-        )
-        .then(resp => {
-            this.items = resp
-          this.dialogDelete = false;
+        .$delete(`http://api-booking.ru/api/v1/present/stocks/${this.editedItem.id}`, {
+          headers: headers,
         })
-        .catch(function(error) {
+        .then((resp) => {
+          this.items = resp;
+        })
+        .catch(function (error) {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
+
+<style  >
+  .v-data-table-header{
+    background: rgb(236, 224, 253) none repeat scroll 0% 0%;
+  }
+</style>
+
+

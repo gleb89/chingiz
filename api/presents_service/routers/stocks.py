@@ -40,7 +40,7 @@ async def get_one(id: int):
     return await Stocks.objects.get_or_none(id=id)
 
 
-@app.put('/update/{id}')
+@app.post('/update/{id}')
 async def update_one(
     id:int,
     name_stock: str = Form(None),
