@@ -279,7 +279,7 @@
                 v-model="admin.history_basket_change"
                 ></v-switch>
           </td>
-         <td class="text-center">
+         <td class="text-center b">
            <v-icon  small class="mr-2" @click="dialogPassw(admin.id)">mdi-pencil</v-icon>
          </td>
          <td class="text-center">
