@@ -159,9 +159,9 @@
       </v-container>
     </section>
 
-    <section id="slider-banner" style="">
+    <section v-if="stocks.length > 0" id="slider-banner" style="">
       <v-container style="padding: 1rem">
-        <BanerCarusel />
+        <BanerCarusel :stocks="stocks"/>
       </v-container>
     </section>
 
@@ -372,6 +372,18 @@
 
 <script>
 export default {
+  asyncData({ $axios }) {
+    const headers = {
+      "Content-Type": "application/json"
+    };
+    return $axios
+      .$get(`http://api-booking.ru/api/v1/present/stocks/`, {
+        headers: headers
+      })
+      .then(stocks => {
+        return { stocks };
+      });
+  },
   async fetch({ store }) {
     if (store.getters["products/products"].length === 0) {
       await store.dispatch("products/fetch");

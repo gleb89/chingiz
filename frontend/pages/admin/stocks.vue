@@ -269,9 +269,9 @@ export default {
     dialog(val) {
       val || this.close();
     },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    }
+    // dialogDelete(val) {
+    //   val || this.closeDelete();
+    // }
   },
 
   methods: {
@@ -312,7 +312,7 @@ export default {
     },
 
     deleteItemConfirm() {
-     
+      this.items.splice(this.editedIndex, 1);
       this.closeDelete();
     },
 
@@ -348,14 +348,14 @@ export default {
       
       this.$axios
         .$put(
-          `http://api-booking.ru/api/v1/present/stocks/update/${this.editedItem.id}`,
+          `http://api-booking.ru/api/v1/present/stocks/${this.editedItem.id}`,
           bodyFormData,
           {
             headers: headers
           }
         )
         .then(resp => {
-          this.stocks = resp
+          
         })
         .catch(function(error) {
           console.log(error);
@@ -365,6 +365,13 @@ export default {
     },
 
     closeDelete() {
+      
+    //   this.$nextTick(() => {
+    //     this.editedItem = Object.assign({}, this.defaultItem);
+    //     this.editedIndex = -1;
+    //   });
+      console.log(this.editedItem.id);
+      this.dialogDelete = false;
       let headers = {
         "Content-Type": "application/json",
         Authorization: this.$store.state.localStorage.jwtToken
@@ -377,7 +384,7 @@ export default {
           }
         )
         .then(resp => {
-            this.stocks
+            this.items = resp
           this.dialogDelete = false;
         })
         .catch(function(error) {
