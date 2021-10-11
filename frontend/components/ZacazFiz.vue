@@ -90,9 +90,9 @@
         </v-btn>
       </template>
 
-      <template v-slot:item.admin_succes_oplata="{ item }">
+      <template v-slot:item.admin_succes_oplata="{ item,index }">
         <v-switch
-            @click="succesOplata(item.id,item.succes_oplata)"
+            @click="succesOplata(item.id,item.succes_oplata,index)"
             color="success"
                 label="Подтверждение оплаты"
                 v-model="item.succes_oplata"
@@ -166,8 +166,25 @@ computed: {
         this.dialog = true
         
     },
-    succesOplata(pk,bool_olata){
-      console.log(pk,bool_olata);
+    succesOplata(pk,bool_olata,index){
+     let oplata
+     if(bool_olata){
+       oplata = 1
+     }
+     else{
+       oplata = 0
+     }
+    this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/history/succes_olata/${pk}/${oplata}`, {
+    
+        })
+        .then((data) => {
+          this.data_history_fiz[index] = data
+         
+        })
+        .catch(function (error) {
+        console.log('error');
+      });
     },
     sendCurers(){
         

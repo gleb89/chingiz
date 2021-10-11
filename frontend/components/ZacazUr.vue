@@ -89,6 +89,14 @@
           смотреть
         </v-btn>
       </template>
+      <template v-slot:item.admin_succes_oplata="{ item,index }">
+        <v-switch
+            @click="succesOplata(item.id,item.succes_oplata,index)"
+            color="success"
+                label="Подтверждение оплаты"
+                v-model="item.succes_oplata"
+                ></v-switch>
+      </template>
       <template v-slot:item.admin_send_curer="{ item,index }">
        <div v-if="admin_data.history_basket_change">
 
@@ -140,6 +148,7 @@ computed: {
         { text: "Итого(тг)", value: "summa" },
         { text: "Дата доставки", value: "data_dostavki" },
         { text: "подарки в заказе ", value: "pres_list", sortable: false },
+        { text: "Оплата", value: "admin_succes_oplata" },
         { text: "Отправить курьеру", value: "admin_send_curer" },
         { text: "Фото-очет", value: "photo_otchet", sortable: false },
         // { text: "выбрать курьера", value: "curers_list", sortable: false },
@@ -156,6 +165,26 @@ computed: {
   },
   
   methods: {
+    succesOplata(pk,bool_olata,index){
+     let oplata
+     if(bool_olata){
+       oplata = 1
+     }
+     else{
+       oplata = 0
+     }
+    this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/history/succes_olata/${pk}/${oplata}`, {
+    
+        })
+        .then((data) => {
+          this.data_history_ur[index] = data
+         
+        })
+        .catch(function (error) {
+        console.log('error');
+      });
+    },
     onAllpresent(presents) {
       this.presents_for_zakaz = presents;
       this.dialog_pres = true;
