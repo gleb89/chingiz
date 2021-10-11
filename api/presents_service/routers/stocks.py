@@ -58,10 +58,13 @@ async def update_one(
     if image:
         image = await image_add(image)
         await stock.update(image = image)
-    return await Stocks.objects.get_or_none(id=id)
+    return await Stocks.objects.all()
 
 
 @app.delete('/{id}')
-async def delete(id: int):
-    stock = await Stocks.objects.get_or_none(id=id)
-    return await stock.delete()
+async def delete_one(id: int):
+    try:
+        stock = await Stocks.objects.get(id=id)
+        return await stock.delete()
+    except:
+        pass

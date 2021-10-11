@@ -84,6 +84,13 @@
             <v-list-item-title>Комментарии к сервису</v-list-item-title>
           </v-list-item>
 
+           <v-list-item @click="onadminPage('/admin/stocks')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='layer-group'></fa> 
+            </v-list-item-icon>
+            <v-list-item-title>Акции</v-list-item-title> 
+          </v-list-item>
+
            <v-list-item v-if="admin_data.history_basket_read" @click="onadminPage('/admin/orders')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-ol'></fa>
