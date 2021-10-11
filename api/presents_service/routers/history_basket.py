@@ -98,3 +98,7 @@ async def boll_admin_dostavka(pk:int):
         admin_bool_dostavka = True
         )
 
+@history_router.put('/succes_olata/{pk}/{oplata}')
+async def succes_oplata_history(pk:int, oplata:int):
+    history = await HistoryBasket.objects.get_or_none(id=pk)
+    return await history.update(succes_oplata = oplata)

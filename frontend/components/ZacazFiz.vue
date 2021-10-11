@@ -89,6 +89,16 @@
           смотреть
         </v-btn>
       </template>
+
+      <template v-slot:item.admin_succes_oplata="{ item }">
+        <v-switch
+            @click="succesOplata(item.id,item.succes_oplata)"
+            color="success"
+                label="Подтверждение оплаты"
+                v-model="item.succes_oplata"
+                ></v-switch>
+      </template>
+
       <template v-slot:item.admin_send_curer="{ item,index }">
        <div v-if="admin_data.history_basket_change">
         <v-btn  v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
@@ -131,6 +141,7 @@ computed: {
      { text: "Итого(тг)", value: "summa" },
      { text: "Дата доставки", value: "data_dostavki" },
        { text: "подарки в заказе ", value: "pres_list", sortable: false },
+       { text: "Оплата", value: "admin_succes_oplata" },
         { text: "Отправить курьеру", value: "admin_send_curer" },
         { text: "Фото-очет", value: "photo_otchet", sortable: false },
     //   { text: "Изменить/ удалить", value: "actions", sortable: false },
@@ -154,6 +165,9 @@ computed: {
         this.history_data = item
         this.dialog = true
         
+    },
+    succesOplata(pk,bool_olata){
+      console.log(pk,bool_olata);
     },
     sendCurers(){
         
