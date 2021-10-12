@@ -28,18 +28,18 @@ async def create(category_name: str,image: UploadFile = File(...),admin = Depend
         return new_category
 
 @categories_router.put(
-    '/update/serial/{serial_number_one}/{id_one}/{serial_number_two}/{id_two}'
+    '/update/serial/{id_one}/{id_two}'
     )
 async def update_serial(
-    serial_number_one:int,
     id_one:int,
-    serial_number_two:int,
     id_two:int
     ):
     category_one = await Categories.objects.get(id = id_one)
-    await category_one.update(serial_number = serial_number_one)
+    serial_number_one = category_one.serial_number 
     category_two = await Categories.objects.get(id = id_two)
-    await category_two.update(serial_number = serial_number_two)
+    serial_number_two = category_two.serial_number 
+    await category_one.update(serial_number = serial_number_two)
+    await category_two.update(serial_number = serial_number_one)
     return await Categories.objects.order_by("serial_number").all()
 
 @categories_router.get('/')

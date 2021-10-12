@@ -132,17 +132,17 @@ updateSerialNumb(id_one,serial_number_one,id_two,serial_number_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
        console.log(id_one,serial_number_one,id_two,serial_number_two );
-      // this.$axios
-      //   .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${serial_number_one}/${id_one}/${serial_number_two}/${id_two}`,{
-      //     headers: headers
-      //   })
-      //   .then((resp) => {
-      //    this.category_presents = resp
+      this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${serial_number_one}/${id_one}/${serial_number_two}/${id_two}`,{
+          headers: headers
+        })
+        .then((resp) => {
+         this.category_presents = resp
           
-      //   })
-      //   .catch(function (error) {
-      //    console.log(error);
-      //   });
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
 },
       createForm(){
           this.dialog_send = false
