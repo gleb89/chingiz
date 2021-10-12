@@ -21,6 +21,7 @@ class Categories(ormar.Model):
         database = database
 
     id: int = ormar.Integer(primary_key=True)
+    serial_number: int = ormar.Integer(null=True,nullable=True)
     name_category: str = ormar.String(max_length=1000, null=True)
     slug_category: str = ormar.String(max_length=250,default='slug')
     icon: str = ormar.String(max_length=1000,null=True)
