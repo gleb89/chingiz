@@ -214,7 +214,7 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
 
 @precent_router.get('/filter/all')
 async def get_all_filter():
-    categories = await Categories.objects.all()
+    categories = await Categories.objects.order_by("serial_number").all()
     form_precent = await FormPresent.objects.all()
     type_precent = await TypePresent.objects.all()
     reason_for_precent = await Reason.objects.all()

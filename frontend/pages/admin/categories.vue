@@ -118,22 +118,19 @@ export default {
   onDrop(event,drop_item){
   
   const id_one =  event.dataTransfer.getData("itemID")
-  const serial_number_one = event.dataTransfer.getData("itemID")
-
-
   const id_two = drop_item.id
-  const serial_number_two = drop_item.serial_number
+  
  
-  this.updateSerialNumb(id_one,serial_number_two,id_two,serial_number_one )
+  this.updateSerialNumb(id_one,id_two )
 },
-updateSerialNumb(id_one,serial_number_one,id_two,serial_number_two ){
+updateSerialNumb(id_one,id_two ){
         let headers = {
          "Content-Type": "application/json",
         "Authorization":this.$store.state.localStorage.jwtToken
        };
-       console.log(id_one,serial_number_one,id_two,serial_number_two );
+       console.log(id_one,id_two );
       this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${serial_number_one}/${id_one}/${serial_number_two}/${id_two}`,{
+        .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${id_one}/${id_two}`,{
           headers: headers
         })
         .then((resp) => {
