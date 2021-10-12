@@ -122,10 +122,6 @@
     <template v-slot:default>
       <thead>
         <tr>
-
-          <th>
-            порядковый номер на сайте
-          </th>
           <th class="text-left">
             Название категории
           </th>
@@ -152,8 +148,6 @@
           draggable="true"
           @dragstart="startDrag($event,item)"
         >
-    
-        <td>{{ item.serial_number}}</td>
           <td>{{ item.name_category }}</td>
           <td>
             <img style="width: 10rem;"  :src="item.icon" alt="">

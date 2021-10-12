@@ -20,6 +20,7 @@ class Reason(ormar.Model):
         database = database
 
     id: int = ormar.Integer(primary_key=True)
+    serial_number: int = ormar.Integer(null=True,nullable=True)
     name_reason: str = ormar.String(max_length=1000)
     icon: str = ormar.String(max_length=1000,null=True)
 
