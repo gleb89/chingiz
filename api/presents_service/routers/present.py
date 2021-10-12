@@ -217,7 +217,7 @@ async def get_all_filter():
     categories = await Categories.objects.order_by("serial_number").all()
     form_precent = await FormPresent.objects.all()
     type_precent = await TypePresent.objects.all()
-    reason_for_precent = await Reason.objects.all()
+    reason_for_precent = await Reason.objects.order_by("serial_number").all()
     data = {
         'categories':categories,
         'form_precent':form_precent,

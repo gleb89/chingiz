@@ -78,7 +78,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <div>
+      <h4 style="margin-top:4em">Сортировка</h4>
+    </div>
     <v-data-table
+    style="margin-top:4em"
       :headers="headers"
       :items="data_history_fiz"
       :items-per-page="5"

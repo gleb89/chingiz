@@ -1,28 +1,8 @@
 <template>
-  <v-container >
-    <h2>Поводы корзин</h2>
-       <v-card>
-    <v-card-title>
-      <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Поиск"
-        single-line
-        hide-details
-      ></v-text-field>
-    </v-card-title>
-    <template>
-  <v-row justify="center">
-    <v-dialog
-      v-model="dialog_send"
-      persistent
-      max-width="600px"
-    >
-      <template v-slot:activator="{ on, attrs }">
-          <div v-if="admin_data.filters_present_change" style="width: 100%;padding: 1rem;">
+<div>
+            <div v-if="admin_data.filters_present_change" style="width: 100%;padding: 1rem;">
         <v-btn
-        v-bind="attrs"
-        v-on="on"
+        @click="dialogform = true"
       class="mx-2"
       fab
       dark
@@ -31,86 +11,23 @@
 <v-icon dark style="color:white"> mdi-plus </v-icon>
     </v-btn>
     </div>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="text-h5">Поводы  корзины</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-                    <v-row>
-                    <v-col cols="12">
-                      <v-text-field
-                        v-model="name_reason"
-                        label="Название повода корзины"
-                      ></v-text-field>
-                    </v-col>
-                    <v-col cols="12">
-                                        <v-file-input
-                      v-model="image_precent"
-                      :rules="rulesImage"
-                      accept="image/png, image/jpeg, image/png"
-                      placeholder="Загрузите изображение"
-                      prepend-icon="mdi-camera"
-                      required
-                      
-                      label="Загрузите изображение"
-                    ></v-file-input>
-                </v-col>
-                  </v-row>
-          </v-container>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="dialog_send = false"
-          >
-            Отмена
-          </v-btn>
-          <v-btn
-            color="blue darken-1"
-            text
-            @click="createForm"
-          >
-            Сохранить
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-row>
-</template>
-
-    <v-data-table
-    id="list-table"
-     :headers="headers"
-    :items="get_items"
-    :search="search"
-    
-    >
-      <template v-slot:top >
-        <v-toolbar flat>
-          <v-divider class="mx-4" inset vertical></v-divider>
-          <v-spacer></v-spacer>
-          <v-dialog v-model="dialog" max-width="500px">
+    <v-dialog v-model="dialogform" max-width="500px">
             <!-- изменить -->
             <v-card>
               <v-card-title>
-                <span class="text-h5">Изменить</span>
+                <span class="text-h5">Создать повод</span>
               </v-card-title>
 
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="12" sm="6" md="12">
+                <v-col cols="12">
                       <v-text-field
-                        v-model="editedItem.name_reason"
-                        label="Название повода корзины"
+                        v-model="name_reason"
+                        label="Название повода "
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12" sm="6" md="12">
+                    <v-col cols="12">
                                         <v-file-input
                       v-model="image_precent"
                       :rules="rulesImage"
@@ -122,13 +39,58 @@
                       label="Загрузите изображение"
                     ></v-file-input>
                 </v-col>
+
                   </v-row>
                 </v-container>
               </v-card-text>
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="close">
+                <v-btn color="blue darken-1" text @click="dialogform = false">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="createForm">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+      <v-dialog v-model="dialogformupdate" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Изменить повод</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                <v-col cols="12">
+                      <v-text-field
+                        v-model="name_reason"
+                        label="Название повода"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      required
+                      
+                      label="Изменить изображение изображение"
+                    ></v-file-input>
+                </v-col>
+
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogformupdate = false">
                   Отмена
                 </v-btn>
                 <v-btn color="blue darken-1" text @click="save">
@@ -137,15 +99,15 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-          <!-- удалить -->
-          <v-dialog v-model="dialogDelete" max-width="500px">
+
+   <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-                >Вы действительно хотите тип корзины?</v-card-title
+                >Вы действительно хотите удалить  повод ?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeDelete"
+                <v-btn color="blue darken-1" text @click="dialogDelete = false"
                   >Отмена</v-btn
                 >
                 <v-btn color="blue darken-1" text @click="deleteItemConfirm"
@@ -155,23 +117,54 @@
               </v-card-actions>
             </v-card>
           </v-dialog>
-        </v-toolbar>
-      </template>
-          <template v-slot:item.icon="{ item }">
-          <img  style="width: 10rem;" :src="item.icon" alt="none">
 
-        </template>
-      <!-- изменить удалить -->
-      <template v-slot:item.actions="{ item }">
+  <v-simple-table>
+    <template v-slot:default>
+      <thead>
+        <tr>
+          <th class="text-left">
+            Название повода
+          </th>
+          <th class="text-left">
+            Изображение
+          </th>
+          <th class="text-left">
+            Изменить/Удалить
+          </th>
+        </tr>
+      </thead>
+      <tbody
+       class="drop-zone"
+
+        >
+        {{get_items}}
+        <tr
+        @drop="onDrop($event,item)"
+        @dragenter.prevent
+        @dragover.prevent
+          v-for="item in items  "
+          :key="item.id"
+          class="drag-el"
+          draggable="true"
+          @dragstart="startDrag($event,item)"
+        >
+          <td>{{ item.name_reason }}</td>
+          <td>
+            <img style="width: 10rem;"  :src="item.icon" alt="">
+          </td>
+          <td>
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
-      </template>
-    </v-data-table>
-    </v-card>
-  </v-container>
+          </td>
+        </tr>
+      </tbody>
+    </template>
+  </v-simple-table>
+  </div>
 </template>
  
 <script>
+
 export default {
   layout: "admin",
   asyncData({ $axios }) {
@@ -183,40 +176,38 @@ export default {
         headers: headers,
       })
       .then((reason_presents) => {
-        return { reason_presents };
+        return { reason_presents};
       });
   },
 
   data: () => ({
     name_reason: '',
     dialog: false,
-    dialog_send:false,
-    dialogDelete: false,
-    image_precent:null,
-    headers: [
-      { text: "id формы", value: "id" },
-      { text: "Название", value: "name_reason" },
-      { text: "иконка", value: "icon", sortable: false },
-      { text: "Изменить/ удалить", value: "actions", sortable: false },
-    ],
-    items: [],
-      rulesImage: [
+    rulesImage: [
       (value) =>
         !value ||
         value.size < 2000000 ||
         "Avatar size should be less than 2 MB!",
     ],
+    dialogformupdate:false,
+    dialog_send:false,
+    dialogDelete: false,
+    image_precent:null,
+    dialogform:false,
+    items: [],
+    item_id:null,
     search: '',
     editedIndex: -1,
     editedItem: {},
   }),
 
   computed: {
+
     get_items() {
       this.items = this.reason_presents;
-      return this.items;
+     
     },
-         admin_data(){
+       admin_data(){
        return this.$store.state.localStorage.admin_data
        },
   },
@@ -225,28 +216,60 @@ export default {
     dialog(val) {
       val || this.close();
     },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
+ 
   },
 
   methods: {
+      startDrag(event,item){
+  
+  event.dataTransfer.dropEffect = "move"
+  event.dataTransfer.effectAllowed = "move"
+  event.dataTransfer.setData("itemID",item.id) 
+  event.dataTransfer.setData("serial_number_one",item.serial_number) 
+},
+  onDrop(event,drop_item){
+  
+  const id_one =  event.dataTransfer.getData("itemID")
+  const id_two = drop_item.id
+  
+ 
+  this.updateSerialNumb(id_one,id_two )
+},
+updateSerialNumb(id_one,id_two ){
+        let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+       console.log(id_one,id_two );
+      this.$axios
+        .$put(`http://api-booking.ru/api/v1/present/reason/update/serial/${id_one}/${id_two}`,{
+          headers: headers
+        })
+        .then((resp) => {
+         this.reason_presents = resp
+          
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+},
       createForm(){
           this.dialog_send = false
+  
           let bodyFormData = new FormData();
           bodyFormData.append("image", this.image_precent);
-         
           let headers = {
          "Content-Type": "application/json",
         "Authorization":this.$store.state.localStorage.jwtToken
        };
        
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/reason/?name_reason=${this.name_reason}`,bodyFormData,{
+        .$post(`http://api-booking.ru/api/v1/present/reason/?name_reason=${this.name_reason}`,bodyFormData ,{
           headers: headers
         })
         .then((resp) => {
          this.items.push(resp)
+         this.dialogform = false
           
         })
         .catch(function (error) {
@@ -254,20 +277,32 @@ export default {
         });
       },
     editItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
+      this.name_reason = item.name_reason
+    this.item_id = item.id
+    this.dialogformupdate = true
     },
 
     deleteItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
+      this.item_id = item.id
+      this.dialogDelete = true
     },
 
     deleteItemConfirm() {
-      this.items.splice(this.editedIndex, 1);
-      this.closeDelete();
+   let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+        this.$axios
+        .$delete(`http://api-booking.ru/api/v1/present/reason/${this.item_id}`,{
+          headers: headers
+        })
+        .then((resp) => {
+         this.reason_presents = resp
+         this.dialogDelete = false
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
     },
 
     close() {
@@ -283,7 +318,7 @@ export default {
         "Authorization":this.$store.state.localStorage.jwtToken
        };
        
-       Object.assign(this.items[this.editedIndex], this.editedItem);
+       
       let bodyFormData = new FormData();
       if (this.image_precent) {
         bodyFormData.append("image", this.image_precent);
@@ -291,13 +326,16 @@ export default {
       }
 
       
-      bodyFormData.append("name_reason", this.editedItem.name_reason);
+      bodyFormData.append("name_reason", this.name_reason);
+      
       this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/reason/update/${this.editedItem.id}`,bodyFormData, {
+        .$put(`http://api-booking.ru/api/v1/present/reason/update/${this.item_id}`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
+         
          this.reason_presents = resp
+         this.dialogformupdate = false
           
         })
         .catch(function (error) {
@@ -329,6 +367,9 @@ export default {
         .catch(function (error) {
          console.log(error);
         });
+      
+
+
       
     },
   },
