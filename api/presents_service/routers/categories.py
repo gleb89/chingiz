@@ -60,8 +60,8 @@ async def update_one(
     admin = Depends(jwt_auth)
     ):
     category = await Categories.objects.get_or_none(id=id)
-    if not category.serial_number:
-        await category.update(serial_number = category.id)
+    
+    await category.update(serial_number = category.id)
     if image:
         icon = await image_add(image)
         await category.update(icon = icon)

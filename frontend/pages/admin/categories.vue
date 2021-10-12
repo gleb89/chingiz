@@ -6,6 +6,9 @@
           <th class="text-left">
             id категории
           </th>
+          <th>
+            порядковый номер на сайте
+          </th>
           <th class="text-left">
             Название категории
           </th>
@@ -33,6 +36,7 @@
           @dragstart="startDrag($event,item)"
         >
         <td>{{ item.id}}</td>
+        <td>{{ item.serial_number}}</td>
           <td>{{ item.name_category }}</td>
           <td>
             <img style="width: 10rem;"  :src="item.icon" alt="">
@@ -76,13 +80,7 @@ export default {
     dialog_send:false,
     dialogDelete: false,
     image_precent:null,
-    headers: [
-      { text: "id формы", value: "id" },
-      { text: "Название", value: "name_category" },
-       { text: "Изображение", value: "icon", sortable: false },
-      { text: "Изменить/ удалить", value: "actions", sortable: false },
-     
-    ],
+  
     items: [],
     search: '',
     editedIndex: -1,
@@ -111,25 +109,40 @@ export default {
 
   methods: {
       startDrag(event,item){
-  console.log(item);
+  
   event.dataTransfer.dropEffect = "move"
   event.dataTransfer.effectAllowed = "move"
   event.dataTransfer.setData("itemID",item.id) 
+  event.dataTransfer.setData("serial_number_one",item.serial_number) 
 },
   onDrop(event,drop_item){
   
-  const itemID =  event.dataTransfer.getData("itemID")
-  // const item = this.items.value.find((item) => item.id == itemID)
-  console.log(itemID);
-  console.log(drop_item.id);
+  const id_one =  event.dataTransfer.getData("itemID")
+  const serial_number_one = event.dataTransfer.getData("itemID")
 
-  // for(let i of this.items){
-  //   if(i.id == itemID){
-  //      i.id = itemID
-  //   }
-  // }
-  // event.dataTransfer.setData("itemID",item.id) 
-  // item.list = list
+
+  const id_two = drop_item.id
+  const serial_number_two = drop_item.serial_number
+ 
+  this.updateSerialNumb(id_one,serial_number_two,id_two,serial_number_one )
+},
+updateSerialNumb(id_one,serial_number_one,id_two,serial_number_two ){
+        let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+       console.log(id_one,serial_number_one,id_two,serial_number_two );
+      // this.$axios
+      //   .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${serial_number_one}/${id_one}/${serial_number_two}/${id_two}`,{
+      //     headers: headers
+      //   })
+      //   .then((resp) => {
+      //    this.category_presents = resp
+          
+      //   })
+      //   .catch(function (error) {
+      //    console.log(error);
+      //   });
 },
       createForm(){
           this.dialog_send = false
