@@ -92,7 +92,7 @@
    <v-col  lg="3" md="3" class="d-lg-block d-md-block d-none" style="align-items: center;display: flex;">
                  
               <v-select
-                style="margin-top:1rem"
+                
                 :items="['сначала недорогие','более дорогие']"
                 :label="sort_price ||'Cначала недорогие'"
                 v-model="sort_price"
