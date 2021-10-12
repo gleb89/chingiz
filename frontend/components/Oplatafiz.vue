@@ -365,9 +365,9 @@
                 <p>Итого: {{basket.summ_present.toLocaleString()}} тг</p>
                 <p>Доставка: 500 тг.</p>
                  <p v-if="spis_bonus != 'Списать бонусы'" >Бонусы: - 0 тг.</p>
-                <h3 v-if="spis_bonus != 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{basket.summ_present + 500}} тг.</h3>
+                <h3 v-if="spis_bonus != 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{(basket.summ_present + 500).toLocaleString()}} тг.</h3>
                 <p v-if="spis_bonus === 'Списать бонусы'" >Бонусы: - {{count_spis_bonus}} тг.</p>
-                <h3 v-if="spis_bonus === 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{(basket.summ_present + 500)-count_spis_bonus}} тг.</h3>
+                <h3 v-if="spis_bonus === 'Списать бонусы'"  style="color:#676767">Всего к оплате: {{((basket.summ_present + 500)-count_spis_bonus).toLocaleString()}} тг.</h3>
             </div>
 
 

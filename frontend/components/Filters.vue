@@ -71,7 +71,7 @@
           <v-text-field
             v-model="minp"
             style="width: 100%"
-            :label="Math.min(...minmaxPrice()) + ' тг'"
+            type="number"
             single-line
             outlined
           ></v-text-field>
@@ -81,7 +81,7 @@
           <v-text-field
             v-model="maxp"
             style="width: 100%"
-            :label="Math.max(...minmaxPrice()) + ' тг'"
+            type="number"
             single-line
             outlined
           ></v-text-field>

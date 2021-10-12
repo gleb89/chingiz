@@ -78,9 +78,35 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <div class="pl-4">
+      <h4 style="margin-top:4em">Сортировка</h4>
+      
+      <div>
+      <v-radio-group v-model="radioGroup">
+        <v-row>
+          <v-col  v-for="n in [
+        'Все',
+        'Неоплаченные',
+        'Оплаченные',
+        'Отправлены курьеру',
+        'Неотправлены курьеру',
+        'Отправлено курьеру но еще не доставлено',
+        'Отправлено курьеру и доставлено'
+        ]" :key="n" cols="6" lg="4" md="4">
+      <v-radio
+       
+        
+        :label="` ${n}`"
+        :value="n"
+      ></v-radio>
+      </v-col>
+      </v-row>
+    </v-radio-group>
+      </div>
+    </div>
     <v-data-table
       :headers="headers"
-      :items="data_history_ur"
+      :items="sorted"
       :items-per-page="5"
       class="elevation-1"
     >
@@ -124,7 +150,42 @@ computed: {
        admin_data(){
        return this.$store.state.localStorage.admin_data
        },
+    sorted(){
+      if(this.radioGroup === 'Все'){
+        return this.data_history_ur
+      }
+      if(this.radioGroup === 'Неоплаченные'){
+        return this.data_history_ur.filter((elem) => {
+        return elem.succes_oplata  === false
+      });
+      }
+        if(this.radioGroup === 'Оплаченные'){
+        return this.data_history_ur.filter((elem) => {
+        return elem.succes_oplata  === true
+      });
+      }
+        if(this.radioGroup === 'Отправлены курьеру'){ 
+        return this.data_history_ur.filter((elem) => {
+        return elem.admin_send_curer  === true
+      });
+      }
+        if(this.radioGroup === 'Неотправлены курьеру'){
+        return this.data_history_ur.filter((elem) => {
+        return elem.admin_send_curer  ===  false
+      });
+      }
+        if(this.radioGroup === 'Отправлено курьеру но еще не доставлено'){ 
+        return this.data_history_ur.filter((elem) => {
+        return elem.photo_otchet ===  false && elem.admin_send_curer  === true
+      });
+      }
+        if(this.radioGroup === 'Отправлено курьеру и доставлено'){
+        return this.data_history_ur.filter((elem) => {
+        return elem.photo_otchet  ===  true && elem.admin_send_curer  === true
+      });
+      }
 
+    },
 },
   data() {
     return {
@@ -160,7 +221,8 @@ computed: {
       curer:{},
       history_data:{},
       dialog:false,
-      ind:null
+      ind:null,
+      radioGroup: 'Все',
     };
   },
   

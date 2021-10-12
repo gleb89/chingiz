@@ -2,7 +2,7 @@
   <v-container style="padding-top: 6rem;padding-bottom: 4rem">
     <h2 class="mb-4">История заказов</h2>
     <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-    <span>История заказов</span>
+    <span>История  заказов</span>
    
        <div class="d-block d-lg-none">
 
@@ -13,7 +13,7 @@
       </v-col>
 
       <v-col v-if="history_data" cols="12" md="9" lg="9">
-        <h2 class="d-lg-block d-none">История заказов</h2>
+        <h2 class="d-lg-block d-none">История оплаченных заказов</h2>
             <History :data_history="history_data" :onPageHistory="onPageHistory"/>
       </v-col>
       <v-col v-if="!history_data" cols="12" md="9" lg="9">
@@ -48,7 +48,9 @@ export default {
       else{
       this.history_da = []
       }
-      return this.history_da
+      return this.history_da.filter((elem) => {
+        return elem.succes_oplata  === true
+      });
     },
   
   },

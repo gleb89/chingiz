@@ -12,7 +12,8 @@
         </div>
 
         <Mobfilter 
-            class="d-block d-lg-none"     
+            class="d-block d-lg-none"  
+         
            :selected="selected"
             :maxprice="maxprice"
             :minprice="minprice"
@@ -69,6 +70,8 @@
         </h2>
         </div>
         <div class="d-flex flex-wrap mt-6 mb-6">
+          <v-row>
+          <v-col cols="12" lg="8" md="8">
           <div style="flex-grow: 3; position: relative;width:100%">
             
             <img
@@ -85,9 +88,22 @@
               rounded
             ></v-text-field>
           </div>
-          <div style="flex-grow: 1">
-  
-          </div>
+   </v-col>
+   <v-col  lg="3" md="3" class="d-lg-block d-md-block d-none" style="align-items: center;display: flex;">
+                 
+              <v-select
+                style="margin-top:1rem"
+                :items="['сначала недорогие','более дорогие']"
+                :label="sort_price ||'Cначала недорогие'"
+                v-model="sort_price"
+                
+                single-line
+                
+               
+              ></v-select>
+            
+   </v-col>
+   </v-row>
         </div>
         <v-container class="box-scrol" >
           <v-row justify="center">
@@ -150,6 +166,15 @@ export default {
       }
       if (this.form_id) {
         this.sortedProductForm();
+        
+      }
+      if(this.sort_price === 'более дорогие'){
+        let new_array = this.products.slice()
+        this.products = new_array.sort(function(a, b) { return b.price - a.price; });
+      }
+      if(this.sort_price === 'сначала недорогие'){
+        let new_array = this.products.slice()
+        this.products = new_array.sort(function(a, b) { return a.price - b.price; });
       }
       if (this.minprice  && this.maxprice) {
         
@@ -164,6 +189,7 @@ export default {
   data() {
     return {
       age: null,
+      sort_price:'сначала недорогие',
       ws: null,
       categories: this.$store.getters["allfilter/allfilter"].categories,
       reason_present: this.$store.getters["allfilter/allfilter"].reason_for_precent,
@@ -199,10 +225,11 @@ export default {
       
       });
     },
-    ads_select(minp,maxp,form_id){  
+    ads_select(minp,maxp,form_id,sort_price){  
       this.minprice = minp
       this.maxprice = maxp
       this.form_id = form_id
+      this.sort_price = sort_price
       
     },
 
@@ -261,10 +288,13 @@ export default {
     },
  
     sortedProductForm(){
-       this.products = this.$store.getters["products/products"].filter((elem) => {
+      
+       this.products  = this.$store.getters["products/products"].filter((elem) => {
+         if(elem.form_precent.length >0){
         return (
-          elem.form_precent[0].id === Number(this.form_id) 
+          elem.form_precent[0].id === Number(this.form_id)
         );
+        }
       });
     },
     sortedProductType(){

@@ -75,16 +75,33 @@
   <v-simple-table class="d-lg-none d-md-none d-block">
     <template v-slot:default>
       <thead>
-  
+   <tr>
+          <th style="color:#1F2128" class="text-center">
+            Фото 
+          </th>
+          <th style="color:#1F2128" class="text-center">
+            Цена
+          </th>
+          <th style="color:#1F2128" class="text-center">
+            Кол-во
+          </th>
+        <th style="color:#1F2128" class="text-center">
+            Бонусы
+          </th>
+        <th style="color:#1F2128" class="text-center">
+            Удалить
+          </th>
+
+        </tr>
       </thead>
       <tbody style="min-height:5rem">
         <tr
           v-for="(item,index) in presents"
           :key="index"
         >
-        <p style="position: absolute;">{{item.prevue_name}}: {{ item.name_precent}}</p>
+        <!-- <p style="position: absolute;">{{item.prevue_name}}: {{ item.name_precent}}</p> -->
           <td style="max-width: 4rem;height: 10rem;"><img style="max-width: 4rem;" :src="item.image_precent" alt=""></td>
-          <td style="height: 10rem;max-width: 3rem;"><span style="font-weight: bold;">{{ item.price }}</span> </td>
+          <td style="height: 10rem;max-width: 3rem;"><span style="font-weight: bold;">{{ item.price.toLocaleString() }} тг</span> </td>
                    <td>
                                                   <div
             class="d-flex justify-start"
@@ -108,7 +125,7 @@
             </div>
           </div>
                    </td>
-          <td style="max-width: 3rem;height: 10rem;width:1rem"> <span style="color:#FF7A00;font-weight: bold;">+200</span></td>
+          <td style="max-width: 3rem;height: 10rem;width:1rem"> <span style="color:#FF7A00;font-weight: bold;">+500</span></td>
           <td style="height: 10rem;width:1rem">
                           <v-btn @click="delete_present_in_basket(item.id,index)" text>
                   <img style="max-width: .7rem;" src="/clos.png" alt="">

@@ -145,11 +145,11 @@
             <div class="ned">
               <v-select
                 style="margin-top:1rem"
-                :items="[{ name: 'недорогие' }, { name: 'более дорогие' }]"
-                label="Сначала недорогие"
-                item-text="name"
-                dense
+                :items="['сначала недорогие','более дорогие']"
                 solo
+                dense
+                v-model="sort_price"
+                :label="sort_price ||'сначала недорогие'"
               ></v-select>
             </div>
 
@@ -204,7 +204,7 @@
                   <v-text-field
                     v-model="minp"
                     style="width: 100%"
-                    :label="Math.min(...minmaxPrice()) + ' тг'"
+                    type="number"
                     single-line
                     outlined
                   ></v-text-field>
@@ -214,7 +214,7 @@
                   <v-text-field
                     v-model="maxp"
                     style="width: 100%"
-                    :label="Math.max(...minmaxPrice()) + ' тг'"
+                   type="number"
                     single-line
                     outlined
                   ></v-text-field>
@@ -260,12 +260,14 @@ export default {
     "onReason",
     "form",
     "search",
-    "type_precent"
+    "type_precent",
+    
   ],
 
   data() {
     return {
       alert: false,
+      sort_price:null,
       dialog: false,
       dialogcategory:false,
       selected_list1: [],
@@ -278,7 +280,7 @@ export default {
   },
   computed: {
     selected_list() {
-      this.ads_select(this.minp, this.maxp, this.form_id);
+      this.ads_select(this.minp, this.maxp, this.form_id,this.sort_price);
     }
   },
 
