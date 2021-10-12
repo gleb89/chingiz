@@ -56,8 +56,7 @@ async def update_one(
     admin = Depends(jwt_auth)
     ):
     reason = await Reason.objects.get_or_none(id=id)
-    if not reason.serial_number:
-        await reason.update(serial_number = reason.id)
+
     if image:
         icon = await image_add(image)
         await reason.update(icon = icon)
