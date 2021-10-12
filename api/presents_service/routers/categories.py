@@ -61,7 +61,7 @@ async def update_one(
     ):
     category = await Categories.objects.get_or_none(id=id)
     
-    await category.update(serial_number = category.id)
+    
     if image:
         icon = await image_add(image)
         await category.update(icon = icon)
@@ -78,6 +78,7 @@ async def delete(id: int,admin = Depends(jwt_auth)):
     category = await Categories.objects.get_or_none(id=id)
     try:
         await category.delete()
-        return {'message': 'delete true'}
+        return await Categories.objects.order_by("serial_number").all()
     except:
         return {'message': 'not category'}
+       

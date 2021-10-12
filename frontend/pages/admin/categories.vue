@@ -1,11 +1,128 @@
 <template>
+<div>
+            <div v-if="admin_data.filters_present_change" style="width: 100%;padding: 1rem;">
+        <v-btn
+        @click="dialogform = true"
+      class="mx-2"
+      fab
+      dark
+      color="indigo"
+    >
+<v-icon dark style="color:white"> mdi-plus </v-icon>
+    </v-btn>
+    </div>
+    <v-dialog v-model="dialogform" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Создать категорию</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                <v-col cols="12">
+                      <v-text-field
+                        v-model="name_category"
+                        label="Название категории корзины"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                                        <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      required
+                      
+                      label="Загрузите изображение"
+                    ></v-file-input>
+                </v-col>
+
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogform = false">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="createForm">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+      <v-dialog v-model="dialogformupdate" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Создать категорию</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                <v-col cols="12">
+                      <v-text-field
+                        v-model="name_category"
+                        label="Название категории корзины"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      required
+                      
+                      label="Изменить изображение изображение"
+                    ></v-file-input>
+                </v-col>
+
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogformupdate = false">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="save">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+   <v-dialog v-model="dialogDelete" max-width="500px">
+            <v-card>
+              <v-card-title class="text-h5"
+                >Вы действительно хотите  категорию корзины?</v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogDelete = false"
+                  >Отмена</v-btn
+                >
+                <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                  >Да</v-btn
+                >
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
   <v-simple-table>
     <template v-slot:default>
       <thead>
         <tr>
-          <th class="text-left">
-            id категории
-          </th>
+
           <th>
             порядковый номер на сайте
           </th>
@@ -35,7 +152,7 @@
           draggable="true"
           @dragstart="startDrag($event,item)"
         >
-        <td>{{ item.id}}</td>
+    
         <td>{{ item.serial_number}}</td>
           <td>{{ item.name_category }}</td>
           <td>
@@ -49,6 +166,7 @@
       </tbody>
     </template>
   </v-simple-table>
+  </div>
 </template>
  
 <script>
@@ -77,11 +195,13 @@ export default {
         value.size < 2000000 ||
         "Avatar size should be less than 2 MB!",
     ],
+    dialogformupdate:false,
     dialog_send:false,
     dialogDelete: false,
     image_precent:null,
-  
+    dialogform:false,
     items: [],
+    item_id:null,
     search: '',
     editedIndex: -1,
     editedItem: {},
@@ -102,9 +222,7 @@ export default {
     dialog(val) {
       val || this.close();
     },
-    dialogDelete(val) {
-      val || this.closeDelete();
-    },
+ 
   },
 
   methods: {
@@ -157,6 +275,7 @@ updateSerialNumb(id_one,id_two ){
         })
         .then((resp) => {
          this.items.push(resp)
+         this.dialogform = false
           
         })
         .catch(function (error) {
@@ -164,20 +283,32 @@ updateSerialNumb(id_one,id_two ){
         });
       },
     editItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialog = true;
+      this.name_category = item.name_category
+    this.item_id = item.id
+    this.dialogformupdate = true
     },
 
     deleteItem(item) {
-      this.editedIndex = this.items.indexOf(item);
-      this.editedItem = Object.assign({}, item);
-      this.dialogDelete = true;
+      this.item_id = item.id
+      this.dialogDelete = true
     },
 
     deleteItemConfirm() {
-      this.items.splice(this.editedIndex, 1);
-      this.closeDelete();
+   let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+        this.$axios
+        .$delete(`http://api-booking.ru/api/v1/present/categories/${this.item_id}`,{
+          headers: headers
+        })
+        .then((resp) => {
+         this.category_presents = resp
+         this.dialogDelete = false
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
     },
 
     close() {
@@ -193,7 +324,7 @@ updateSerialNumb(id_one,id_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
        
-       Object.assign(this.items[this.editedIndex], this.editedItem);
+       
       let bodyFormData = new FormData();
       if (this.image_precent) {
         bodyFormData.append("image", this.image_precent);
@@ -201,15 +332,16 @@ updateSerialNumb(id_one,id_two ){
       }
 
       
-      bodyFormData.append("name_category", this.editedItem.name_category);
+      bodyFormData.append("name_category", this.name_category);
       
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.editedItem.id}`, bodyFormData, {
+        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.item_id}`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
-         console.log(resp);
+         
          this.category_presents = resp
+         this.dialogformupdate = false
           
         })
         .catch(function (error) {
