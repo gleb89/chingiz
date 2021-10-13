@@ -13,7 +13,7 @@ from routers import (
 origins = [
      "https://giftcity.kz/",
      "https://giftcity.kz/",
-    "http://localhost:3000",
+    "https://giftcity.kz:3000",
 ]
 
 

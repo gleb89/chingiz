@@ -2,13 +2,13 @@ import firebase from 'firebase'
 
 let app = null;
 var firebaseConfig = {
-  apiKey:"AIzaSyAtj-FPOUkzOZ3fj6f2zDB57s1kc9wzQtY",
-  authDomain:"imagesservice-445d5.firebaseapp.com",
-  projectId:"imagesservice-445d5",
-  storageBucket:"imagesservice-445d5.appspot.com",
-  messagingSenderId:"164211610621",
-  appId:"1:164211610621:web:6ea2949f434e357cc43f94",
-  measurementId:"G-T0KBJ81NY5"
+  apiKey: "AIzaSyANwhUPitFhinKUYAoILMhf334oJwrnQJg",
+  authDomain: "gift-city-8195c.firebaseapp.com",
+  projectId: "gift-city-8195c",
+  storageBucket: "gift-city-8195c.appspot.com",
+  messagingSenderId: "795593112967",
+  appId: "1:795593112967:web:99c5f32aeb9e553040a722",
+  measurementId: "G-5TDH687SN1"
 
 };
 

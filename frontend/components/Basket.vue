@@ -72,43 +72,49 @@
     </template>
   </v-simple-table>
 
-  <v-simple-table class="d-lg-none d-md-none d-block">
-    <template v-slot:default>
-      <thead>
-   <tr>
-          <th style="color:#1F2128" class="text-center">
-            Фото 
-          </th>
-          <th style="color:#1F2128" class="text-center">
-            Цена
-          </th>
-          <th style="color:#1F2128" class="text-center">
-            Кол-во
-          </th>
-        <th style="color:#1F2128" class="text-center">
-            Бонусы
-          </th>
-        <th style="color:#1F2128" class="text-center">
-            Удалить
-          </th>
 
-        </tr>
-      </thead>
-      <tbody style="min-height:5rem">
-        <tr
-          v-for="(item,index) in presents"
+<div class="d-lg-none d-md-none d-block" >
+           <v-card
+           v-for="(item,index) in presents"
           :key="index"
-        >
-        <!-- <p style="position: absolute;">{{item.prevue_name}}: {{ item.name_precent}}</p> -->
-          <td style="max-width: 4rem;height: 10rem;"><img style="max-width: 4rem;" :src="item.image_precent" alt=""></td>
-          <td style="height: 10rem;max-width: 3rem;"><span style="font-weight: bold;">{{ item.price.toLocaleString() }} тг</span> </td>
-                   <td>
-                                                  <div
+         style="border: none;"
+    class="mx-auto"
+    
+    outlined
+  >
+    <v-list-item three-line>
+              <v-avatar
+                
+                size="125"
+                tile
+              >
+                <v-img :src="item.image_precent"></v-img>
+              </v-avatar>
+
+      <v-list-item-content>
+        <div class=" mb-4">
+          <span>Название:</span> <span style="font-weight: 500;"> {{item.name_precent}}</span>
+        </div>
+        <v-list-item-title class=" mb-1">
+          Цена: <span style="font-weight: 500;"> {{ item.price.toLocaleString() }} тг </span>
+        </v-list-item-title>
+        <v-list-item-subtitle>
+         <span style="font-weight: 500;">Бонусы:</span>  <span style="color:#FF7A00;font-weight: bold;">+500</span>
+        </v-list-item-subtitle>
+      </v-list-item-content>
+
+
+    </v-list-item>
+
+    <v-card-actions >
+     
+        <v-col cols="6">
+            <div
             class="d-flex justify-start"
             style="
               width: 100%;
-              height: 39px;
-              margin-top: 0.7rem;
+              height: 36px;
+              margin-top: ;
               margin-right: 1rem;
             "
           >
@@ -124,19 +130,17 @@
               <v-btn block depressed @click="item_add_count(item.id,index)"> + </v-btn>
             </div>
           </div>
-                   </td>
-          <td style="max-width: 3rem;height: 10rem;width:1rem"> <span style="color:#FF7A00;font-weight: bold;">+500</span></td>
-          <td style="height: 10rem;width:1rem">
-                          <v-btn @click="delete_present_in_basket(item.id,index)" text>
-                  <img style="max-width: .7rem;" src="/clos.png" alt="">
-              </v-btn>
-          </td>
-
-        </tr>
-      </tbody>
-    </template>
-  </v-simple-table>
-
+          </v-col>
+          <v-col cols="6" class="text-right">
+            <v-btn text @click="delete_present_in_basket(item.id,index)">
+              <fa style="color: #db4f4f;" icon="trash"></fa> 
+            </v-btn>
+            </v-col>
+          
+    </v-card-actions>
+  </v-card>
+        <hr>
+</div>
 </div>
 </template>
 

@@ -1,6 +1,6 @@
 import shutil
 import datetime
-# host = 'http://localhost:8080'
+# host = 'https://giftcity.kz:8080'
 host = 'https://giftcity.kz'
 
 async def image_add(image):
