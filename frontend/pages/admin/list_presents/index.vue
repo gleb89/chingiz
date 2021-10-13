@@ -15,11 +15,15 @@
       {{ get_filters }}
       <v-dialog v-model="dialog_send" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <div
-            v-if="admin_data.present_change"
-            style="width: 100%; padding: 1rem"
-          >
-            <v-btn v-bind="attrs" v-on="on" class="mx-2" fab color="indigo">
+          <div v-if="admin_data.present_change" style="width: 100%; padding: 1rem">
+            <v-btn
+              v-bind="attrs"
+              v-on="on"
+              class="mx-2"
+              fab
+              
+              color="indigo"
+            >
               <v-icon dark style="color:white"> mdi-plus </v-icon>
             </v-btn>
           </div>
@@ -29,116 +33,116 @@
             <span class="text-h5">Поводы корзины</span>
           </v-card-title>
           <v-card-text>
-            <v-form ref="form" v-model="valid">
-              <v-container class="">
-                <v-row justify="start">
-                  <h2 class="text-start">Добавить подарочную корзину</h2>
-                  {{ all_filter }}
-                  <v-col cols="12">
-                    
-                      <v-text-field
-                        v-model="prevue_name"
-                        label="превью корзины(напр:подарочная корзина)"
-                      ></v-text-field>
-                      <v-text-field
-                        v-model="name_precent"
-                        label="Название подарочной корзины"
-                        :rules="[v => !!v || 'Не может быть пустым']"
-                        required
-                      ></v-text-field>
-                      <h4 class="mt-6">
-                        Перенос строки ,если начало нового пункта начинается с
-                        цифры и точки
-                        <br />
-                        пример(1.)
-                      </h4>
-                      <h6>Превью отображения на сайте</h6>
-                      <p
-                        v-for="(comp, index) in composition.split(/\d[.]+/g)"
-                        :key="index"
-                      >
-                        <span style="font-weight: bold;" v-if="index"
-                          >{{ index }}.</span
-                        >
-                        {{ comp }}
-                      </p>
-                      <v-textarea
-                        outlined
-                        name="input-7-4"
-                        v-model="composition"
-                        label="Состав подарочной корзины "
-                        required
-                      >
-                      </v-textarea>
+            <v-container class="">
+              <v-row justify="start">
+                <h2 class="text-start">Добавить подарочную корзину</h2>
+                {{ all_filter }}
+                <v-col cols="12">
+                  <v-form ref="form_com_children" lazy-validation>
+                        <v-text-field
+                          v-model="prevue_name"
+                          
+                          label="превью корзины(напр:подарочная корзина)"
+                        ></v-text-field>
+                    <v-text-field
+                      v-model="name_precent"
+                      prepend-inner-icon="*"
+                      label="Название подарочной корзины"
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      required
+                    ></v-text-field>
+                    <h4 class="mt-6">Перенос строки ,если начало нового пункта начинается с цифры и точки
+                      <br>
+                      пример(1.)
+                    </h4>
+                    <h6>Превью отображения на сайте</h6>
+                   <p v-for="(comp,index) in composition.split(/\d[.]+/g)" :key="index">
+                  <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
+                  </p> 
+                    <v-textarea
+                      outlined
+                      name="input-7-4"
+                      v-model="composition"
+                      label="Состав подарочной корзины "
+                      
+                      required
+                    >
+  
+
+                    </v-textarea>
 
                       <v-textarea
-                        outlined
-                        name="input-7-4"
-                        v-model="body"
-                        label="Описание подарочной корзины"
-                        required
-                      ></v-textarea>
+                      outlined
+                      name="input-7-4"
+                      v-model="body"
+                      label="Описание подарочной корзины"
+                      
+                      required
+                    ></v-textarea>
 
-                      <v-text-field
-                        v-model="price"
-                        hide-details
-                        single-line
-                        required
-                        type="number"
-                        :rules="[v => !!v || 'Не может быть пустым']"
-                        label="Цена подарочной корзины "
-                      />
 
-                      <v-file-input
-                        v-model="image_precent"
-                        :rules="[v => !!v || 'Не может быть пустым']"
-                        accept="image/png, image/jpeg, image/png"
-                        placeholder="Загрузите изображение"
-                        prepend-icon="mdi-camera"
-                        required
-                        @change="selectFile"
-                        label="Загрузите изображение"
-                      ></v-file-input>
-                      <span>Выбрать категорию</span>
-                      <v-select
-                        v-model="category"
-                        :items="categories"
-                        item-text="name_category"
-                        item-value="id"
-                        persistent-hint
-                        return-object
-                        single-line
-                        required
-                        :rules="[v => !!v || 'Не может быть пустым']"
-                        label="Выбрать категорию"
-                        outlined
-                      ></v-select>
-                      <span>Выбрать форму подарка</span>
-                      <v-select
-                        v-model="form"
-                        :items="form_precent"
-                        item-text="name_form"
-                        item-value="id"
-                        persistent-hint
-                        return-object
-                        single-line
-                        label="Выбрать форму подарка"
-                        outlined
-                      ></v-select>
-                      <span>Выбрать тип подарка</span>
-                      <v-select
-                        v-model="type"
-                        :items="type_precent"
-                        item-text="name_type"
-                        item-value="id"
-                        persistent-hint
-                        return-object
-                        single-line
-                        label="Выбрать тип подарка"
-                        outlined
-                      ></v-select>
-                      <span>Выбрать повод подарка</span>
-                      <!-- <v-select
+                    <v-text-field
+                      v-model="price"
+                      hide-details
+                      single-line
+                      required
+                      type="number"
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
+                      prepend-inner-icon="*"
+                      label="Цена подарочной корзины "
+                    />
+
+                    <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-inner-icon="*"
+                      append-icon="mdi-camera"
+                      required
+                      @change="selectFile"
+                      label="Загрузите изображение"
+                    ></v-file-input>
+                    <span>Выбрать категорию</span>
+                    <v-select
+                      v-model="category"
+                      :items="categories"
+                      item-text="name_category"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      prepend-inner-icon="*"
+                      label="Выбрать категорию"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать форму подарка</span>
+                    <v-select
+                      v-model="form"
+                      :items="form_precent"
+                      item-text="name_form"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      
+                      label="Выбрать форму подарка"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать тип подарка</span>
+                    <v-select
+                      v-model="type"
+                      :items="type_precent"
+                      item-text="name_type"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      label="Выбрать тип подарка"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать повод подарка</span>
+                    <!-- <v-select
                       v-model="reason"
                       :items="reason_for_precent"
                       item-text="name_reason"
@@ -149,28 +153,31 @@
                       label="Выбрать повод подарка"
                       outlined
                     ></v-select> -->
+                    
+                   <v-combobox
+                    v-model="select"
+                    :items="reason_for_precent"
+                    label="Выбрать повод подарка"
+                    prepend-inner-icon="*"
+                    item-text="name_reason"
+                    item-value="id"
+                    multiple
+                    outlined
+                    return-object
+                    
+                  ></v-combobox>
 
-                      <v-combobox
-                        v-model="select"
-                        :items="reason_for_precent"
-                        label="Выбрать повод подарка"
-                        item-text="name_reason"
-                        item-value="id"
-                        multiple
-                        required
-                        :rules="[v => !!v || 'Не может быть пустым']"
-                        outlined
-                        return-object
-                      ></v-combobox>
-
-                      <v-btn @click="validate" class="mr-4">
-                        Создать
-                      </v-btn>
-                   
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-form>
+                    <v-btn
+                      :disabled="!onlformdata"
+                      class="mr-4"
+                      @click="sendDataform"
+                    >
+                      Создать
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -201,7 +208,7 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="12">
+                   <v-col cols="12" sm="6" md="12">
                         <v-text-field
                           v-model="editedItem.prevue_name"
                           label="превью корзины(напр:подарочная корзина)"
@@ -214,8 +221,9 @@
                         ></v-text-field>
                       </v-col>
 
-                      <v-col cols="12" sm="6" md="12">
-                        <v-textarea
+                        <v-col cols="12" sm="6" md="12">
+
+                   <v-textarea
                           outlined
                           name="input-7-4"
                           v-model="editedItem.body"
@@ -231,25 +239,15 @@
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
-                        <h4 class="mt-6">
-                          Перенос строки, если начало нового пункта начинается с
-                          цифры и точки
-                          <br />
-                          пример(1.)
-                        </h4>
-                        <h6>Превью отображения на сайте</h6>
-                        <p
-                          v-for="(comp, index) in String(
-                            editedItem.composition
-                          ).split(/\d[.]+/g)"
-                          :key="index"
-                        >
-                          <span style="font-weight: bold;" v-if="index"
-                            >{{ index }}.</span
-                          >
-                          {{ comp }}
-                        </p>
-
+                    <h4 class="mt-6">Перенос строки, если начало нового пункта начинается с цифры и точки
+                      <br>
+                      пример(1.)
+                    </h4>
+                    <h6>Превью отображения на сайте</h6>
+                   <p v-for="(comp,index) in String(editedItem.composition).split(/\d[.]+/g)" :key="index">
+                  <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
+                  </p> 
+                  
                         <v-textarea
                           outlined
                           name="input-7-4"
@@ -285,7 +283,7 @@
 
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить форму подарка</span>
-
+                        
                         <v-select
                           v-model="form"
                           :items="form_precent"
@@ -298,7 +296,7 @@
                           outlined
                         ></v-select>
                       </v-col>
-
+                     
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить тип подарка</span>
                         <v-select
@@ -310,22 +308,24 @@
                           return-object
                           :label="type"
                           single-line
+                          
                           outlined
                         ></v-select>
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
                         <span>Изменить повод подарка</span>
-                        <v-combobox
-                          v-model="editedItem.reason_for_precent"
-                          :items="reason_for_precent"
-                          label="Изменить повод подарка"
-                          item-text="name_reason"
-                          item-value="id"
-                          multiple
-                          outlined
-                          return-object
-                        ></v-combobox>
+                          <v-combobox
+                        v-model="editedItem.reason_for_precent"
+                        :items="reason_for_precent"
+                        label="Изменить повод подарка"
+                        item-text="name_reason"
+                        item-value="id"
+                        multiple
+                        outlined
+                        return-object
+                        
+                      ></v-combobox>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -363,37 +363,25 @@
           </v-toolbar>
         </template>
         <!-- изображение -->
-        <template v-slot:item.image="{ item }">
-          <img style="width: 10rem;" :src="item.image_precent" alt="none" />
+          <template v-slot:item.image="{ item }">
+          <img  style="width: 10rem;" :src="item.image_precent" alt="none">
+
         </template>
-        <template v-slot:item.reason_for_precent="{ item }">
-          <div
-            v-for="reason_item in item.reason_for_precent"
-            :key="reason_item.id"
-          >
-            <span>{{ reason_item.name_reason }}</span>
-          </div>
+          <template v-slot:item.reason_for_precent="{ item }">
+        <div v-for="reason_item in item.reason_for_precent" :key="reason_item.id">
+          <span>{{reason_item.name_reason}}</span>
+        </div>
+          
         </template>
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
-          <v-icon
-            v-if="admin_data.present_change"
-            small
-            class="mr-2"
-            @click="editItem(item)"
-          >
+          <v-icon v-if="admin_data.present_change" small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon
-            v-if="admin_data.present_change"
-            small
-            @click="deleteItem(item)"
-          >
-            mdi-delete
-          </v-icon>
+          <v-icon v-if="admin_data.present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
         </template>
         <template v-slot:item.onpage="{ item }">
-          <div class="text-center">
+          <div  class="text-center">
             <fa
               style="cursor: pointer"
               @click="Onpage(item.id)"
@@ -405,35 +393,33 @@
     </v-card>
   </v-container>
 </template>
-
+ 
 <script>
 import { mapState } from "vuex";
 export default {
   layout: "admin",
-
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
       `https://giftcity.kz/api/v1/present/`
     );
-    const data_filter = await $axios.get(
+    const data_filter= await $axios.get(
       `https://giftcity.kz/api/v1/present/filter/all`
     );
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
-
   data: () => ({
     name_precent: "",
     price: null,
-    img_open: false,
+    img_open :false,
     composition: "",
-
+ 
     image_precent: null,
-    prevue_name: "",
+    prevue_name:'',
     categories: [],
     select: [],
     category: {},
-    body: "",
+    body:'',
     form_precent: [],
     form: {},
     type_precent: [],
@@ -441,10 +427,10 @@ export default {
     reason: {},
     dialog_send: false,
     rulesImage: [
-      value =>
+      (value) =>
         !value ||
         value.size < 2000000 ||
-        "Avatar size should be less than 2 MB!"
+        "Avatar size should be less than 2 MB!",
     ],
     reason: {},
     dialog: false,
@@ -460,30 +446,29 @@ export default {
       {
         text: "Категория",
         value: "category[0].name_category",
-        sortable: false
+        sortable: false,
       },
       {
         text: "Повод ",
         value: "reason_for_precent",
-        sortable: false
+        sortable: false,
       },
       {
         text: "Тип подарка",
         value: "type_precent[0].name_type",
-        sortable: false
+        sortable: false,
       },
       {
         text: "Форма подарка",
         value: "form_precent[0].name_form",
-        sortable: false
+        sortable: false,
       },
       //   { text: "Изображени!е", value: "form_precent[0].name_form", sortable: false },
       { text: "Изменить/ удалить", value: "actions", sortable: false },
-      { text: "перейти", value: "onpage", sortable: false }
+      { text: "перейти", value: "onpage", sortable: false },
     ],
     items: [],
     search: "",
-    valid: true,
     editedIndex: -1,
     editedItem: {},
     categories: [],
@@ -494,20 +479,18 @@ export default {
     type_precent: [],
     type: {},
     reason_for_precent: [],
-    reason: {}
+    reason: {},
   }),
-
   computed: {
-    admin_data() {
-      return this.$store.state.localStorage.admin_data;
-    },
+     admin_data(){
+       return this.$store.state.localStorage.admin_data
+       },
     all_filter() {
       (this.categories = this.data_filter.categories),
         (this.form_precent = this.data_filter.form_precent),
         (this.type_precent = this.data_filter.type_precent),
         (this.reason_for_precent = this.data_filter.reason_for_precent);
     },
-
     onlformdata() {
       if (
         this.name_precent &&
@@ -523,92 +506,78 @@ export default {
     },
     get_filters() {
       this.categories = this.$store.getters["allfilter/allfilter"].categories;
-      this.form_precent = this.$store.getters[
-        "allfilter/allfilter"
-      ].form_precent;
-      this.type_precent = this.$store.getters[
-        "allfilter/allfilter"
-      ].type_precent;
-      this.reason_for_precent = this.$store.getters[
-        "allfilter/allfilter"
-      ].reason_for_precent;
+      this.form_precent =
+        this.$store.getters["allfilter/allfilter"].form_precent;
+      this.type_precent =
+        this.$store.getters["allfilter/allfilter"].type_precent;
+      this.reason_for_precent =
+        this.$store.getters["allfilter/allfilter"].reason_for_precent;
     },
     get_items() {
       this.items = this.data_presents;
       return this.items;
-    }
+    },
   },
-
   watch: {
     dialog(val) {
       val || this.close();
     },
     dialogDelete(val) {
       val || this.closeDelete();
-    }
+    },
   },
-
   methods: {
-    validate() {
-      this.$refs.form.validate();
-      if (this.$refs.form.validate()) {
-        console.log("valid");
-        this.sendDataform()
-      } else {
-        console.log("0000");
-      }
+    onImage(image){
+        // <img src="image_precent"/>
+        console.log(image);
+        return 'hhh'
+      },
+    selectFile() {
     },
-    onImage(image) {
-      // <img src="image_precent"/>
-      console.log(image);
-      return "hhh";
-    },
-    selectFile() {},
     sendDataform() {
       const headers = {
         "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
+        Authorization: this.$store.state.localStorage.jwtToken,
       };
-      let select_id = [];
-      for (let i of this.select) {
-        select_id.push(i.id);
+      let select_id = []
+      for(let i of this.select){
+        select_id.push(i.id)
       }
-
+       
       let bodyFormData = new FormData();
-
-      if (this.prevue_name) {
+      
+      if(this.prevue_name){
         bodyFormData.append("prevue_name", this.prevue_name);
       }
       bodyFormData.append("name_precent", this.name_precent);
       bodyFormData.append("price", Number(this.price));
-      if (this.composition) {
+      if(this.composition){
         bodyFormData.append("composition", this.composition);
       }
-
+      
       bodyFormData.append("image", this.image_precent);
       bodyFormData.append("category_id", this.category.id);
-      if (this.form.id) {
+      if(this.form.id){
         bodyFormData.append("form_precent_id", this.form.id);
       }
-      if (this.type.id) {
+      if(this.type.id){
         bodyFormData.append("type_precent_id", this.type.id);
       }
-      if (this.body) {
+      if(this.body){
         bodyFormData.append("body", this.body);
       }
-
-      bodyFormData.append("reason_for_precent_id", String(select_id));
-
+      
+      bodyFormData.append("reason_for_precent_id",String(select_id) );
       this.$axios
         .$post(`https://giftcity.kz/api/v1/present/`, bodyFormData, {
-          headers: headers
+          headers: headers,
         })
-        .then(resp => {
+        .then((resp) => {
           console.log(resp);
-          this.items.push(resp);
+          this.items.push(resp)
           this.dialog_send = false;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log("error");
         });
     },
@@ -618,35 +587,34 @@ export default {
     editItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      if (item.type_precent.length > 0) {
-        this.type = item.type_precent[0].name_type;
+      if(item.type_precent.length > 0){
+        this.type = item.type_precent[0].name_type
       }
-      if (item.form_precent.length > 0) {
-        this.form = item.form_precent[0].name_form;
+      if(item.form_precent.length > 0){
+        this.form = item.form_precent[0].name_form
       }
-      if (item.category.length > 0) {
-        this.category = item.category[0].name_category;
+      if(item.category.length > 0){
+        this.category  = item.category[0].name_category
       }
-
+           
+      
+     
       this.dialog = true;
     },
-
     deleteItem(item) {
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       this.dialogDelete = true;
     },
-
     deleteItemConfirm() {
       this.items.splice(this.editedIndex, 1);
       this.closeDelete();
     },
-
     close() {
       this.dialog = false;
-      this.type = {};
-      this.form = {};
-      this.category = {};
+      this.type = {}
+      this.form = {}
+      this.category = {}
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
@@ -655,12 +623,12 @@ export default {
     save() {
       let headers = {
         "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
+        Authorization: this.$store.state.localStorage.jwtToken,
       };
       Object.assign(this.items[this.editedIndex], this.editedItem);
-      let select_id = [];
-      for (let i of this.editedItem.reason_for_precent) {
-        select_id.push(i.id);
+      let select_id = []
+      for(let i of this.editedItem.reason_for_precent){
+        select_id.push(i.id)
       }
       console.log(select_id);
       let bodyFormData = new FormData();
@@ -687,28 +655,24 @@ export default {
         this.editedItem.type_precent[0] = this.type;
         this.type = {};
       }
-
-      bodyFormData.append("reason_for_precent_id", String(select_id));
-
+      
+      bodyFormData.append("reason_for_precent_id",String(select_id) );
+        
+     
+      
       this.$axios
-        .$put(
-          `https://giftcity.kz/api/v1/present/${this.editedItem.id}`,
-          bodyFormData,
-          {
-            headers: headers
-          }
-        )
-        .then(resp => {
+        .$put(`https://giftcity.kz/api/v1/present/${this.editedItem.id}`, bodyFormData, {
+          headers: headers,
+        })
+        .then((resp) => {
           console.log(resp);
           this.items = resp;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
-
       this.close();
     },
-
     closeDelete() {
       this.dialogDelete = false;
       this.$nextTick(() => {
@@ -717,25 +681,25 @@ export default {
       });
       let headers = {
         "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
+        Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
         .$delete(`https://giftcity.kz/api/v1/present/${this.editedItem.id}`, {
-          headers: headers
+          headers: headers,
         })
-        .then(resp => {
+        .then((resp) => {
           this.items = resp;
         })
-        .catch(function(error) {
+        .catch(function (error) {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-.v-data-table-header {
-  background: rgb(236, 224, 253) none repeat scroll 0% 0%;
-}
+<style  >
+  .v-data-table-header{
+    background: rgb(236, 224, 253) none repeat scroll 0% 0%;
+  }
 </style>
