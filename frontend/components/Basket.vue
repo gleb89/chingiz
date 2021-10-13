@@ -99,7 +99,7 @@
           Цена: <span style="font-weight: 500;"> {{ item.price.toLocaleString() }} тг </span>
         </v-list-item-title>
         <v-list-item-subtitle>
-         <span style="font-weight: 500;">Бонусы:</span>  <span style="color:#FF7A00;font-weight: bold;">+500</span>
+         <span style="font-weight: 500;font-size: 1.1em;">Бонусы:</span>  <span style="color:#FF7A00;font-weight: bold;font-size: 1.2em;">+500</span>
         </v-list-item-subtitle>
       </v-list-item-content>
 

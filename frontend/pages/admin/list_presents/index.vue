@@ -33,6 +33,9 @@
             <span class="text-h5">Поводы корзины</span>
           </v-card-title>
           <v-card-text>
+              <v-form    
+    ref="form"
+    v-model="valid">
             <v-container class="">
               <v-row justify="start">
                 <h2 class="text-start">Добавить подарочную корзину</h2>
@@ -92,7 +95,7 @@
 
                     <v-file-input
                       v-model="image_precent"
-                      :rules="rulesImage"
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
                       accept="image/png, image/jpeg, image/png"
                       placeholder="Загрузите изображение"
                       prepend-icon="mdi-camera"
@@ -109,6 +112,8 @@
                       persistent-hint
                       return-object
                       single-line
+                      required
+                      :rules="[(v) => !!v || 'Не может быть пустым']"
                       label="Выбрать категорию"
                       outlined
                     ></v-select>
@@ -156,15 +161,17 @@
                     item-text="name_reason"
                     item-value="id"
                     multiple
+                    required
+                    :rules="[(v) => !!v || 'Не может быть пустым']"
                     outlined
                     return-object
                     
                   ></v-combobox>
 
                     <v-btn
-                      :disabled="!onlformdata"
+                      @click="validate"
                       class="mr-4"
-                      @click="sendDataform"
+                      
                     >
                       Создать
                     </v-btn>
@@ -172,6 +179,7 @@
                 </v-col>
               </v-row>
             </v-container>
+    </v-form>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -488,6 +496,15 @@ export default {
         (this.type_precent = this.data_filter.type_precent),
         (this.reason_for_precent = this.data_filter.reason_for_precent);
     },
+      validate () {
+        this.$refs.form.validate()
+        if(this.$refs.form.validate()){
+          this.sendDataform()
+        }
+        else{
+          console.log('0000');
+        }
+      },
     onlformdata() {
       if (
         this.name_precent &&
@@ -496,6 +513,7 @@ export default {
         this.category.id &&
         this.select.length
       ) {
+        
         return true;
       } else {
         return false;
