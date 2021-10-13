@@ -91,8 +91,8 @@
                 <v-img :src="item.image_precent"></v-img>
               </v-avatar>
 
-      <v-list-item-content>
-        <div class=" mb-4">
+      <v-list-item-content style="margin-left: 2em;">
+        <div class=" mb-4" >
           <span>Название:</span> <span style="font-weight: 500;"> {{item.name_precent}}</span>
         </div>
         <v-list-item-title class=" mb-1">

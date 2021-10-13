@@ -341,6 +341,10 @@ export default {
 @media (max-width:500px){
     .box-products h2{
   margin-top: 1rem;
+  
+}
+.boxs-cardprod{
+  margin-bottom: 4em;
 }
   .mobp{
   margin-top: 4rem;
