@@ -540,7 +540,8 @@ export default {
       validate () {
         this.$refs.form.validate()
         if(this.$refs.form.validate()){
-          this.sendDataform()
+          console.log('valid');
+          // this.sendDataform()
         }
         else{
           console.log('0000');
