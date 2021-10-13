@@ -473,6 +473,7 @@ export default {
     ],
     items: [],
     search: "",
+    valid: true,
     editedIndex: -1,
     editedItem: {},
     categories: [],
@@ -496,15 +497,7 @@ export default {
         (this.type_precent = this.data_filter.type_precent),
         (this.reason_for_precent = this.data_filter.reason_for_precent);
     },
-      validate () {
-        this.$refs.form.validate()
-        if(this.$refs.form.validate()){
-          this.sendDataform()
-        }
-        else{
-          console.log('0000');
-        }
-      },
+
     onlformdata() {
       if (
         this.name_precent &&
@@ -544,6 +537,15 @@ export default {
   },
 
   methods: {
+      validate () {
+        this.$refs.form.validate()
+        if(this.$refs.form.validate()){
+          this.sendDataform()
+        }
+        else{
+          console.log('0000');
+        }
+      },
     onImage(image){
         // <img src="image_precent"/>
         console.log(image);
