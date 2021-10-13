@@ -34,7 +34,7 @@ export default {
 
     const pk = route.params.id;
     const  history = await $axios.get(
-      `http://api-booking.ru/api/v1/present/history/onehistory/${pk}`
+      `http://giftcity.kz/api/v1/present/history/onehistory/${pk}`
     );
     return {history : history.data };
   },

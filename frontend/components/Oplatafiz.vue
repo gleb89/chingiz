@@ -524,7 +524,7 @@ mounted: function () {
       
       
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`http://giftcity.kz/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
           console.log(resp);

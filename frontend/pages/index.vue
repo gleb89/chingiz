@@ -377,7 +377,7 @@ export default {
       "Content-Type": "application/json"
     };
     return $axios
-      .$get(`http://api-booking.ru/api/v1/present/stocks/`, {
+      .$get(`http://giftcity.kz/api/v1/present/stocks/`, {
         headers: headers
       })
       .then(stocks => {

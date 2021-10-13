@@ -152,7 +152,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`http://api-booking.ru/api/v1/present/type/`, {
+      .$get(`http://giftcity.kz/api/v1/present/type/`, {
         headers: headers,
       })
       .then((type_presents) => {
@@ -207,7 +207,7 @@ export default {
        };
        
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/type/`,data ,{
+        .$post(`http://giftcity.kz/api/v1/present/type/`,data ,{
           headers: headers
         })
         .then((resp) => {
@@ -251,7 +251,7 @@ export default {
        Object.assign(this.items[this.editedIndex], this.editedItem);
 
       this.$axios
-        .$get(`http://api-booking.ru/api/v1/present/type/update/${this.editedItem.id}?name_type=${this.editedItem.name_type}`, {
+        .$get(`http://giftcity.kz/api/v1/present/type/update/${this.editedItem.id}?name_type=${this.editedItem.name_type}`, {
           headers: headers
         })
         .then((resp) => {
@@ -277,7 +277,7 @@ export default {
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`http://api-booking.ru/api/v1/present/type/${this.editedItem.id}`,{
+        .$delete(`http://giftcity.kz/api/v1/present/type/${this.editedItem.id}`,{
           headers: headers
         })
         .then((resp) => {

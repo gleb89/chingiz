@@ -299,7 +299,7 @@ export default {
   async asyncData({ route, $axios }) {
    
     let admins = await $axios.get(
-       `http://api-booking.ru/api/v1/present/admin/`
+       `http://giftcity.kz/api/v1/present/admin/`
     );
 
     return { admins_list:admins.data};
@@ -326,7 +326,7 @@ export default {
     let bodyFormData = new FormData();
     bodyFormData.append('password',this.password);
       this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/admin/password/${this.admin_pk}`, bodyFormData, {
+        .$put(`http://giftcity.kz/api/v1/present/admin/password/${this.admin_pk}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -353,7 +353,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
     this.$axios
-        .$delete(`http://api-booking.ru/api/v1/present/admin/${this.admin_pk}`, {
+        .$delete(`http://giftcity.kz/api/v1/present/admin/${this.admin_pk}`, {
           headers: headers,
         })
         .then((resp) => {
@@ -390,7 +390,7 @@ export default {
     let bodyFormData = new FormData();
     bodyFormData.append(key_admin,val);
     this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/admin/${admin_id}`, bodyFormData, {
+        .$put(`http://giftcity.kz/api/v1/present/admin/${admin_id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -417,7 +417,7 @@ export default {
     }
 
     this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/admin/`, data, {
+        .$post(`http://giftcity.kz/api/v1/present/admin/`, data, {
           headers: headers,
         })
         .then((resp) => {

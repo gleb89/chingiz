@@ -172,7 +172,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`http://api-booking.ru/api/v1/present/categories/`, {
+      .$get(`http://giftcity.kz/api/v1/present/categories/`, {
         headers: headers,
       })
       .then((category_presents) => {
@@ -242,7 +242,7 @@ updateSerialNumb(id_one,id_two ){
        };
        console.log(id_one,id_two );
       this.$axios
-        .$put(`http://api-booking.ru/api/v1/present/categories/update/serial/${id_one}/${id_two}`,{
+        .$put(`http://giftcity.kz/api/v1/present/categories/update/serial/${id_one}/${id_two}`,{
           headers: headers
         })
         .then((resp) => {
@@ -264,7 +264,7 @@ updateSerialNumb(id_one,id_two ){
        };
        
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories/?category_name=${this.name_category}`,bodyFormData ,{
+        .$post(`http://giftcity.kz/api/v1/present/categories/?category_name=${this.name_category}`,bodyFormData ,{
           headers: headers
         })
         .then((resp) => {
@@ -293,7 +293,7 @@ updateSerialNumb(id_one,id_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`http://api-booking.ru/api/v1/present/categories/${this.item_id}`,{
+        .$delete(`http://giftcity.kz/api/v1/present/categories/${this.item_id}`,{
           headers: headers
         })
         .then((resp) => {
@@ -329,7 +329,7 @@ updateSerialNumb(id_one,id_two ){
       bodyFormData.append("name_category", this.name_category);
       
       this.$axios
-        .$post(`http://api-booking.ru/api/v1/present/categories/update/${this.item_id}`, bodyFormData, {
+        .$post(`http://giftcity.kz/api/v1/present/categories/update/${this.item_id}`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
@@ -357,7 +357,7 @@ updateSerialNumb(id_one,id_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`http://api-booking.ru/api/v1/present/categories/${this.editedItem.id}`,{
+        .$delete(`http://giftcity.kz/api/v1/present/categories/${this.editedItem.id}`,{
           headers: headers
         })
         .then((resp) => {

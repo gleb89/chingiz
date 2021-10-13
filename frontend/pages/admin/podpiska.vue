@@ -25,7 +25,7 @@ export default {
     layout: "admin",
   async asyncData({ route, $axios }) {
     const podpiska = await $axios.get(
-      `http://api-booking.ru/api/v1/present/mailing/`
+      `http://giftcity.kz/api/v1/present/mailing/`
     );
 
     return {podpiska:podpiska.data};
