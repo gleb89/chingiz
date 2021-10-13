@@ -137,10 +137,10 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let product = await $axios.get(
-       `http://giftcity.kz/api/v1/present/${product_id}`
+       `https://giftcity.kz/api/v1/present/${product_id}`
     );
     const comments = await $axios.get(
-      `http://giftcity.kz/api/v1/present/comments/all/${product_id}`
+      `https://giftcity.kz/api/v1/present/comments/all/${product_id}`
     );
     return { product: product.data,comments:comments.data,product_id};
   },
@@ -194,7 +194,7 @@ export default {
         'precent_id':present_id
       }
         this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/basket/user_basket/add`,data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/basket/user_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {
@@ -230,7 +230,7 @@ export default {
         'precent_id':present_id
       }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/basket/anonim_basket/add`,data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/basket/anonim_basket/add`,data, {
           headers: headers,
         })
         .then((resp) => {

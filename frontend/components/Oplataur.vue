@@ -599,7 +599,7 @@ mounted: function () {
      
       
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/history/oplata/${this.$store.state.localStorage.basket.id_basket}`, data, {
         })
         .then((resp) => {
            this.$store.commit("localStorage/set_summBasket",Number(0));

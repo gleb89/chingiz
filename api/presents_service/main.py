@@ -31,10 +31,9 @@ from routers import (
 
 
 origins = [
-     "https://zapic.online",
+    "https://giftcity.kz/",
+    "https://giftcity.kz/",
     "http://localhost:3000",
-    "http://localhost:8000/socket.io/?EIO=4&transport=polling&t=NjZcSFv",
-    "https://testfds.ru"
 ]
 
 

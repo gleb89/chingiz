@@ -33,7 +33,7 @@ export default {
     layout: "admin",
   async asyncData({ route, $axios }) {
     const comments = await $axios.get(
-      `http://giftcity.kz/api/v1/present/comments/`
+      `https://giftcity.kz/api/v1/present/comments/`
     );
     return {comments:comments.data};
   },
@@ -63,7 +63,7 @@ export default {
 
       this.$axios
         .$post(
-          `http://giftcity.kz/api/v1/present/comments/moderation/${id}/${moderation}`,
+          `https://giftcity.kz/api/v1/present/comments/moderation/${id}/${moderation}`,
           {
             headers: headers,
           }

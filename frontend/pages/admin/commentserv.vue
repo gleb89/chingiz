@@ -34,7 +34,7 @@ export default {
     layout: "admin",
   async asyncData({ route, $axios }) {
     const comments = await $axios.get(
-      `http://giftcity.kz/api/v1/present/commentsservice/`
+      `https://giftcity.kz/api/v1/present/commentsservice/`
     );
     return {comments:comments.data};
   },
@@ -69,7 +69,7 @@ computed: {
 
       this.$axios
         .$post(
-          `http://giftcity.kz/api/v1/present/commentsservice/moderation/${id}/${moderation}`,
+          `https://giftcity.kz/api/v1/present/commentsservice/moderation/${id}/${moderation}`,
           {
             headers: headers,
           }
