@@ -79,16 +79,17 @@ services:
 
 
 
-  # pgadmin:
-  #   container_name: pgadmin
-  #   image: dpage/pgadmin4
-  #   environment:
-  #     - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
-  #     - PGADMIN_DEFAULT_PASSWORD=admin
-  #   ports:
-  #     - "5050:80"
-  #   depends_on:
-  #     - data_present
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=mba.kimep@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=Ch123456##
+    ports:
+      - "5050:80"
+    depends_on:
+      - data_present
+      - courier_api
 
   nginx:
     image: nginx:1.17
