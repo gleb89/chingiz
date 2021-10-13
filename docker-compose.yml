@@ -35,7 +35,6 @@ services:
     build: ./api/presents_service
     env_file:
       - .env
-    # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
     ports:
       - 8001:8000
@@ -50,7 +49,6 @@ services:
     build: ./api/courier
     env_file:
       - .env
-    # command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
     ports:
       - 8002:8000
