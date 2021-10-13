@@ -142,8 +142,8 @@
         @drop="onDrop($event,item)"
         @dragenter.prevent
         @dragover.prevent
-          v-for="item in items  "
-          :key="item.id"
+          v-for="(item,index) in items  "
+          :key="index"
           class="drag-el"
           draggable="true"
           @dragstart="startDrag($event,item)"

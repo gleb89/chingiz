@@ -166,7 +166,6 @@ export default {
     dialog_send:false,
     dialogDelete: false,
     headers: [
-      { text: "id формы", value: "id" },
       { text: "Название", value: "name_type" },
       { text: "Изменить/ удалить", value: "actions", sortable: false },
     ],

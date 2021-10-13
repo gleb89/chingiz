@@ -137,6 +137,9 @@
         </v-toolbar>
       </template>
       <!-- изменить удалить -->
+            <template v-slot:item.index="{ item,index }">
+       {{index+1}}
+      </template>
       <template v-slot:item.actions="{ item }">
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
@@ -168,7 +171,7 @@ export default {
     dialog_send: false,
     dialogDelete: false,
     headers: [
-      { text: "id формы", value: "id" },
+      { text: "номер формы", value: "index" },
       { text: "Название", value: "name_form" },
       { text: "Изменить/ удалить", value: "actions", sortable: false,},
     ],
