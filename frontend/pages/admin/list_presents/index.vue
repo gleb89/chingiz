@@ -707,9 +707,7 @@ export default {
   .v-data-table-header{
     background: rgb(236, 224, 253) none repeat scroll 0% 0%;
   }
-  .prep .v-icon.v-icon {
-
-  
-    color: #ff7a00;
+  .prep .theme--light.v-icon {
+    color: rgb(243 10 10 / 54%);
 }
 </style>
