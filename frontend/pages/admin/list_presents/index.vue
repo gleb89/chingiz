@@ -47,6 +47,7 @@
                     <v-text-field
                       v-model="name_precent"
                       prepend-inner-icon="*"
+                      class="prep"
                       label="Название подарочной корзины"
                       :rules="[(v) => !!v || 'Не может быть пустым']"
                       required
@@ -87,6 +88,7 @@
                       single-line
                       required
                       type="number"
+                      class="prep"
                       :rules="[(v) => !!v || 'Не может быть пустым']"
                       prepend-inner-icon="*"
                       label="Цена подарочной корзины "
@@ -98,6 +100,7 @@
                       accept="image/png, image/jpeg, image/png"
                       placeholder="Загрузите изображение"
                       prepend-inner-icon="*"
+                      class="prep"
                       append-icon="mdi-camera"
                       required
                       @change="selectFile"
@@ -112,6 +115,7 @@
                       persistent-hint
                       return-object
                       single-line
+                      class="prep"
                       prepend-inner-icon="*"
                       label="Выбрать категорию"
                       outlined
@@ -160,6 +164,7 @@
                     label="Выбрать повод подарка"
                     prepend-inner-icon="*"
                     item-text="name_reason"
+                    class="prep"
                     item-value="id"
                     multiple
                     outlined
