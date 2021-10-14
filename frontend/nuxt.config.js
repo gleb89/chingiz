@@ -16,7 +16,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
     script: [
       {
@@ -31,8 +31,8 @@ export default {
   ],
   pwa: {
     manifest: {
-      name: 'Bota Boutique',
-      short_name: 'Bota Boutique',
+      name: 'GIFTCITY',
+      short_name: 'GIFTCITY',
       lang: 'ru',
       display: 'standalone',
 

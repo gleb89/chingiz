@@ -9,7 +9,7 @@
         <img style="width:23px" fluid src="/mobapp.png">
       </v-btn>
 
-      <v-toolbar-title><img @click="onHome" src="/Logo.png"></v-toolbar-title>
+      <v-toolbar-title><img style="width: 8em;margin-top: .3em;" @click="onHome" src="/logo.png"></v-toolbar-title>
 
       <v-spacer></v-spacer>
 

@@ -8,8 +8,8 @@
     <v-col class="mr-lg-8" lg="2" md="1" xl="3" style="text-align: start;">
       <img
       @click="onHome()"
-        style="cursor:pointer;width: 12rem;"
-        src="/logo.svg"
+        style="cursor:pointer;width: 12rem;margin-top: .5em;"
+        src="/logo.png"
       >
     </v-col>
 

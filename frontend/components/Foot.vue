@@ -150,7 +150,7 @@
         style="position: absolute;bottom: 0;width: 100%;background: #f2f2f2;"
       >
         <p class="text-center">
-          © 2021 сервис оригинальных подарков.bota-boutique
+          © 2021 сервис оригинальных подарков.GIFTCITY
         </p>
       </div>
     </section>
