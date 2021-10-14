@@ -18,11 +18,7 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
-    script: [
-      {
-        src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCBP60arzPqfc9KOGXVLp5A_5CN4idyqCc&libraries=places'
-      }
-    ]
+
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css

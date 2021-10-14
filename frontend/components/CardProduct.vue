@@ -91,7 +91,7 @@ export default {
         };
         this.$axios
           .$post(
-            `https://giftcity.kz/api/v1/present/users/basket/user_basket/add`,
+            `http://giftcity.kz/api/v1/present/users/basket/user_basket/add`,
             data,
             {
               headers: headers
@@ -134,7 +134,7 @@ export default {
         };
         this.$axios
           .$post(
-            `https://giftcity.kz/api/v1/present/users/basket/anonim_basket/add`,
+            `http://giftcity.kz/api/v1/present/users/basket/anonim_basket/add`,
             data,
             {
               headers: headers

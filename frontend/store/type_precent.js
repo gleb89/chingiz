@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const type_precent = await this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/type/`,{
+        .$get(`http://giftcity.kz/api/v1/present/type/`,{
           headers: headers
         })
         commit('settype_precent',type_precent)

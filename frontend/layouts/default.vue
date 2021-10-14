@@ -90,7 +90,7 @@ export default {
 
     retbonus() {
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`http://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(resp);

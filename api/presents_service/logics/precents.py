@@ -1,7 +1,7 @@
 import shutil
 import datetime
-# host = 'https://giftcity.kz:8080'
-host = 'https://giftcity.kz'
+# host = 'http://giftcity.kz:8080'
+host = 'http://giftcity.kz'
 
 async def image_add(image):
     data = str(datetime.datetime.now()).replace(" ", "")

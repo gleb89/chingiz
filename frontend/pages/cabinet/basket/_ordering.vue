@@ -62,7 +62,7 @@
 export default {
   async asyncData({ $axios, store }) {
     const presents_in_basket = await $axios.get(
-      `https://giftcity.kz/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
+      `http://giftcity.kz/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
     );
 
     return { presents_in: presents_in_basket.data};
@@ -108,7 +108,7 @@ export default {
       console.log(44,this.$store.state.localStorage.basket.id_basket);
     if(this.$store.state.localStorage.basket.id_basket){
           await this.$axios.get(
-    `https://giftcity.kz/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
+    `http://giftcity.kz/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
     )
     .then((resp) =>{
       this.presents_indata= resp.data
@@ -121,7 +121,7 @@ export default {
   },
       retbonus() {
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`http://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(resp);

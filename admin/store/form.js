@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const form = await this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/filter/all`,{
+        .$get(`http://giftcity.kz/api/v1/present/filter/all`,{
           headers: headers
         })
         commit('setform',form)

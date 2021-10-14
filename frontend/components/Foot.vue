@@ -177,7 +177,7 @@ export default {
         }
         if(this.email){
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/mailing/`, data, {
+        .$post(`http://giftcity.kz/api/v1/present/mailing/`, data, {
           headers: headers,
         })
         .then((resp) => {

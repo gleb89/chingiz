@@ -146,7 +146,7 @@ export default {
   },
   mounted: function () { 
     let self = this;
-    this.ws = new WebSocket("wss://giftcity.kz/ws/present/search");
+    this.ws = new WebSocket("ws://giftcity.kz/ws/present/search");
     this.ws.onmessage = (event) => {
       console.log("message");
       self.products = JSON.parse(event.data);
