@@ -87,11 +87,11 @@
               placeholder="Введите повод, форму, категорию или название "
               rounded
             ></v-text-field>
-            <div class="result-search" style="">
+            <!-- <div class="result-search" style="">
               <p @click="onresSearch(i)" v-for="i in upd_serch" :key="i">{{i}}</p>
               
       
-            </div>
+            </div> -->
             
 
           </div>
@@ -165,19 +165,19 @@ export default {
       
       let self = this;
       if (this.search) {
-        this.upd_serch = [...new Set(this.search_element)]
+        // this.upd_serch = [...new Set(this.search_element)]
         this.products = this.$store.getters["products/products"].filter((elem) => {
-          if(elem.name_precent.toLowerCase().includes(
-          this.search.toLowerCase()
-          ) ){
-            this.search_element.push(elem.name_precent.toLowerCase())
-          }
+          // if(elem.name_precent.toLowerCase().includes(
+          // this.search.toLowerCase()
+          // ) ){
+          //   this.search_element.push(elem.name_precent.toLowerCase())
+          // }
 
-          if(elem.category[0].name_category.toLowerCase().includes(
-            this.search.toLowerCase()
-          )){
-            this.search_element.push(elem.category[0].name_category.toLowerCase())
-          }
+          // if(elem.category[0].name_category.toLowerCase().includes(
+          //   this.search.toLowerCase()
+          // )){
+          //   this.search_element.push(elem.category[0].name_category.toLowerCase())
+          // }
 
         return elem.name_precent.toLowerCase().includes(
           this.search.toLowerCase()
@@ -256,7 +256,7 @@ export default {
         if(i.name_reason.toLowerCase().includes(
             this.search.toLowerCase()
           )){
-            this.search_element.push(i.name_reason.toLowerCase())
+            
           return elem
         }
       }
