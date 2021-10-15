@@ -58,11 +58,11 @@ services:
     volumes:
       - ./api/courier:/app/courier
 
-  # front:
-  #   restart: always
-  #   build: ./frontend
-  #   ports:
-  #     - 3001:3000
+  front:
+    restart: always
+    build: ./frontend
+    ports:
+      - 3001:3000
     # volumes:
     #     - ./frontend/:/app
 
@@ -101,7 +101,7 @@ services:
     depends_on:
       - present_api
       - courier_api
-      # - front
+      - front
       # - admin
     ports:
       - "8080:8080"
