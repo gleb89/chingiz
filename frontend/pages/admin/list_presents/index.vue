@@ -41,7 +41,7 @@
                   <v-form ref="form_com_children" lazy-validation>
                         <v-text-field
                           v-model="prevue_name"
-                          
+
                           label="превью корзины(напр:подарочная корзина)"
                         ></v-text-field>
                     <v-text-field
@@ -64,6 +64,7 @@
                       outlined
                       name="input-7-4"
                       v-model="composition"
+
                       label="Состав подарочной корзины "
                       
                       required
@@ -77,13 +78,14 @@
                       name="input-7-4"
                       v-model="body"
                       label="Описание подарочной корзины"
-                      
+
                       required
                     ></v-textarea>
 
 
                     <v-text-field
                       v-model="price"
+
                       hide-details
                       single-line
                       required
@@ -187,7 +189,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn color="blue darken-1" text @click="dialog_send = false">
+            <v-btn color="blue darken-1" text @click="dialog_sendrr">
               Отмена
             </v-btn>
           </v-card-actions>
@@ -617,11 +619,30 @@ export default {
       this.items.splice(this.editedIndex, 1);
       this.closeDelete();
     },
+    dialog_sendrr(){
+      this.image_precent =  null
+      this.image = null
+      this.price = null
+      this.body = ''
+      this.composition = ''
+      this.prevue_name = ''
+      this.name_precent = ''
+      this.select = []
+      this.type = {}
+      this.form = {}
+      this.category = {}
+      this.dialog_send = false
+    },
     close() {
       this.dialog = false;
       this.image_precent =  null
       this.image = null
-      
+      this.price = null
+      this.body = ''
+      this.composition = ''
+      this.prevue_name = ''
+      this.name_precent = ''
+      this.select = []
       this.type = {}
       this.form = {}
       this.category = {}

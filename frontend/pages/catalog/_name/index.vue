@@ -88,18 +88,11 @@
               rounded
             ></v-text-field>
             <div class="result-search" style="">
+              <p @click="onresSearch(i)" v-for="i in upd_serch" :key="i">{{i}}</p>
               
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae cumque doloribus ab, cupiditate magni saepe rerum assumenda ipsa obcaecati cum enim quo, excepturi veniam. Ullam atque sunt reiciendis odit ipsum.
-              Minus natus quisquam beatae accusamus sed sunt dicta aut, nisi assumenda quae quibusdam molestias esse perspiciatis impedit tempora ducimus reiciendis, dolores ullam qui, illum officia ut? Fugit praesentium deleniti odit.
-              Vitae dolor voluptates quae odio soluta eum animi laudantium hic quibusdam ipsa veritatis ad facere voluptatem, a nisi tenetur aliquam facilis architecto eligendi dolorum possimus nihil natus repellat. Consectetur, aperiam.
-              Animi voluptatem ipsum unde sit dolor natus voluptate laboriosam, similique tenetur est sint et quia tempore. Dolorum cum veniam quidem consequuntur, officia corporis adipisci esse, ipsa labore assumenda eum ad!
-              Modi, eum accusantium blanditiis cupiditate tempore accusamus vitae, a vero at, nulla debitis velit porro iusto sed aspernatur ut commodi repellendus alias! Atque, expedita! Tempora aliquam facilis officia dolore debitis!
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta quia laboriosam dolorem quasi illum debitis quas, voluptates dolore cumque illo eveniet accusamus, tenetur quam odit. Reprehenderit quod voluptatibus labore voluptates.
-            Ipsa ea quod est atque assumenda, tempore veritatis laborum harum omnis voluptatem, quaerat odit maiores sunt eveniet expedita dolorum ad molestiae aperiam magni nihil? Cupiditate voluptates rem consequuntur tenetur fugit.
-            Numquam incidunt tenetur magni nihil veritatis doloremque, veniam, architecto nulla optio id deserunt. Asperiores, aliquam vero odio ratione cumque maiores assumenda suscipit dolorum voluptatem magnam tempore qui. Fugit, iste in?
-            Atque eos facilis voluptate accusamus perspiciatis minus consectetur, numquam accusantium laborum error laudantium, dolores fugit quasi. Saepe dignissimos dolorem assumenda et animi reprehenderit nam laborum mollitia, quo, nemo id nihil.
-            Totam excepturi eligendi nemo doloremque eos quisquam delectus iusto quidem aliquam, inventore est dolorem tempora eum temporibus sapiente harum ex deleniti assumenda! Facere tenetur illo ipsum voluptates, ut rerum incidunt!
+      
             </div>
+            
 
           </div>
    </v-col>
@@ -172,18 +165,36 @@ export default {
       
       let self = this;
       if (this.search) {
+        this.upd_serch = [...new Set(this.search_element)]
         this.products = this.$store.getters["products/products"].filter((elem) => {
-        
+          if(elem.name_precent.toLowerCase().includes(
+          this.search.toLowerCase()
+          ) ){
+            this.search_element.push(elem.name_precent.toLowerCase())
+          }
+
+          if(elem.category[0].name_category.toLowerCase().includes(
+            this.search.toLowerCase()
+          )){
+            this.search_element.push(elem.category[0].name_category.toLowerCase())
+          }
+
         return elem.name_precent.toLowerCase().includes(
           this.search.toLowerCase()
           ) 
           || elem.category[0].name_category.toLowerCase().includes(
             this.search.toLowerCase()
           )|| this.reasonsearch(elem)
+          
+        
       }); 
    
         // this.ws.onopen;
         // this.ws.send(this.search);
+      }
+      if(!this.search){
+        this.search_element = []
+        this.upd_serch = []
       }
       if (!this.search  && this.filter_name === ''){
         this.products = this.$store.getters["products/products"]
@@ -219,6 +230,7 @@ export default {
       reason_present: this.$store.getters["allfilter/allfilter"].reason_for_precent,
       products:this.$store.getters["products/products"],
       search: "",
+      upd_serch :[],
       search_element:[],
       form_id:null,
       type_precent:[],
@@ -236,11 +248,15 @@ export default {
     };
   },
   methods: {
+    onresSearch(i){
+      this.search = i
+    },
     reasonsearch(elem){
     for(let i of elem.reason_for_precent){
         if(i.name_reason.toLowerCase().includes(
             this.search.toLowerCase()
           )){
+            this.search_element.push(i.name_reason.toLowerCase())
           return elem
         }
       }
@@ -426,6 +442,7 @@ export default {
     background: white;
     box-shadow: -1px 1px 2px 2px rgb(0 0 0 / 11%);
     padding: 1em;
+    width: 100%;
 }
 </style>
 
