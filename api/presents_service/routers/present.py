@@ -170,6 +170,8 @@ async def update_one(
         await present.update(image_precent = new_image)
     if body:
         await present.update(body= body)
+    if not body:
+        await present.update(body= '')
     if prevue_name:
         await present.update(prevue_name = prevue_name)
     if name_precent:
