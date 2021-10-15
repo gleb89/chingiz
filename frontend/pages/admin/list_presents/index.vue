@@ -249,6 +249,7 @@
         :headers="headers"
         :items="get_items"
         :search="search"
+        
       >
         <template v-slot:top>
           <v-toolbar flat>
@@ -425,18 +426,44 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <!-- изображение -->
         <template v-slot:item.image="{ item }">
           <img style="width: 10rem;" :src="item.image_precent" alt="none" />
         </template>
+
+        <template v-slot:item.price="{ item }">
+          <div  style="min-width: 8em;">
+                  <v-chip
+        color="green"
+        style="padding:1em"
+        
+      >
+        {{item.price.toLocaleString()}} тг
+      </v-chip>
+            
+          </div>
+          
+        </template>
+        <!-- изображение -->
+
         <template v-slot:item.reason_for_precent="{ item }">
           <div
-            v-for="reason_item in item.reason_for_precent"
+            v-for="(reason_item,index) in item.reason_for_precent"
             :key="reason_item.id"
           >
-            <span>{{ reason_item.name_reason }}</span>
+            <span>{{index+1}}.{{ reason_item.name_reason }}</span>
+            <p></p>
           </div>
         </template>
+            <template v-slot:item.id="{ item }">
+      <v-chip
+        color="orange"
+        style="padding:1em"
+        dark
+        
+      >
+        {{ item.id }}
+      </v-chip>
+    </template>
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
           <v-icon
@@ -449,6 +476,7 @@
             mdi-pencil
           </v-icon>
           <v-icon
+          color="red"
             style="font-size:1.5em"
             v-if="admin_data.present_change"
             small
@@ -486,6 +514,9 @@ export default {
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
   data: () => ({
+    page: 1,
+    pageCount: 0,
+    itemsPerPage: 10,
     name_precent: "",
     price: null,
     filtcategory: null,
@@ -520,7 +551,7 @@ export default {
       { text: "Превью Названия", value: "prevue_name" },
       { text: "Название", value: "name_precent" },
       { text: "Изображение", value: "image", sortable: false },
-      { text: "Цена(тг)", value: "price" },
+      { text: "Цена подарка", value: "price" },
       { text: "Состав", value: "composition", sortable: false },
       { text: "Описание", value: "body" },
       {
@@ -709,8 +740,17 @@ export default {
           console.log(resp);
           this.items.push(resp);
           this.dialog_send = false;
-          this.image_precent = null;
-          this.image = null;
+      this.image_precent = null;
+      this.image = null;
+      this.price = null;
+      this.body = "";
+      this.composition = "";
+      this.prevue_name = "";
+      this.name_precent = "";
+      this.select = [];
+      this.type = {};
+      this.form = {};
+      this.category = {};
         })
         .catch(function(error) {
           console.log("error");
