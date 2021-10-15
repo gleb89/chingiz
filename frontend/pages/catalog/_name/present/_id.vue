@@ -51,13 +51,13 @@
             ></v-img>
             <span>есть в наличии</span>
           </div>
-          <p  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
-          <p  v-if="product.body" class="ml-1 mt-1">
+          <p v-if="product.body.length > 4"  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
+          <p  v-if="product.body.length > 4" class="ml-1 mt-1">
             
-            {{product.body}}
+            {{product.body }}
           </p>
           <div v-if="product.composition" >
-            <p style="font-weight: bold;">Состав корзины:</p>
+            <p style="font-weight: bold;margin-top:2em">Состав корзины:</p>
             <p v-for="(comp,index) in product.composition.split(/\d[.]+/g)" :key="index">
             <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
             </p>

@@ -581,6 +581,8 @@ export default {
           console.log(resp);
           this.items.push(resp)
           this.dialog_send = false;
+          this.image_precent =  null
+          this.image = null
         })
         .catch(function (error) {
           console.log("error");
@@ -617,6 +619,9 @@ export default {
     },
     close() {
       this.dialog = false;
+      this.image_precent =  null
+      this.image = null
+      
       this.type = {}
       this.form = {}
       this.category = {}
@@ -672,6 +677,8 @@ export default {
         .then((resp) => {
           console.log(resp);
           this.items = resp;
+          this.image_precent =  null
+          this.image = null
         })
         .catch(function (error) {
           console.log(error);

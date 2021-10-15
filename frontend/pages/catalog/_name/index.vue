@@ -84,9 +84,23 @@
             <v-text-field
               v-model="search"
               style="border: 1px solid #989898; width: 100%; height: 3.5rem"
-              placeholder="Например, яблоки"
+              placeholder="Введите повод, форму, категорию или название "
               rounded
             ></v-text-field>
+            <div class="result-search" style="">
+              
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae cumque doloribus ab, cupiditate magni saepe rerum assumenda ipsa obcaecati cum enim quo, excepturi veniam. Ullam atque sunt reiciendis odit ipsum.
+              Minus natus quisquam beatae accusamus sed sunt dicta aut, nisi assumenda quae quibusdam molestias esse perspiciatis impedit tempora ducimus reiciendis, dolores ullam qui, illum officia ut? Fugit praesentium deleniti odit.
+              Vitae dolor voluptates quae odio soluta eum animi laudantium hic quibusdam ipsa veritatis ad facere voluptatem, a nisi tenetur aliquam facilis architecto eligendi dolorum possimus nihil natus repellat. Consectetur, aperiam.
+              Animi voluptatem ipsum unde sit dolor natus voluptate laboriosam, similique tenetur est sint et quia tempore. Dolorum cum veniam quidem consequuntur, officia corporis adipisci esse, ipsa labore assumenda eum ad!
+              Modi, eum accusantium blanditiis cupiditate tempore accusamus vitae, a vero at, nulla debitis velit porro iusto sed aspernatur ut commodi repellendus alias! Atque, expedita! Tempora aliquam facilis officia dolore debitis!
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta quia laboriosam dolorem quasi illum debitis quas, voluptates dolore cumque illo eveniet accusamus, tenetur quam odit. Reprehenderit quod voluptatibus labore voluptates.
+            Ipsa ea quod est atque assumenda, tempore veritatis laborum harum omnis voluptatem, quaerat odit maiores sunt eveniet expedita dolorum ad molestiae aperiam magni nihil? Cupiditate voluptates rem consequuntur tenetur fugit.
+            Numquam incidunt tenetur magni nihil veritatis doloremque, veniam, architecto nulla optio id deserunt. Asperiores, aliquam vero odio ratione cumque maiores assumenda suscipit dolorum voluptatem magnam tempore qui. Fugit, iste in?
+            Atque eos facilis voluptate accusamus perspiciatis minus consectetur, numquam accusantium laborum error laudantium, dolores fugit quasi. Saepe dignissimos dolorem assumenda et animi reprehenderit nam laborum mollitia, quo, nemo id nihil.
+            Totam excepturi eligendi nemo doloremque eos quisquam delectus iusto quidem aliquam, inventore est dolorem tempora eum temporibus sapiente harum ex deleniti assumenda! Facere tenetur illo ipsum voluptates, ut rerum incidunt!
+            </div>
+
           </div>
    </v-col>
    <v-col  lg="3" md="3" class="d-lg-block d-md-block d-none" style="align-items: center;display: flex;">
@@ -158,8 +172,18 @@ export default {
       
       let self = this;
       if (this.search) {
-        this.ws.onopen;
-        this.ws.send(this.search);
+        this.products = this.$store.getters["products/products"].filter((elem) => {
+        
+        return elem.name_precent.toLowerCase().includes(
+          this.search.toLowerCase()
+          ) 
+          || elem.category[0].name_category.toLowerCase().includes(
+            this.search.toLowerCase()
+          )|| this.reasonsearch(elem)
+      }); 
+   
+        // this.ws.onopen;
+        // this.ws.send(this.search);
       }
       if (!this.search  && this.filter_name === ''){
         this.products = this.$store.getters["products/products"]
@@ -195,6 +219,7 @@ export default {
       reason_present: this.$store.getters["allfilter/allfilter"].reason_for_precent,
       products:this.$store.getters["products/products"],
       search: "",
+      search_element:[],
       form_id:null,
       type_precent:[],
       form:this.$store.getters["allfilter/allfilter"].form_precent,
@@ -211,8 +236,17 @@ export default {
     };
   },
   methods: {
+    reasonsearch(elem){
+    for(let i of elem.reason_for_precent){
+        if(i.name_reason.toLowerCase().includes(
+            this.search.toLowerCase()
+          )){
+          return elem
+        }
+      }
+    },
     onReason(pk,name_reason){
-      console.log(66);
+      this.search = ''
       this.filter_name = name_reason
       this.products = []
       this.products = this.$store.getters["products/products"].filter((elem) => {
@@ -253,7 +287,7 @@ export default {
       });
     },
     onfilterslug(slug,pk,name) {
-      
+      this.search = ''
       if(slug === 'Все_продукты'){
         this.products = this.$store.getters["products/products"]
         this.filter_name = ''
@@ -288,7 +322,7 @@ export default {
     },
  
     sortedProductForm(){
-      
+      this.search = ''
        this.products  = this.$store.getters["products/products"].filter((elem) => {
          if(elem.form_precent.length >0){
         return (
@@ -305,6 +339,7 @@ export default {
       });
     },
     sortedProductReason(){
+      this.search = ''
        this.list_products = this.list_products.filter((elem) => {
         return (
           elem.reason_for_precent.id === Number(this.reason_id) 
@@ -383,4 +418,14 @@ export default {
 .v-input__slot {
   width: 90%;
 }
+.result-search{
+    position: absolute;
+    z-index: 1;
+    overflow: scroll;
+    height: 20vh;
+    background: white;
+    box-shadow: -1px 1px 2px 2px rgb(0 0 0 / 11%);
+    padding: 1em;
+}
 </style>
+

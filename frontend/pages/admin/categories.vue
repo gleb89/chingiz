@@ -247,6 +247,7 @@ updateSerialNumb(id_one,id_two ){
         })
         .then((resp) => {
          this.category_presents = resp
+         this.image_precent =  null
           
         })
         .catch(function (error) {
@@ -270,6 +271,7 @@ updateSerialNumb(id_one,id_two ){
         .then((resp) => {
          this.items.push(resp)
          this.dialogform = false
+         this.image_precent =  null
           
         })
         .catch(function (error) {
@@ -307,6 +309,7 @@ updateSerialNumb(id_one,id_two ){
 
     close() {
       this.dialog = false;
+      this.image_precent =  null
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
@@ -336,6 +339,7 @@ updateSerialNumb(id_one,id_two ){
          
          this.category_presents = resp
          this.dialogformupdate = false
+         this.image_precent =  null
           
         })
         .catch(function (error) {
