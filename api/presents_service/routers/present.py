@@ -13,7 +13,7 @@ from models.form_precent import FormPresent
 from models.reason_for_precent import Reason
 from models.type_present import TypePresent
 from logics.precents import image_add
-from shemas.precent import CreatePresent
+from models.subcategories import SubCategories
 from logics.jwt_token import jwt_auth
 
 
@@ -37,6 +37,7 @@ async def create(
     form_precent_id: str = Form(None),
     type_precent_id: str = Form(None),
     reason_for_precent_id: list = Form(...),
+    subcategory_list_id: list = Form(None),
     body :str = Form(None),
     image: UploadFile = File(...),
     # admin = Depends(jwt_auth)
@@ -48,8 +49,16 @@ async def create(
         price = price,
         composition = composition,
         image_precent = new_image,
+        body = body
         
     )
+    if subcategory_list_id:
+        list_id_subcategory = re.findall(r'\d+', subcategory_list_id[0])
+        list_id_subcategory  = [int(i) for i in list_id_subcategory]
+        for sub_id in list_id_subcategory:
+            subcategory_for_precent = await SubCategories.objects.get_or_none(id=sub_id)
+            await new_present.subcategory.add(subcategory_for_precent)
+
     if type_precent_id:
         type_precent = await TypePresent.objects.get_or_none(id=type_precent_id)
         await new_present.type_precent.add(type_precent)
@@ -94,6 +103,7 @@ async def get_all(slug_category: Optional[str] = None):
             [
                 "category",
                 "form_precent",
+                "subcategory",
                 "type_precent",
                 "reason_for_precent"
             ]
@@ -104,6 +114,7 @@ async def get_all(slug_category: Optional[str] = None):
             [
                 "category",
                 "form_precent",
+                "subcategory",
                 "type_precent",
                 "reason_for_precent"
             ]
@@ -119,6 +130,7 @@ async def get_one(id: int):
             "category",
             "form_precent",
             "type_precent",
+            "subcategory",
             "reason_for_precent"
             ]
         ).get_or_none(id=id)
@@ -145,6 +157,7 @@ async def update_one(
             "category",
             "form_precent",
             "type_precent",
+            "subcategory",
             "reason_for_precent"
         ]
     ).exclude_fields("presentreason").get_or_none(id=id)
@@ -218,8 +231,10 @@ async def get_all_filter():
     form_precent = await FormPresent.objects.all()
     type_precent = await TypePresent.objects.all()
     reason_for_precent = await Reason.objects.order_by("serial_number").all()
+    subcategories = await SubCategories.objects.all()
     data = {
         'categories':categories,
+        'subcategories':subcategories,
         'form_precent':form_precent,
         'type_precent':type_precent,
         'reason_for_precent':reason_for_precent 

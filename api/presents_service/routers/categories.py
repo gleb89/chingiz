@@ -15,17 +15,17 @@ categories_router = APIRouter(
 
 
 @categories_router.post('/')
-async def create(category_name: str,image: UploadFile = File(...),admin = Depends(jwt_auth)):
-    if admin:
-        icon = await image_add(image)
-        new_category = await Categories.objects.create(
-            name_category=category_name,
-            slug_category = "".join(category_name.split()),
-            icon = icon
-            )
+async def create(category_name: str,image: UploadFile = File(...)):
+ 
+    icon = await image_add(image)
+    new_category = await Categories.objects.create(
+        name_category=category_name,
+        slug_category = "".join(category_name.split()),
+        icon = icon
+        )
 
-        await new_category.update(serial_number = new_category.id)
-        return new_category
+    await new_category.update(serial_number = new_category.id)
+    return new_category
 
 @categories_router.put(
     '/update/serial/{id_one}/{id_two}'
@@ -40,16 +40,28 @@ async def update_serial(
     serial_number_two = category_two.serial_number 
     await category_one.update(serial_number = serial_number_two)
     await category_two.update(serial_number = serial_number_one)
-    return await Categories.objects.order_by("serial_number").all()
+    return await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).order_by("serial_number").all()
 
 @categories_router.get('/')
 async def get_all():
-    return await Categories.objects.order_by("serial_number").all()
+    return await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).order_by("serial_number").all()
 
 
 @categories_router.get('/{id}')
 async def get_one(id: int):
-    return await Categories.objects.get_or_none(id=id)
+    return await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).get_or_none(id=id)
 
 
 @categories_router.post('/update/{id}')
@@ -59,7 +71,11 @@ async def update_one(
     image: UploadFile = File(None),
     admin = Depends(jwt_auth)
     ):
-    category = await Categories.objects.get_or_none(id=id)
+    category = await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).get_or_none(id=id)
     
     
     if image:
@@ -70,15 +86,27 @@ async def update_one(
             name_category = name_category,
             slug_category = "".join(name_category.split()),
             )
-    return await Categories.objects.order_by("serial_number").all()
+    return await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).order_by("serial_number").all()
 
 
 @categories_router.delete('/{id}')
 async def delete(id: int,admin = Depends(jwt_auth)):
-    category = await Categories.objects.get_or_none(id=id)
+    category = await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).get_or_none(id=id)
     try:
         await category.delete()
-        return await Categories.objects.order_by("serial_number").all()
+        return await Categories.objects.select_related(
+            [
+                "subcategory",
+            ]
+        ).order_by("serial_number").all()
     except:
         return {'message': 'not category'}
        

@@ -8,6 +8,7 @@ from models.category import Categories
 from models.form_precent import  FormPresent
 from models.reason_for_precent import Reason
 from models.type_present import TypePresent
+from models.subcategories import SubCategories
 
 
 class Present(ormar.Model):
@@ -44,6 +45,9 @@ class Present(ormar.Model):
     composition: str = ormar.String(max_length=10000, nullable=True)
     category: Optional[List[Categories]] = ormar.ManyToMany(
         Categories,  related_name="self_present",nullable=True
+    )
+    subcategory: Optional[List[SubCategories]] = ormar.ManyToMany(
+        SubCategories,  related_name="self_sub_present",nullable=True
     )
     form_precent: Optional[List[ FormPresent]] = ormar.ManyToMany(
          FormPresent,nullable=True,skip_reverse=True

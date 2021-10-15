@@ -23,7 +23,8 @@ from routers import (
     bonus,
     commentsservice,
     podpicka,
-    stocks
+    stocks,
+    subcategories
     )   
 
 
@@ -95,6 +96,11 @@ app.include_router(
 app.include_router(
     categories.categories_router
 )
+
+app.include_router(
+    subcategories.app
+)
+
 app.include_router(
     reason_for_precent.reason_precent
 )
@@ -134,6 +140,8 @@ app.include_router(
 app.include_router(
     stocks.app
 )
+
+
 
 
 
