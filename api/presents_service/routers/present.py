@@ -42,6 +42,10 @@ async def create(
     image: UploadFile = File(...),
     # admin = Depends(jwt_auth)
     ):
+    if not  body:
+        body = ''
+    else:
+        body = body
     new_image = await image_add(image)
     new_present = await Present.objects.create(
         prevue_name = prevue_name,
