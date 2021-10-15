@@ -46,6 +46,10 @@ async def create(
         body = ''
     else:
         body = body
+    if not  composition:
+        composition = ''
+    else:
+        composition = composition
     new_image = await image_add(image)
     new_present = await Present.objects.create(
         prevue_name = prevue_name,
@@ -180,6 +184,8 @@ async def update_one(
         await present.update(price = price)
     if composition:
         await present.update(composition = composition)
+    if not composition:
+        await present.update(composition = '')
     if category_id:
         category = await Categories.objects.get_or_none(
                                         id=category_id
