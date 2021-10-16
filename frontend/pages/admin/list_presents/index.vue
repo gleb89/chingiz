@@ -1,3 +1,4 @@
+
 <template>
   <v-container>
     <h2>Все подарочные корзины</h2>
@@ -323,6 +324,11 @@
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
+                        <div v-if="image">
+                          <p>{{image}}</p>
+                          <img style="width:12em" :src="image.name" alt="">
+                        </div>
+                        
                         <v-file-input
                           v-model="image"
                           accept="image/png, image/jpeg, image/bmp"
@@ -342,7 +348,7 @@
                           persistent-hint
                           return-object
                           single-line
-                          :label="category"
+                          label="Изменить категорию"
                           outlined
                         ></v-select>
                       </v-col>
@@ -358,7 +364,7 @@
                           persistent-hint
                           return-object
                           single-line
-                          :label="form"
+                          label="Изменить форму"
                           outlined
                         ></v-select>
                       </v-col>
@@ -372,7 +378,7 @@
                           item-value="id"
                           persistent-hint
                           return-object
-                          :label="type"
+                          label="Изменить тип "
                           single-line
                           outlined
                         ></v-select>
@@ -638,6 +644,7 @@ export default {
           }
         });
       }
+
       if(this.filtcategory){
         this.items = this.data_presents.filter(elem => {
           return elem.category[0].id === this.filtcategory;
@@ -692,7 +699,6 @@ export default {
       this.filtpovod = null;
       this.filtcategory = null;
     },
-
     onImage(image) {
       // <img src="image_precent"/>
       console.log(image);
@@ -708,9 +714,7 @@ export default {
       for (let i of this.select) {
         select_id.push(i.id);
       }
-
       let bodyFormData = new FormData();
-
       if (this.prevue_name) {
         bodyFormData.append("prevue_name", this.prevue_name);
       }
@@ -719,7 +723,6 @@ export default {
       if (this.composition) {
         bodyFormData.append("composition", this.composition);
       }
-
       bodyFormData.append("image", this.image_precent);
       bodyFormData.append("category_id", this.category.id);
       if (this.form.id) {
@@ -731,7 +734,6 @@ export default {
       if (this.body) {
         bodyFormData.append("body", this.body);
       }
-
       bodyFormData.append("reason_for_precent_id", String(select_id));
       this.$axios
         .$post(`http://giftcity.kz/api/v1/present/`, bodyFormData, {
@@ -773,7 +775,6 @@ export default {
       if (item.category.length > 0) {
         this.category = item.category[0].name_category;
       }
-
       this.dialog = true;
     },
     deleteItem(item) {
@@ -852,9 +853,7 @@ export default {
         this.editedItem.type_precent[0] = this.type;
         this.type = {};
       }
-
       bodyFormData.append("reason_for_precent_id", String(select_id));
-
       this.$axios
         .$put(
           `http://giftcity.kz/api/v1/present/${this.editedItem.id}`,
@@ -865,7 +864,7 @@ export default {
         )
         .then(resp => {
           console.log(resp);
-          this.data_presents[this.ind] = resp
+          this.items = 
           this.ind = null
           this.image_precent = null;
           this.image = null;
