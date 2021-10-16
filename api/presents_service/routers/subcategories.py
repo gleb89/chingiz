@@ -49,12 +49,16 @@ async def update_one(
     name_subcategory: str,
     admin = Depends(jwt_auth)
     ):
-    subcategory = await SubCategories.objects.get_or_none(id=id)
+    subcategory = await SubCategories.objects.select_related(
+            [
+                "self_category",
+            ]
+        ).get_or_none(id=id)
     
     await subcategory.update(
             name_subcategory = name_subcategory,
             )
-    return await SubCategories.objects.all()
+    return subcategory
 
 
 @app.delete('/{id}')
