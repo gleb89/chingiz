@@ -1,6 +1,226 @@
 <template>
   <div>
 {{all_filter}}
+    <h2>Все подарочные корзины</h2>
+          <div
+            v-if="admin_data.present_change"
+            style="width: 100%; padding: 1rem"
+          >
+            <v-btn @click="dialog_save = true" class="mx-2" fab color="indigo">
+              <v-icon dark style="color:white"> mdi-plus </v-icon>
+            </v-btn>
+          </div>
+
+<v-expansion-panels style="background: #f7f7f7;margin-top:3em;margin-bottom:3em">
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <h4 class="pb-6">Фильтры</h4>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col cols="12" lg="4" md="4">
+                  <h6>По категориям</h6>
+                  <v-select
+                  @click="onCat"
+                    solo
+                    v-model="filtcategory"
+                    :items="categories"
+                    label="Выбрать категорию"
+                    item-text="name_category"
+                    item-value="id"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" lg="4" md="4">
+                  <h6>По поводам </h6>
+                  <v-select
+                    solo
+                    @click="onPovod"
+                    v-model="filtpovod"
+                    :items="reason_for_precent"
+                    label="Выбрать повод подарка"
+                    item-text="name_reason"
+                    item-value="id"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12" lg="4" md="4">
+                  <h6>По форме</h6>
+                  <v-select
+                  @click="ohForm"
+                    solo
+                    v-model="filtform"
+                    :items="form_precent"
+                    item-text="name_form"
+                    item-value="id"
+                    label="Выбрать форму подарка"
+                  ></v-select>
+                </v-col>
+                <v-col cols="12">
+                  <v-btn @click="reset" class="ma-2" outlined color="indigo">
+                    Сбросить фильтры
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+ <v-dialog v-model="dialog_save" persistent max-width="600px">
+        <v-card>
+          <v-card-title>
+            <span class="text-h5">Поводы корзины</span>
+          </v-card-title>
+          <v-card-text>
+            <v-container class="">
+              <v-row justify="start">
+                <h2 class="text-start">Добавить подарочную корзину</h2>
+                {{ all_filter }}
+                <v-col cols="12">
+                  <v-form ref="form_com_children" lazy-validation>
+                    <v-text-field
+                      v-model="prevue_name"
+                      label="превью корзины(напр:подарочная корзина)"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="name_precent"
+                      prepend-inner-icon="*"
+                      class="prep"
+                      label="Название подарочной корзины"
+                      :rules="[v => !!v || 'Не может быть пустым']"
+                      required
+                    ></v-text-field>
+                    <h4 class="mt-6">
+                      Перенос строки ,если начало нового пункта начинается с
+                      цифры и точки
+                      <br />
+                      пример(1.)
+                    </h4>
+                    <h6>Превью отображения на сайте</h6>
+                    <p
+                      v-for="(comp, index) in composition.split(/\d[.]+/g)"
+                      :key="index"
+                    >
+                      <span style="font-weight: bold;" v-if="index"
+                        >{{ index }}.</span
+                      >
+                      {{ comp }}
+                    </p>
+                    <v-textarea
+                      outlined
+                      name="input-7-4"
+                      v-model="composition"
+                      label="Состав подарочной корзины "
+                      required
+                    >
+                    </v-textarea>
+
+                    <v-textarea
+                      outlined
+                      name="input-7-4"
+                      v-model="body"
+                      label="Описание подарочной корзины"
+                      required
+                    ></v-textarea>
+
+                    <v-text-field
+                      v-model="price"
+                      hide-details
+                      single-line
+                      required
+                      type="number"
+                      class="prep"
+                      :rules="[v => !!v || 'Не может быть пустым']"
+                      prepend-inner-icon="*"
+                      label="Цена подарочной корзины "
+                    />
+
+                    <v-file-input
+                      v-model="image_precent"
+                     
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-inner-icon="*"
+                      class="prep"
+                      append-icon="mdi-camera"
+                      required
+                     
+                      label="Загрузите изображение"
+                    ></v-file-input>
+                    <span>Выбрать категорию</span>
+                    <v-select
+                      v-model="category"
+                      :items="categories"
+                      item-text="name_category"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      class="prep"
+                      prepend-inner-icon="*"
+                      label="Выбрать категорию"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать форму подарка</span>
+                    <v-select
+                      v-model="form"
+                      :items="form_precent"
+                      item-text="name_form"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      label="Выбрать форму подарка"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать тип подарка</span>
+                    <v-select
+                      v-model="type"
+                      :items="type_precent"
+                      item-text="name_type"
+                      item-value="id"
+                      persistent-hint
+                      return-object
+                      single-line
+                      label="Выбрать тип подарка"
+                      outlined
+                    ></v-select>
+                    <span>Выбрать повод подарка</span>
+
+
+                    <v-combobox
+                      v-model="select"
+                      :items="reason_for_precent"
+                      label="Выбрать повод подарка"
+                      prepend-inner-icon="*"
+                      item-text="name_reason"
+                      class="prep"
+                      item-value="id"
+                      multiple
+                      outlined
+                      return-object
+                    ></v-combobox>
+
+                    <v-btn
+                      :disabled="!onlformdata"
+                      class="mr-4"
+                      @click="sendDataform"
+                    >
+                      Создать
+                    </v-btn>
+                  </v-form>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+
+            <v-btn color="blue darken-1" text @click="dialog_close">
+              Отмена
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+
+
      <v-dialog v-model="dialogreset" max-width="500px">
               <!-- изменить -->
               <v-card>
@@ -154,6 +374,24 @@
               </v-card>
             </v-dialog>
 
+
+<v-dialog v-model="dialogDelete" max-width="500px">
+              <v-card>
+                <v-card-title class="text-h5"
+                  >Вы действительно хотите удалить корзину?</v-card-title
+                >
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="blue darken-1" text @click="closeDelete"
+                    >Отмена</v-btn 
+                  >
+                  <v-btn color="blue darken-1" text @click="deleteItemConfirm"
+                    >Да</v-btn
+                  >
+                  <v-spacer></v-spacer>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
     <v-data-table
       :headers="headers"
       :items="get_data_present"
@@ -271,6 +509,20 @@ export default {
         { text: "перейти", value: "onpage", sortable: false }
       ],
     categories: [],
+    name_precent: "",
+    price: null,
+    body:'',
+    filtcategory: null,
+    deleteitemdict:{},
+    dialogDelete:false,
+    img_open: false,
+    filtpovod: null,
+    composition: "",
+    dialog2: false,
+    image_precent: null,
+    prevue_name: "",
+    filtform: null,
+    dialog_save:'',
     category: {},
     image: null,
     form_precent: [],
@@ -279,13 +531,50 @@ export default {
     itemadit:{},
     type_precent: [],
     type: {},
+    select: [],
     dialogreset:false,
     ind:null
     };
   },
   computed: {
+    onlformdata() {
+      if (
+        this.name_precent &&
+        this.price &&
+        this.image_precent &&
+        this.category.id &&
+        this.select.length
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     get_data_present() {
-      this.items = this.data_presents;
+ if(this.filtpovod){
+        this.items = this.data_presents.filter(elem => {
+          for (let i of elem.reason_for_precent) {
+            if (i.id === this.filtpovod) {
+              return elem;
+            }
+          }
+        });
+      }
+      if(this.filtcategory){
+        this.items = this.data_presents.filter(elem => {
+          return elem.category[0].id === this.filtcategory;
+        });
+      }
+      if(this.filtform){
+      this.items = this.data_presents.filter(elem => {
+          if (elem.form_precent.length > 0) {
+            return elem.form_precent[0].id === this.filtform;
+          }
+        });
+      }
+      if (!this.filtpovod && !this.filtcategory && !this.filtform) {
+        this.items = this.data_presents;
+      }
       return this.items;
     },
     admin_data() {
@@ -302,6 +591,9 @@ export default {
   mounted() {},
 
   methods: {
+    dialog_close(){
+      this.dialog_save = false
+    },
     editItem(item){
       this.ind = this.data_presents.findIndex(function (elem) {
 	    return elem.id === item.id;
@@ -318,6 +610,61 @@ export default {
         this.category = item.category[0].name_category;
       }
     this.dialogreset = true
+    },
+    sendDataform(){
+  const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken
+      };
+      let select_id = [];
+      for (let i of this.select) {
+        select_id.push(i.id);
+      }
+      let bodyFormData = new FormData();
+      if (this.prevue_name) {
+        bodyFormData.append("prevue_name", this.prevue_name);
+      }
+      bodyFormData.append("name_precent", this.name_precent);
+      bodyFormData.append("price", Number(this.price));
+      if (this.composition) {
+        bodyFormData.append("composition", this.composition);
+      }
+      bodyFormData.append("image", this.image_precent);
+      bodyFormData.append("category_id", this.category.id);
+      if (this.form.id) {
+        bodyFormData.append("form_precent_id", this.form.id);
+      }
+      if (this.type.id) {
+        bodyFormData.append("type_precent_id", this.type.id);
+      }
+      if (this.body) {
+        bodyFormData.append("body", this.body);
+      }
+      bodyFormData.append("reason_for_precent_id", String(select_id));
+      this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/`, bodyFormData, {
+          headers: headers
+        })
+        .then(resp => {
+          console.log(resp);
+          this.dialog_save = false
+          this.data_presents.push(resp);
+          this.dialog_send = false;
+          this.image_precent = null;
+          this.image = null;
+          this.price = null;
+          this.body = "";
+          this.composition = "";
+          this.prevue_name = "";
+          this.name_precent = "";
+          this.select = [];
+          this.type = {};
+          this.form = {};
+          this.category = {};
+        })
+        .catch(function(error) {
+          console.log("error");
+        });
     },
     update(){
     let headers = {
@@ -401,6 +748,39 @@ export default {
       this.close();
       
     },
+    deleteItem(item){
+      this.dialogDelete = true;
+      this.deleteitemdict = item
+    },
+      deleteItemConfirm() {
+        let headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken
+      };
+      this.dialogDelete = false;
+      this.$axios
+        .$delete(`http://giftcity.kz/api/v1/present/${this.deleteitemdict.id}`, {
+          headers: headers
+        })
+        .then(resp => {
+          let numind = this.deleteitemdict.id
+        this.ind = this.data_presents.findIndex(function (elem) {
+	      return elem.id === numind 
+        });
+       
+        this.data_presents.splice(this.ind , 1);
+          this.dialogDelete = false;
+          this.ind = null
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      
+    },
+    closeDelete(){
+    this.dialogDelete = false
+    },
+ 
     close(){
       this.ind = null
       this.itemadit = {}
@@ -409,6 +789,33 @@ export default {
     },
     Onpage(item_id) {
       this.$router.push(`/admin/list_presents/${item_id}`);
+    },
+    prim_filtcat() {
+      this.dialog2 = false;
+    },
+    ohForm(){
+      this.filtpovod = null
+        this.filtcategory = null
+       
+    },
+    onPovod(){
+      console.log(2);
+        this.filtform = null;
+        this.filtcategory = null;
+       
+    },
+    onCat(){
+      
+        console.log(1);
+        this.filtform = null;
+        this.filtpovod = null;
+       
+      
+    },
+       reset() {
+      this.filtform = null;
+      this.filtpovod = null;
+      this.filtcategory = null;
     },
   }
 };

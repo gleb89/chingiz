@@ -231,7 +231,7 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
     try:
         product = await Present.objects.get_or_none(id=id)
         await product.delete()
-        return await get_all()
+        return True
     except:
         pass
  
