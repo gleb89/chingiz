@@ -215,12 +215,10 @@ async def update_one(
     if reason_for_precent_id:
         list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
         list_id_reason = [int(i) for i in list_id_reason]
+        await present.reason_for_precent.clear()
         for reason_id in list_id_reason:
             reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
-            if reason_for_precent in present.reason_for_precent:
-                pass
-            else:
-               await present.reason_for_precent.add(reason_for_precent)
+            await present.reason_for_precent.add(reason_for_precent)
 
         
         
