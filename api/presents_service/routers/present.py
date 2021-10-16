@@ -51,6 +51,8 @@ async def create(
     else:
         composition = composition
     new_image = await image_add(image)
+    if not prevue_name:
+        prevue_name = ''
     new_present = await Present.objects.create(
         prevue_name = prevue_name,
         name_precent = name_precent,
@@ -222,7 +224,7 @@ async def update_one(
 
         
         
-    return await get_all()
+    return await get_one(id)
     
 
 

@@ -465,13 +465,13 @@
       </v-chip>
     </template>
         <!-- изменить удалить -->
-        <template v-slot:item.actions="{ item }">
+        <template v-slot:item.actions="{ item,index }">
           <v-icon
             style="font-size:1.5em"
             v-if="admin_data.present_change"
             small
             class="mr-2"
-            @click="editItem(item)"
+            @click="editItem(item,index)"
           >
             mdi-pencil
           </v-icon>
@@ -515,6 +515,7 @@ export default {
   },
   data: () => ({
     page: 1,
+    ind:null,
     pageCount: 0,
     itemsPerPage: 10,
     name_precent: "",
@@ -759,7 +760,8 @@ export default {
     Onpage(item_id) {
       this.$router.push(`/admin/list_presents/${item_id}`);
     },
-    editItem(item) {
+    editItem(item,index) {
+      this.ind = index
       this.editedIndex = this.items.indexOf(item);
       this.editedItem = Object.assign({}, item);
       if (item.type_precent.length > 0) {
@@ -863,7 +865,8 @@ export default {
         )
         .then(resp => {
           console.log(resp);
-          this.items = resp;
+          this.data_presents[this.ind] = resp
+          this.ind = null
           this.image_precent = null;
           this.image = null;
         })
