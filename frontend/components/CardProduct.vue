@@ -28,9 +28,9 @@
       <hr />
       <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
         <h4 class="hh4" style="font-size: 0.9rem;text-align: center;">
-          {{ present.prevue_name }}
+         <span style="font-weight: 500;font-size: 1em;">{{ present.prevue_name }}</span> 
           <br />
-          "{{ present.name_precent }}"
+         <span style="font-size: 1.3em;font-weight: 700;">"{{ present.name_precent }}"</span> 
         </h4>
       </v-card-title>
 

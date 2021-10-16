@@ -8,7 +8,7 @@
         </p>
         <v-container>
           <v-row justify="center">
-            <v-col cols="12" lg="4" md="4">
+            <v-col cols="12" lg="3" md="3">
               <v-autocomplete
                 class="rounded-lg"
                 label="Город доставки"
@@ -20,7 +20,7 @@
                 no-data-text="Ничего не найдено"
               ></v-autocomplete>
             </v-col>
-            <v-col cols="12" lg="4" md="4">
+            <v-col cols="12" lg="3" md="3">
               <v-menu
                 style=""
                 ref="menu1"
@@ -52,8 +52,8 @@
             </v-col>
             <v-col
               cols="12"
-              lg="4"
-              md="4"
+              lg="3"
+              md="3"
               class="d-flex b-b"
               style="align-items: center;margin-bottom: 2rem;"
             >
@@ -61,7 +61,7 @@
                 @click="onsavecity_pushCatalog"
                 depressed
                 rounded
-                style=";height: 3rem;width: 15rem;"
+                style=";height: 3rem;width: 20em;"
                 color="#ff7a00"
                 dark
               >

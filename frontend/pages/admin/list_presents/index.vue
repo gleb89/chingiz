@@ -681,6 +681,9 @@ export default {
       if(this.itemadit.prevue_name){
         bodyFormData.append("prevue_name", this.itemadit.prevue_name);
       }
+      if(this.itemadit.name_precent){
+        bodyFormData.append("name_precent", this.itemadit.name_precent);
+      }
       if(this.itemadit.body){
          bodyFormData.append("body", this.itemadit.body);
       }
