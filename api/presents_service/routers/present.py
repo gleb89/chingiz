@@ -224,7 +224,7 @@ async def update_one(
 
         
         
-    return await get_all()
+    return await get_one(id)
     
 
 

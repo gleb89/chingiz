@@ -863,8 +863,9 @@ export default {
           }
         )
         .then(resp => {
-          console.log(resp);
-          this.items = 
+          
+          
+          console.log(this.data_presents[this.ind]);
           this.ind = null
           this.image_precent = null;
           this.image = null;
