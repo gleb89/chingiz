@@ -11,11 +11,12 @@
 <v-icon dark style="color:white"> mdi-plus </v-icon>
     </v-btn>
     </div>
-    <v-dialog v-model="dialogform" max-width="500px">
+    <v-dialog v-model="dialogsub" max-width="500px">
             <!-- изменить -->
             <v-card>
               <v-card-title>
-                <span class="text-h5">Создать категорию</span>
+                <span class="text-h5">Создать подкатегорию категории: </span>
+                <p style="font-size:1.3em">{{itemSub.name_category}}</p>
               </v-card-title>
 
               <v-card-text>
@@ -23,22 +24,12 @@
                   <v-row>
                 <v-col cols="12">
                       <v-text-field
-                        v-model="name_category"
-                        label="Название категории корзины"
+                        v-model="name_subcategory"
+                        label="Название подкатегории корзины"
+                        :rules="rulessub"
                       ></v-text-field>
                     </v-col>
-                    <v-col cols="12">
-                                        <v-file-input
-                      v-model="image_precent"
-                      :rules="rulesImage"
-                      accept="image/png, image/jpeg, image/png"
-                      placeholder="Загрузите изображение"
-                      prepend-icon="mdi-camera"
-                      required
-                      
-                      label="Загрузите изображение"
-                    ></v-file-input>
-                </v-col>
+    
 
                   </v-row>
                 </v-container>
@@ -46,10 +37,46 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="dialogform = false">
+                <v-btn color="blue darken-1" text @click="dialogsub = false">
                   Отмена
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="createForm">
+                <v-btn color="blue darken-1" text @click="createSub">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
+    <v-dialog v-model="dialogresetsub" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Изменить подкатегорию: </span>
+                
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                <v-col cols="12">
+                      <v-text-field
+                        v-model="name_subcategory"
+                        label="Название подкатегории корзины"
+                        :rules="rulessub"
+                      ></v-text-field>
+                    </v-col>
+    
+
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogresetsub= false">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="sendResetSub">
                   Сохранить
                 </v-btn>
               </v-card-actions>
@@ -118,6 +145,52 @@
             </v-card>
           </v-dialog>
 
+      <v-dialog v-model="dialogformupdate" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Создать категорию</span>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                <v-col cols="12">
+                      <v-text-field
+                        v-model="name_category"
+                        label="Название категории корзины"
+                      ></v-text-field>
+                    </v-col>
+                    <v-col cols="12">
+                      <v-file-input
+                      v-model="image_precent"
+                      :rules="rulesImage"
+                      accept="image/png, image/jpeg, image/png"
+                      placeholder="Загрузите изображение"
+                      prepend-icon="mdi-camera"
+                      required
+                      
+                      label="Изменить изображение изображение"
+                    ></v-file-input>
+                </v-col>
+
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogformupdate = false">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="save">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+  
+
   <v-simple-table>
     <template v-slot:default>
       <thead>
@@ -130,6 +203,12 @@
           </th>
           <th class="text-left">
             Изменить/Удалить
+          </th>
+          <th class="text-left">
+            Подкатегории
+          </th>
+          <th class="text-left">
+            Создать подкатегорию
           </th>
         </tr>
       </thead>
@@ -155,6 +234,37 @@
           <td>
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
+          
+          </td>
+          <td>
+            <div style="font-size: 1.2em;font-weight: bold;" v-for="(i, index) in item.subcategory" :key="i.id">
+             <div>
+               <v-btn @click="resetSub(i,i.name_subcategory,index)"    class="ma-2"
+      outlined
+      color="indigo">
+      {{i}}
+                 <span>{{index+1}}.</span> {{i.name_subcategory}}  <v-icon style="font-size:1.2em;color:green;cursor:pointer;margin-left:1rem" v-if="admin_data.filters_present_change" small class="mr-2" > mdi-pencil </v-icon>
+               </v-btn>
+             
+             <div>
+              <p class="text-center">
+              <v-icon style="font-size:1.2em;color:red;cursor:pointer" v-if="admin_data.filters_present_change" small > mdi-delete </v-icon>
+             </p>
+             </div>
+             </div>
+            </div>
+            
+          </td>
+          <td>
+        <v-btn
+        @click="openSupcategory(item)"
+      class="mx-2"
+      fab
+      dark
+      color="info"
+    >
+<v-icon dark style="color:white"> mdi-plus </v-icon>
+    </v-btn>
           </td>
         </tr>
       </tbody>
@@ -183,6 +293,7 @@ export default {
   data: () => ({
     name_category: '',
     dialog: false,
+    name_subcategory:'',
     rulesImage: [
       (value) =>
         !value ||
@@ -190,12 +301,17 @@ export default {
         "Avatar size should be less than 2 MB!",
     ],
     dialogformupdate:false,
+    itemSub:{},
     dialog_send:false,
     dialogDelete: false,
     image_precent:null,
     dialogform:false,
     items: [],
+    indSub:null,
+    rulessub:[v => !!v || 'Не может быть пустым'],
     item_id:null,
+    dialogresetsub:false,
+    dialogsub:false,
     search: '',
     editedIndex: -1,
     editedItem: {},
@@ -220,6 +336,73 @@ export default {
   },
 
   methods: {
+  openSupcategory(item ){
+    this.itemSub = item
+    this.dialogsub = true
+  },
+  resetSub(item,name,index){
+    console.log(item);
+    this.indSub = index
+    this.itemSub = item
+    this.name_subcategory = name
+    this.dialogresetsub = true
+  },
+  sendResetSub(){
+    let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+       
+      this.$axios
+        .$put(`http://giftcity.kz/api/v1/present/subcategories/${this.itemSub.id}?name_subcategory=${this.name_subcategory}`,{
+          headers: headers
+        })
+        .then((resp) => {
+        let pk = this.itemSub.id
+        let ind  = this.category_presents.findIndex(function (elem) {
+	      return elem.id === pk;
+        });
+        this.category_presents[ind].subcategory[this.indSub].name_subcategory = resp.name_subcategory
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+        this.itemSub = {}
+        this.indSub = null
+        this.name_subcategory = ''
+        this.dialogresetsub = false
+  },
+createSub(){
+  if(this.name_subcategory){
+  let headers = {
+         "Content-Type": "application/json",
+        "Authorization":this.$store.state.localStorage.jwtToken
+       };
+       
+      this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/subcategories/?name_subcategory=${this.name_subcategory}&id_category=${this.itemSub.id}`,{
+          headers: headers
+        })
+        .then((resp) => {
+        let pk = this.itemSub.id
+        let ind  = this.category_presents.findIndex(function (elem) {
+	      return elem.id === pk;
+        });
+        this.category_presents[ind].subcategory.push(resp)
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+        this.itemSub = {}
+        this.name_subcategory = ''
+      this.dialogsub = false
+      
+  }
+  else{
+    this.rulessub
+  }
+
+},
       startDrag(event,item){
   
   event.dataTransfer.dropEffect = "move"

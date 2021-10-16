@@ -50,7 +50,7 @@ async def update_serial(
 async def get_all():
     return await Categories.objects.select_related(
             [
-                "subcategory",
+                "subcategory__self_category",
             ]
         ).order_by("serial_number").all()
 
