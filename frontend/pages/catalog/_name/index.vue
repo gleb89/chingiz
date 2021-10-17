@@ -8,10 +8,11 @@
           <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
             >Каталог</nuxt-link
           >
+          dfdfd{{categories}}
           
         </div>
 
-        <Mobfilter 
+        <!-- <Mobfilter 
             class="d-block d-lg-none"  
          
            :selected="selected"
@@ -29,7 +30,7 @@
             :onReason="onReason"
             :form="form"
             :type_precent="type_precent"
-         />
+         /> -->
 
         <!-- desc filter -->
             

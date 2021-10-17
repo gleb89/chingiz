@@ -228,7 +228,7 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
 async def add_subcategory(id:int, sub_list_id: list = Form(None)):
     present =  await Present.objects.select_related(
         [
-            "category__subcategory",
+            "category",
             "form_precent",
             "type_precent",
             "subcategory",
@@ -255,7 +255,7 @@ async def get_all_filter():
     reason_for_precent = await Reason.objects.order_by("serial_number").all()
     subcategories = await SubCategories.objects.all()
     data = {
-        'category':categories,
+        'categories':categories,
         'subcategories':subcategories,
         'form_precent':form_precent,
         'type_precent':type_precent,
