@@ -143,6 +143,7 @@
     </v-slide-group>
               
             </v-col>
+            <v-container>
           <v-row class="mobile-hei">
             <v-col
               class="boxs-cardprod"
@@ -158,6 +159,7 @@
               </div>
             </v-col>
             </v-row>
+            </v-container>
           </v-row>
         </v-container>
       </v-col>
@@ -455,6 +457,7 @@ export default {
 }
 .mobile-hei{
   min-height: 80vh;
+
 }
 .boxs-cardprod{
   margin-bottom: 4em;
