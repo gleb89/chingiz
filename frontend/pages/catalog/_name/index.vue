@@ -153,7 +153,7 @@
               md="6"
               sm="6"
             >
-            <div style="width:100%;justify-content: center;display: flex;">
+            <div style="width:98%;justify-content: center;display: flex;max-width:98%;padding:.5em">
               <CardProduct :present ="present " />
               </div>
             </v-col>
