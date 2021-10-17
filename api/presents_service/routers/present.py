@@ -120,7 +120,7 @@ async def get_all(slug_category: Optional[str] = None):
         ).filter(category__slug_category=slug_category).all()
         
     else:
-        presents =  await Present.all()
+        presents =  await Present.objects.all()
     return presents 
     
 
