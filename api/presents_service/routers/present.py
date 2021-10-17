@@ -120,7 +120,7 @@ async def get_all():
             ).all()
     return presents 
     
-presentcategories
+
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
