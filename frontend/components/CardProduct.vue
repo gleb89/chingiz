@@ -1,7 +1,7 @@
 <template>
   <v-hover v-slot="{ hover }">
     <v-card
-      style="box-shadow: none;max-height:500px;position: relative;padding:1rem"
+      style="box-shadow: none;max-height:500px;position: relative;padding:1rem;max-width:100%"
       width="400"
     >
       <div
@@ -10,7 +10,7 @@
       ></div>
       <div style="width:100%;text-align: center;">
         <img
-          style="height: 16em;width: auto;"
+          style="height: 16em;width: auto;max-width:100%"
           :class="{ 'on-hover': hover }"
           class="img"
           :src="present.image_precent"
