@@ -107,20 +107,9 @@ async def add_image(
 
 
 @precent_router.get('/')
-async def get_all(slug_category: Optional[str] = None):
-    if slug_category:
-        presents  =  await Present.objects.select_related(
-            [
-                "category__subcategory",
-                "form_precent",
-                "subcategory",
-                "type_precent",
-                "reason_for_precent"
-            ]
-        ).filter(category__slug_category=slug_category).all()
-        
-    else:
-        presents =  await Present.objects.select_related(
+async def get_all():
+
+    presents =  await Present.objects.select_related(
             [
                 "category__subcategory",
                 "form_precent",
@@ -235,6 +224,25 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
     except:
         pass
  
+@precent_router.post('/addsubcategory/{id}')
+async def add_subcategory(id:int, sub_list_id: list = Form(...)):
+    present =  await Present.objects.objects.select_related(
+        [
+            "category__subcategory",
+            "form_precent",
+            "type_precent",
+            "subcategory",
+            "reason_for_precent"
+        ]
+    ).get_or_none(id=id)
+    
+    list_id_sub = re.findall(r'\d+', sub_list_id[0])
+    list_id_sub = [int(i) for i in list_id_sub]
+    await present.subcategory.clear()
+    for sub_id in list_id_sub:
+        subcategory = await SubCategories.get(id = sub_id)
+        await present.subcategory.add(subcategory)
+    return await get_one(id)
 
 
 @precent_router.get('/filter/all')
