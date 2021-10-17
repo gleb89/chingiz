@@ -111,7 +111,7 @@ async def get_all(slug_category: Optional[str] = None):
     if slug_category:
         presents  =  await Present.objects.select_related(
             [
-                "category",
+                "category__subcategory",
                 "form_precent",
                 "subcategory",
                 "type_precent",
@@ -122,7 +122,7 @@ async def get_all(slug_category: Optional[str] = None):
     else:
         presents =  await Present.objects.select_related(
             [
-                "category",
+                "category__subcategory",
                 "form_precent",
                 "subcategory",
                 "type_precent",
@@ -137,7 +137,7 @@ async def get_all(slug_category: Optional[str] = None):
 async def get_one(id: int):
     return await Present.objects.select_related(
         [
-            "category",
+            "category__subcategory",
             "form_precent",
             "type_precent",
             "subcategory",
@@ -164,7 +164,7 @@ async def update_one(
     ):
     present = await Present.objects.select_related(
         [
-            "category",
+            "category__subcategory",
             "form_precent",
             "type_precent",
             "subcategory",
@@ -245,7 +245,7 @@ async def get_all_filter():
     reason_for_precent = await Reason.objects.order_by("serial_number").all()
     subcategories = await SubCategories.objects.all()
     data = {
-        'categories':categories,
+        'category__subcategory':categories,
         'subcategories':subcategories,
         'form_precent':form_precent,
         'type_precent':type_precent,

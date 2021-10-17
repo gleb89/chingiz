@@ -391,15 +391,36 @@
                   <v-spacer></v-spacer>
                 </v-card-actions>
               </v-card>
+            
             </v-dialog>
+          
+          <v-autocomplete
+            v-model="value"
+            :items="forsearch"
+            dense
+            solo
+            filled
+            label="Поиск по артиклю или названию"
+          ></v-autocomplete>
+                      <v-col cols="12">
+                  <v-btn v-if="value" @click="value = null" class="ma-2" outlined color="indigo">
+                     Очистить поиск
+                  </v-btn>
+                </v-col>
     <v-data-table
       :headers="headers"
       :items="get_data_present"
       :items-per-page="5"
+      
       class="elevation-1"
     >
       <template v-slot:item.image="{ item }">
         <img style="width: 10rem;" :src="item.image_precent" alt="none" />
+      </template>
+
+      <template v-slot:item.subcategory_list="{ item }">
+        <p></p>
+       {{item.subcategory}}
       </template>
 
       <template v-slot:item.price="{ item }">
@@ -456,6 +477,7 @@
         </div>
       </template>
     </v-data-table>
+     
   </div>
 </template>
 
@@ -490,6 +512,11 @@ export default {
           sortable: false
         },
         {
+          text: "ПодКатегория",
+          value: "subcategory_list",
+          sortable: false
+        },
+        {
           text: "Повод ",
           value: "reason_for_precent",
           sortable: false
@@ -512,11 +539,13 @@ export default {
     name_precent: "",
     price: null,
     body:'',
+    search: '',
     filtcategory: null,
     deleteitemdict:{},
     dialogDelete:false,
     img_open: false,
     filtpovod: null,
+    value:null,
     composition: "",
     dialog2: false,
     image_precent: null,
@@ -533,6 +562,7 @@ export default {
     type: {},
     select: [],
     dialogreset:false,
+    search_items:[],
     ind:null
     };
   },
@@ -551,7 +581,42 @@ export default {
       }
     },
     get_data_present() {
- if(this.filtpovod){
+        if(this.value){
+          this.filtform = null;
+          this.filtpovod = null
+          this.filtcategory = null;
+          if(this.value.split(':')[0] === 'артикул подарка'){
+        this.items = this.data_presents.filter(elem => {
+          if(elem.id === Number(this.value.split(':')[1])){
+            return elem
+          }
+        });
+        }
+        if(this.value.split(':')[0] === 'имя подарка'){
+          
+        this.items = this.data_presents.filter(elem => {
+          if(elem.name_precent === this.value.split(':')[1]){
+            return elem
+          }
+          
+        });
+        
+        }
+
+        if(this.value.split(':')[0] === 'превью названия'){
+          
+        this.items = this.data_presents.filter(elem => {
+          
+          if(elem.prevue_name === String(this.value.split(':')[1])){
+            return elem
+          }
+          
+        });
+        }
+      
+    }
+        if(this.filtpovod){
+
         this.items = this.data_presents.filter(elem => {
           for (let i of elem.reason_for_precent) {
             if (i.id === this.filtpovod) {
@@ -572,7 +637,7 @@ export default {
           }
         });
       }
-      if (!this.filtpovod && !this.filtcategory && !this.filtform) {
+      if (!this.filtpovod && !this.filtcategory && !this.filtform && !this.value) {
         this.items = this.data_presents;
       }
       return this.items;
@@ -585,6 +650,14 @@ export default {
         (this.form_precent = this.data_filter.form_precent),
         (this.type_precent = this.data_filter.type_precent),
         (this.reason_for_precent = this.data_filter.reason_for_precent);
+    },
+    forsearch(){
+      for(let i of this.data_presents){
+        this.search_items.push(`артикул подарка:${i.id}`)
+        this.search_items.push(`имя подарка:${i.name_precent}`)
+        this.search_items.push(`превью названия:${i.prevue_name}`)
+      }
+      return this.search_items
     },
   },
 
@@ -799,12 +872,14 @@ export default {
     ohForm(){
       this.filtpovod = null
         this.filtcategory = null
+        this.value = null
        
     },
     onPovod(){
       console.log(2);
         this.filtform = null;
         this.filtcategory = null;
+        this.value = null
        
     },
     onCat(){
@@ -812,6 +887,7 @@ export default {
         console.log(1);
         this.filtform = null;
         this.filtpovod = null;
+        this.value = null
        
       
     },
