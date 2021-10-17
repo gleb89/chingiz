@@ -120,7 +120,7 @@ async def get_all():
             ).all()
     return presents 
     
-
+presentcategories
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
@@ -226,7 +226,7 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
  
 @precent_router.post('/addsubcategory/{id}')
 async def add_subcategory(id:int, sub_list_id: list = Form(...)):
-    present =  await Present.objects.objects.select_related(
+    present =  await Present.objects.select_related(
         [
             "category__subcategory",
             "form_precent",
