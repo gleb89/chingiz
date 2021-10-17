@@ -249,7 +249,11 @@ async def add_subcategory(id:int, sub_list_id: list = Form(None)):
 
 @precent_router.get('/filter/all')
 async def get_all_filter():
-    categories = await Categories.objects.order_by("serial_number").all()
+    categories = await Categories.objects.select_related(
+        [
+            "subcategory",
+        ]
+    ).order_by("serial_number").all()
     form_precent = await FormPresent.objects.all()
     type_precent = await TypePresent.objects.all()
     reason_for_precent = await Reason.objects.order_by("serial_number").all()
