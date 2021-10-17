@@ -2,6 +2,7 @@
   <div>
 {{all_filter}}
     <h2>Все подарочные корзины</h2>
+    
           <div
             v-if="admin_data.present_change"
             style="width: 100%; padding: 1rem"
@@ -165,8 +166,6 @@
                       <span v-if="category.subcategory.length > 0"> Добавить  подкатегорию</span>
                       
                     <v-combobox
-                    
-                    v-if="category.subcategory.length > 0"
                     v-model="subcategory"
                     :items="category.subcategory"
                     item-text="name_subcategory"
@@ -743,66 +742,23 @@ export default {
   mounted() {},
 
   methods: {
-    deleteSubItemConfirm() {
-      this.dialogSubDelete = false
-    } ,
-    addsub(){
-    const headers = {
-        "Content-Type": "application/json",
-        Authorization: this.$store.state.localStorage.jwtToken
-      };
-    let select_id = [];
-    for (let i of this.itemadit.subcategory) {
-        select_id.push(i.id);
-      }
-    let bodyFormData = new FormData();
-      bodyFormData.append("sub_list_id", String(select_id));
-      this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/addsubcategory/${this.itemadit.id}`, bodyFormData, {
-          headers: headers
-        })
-        .then(resp => {
-        this.ind = this.data_presents.findIndex(function (elem) {
-	      return elem.id === resp.id;
-        });
-       
-          this.data_presents[this.ind].image_precent = resp.image_precent
-          this.data_presents[this.ind].prevue_name = resp.prevue_name
-          this.data_presents[this.ind].price  = resp.price 
-          this.data_presents[this.ind].body = resp.body
-          this.data_presents[this.ind].composition = resp.composition
-          this.data_presents[this.ind].name_precent= resp.name_precent
-          this.data_presents[this.ind].type_precent = resp.type_precent
-          this.data_presents[this.ind].form_precent = resp.form_precent
-          this.data_presents[this.ind].category = resp.category
-          this.data_presents[this.ind].reason_for_precent = resp.reason_for_precent
-          this.data_presents[this.ind].category[0].subcategory = resp.subcategory
-          this.data_presents[this.ind].subcategory = resp.subcategory
-          
-        this.itemadit = {}
-        this.ind =null
-        this.subcat_list = []
-        })
-        .catch(function(error) {
-          console.log("error");
-        });
-    this.dialogsub = false
-    },
-    closeSub(){
-      this.itemadit = {}
-      this.ind = null
-    this.subcat_list =[]
-      this.dialogsub = false
-    },
-    openSubDialog(item){
-      this.itemadit = item
-      this.ind = this.data_presents.findIndex(function (elem) {
-	    return elem.id === item.id;
-    });
-    this.subcat_list = item.category[0].subcategory
-    this.dialogsub = true
-    },
+
+  
+
+
     dialog_close(){
+      this.image_precent = null;
+          this.image = null;
+          this.price = null;
+          this.body = "";
+          this.composition = "";
+          this.prevue_name = "";
+          this.name_precent = "";
+          this.subcategory = []
+          this.select = [];
+          this.type = {};
+          this.form = {};
+          this.category = {};
       this.dialog_save = false
     },
     editItem(item){
@@ -811,9 +767,13 @@ export default {
     });
     
     this.itemadit = this.data_presents[this.ind]
-    this.for_sub_update = this.itemadit.subcategory
-    console.log();
     this.category = item.category[0]
+    this.for_sub_update = this.itemadit.subcategory
+    for (let i of this.data_filter.categories){
+      if (i.id === this.category.id){
+        this.category.subcategory = i.subcategory
+      }
+    }
     this.form = item.form_precent[0]
     if (item.type_precent.length > 0) {
         this.type = item.type_precent[0].name_type;
@@ -883,6 +843,7 @@ export default {
           this.type = {};
           this.form = {};
           this.category = {};
+          this.itemadit = {}
         })
         .catch(function(error) {
           console.log("error");
@@ -905,6 +866,7 @@ export default {
       for (let i of this.for_sub_update) {
         sub_id.push(i.id);
       }
+     
         bodyFormData.append("sub_list_id",String(sub_id));
         
       }
@@ -986,6 +948,10 @@ export default {
            this.form = {};
       this.category = {};
       this.for_sub_update = []
+      this.subcategory = []
+                this.ind = null
+          this.image_precent = null;
+          this.image = null;
       this.close();
       
     },
@@ -1027,6 +993,14 @@ export default {
       this.itemadit = {}
       this.image = null
       this.dialogreset = false
+      this.type = {};
+      this.form = {};
+      this.category = {};
+      this.for_sub_update = []
+      this.subcategory = []
+      this.ind = null
+      this.image_precent = null;
+      this.image = null;
     },
     Onpage(item_id) {
       this.$router.push(`/admin/list_presents/${item_id}`);
