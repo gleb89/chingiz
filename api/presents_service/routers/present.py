@@ -37,7 +37,7 @@ async def create(
     form_precent_id: str = Form(None),
     type_precent_id: str = Form(None),
     reason_for_precent_id: list = Form(...),
-    subcategory_list_id: list = Form(None),
+    sub_list_id: list = Form(None),
     body :str = Form(None),
     image: UploadFile = File(...),
   
@@ -62,12 +62,7 @@ async def create(
         body = body
         
     )
-    if subcategory_list_id:
-        list_id_subcategory = re.findall(r'\d+', subcategory_list_id[0])
-        list_id_subcategory  = [int(i) for i in list_id_subcategory]
-        for sub_id in list_id_subcategory:
-            subcategory_for_precent = await SubCategories.objects.get_or_none(id=sub_id)
-            await new_present.subcategory.add(subcategory_for_precent)
+
 
     if type_precent_id:
         type_precent = await TypePresent.objects.get_or_none(id=type_precent_id)
@@ -78,6 +73,13 @@ async def create(
         await new_present.form_precent.add(form_precent)
     category = await Categories.objects.get_or_none(id=category_id)
     await new_present.category.add(category)
+
+    if sub_list_id:
+        list_id_sub = re.findall(r'\d+', sub_list_id[0])
+        list_id_sub = [int(i) for i in list_id_sub]
+        for sub_id in list_id_sub:
+            subcategory = await SubCategories.objects.get(id = sub_id)
+            await new_present.subcategory.add(subcategory)
     
     list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
     list_id_reason = [int(i) for i in list_id_reason]
@@ -158,6 +160,7 @@ async def update_one(
     type_precent_id: int= Form(None),
     body: str = Form(None),
     reason_for_precent_id: list = Form(...),
+    sub_list_id: list = Form(None),
     image: UploadFile = File(None),
     # admin = Depends(jwt_auth)
 
@@ -219,6 +222,14 @@ async def update_one(
         for reason_id in list_id_reason:
             reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
             await present.reason_for_precent.add(reason_for_precent)
+
+    if sub_list_id:
+        list_id_sub = re.findall(r'\d+', sub_list_id[0])
+        list_id_sub = [int(i) for i in list_id_sub]
+        await present.subcategory.clear()
+        for sub_id in list_id_sub:
+            subcategory = await SubCategories.objects.get(id = sub_id)
+            await present.subcategory.add(subcategory)
 
         
         

@@ -144,9 +144,11 @@
                      
                       label="Загрузите изображение"
                     ></v-file-input>
+                    
                     <span>Выбрать категорию</span>
                     <v-select
                       v-model="category"
+                      @click="subcategory = []"
                       :items="categories"
                       item-text="name_category"
                       item-value="id"
@@ -158,6 +160,22 @@
                       label="Выбрать категорию"
                       outlined
                     ></v-select>
+                    
+                    <div v-if="category.id">
+                      <span> Добавить  подкатегорию</span>
+                    <v-combobox
+                    
+                    v-if="category.subcategory.length > 0"
+                    v-model="subcategory"
+                    :items="category.subcategory"
+                    item-text="name_subcategory"
+                    item-value="id"
+                    label="Добавить подкатегорию"
+                    multiple
+                    chips
+                    solo
+                    ></v-combobox>
+                    </div>
                     <span>Выбрать форму подарка</span>
                     <v-select
                       v-model="form"
@@ -658,6 +676,7 @@ export default {
     filtform: null,
     dialog_save:'',
     category: {},
+    subcategory:[],
     image: null,
     dialogsub:false,
     dialogSubDelete:false,
@@ -874,6 +893,14 @@ export default {
       if (this.type.id) {
         bodyFormData.append("type_precent_id", this.type.id);
       }
+      if (this.subcategory.length > 0) {
+      let sub_id = [];
+      for (let i of this.subcategory) {
+        sub_id.push(i.id);
+      }
+        bodyFormData.append("sub_list_id",String(sub_id));
+      }
+      
       if (this.body) {
         bodyFormData.append("body", this.body);
       }
@@ -913,7 +940,13 @@ export default {
       for (let i of this.itemadit.reason_for_precent) {
         select_id.push(i.id);
       }
-      
+      if (this.subcategory.length > 0) {
+      let sub_id = [];
+      for (let i of this.itemadit.subcategory) {
+        sub_id.push(i.id);
+      }
+        bodyFormData.append("sub_list_id",String(sub_id));
+      }
       let bodyFormData = new FormData();
       if(this.itemadit.prevue_name){
         bodyFormData.append("prevue_name", this.itemadit.prevue_name);
