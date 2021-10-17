@@ -98,7 +98,6 @@
             <v-list-item-title>Заказы</v-list-item-title>
           </v-list-item>
 
-
            <v-list-item v-if="admin_data.courer_read" @click="onadminPage('/admin/all_couries')">
             <v-list-item-icon>
               <fa class="mt-1" icon='people-carry'></fa>
@@ -143,6 +142,7 @@ computed: {
       },
       onExit(){
         this.$store.commit("localStorage/setAuthadmin", '');
+        this.$store.commit("localStorage/setAuthadminId", '');
         this.$store.commit("localStorage/setAuthadmindata", {});
         this.$router.push('/admin')
       }
