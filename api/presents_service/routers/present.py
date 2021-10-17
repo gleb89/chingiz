@@ -240,7 +240,7 @@ async def add_subcategory(id:int, sub_list_id: list = Form(...)):
     list_id_sub = [int(i) for i in list_id_sub]
     await present.subcategory.clear()
     for sub_id in list_id_sub:
-        subcategory = await SubCategories.get(id = sub_id)
+        subcategory = await SubCategories.objects.get(id = sub_id)
         await present.subcategory.add(subcategory)
     return await get_one(id)
 
