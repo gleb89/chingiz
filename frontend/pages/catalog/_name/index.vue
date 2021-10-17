@@ -68,7 +68,9 @@
           <span v-if="search"
             >Результат поиска ({{ listproducts.length }})</span
           >
+
         </h2>
+        
         </div>
         <div class="d-flex flex-wrap mt-6 mb-6">
           <v-row>
@@ -111,11 +113,37 @@
               ></v-select>
             
    </v-col>
+   
    </v-row>
         </div>
         <v-container class="box-scrol" >
           <v-row justify="center">
-            
+            <v-col cols="12" style="min-height: 4em;">
+               <v-slide-group
+               v-if="categories_for_sub.length > 0"
+      multiple
+      show-arrows
+    >
+      <v-slide-item
+        v-for="sub in categories_for_sub"
+        :key="sub.id"
+        v-slot="{ active, toggle }"
+      >
+       <v-btn
+          class="mx-2"
+          :input-value="sub.id === sub_id"
+          active-class="orange white--text"
+          depressed
+          rounded
+          @click="onPodSub(sub.id)"
+        >
+          {{ sub.name_subcategory }}
+        </v-btn>
+      </v-slide-item>
+    </v-slide-group>
+              
+            </v-col>
+          <v-row class="mobile-hei">
             <v-col
               class="boxs-cardprod"
               v-for="present in listproducts"
@@ -129,6 +157,7 @@
               <CardProduct :present ="present " />
               </div>
             </v-col>
+            </v-row>
           </v-row>
         </v-container>
       </v-col>
@@ -227,6 +256,7 @@ export default {
       age: null,
       sort_price:'сначала недорогие',
       ws: null,
+      categories_for_sub:[],
       categories: this.$store.getters["allfilter/allfilter"].categories,
       reason_present: this.$store.getters["allfilter/allfilter"].reason_for_precent,
       products:this.$store.getters["products/products"],
@@ -246,9 +276,23 @@ export default {
       categoriesfilter: [],
       selected: [],
       page: 1,
+      sub_id:0
     };
   },
   methods: {
+    onPodSub(sub_id){
+      this.sub_id = sub_id
+      this.products = this.$store.getters["products/products"].filter((elem) => {
+      for(let i of elem.subcategory){
+        if(i.id == sub_id){
+          return elem
+        }
+      }
+        // return elem.id === pk
+      
+      });
+
+    },
     onresSearch(i){
       this.search = i
     },
@@ -305,6 +349,7 @@ export default {
     },
     onfilterslug(slug,pk,name) {
       this.search = ''
+      this.categories_for_sub = []
       if(slug === 'Все_продукты'){
         this.products = this.$store.getters["products/products"]
         this.filter_name = ''
@@ -312,7 +357,20 @@ export default {
       else{ 
       
       this.products = this.$store.getters["products/products"].filter((elem) => {
-        return elem.category[0].id === pk
+        
+        if(elem.category[0].id === pk) {
+          for(let i of this.categories){
+            if( i.id === pk){
+              this.categories_for_sub = i.subcategory
+            }
+            else{
+
+            }
+          }
+          
+          
+          return elem
+        }
       });
       this.filter_name = name
       }
@@ -395,8 +453,12 @@ export default {
   margin-top: 1rem;
   
 }
+.mobile-hei{
+  min-height: 80vh;
+}
 .boxs-cardprod{
   margin-bottom: 4em;
+  
 }
   .mobp{
   margin-top: 4rem;
@@ -405,6 +467,7 @@ export default {
 @media (min-width: 500px) {
   .box-products {
     padding-left: 3rem;
+   
   }
 
 
