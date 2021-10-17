@@ -121,9 +121,14 @@ async def get_all():
     [
         'form_precent__presentformpresent',
         'subcategory__presentsubcategories',
-        'reason_for_precent__presentreason',
-        ''
+        'reason_for_precent__presentreason'
         ]).all()
+    return presents 
+
+@precent_router.get('/test')
+async def get_allsss():
+
+    presents =  await Present.objects.all()
     return presents 
     
 
