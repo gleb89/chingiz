@@ -225,7 +225,7 @@ async def delete_one(id: int, admin = Depends(jwt_auth)):
         pass
  
 @precent_router.post('/addsubcategory/{id}')
-async def add_subcategory(id:int, sub_list_id: list = Form(...)):
+async def add_subcategory(id:int, sub_list_id: list = Form(None)):
     present =  await Present.objects.select_related(
         [
             "category__subcategory",
@@ -235,13 +235,15 @@ async def add_subcategory(id:int, sub_list_id: list = Form(...)):
             "reason_for_precent"
         ]
     ).get_or_none(id=id)
-    
-    list_id_sub = re.findall(r'\d+', sub_list_id[0])
-    list_id_sub = [int(i) for i in list_id_sub]
-    await present.subcategory.clear()
-    for sub_id in list_id_sub:
-        subcategory = await SubCategories.objects.get(id = sub_id)
-        await present.subcategory.add(subcategory)
+    if not sub_list_id:
+        await present.subcategory.clear()
+    else:
+        list_id_sub = re.findall(r'\d+', sub_list_id[0])
+        list_id_sub = [int(i) for i in list_id_sub]
+        await present.subcategory.clear()
+        for sub_id in list_id_sub:
+            subcategory = await SubCategories.objects.get(id = sub_id)
+            await present.subcategory.add(subcategory)
     return await get_one(id)
 
 
@@ -253,7 +255,7 @@ async def get_all_filter():
     reason_for_precent = await Reason.objects.order_by("serial_number").all()
     subcategories = await SubCategories.objects.all()
     data = {
-        'category__subcategory':categories,
+        'category':categories,
         'subcategories':subcategories,
         'form_precent':form_precent,
         'type_precent':type_precent,

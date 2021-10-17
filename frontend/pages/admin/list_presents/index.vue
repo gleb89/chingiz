@@ -446,7 +446,20 @@
       color="green"
     >
 <v-icon dark style="color:white"> mdi-plus </v-icon>
-    </v-btn>        
+    </v-btn>  
+    <div v-for="sub in item.subcategory" :key="sub.id">
+       <v-chip
+      class="ma-2"
+      color="cyan"
+      label
+      text-color="white"
+    >
+      <v-icon left>
+        mdi-label
+      </v-icon>
+      {{sub.name_subcategory}}
+    </v-chip>
+      </div>      
         <div >
 
         </div>
@@ -562,7 +575,7 @@
                 <v-btn color="blue darken-1" text @click="closeSub">
                   Отмена
                 </v-btn>
-                <v-btn color="blue darken-1" text @click="addsub">
+                <v-btn  color="blue darken-1" text @click="addsub">
                   Сохранить
                 </v-btn>
               </v-card-actions>
@@ -762,6 +775,43 @@ export default {
       this.dialogSubDelete = false
     } ,
     addsub(){
+    const headers = {
+        "Content-Type": "application/json",
+        Authorization: this.$store.state.localStorage.jwtToken
+      };
+    let select_id = [];
+    for (let i of this.itemadit.subcategory) {
+        select_id.push(i.id);
+      }
+    let bodyFormData = new FormData();
+      bodyFormData.append("sub_list_id", String(select_id));
+      this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/addsubcategory/${this.itemadit.id}`, bodyFormData, {
+          headers: headers
+        })
+        .then(resp => {
+        this.ind = this.data_presents.findIndex(function (elem) {
+	      return elem.id === resp.id;
+        });
+       
+          this.data_presents[this.ind].image_precent = resp.image_precent
+          this.data_presents[this.ind].prevue_name = resp.prevue_name
+          this.data_presents[this.ind].price  = resp.price 
+          this.data_presents[this.ind].body = resp.body
+          this.data_presents[this.ind].composition = resp.composition
+          this.data_presents[this.ind].name_precent= resp.name_precent
+          this.data_presents[this.ind].type_precent = resp.type_precent
+          this.data_presents[this.ind].form_precent = resp.form_precent
+          this.data_presents[this.ind].category = resp.category
+          this.data_presents[this.ind].reason_for_precent = resp.reason_for_precent
+          this.data_presents[this.ind].subcategory = resp.subcategory
+        this.itemadit = {}
+        this.ind =null
+        this.subcat_list = []
+        })
+        .catch(function(error) {
+          console.log("error");
+        });
     this.dialogsub = false
     },
     closeSub(){
@@ -927,6 +977,7 @@ export default {
           this.data_presents[this.ind].form_precent = resp.form_precent
           this.data_presents[this.ind].category = resp.category
           this.data_presents[this.ind].reason_for_precent = resp.reason_for_precent
+          this.data_presents[this.ind].subcategory = resp.subcategory
          
           this.ind = null
           this.image_precent = null;
