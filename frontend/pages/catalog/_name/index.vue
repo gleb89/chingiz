@@ -118,7 +118,7 @@
         </div>
         <v-container class="box-scrol" >
           <v-row justify="center">
-            <v-col cols="12" style="min-height: 4em;">
+            <v-col cols="12" lg="10" md="10" style="min-height: 4em;">
                <v-slide-group
                v-if="categories_for_sub.length > 0"
       multiple
