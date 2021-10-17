@@ -17,6 +17,7 @@ export const state = () => ({
 
   export const mutations = {
     setAuthadmin (state, jwtToken ) {
+      localStorage.setItem('Jwt',jwtToken) 
       state.jwtToken  = jwtToken 
     },
     setAuthadmindata(state,admindata){

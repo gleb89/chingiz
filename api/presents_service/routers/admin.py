@@ -34,6 +34,10 @@ async def create_admin(admin: Admin):
 async def get_all():
     return await Admin.objects.all()
 
+@admin_router.get('/email/{id}')
+async def get_one_id(id):
+    return await Admin.objects.get(id = id)
+
 @admin_router.post('/token-auth')
 async def create_token_jwt(admin:AdminLogin):
     user = await Admin.objects.get_or_none(email=admin.email)
