@@ -230,6 +230,8 @@ async def update_one(
         for sub_id in list_id_sub:
             subcategory = await SubCategories.objects.get(id = sub_id)
             await present.subcategory.add(subcategory)
+    else:
+        await present.subcategory.clear()
 
         
         

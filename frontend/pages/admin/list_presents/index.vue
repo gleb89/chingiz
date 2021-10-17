@@ -162,7 +162,8 @@
                     ></v-select>
                     
                     <div v-if="category.id">
-                      <span> Добавить  подкатегорию</span>
+                      <span v-if="category.subcategory.length > 0"> Добавить  подкатегорию</span>
+                      
                     <v-combobox
                     
                     v-if="category.subcategory.length > 0"
@@ -318,8 +319,10 @@
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
+                        
                         <span>Изменить категорию</span>
                         <v-select
+                       
                           v-model="category"
                           :items="categories"
                           item-text="name_category"
@@ -330,6 +333,23 @@
                           label="Изменить категорию"
                           outlined
                         ></v-select>
+                      </v-col>
+                     
+                      <v-col cols="12" >
+                   
+                      <span> Изменить/Добавить  подкатегорию</span>
+                    <v-combobox
+                   
+                    v-model="for_sub_update"
+                    :items="category.subcategory"
+                    item-text="name_subcategory"
+                    item-value="id"
+                    label="Добавить/изменить подкатегорию"
+                    multiple
+                    chips
+                    solo
+                    ></v-combobox>
+                    
                       </v-col>
 
                       <v-col cols="12" sm="12" md="12">
@@ -437,34 +457,8 @@
       </template>
 
       <template v-slot:item.subcategory_list="{ item }">
-        <p v-if="!item.category[0].subcategory.length">
-          
-         <v-tooltip bottom>
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          text
-          
-          v-bind="attrs"
-          v-on="on"
-        >
-          <fa style="color: tomato;" icon="exclamation-circle"></fa>
-        </v-btn>
-      </template>
-      <span>У категории данного товара нет подкатегорий</span>
-    </v-tooltip>
-        </p>
-        <div v-if="item.category[0].subcategory.length">
-
-        <v-btn
-        @click="openSubDialog(item)"
-      class="mx-2"
-      fab
-      small
-      dark
-      color="green"
-    >
-<v-icon dark style="color:white"> mdi-plus </v-icon>
-    </v-btn>  
+        <div >
+ 
     <div v-for="sub in item.subcategory" :key="sub.id">
        <v-chip
       class="ma-2"
@@ -541,64 +535,8 @@
       </template>
     </v-data-table>
 
-       <v-dialog v-model="dialogSubDelete" max-width="500px">
-            <v-card>
-              <v-card-title class="text-h5"
-                >Вы действительно хотите  подкатегорию</v-card-title
-              >
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="dialogSubDelete = false"
-                  >Отмена</v-btn
-                >
-                <v-btn color="blue darken-1" text @click="deleteSubItemConfirm"
-                  >Да</v-btn
-                >
-                <v-spacer></v-spacer>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
-        <v-dialog v-model="dialogsub" max-width="500px">
-            <!-- изменить -->
-            <v-card>
-              <v-card-title>
-                <span class="text-h5">Добавить подкатегорию категории: </span>
-                <p style="font-size:1.3em"></p>
-              </v-card-title>
-
-              <v-card-text>
-                <v-container>
-                  <v-row>
-     
-                    
-                    <div v-if="itemadit">
-
-                    
-                <v-combobox
-                v-model="itemadit.subcategory"
-                :items="subcat_list"
-                 item-text="name_subcategory"
-                item-value="id"
-                label="Добавить подкатегорию"
-                multiple
-                chips
-              ></v-combobox>
-</div>
-                  </v-row>
-                </v-container>
-              </v-card-text>
-
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="blue darken-1" text @click="closeSub">
-                  Отмена
-                </v-btn>
-                <v-btn  color="blue darken-1" text @click="addsub">
-                  Сохранить
-                </v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-dialog>
+ 
+ 
 
   </div>
 </template>
@@ -670,6 +608,7 @@ export default {
     filtpovod: null,
     value:null,
     composition: "",
+    for_sub_update:[],
     dialog2: false,
     image_precent: null,
     prevue_name: "",
@@ -707,6 +646,20 @@ export default {
       }
     },
     get_data_present() {
+      if(this.category){
+        try {
+          if(this.itemadit.category[0].id != this.category.id){
+            this.for_sub_update = []
+          }
+          if(this.itemadit.category[0].id === this.category.id){
+            this.for_sub_update = this.itemadit.subcategory
+          }
+        } catch (error) {
+          console.log('err');
+        }
+        
+        
+      }
         if(this.value){
           this.filtform = null;
           this.filtpovod = null
@@ -823,7 +776,9 @@ export default {
           this.data_presents[this.ind].form_precent = resp.form_precent
           this.data_presents[this.ind].category = resp.category
           this.data_presents[this.ind].reason_for_precent = resp.reason_for_precent
+          this.data_presents[this.ind].category[0].subcategory = resp.subcategory
           this.data_presents[this.ind].subcategory = resp.subcategory
+          
         this.itemadit = {}
         this.ind =null
         this.subcat_list = []
@@ -856,15 +811,17 @@ export default {
     });
     
     this.itemadit = this.data_presents[this.ind]
+    this.for_sub_update = this.itemadit.subcategory
+    console.log();
+    this.category = item.category[0]
+    this.form = item.form_precent[0]
     if (item.type_precent.length > 0) {
         this.type = item.type_precent[0].name_type;
       }
-    if (item.form_precent.length > 0) {
-        this.form = item.form_precent[0].name_form;
-      }
-    if (item.category.length > 0) {
-        this.category = item.category[0].name_category;
-      }
+  
+    // if (item.category.length > 0) {
+    //     this.category = item.category[0].name_category;
+    //   }
     this.dialogreset = true
     },
     sendDataform(){
@@ -921,6 +878,7 @@ export default {
           this.composition = "";
           this.prevue_name = "";
           this.name_precent = "";
+          this.subcategory = []
           this.select = [];
           this.type = {};
           this.form = {};
@@ -935,19 +893,22 @@ export default {
         "Content-Type": "application/json",
         Authorization: this.$store.state.localStorage.jwtToken
       };
-
+      
+      let bodyFormData = new FormData();
       let select_id = [];
       for (let i of this.itemadit.reason_for_precent) {
         select_id.push(i.id);
       }
-      if (this.subcategory.length > 0) {
+      bodyFormData.append("reason_for_precent_id", String(select_id));
+      if (this.for_sub_update.length > 0) {
       let sub_id = [];
-      for (let i of this.itemadit.subcategory) {
+      for (let i of this.for_sub_update) {
         sub_id.push(i.id);
       }
         bodyFormData.append("sub_list_id",String(sub_id));
+        
       }
-      let bodyFormData = new FormData();
+      
       if(this.itemadit.prevue_name){
         bodyFormData.append("prevue_name", this.itemadit.prevue_name);
       }
@@ -973,19 +934,21 @@ export default {
       if (this.category.id) {
         bodyFormData.append("category_id", this.category.id);
         this.itemadit.category[0] = this.category;
-        this.category = {};
+        
       }
-      if (this.form.id) {
+    
+      if (this.form) {
         bodyFormData.append("form_precent_id", this.form.id);
         this.itemadit.form_precent[0] = this.form;
-        this.form = {};
+
       }
       if (this.type.id) {
         bodyFormData.append("type_precent_id", this.type.id);
         this.itemadit.type_precent[0] = this.type;
-        this.type = {};
+
       }
-      bodyFormData.append("reason_for_precent_id", String(select_id));
+
+      
       this.$axios
         .$put(
           `http://giftcity.kz/api/v1/present/${this.itemadit.id}`,
@@ -1019,6 +982,10 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+                    this.type = {};
+           this.form = {};
+      this.category = {};
+      this.for_sub_update = []
       this.close();
       
     },
