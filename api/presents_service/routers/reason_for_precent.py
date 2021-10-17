@@ -68,7 +68,7 @@ async def update_one(
 
 
 @reason_precent.delete('/{id}')
-async def delete(id: int,admin = Depends(jwt_auth)):
+async def delete(id: int):
     form = await Reason.objects.get_or_none(id=id)
     try:
         await form.delete()

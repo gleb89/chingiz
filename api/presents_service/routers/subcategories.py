@@ -46,8 +46,7 @@ async def get_one(id: int):
 @app.post('/update/{id}')
 async def update_one(
     id:int,
-    name_subcategory: str,
-    admin = Depends(jwt_auth)
+    name_subcategory: str
     ):
     subcategory = await SubCategories.objects.select_related(
             [
@@ -62,7 +61,7 @@ async def update_one(
 
 
 @app.delete('/{id}')
-async def delete(id: int,admin = Depends(jwt_auth)):
+async def delete(id: int):
     subcategory = await SubCategories.objects.get_or_none(id=id)
     try:
         await subcategory.delete()
