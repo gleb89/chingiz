@@ -69,7 +69,6 @@ async def update_one(
     id:int,
     name_category: str = Form(None),
     image: UploadFile = File(None),
-    admin = Depends(jwt_auth)
     ):
     category = await Categories.objects.select_related(
             [

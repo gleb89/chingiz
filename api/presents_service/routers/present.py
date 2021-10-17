@@ -40,7 +40,7 @@ async def create(
     subcategory_list_id: list = Form(None),
     body :str = Form(None),
     image: UploadFile = File(...),
-    # admin = Depends(jwt_auth)
+  
     ):
     if not  body:
         body = ''
@@ -92,7 +92,7 @@ async def create(
 async def add_image(
     id: int,
     image: UploadFile = File(...),
-    admin = Depends(jwt_auth)
+    
     ):
     product = await Present.objects.get_or_none(
         id=id
@@ -227,7 +227,7 @@ async def update_one(
 
 
 @precent_router.delete('/{id}')
-async def delete_one(id: int, admin = Depends(jwt_auth)):
+async def delete_one(id: int):
     try:
         product = await Present.objects.get_or_none(id=id)
         await product.delete()

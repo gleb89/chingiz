@@ -22,6 +22,7 @@ export default {
     }
     if (localStorage.getItem('Jwt')) {
       this.$store.commit("localStorage/setAuthadmin", localStorage.getItem('Jwt'));
+      this.sendLogin()
         this.auth = true
         this.$router.push('/admin/list_presents')
       }
@@ -29,17 +30,15 @@ export default {
     },
   methods: {
     sendLogin(){
-        let data = {
-          "email": this.email,
-          "password": this.password
-        }
+
         this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/admin/token-auth`, data, {
-          headers: headers
+        .$get(`http://giftcity.kz/api/v1/present/admin/email/2`, {
+          
         })
-        .then((token) => {
-          this.$store.commit("localStorage/setAuthadmin", `Bearer ${token.access_token}`);
-          this.$store.commit("localStorage/setAuthadmindata", token.admin_data);
+        .then((admin_data) => {
+          this.$store.commit("localStorage/setAuthadmindata", admin_data);
+          this.$store.commit("localStorage/setAuthadminId", admin_data.id);
+          
         })
         .catch(function (error) {
         console.log('error');

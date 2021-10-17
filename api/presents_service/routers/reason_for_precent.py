@@ -15,7 +15,7 @@ reason_precent = APIRouter(
 
 
 @reason_precent.post('/')
-async def create(name_reason: str,image: UploadFile = File(...),admin = Depends(jwt_auth)):
+async def create(name_reason: str,image: UploadFile = File(...)):
     icon = await image_add(image)
     new_reason =  await Reason.objects.create(
         name_reason = name_reason,
@@ -53,7 +53,7 @@ async def update_one(
     id:int,
     name_reason: str = Form(None),
     image: UploadFile = File(None),
-    admin = Depends(jwt_auth)
+    
     ):
     reason = await Reason.objects.get_or_none(id=id)
 

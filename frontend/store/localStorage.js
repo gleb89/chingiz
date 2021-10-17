@@ -2,6 +2,7 @@
 // store/localStorage.js
 export const state = () => ({
   jwtToken : '',
+  id_admin:null,
   admin_data:{},
   uid_auth_user:'',
   id_basket: 1,
@@ -19,6 +20,10 @@ export const state = () => ({
     setAuthadmin (state, jwtToken ) {
       localStorage.setItem('Jwt',jwtToken) 
       state.jwtToken  = jwtToken 
+    },
+    setAuthadminId (state, pk ) {
+      localStorage.setItem('id_admin',pk) 
+      state.id_admin = pk
     },
     setAuthadmindata(state,admindata){
       state.admin_data = admindata

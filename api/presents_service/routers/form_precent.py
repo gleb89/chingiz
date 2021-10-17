@@ -15,7 +15,7 @@ form_router = APIRouter(
 
 
 @form_router.post('/')
-async def create(newformreason:  FormPresent,admin = Depends(jwt_auth)):
+async def create(newformreason:  FormPresent):
     return await newformreason.save()
 
 
@@ -30,14 +30,14 @@ async def get_one(id: int):
 
 
 @form_router.get('/update/{id}')
-async def update_one(id:int,name_form:str,admin = Depends(jwt_auth)):
+async def update_one(id:int,name_form:str):
     form = await FormPresent.objects.get(id=id)
     
     return await form.update(name_form=name_form)
 
 
 @form_router.delete('/{id}')
-async def delete(id: int,admin = Depends(jwt_auth)):
+async def delete(id: int):
     form = await  FormPresent.objects.get_or_none(id=id)
     try:
         await form.delete()

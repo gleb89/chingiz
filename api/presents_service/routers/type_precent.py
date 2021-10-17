@@ -13,7 +13,7 @@ type_router = APIRouter(
 
 
 @type_router.post('/')
-async def create(new_type: TypePresent,admin = Depends(jwt_auth)):
+async def create(new_type: TypePresent):
     return await new_type.save()
 
 
@@ -28,14 +28,14 @@ async def get_one(id: int):
 
 
 @type_router.get('/update/{id}')
-async def update_one(id:int,name_type:str,admin = Depends(jwt_auth)):
+async def update_one(id:int,name_type:str):
     types = await TypePresent.objects.get(id=id)
     
     return await types.update(name_type = name_type)
 
 
 @type_router.delete('/{id}')
-async def delete(id: int,admin = Depends(jwt_auth)):
+async def delete(id: int):
     form = await TypePresent.objects.get_or_none(id=id)
     try:
         await form.delete()
