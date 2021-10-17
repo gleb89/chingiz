@@ -419,8 +419,40 @@
       </template>
 
       <template v-slot:item.subcategory_list="{ item }">
-        <p></p>
-       {{item.subcategory}}
+        <p v-if="!item.category[0].subcategory.length">
+          
+         <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          text
+          
+          v-bind="attrs"
+          v-on="on"
+        >
+          <fa style="color: tomato;" icon="exclamation-circle"></fa>
+        </v-btn>
+      </template>
+      <span>У категории данного товара нет подкатегорий</span>
+    </v-tooltip>
+        </p>
+        <div v-if="item.category[0].subcategory.length">
+
+        <v-btn
+        @click="openSubDialog(item)"
+      class="mx-2"
+      fab
+      small
+      dark
+      color="green"
+    >
+<v-icon dark style="color:white"> mdi-plus </v-icon>
+    </v-btn>        
+        <div >
+
+        </div>
+
+        </div>
+       <!-- {{item.subcategory}} -->
       </template>
 
       <template v-slot:item.price="{ item }">
@@ -477,7 +509,66 @@
         </div>
       </template>
     </v-data-table>
+
+       <v-dialog v-model="dialogSubDelete" max-width="500px">
+            <v-card>
+              <v-card-title class="text-h5"
+                >Вы действительно хотите  подкатегорию</v-card-title
+              >
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="dialogSubDelete = false"
+                  >Отмена</v-btn
+                >
+                <v-btn color="blue darken-1" text @click="deleteSubItemConfirm"
+                  >Да</v-btn
+                >
+                <v-spacer></v-spacer>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+        <v-dialog v-model="dialogsub" max-width="500px">
+            <!-- изменить -->
+            <v-card>
+              <v-card-title>
+                <span class="text-h5">Добавить подкатегорию категории: </span>
+                <p style="font-size:1.3em"></p>
+              </v-card-title>
+
+              <v-card-text>
+                <v-container>
+                  <v-row>
      
+                    
+                    <div v-if="itemadit">
+
+                    
+                <v-combobox
+                v-model="itemadit.subcategory"
+                :items="subcat_list"
+                 item-text="name_subcategory"
+                item-value="id"
+                label="Добавить подкатегорию"
+                multiple
+                chips
+              ></v-combobox>
+</div>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn color="blue darken-1" text @click="closeSub">
+                  Отмена
+                </v-btn>
+                <v-btn color="blue darken-1" text @click="addsub">
+                  Сохранить
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+
   </div>
 </template>
 
@@ -541,6 +632,7 @@ export default {
     body:'',
     search: '',
     filtcategory: null,
+    subcat_list:[],
     deleteitemdict:{},
     dialogDelete:false,
     img_open: false,
@@ -554,6 +646,8 @@ export default {
     dialog_save:'',
     category: {},
     image: null,
+    dialogsub:false,
+    dialogSubDelete:false,
     form_precent: [],
     reason_for_precent:[],
     form: {},
@@ -664,6 +758,26 @@ export default {
   mounted() {},
 
   methods: {
+    deleteSubItemConfirm() {
+      this.dialogSubDelete = false
+    } ,
+    addsub(){
+    this.dialogsub = false
+    },
+    closeSub(){
+      this.itemadit = {}
+      this.ind = null
+    this.subcat_list =[]
+      this.dialogsub = false
+    },
+    openSubDialog(item){
+      this.itemadit = item
+      this.ind = this.data_presents.findIndex(function (elem) {
+	    return elem.id === item.id;
+    });
+    this.subcat_list = item.category[0].subcategory
+    this.dialogsub = true
+    },
     dialog_close(){
       this.dialog_save = false
     },

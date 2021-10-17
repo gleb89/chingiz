@@ -120,15 +120,7 @@ async def get_all(slug_category: Optional[str] = None):
         ).filter(category__slug_category=slug_category).all()
         
     else:
-        presents =  await Present.objects.select_related(
-            [
-                "category__subcategory",
-                "form_precent",
-                "subcategory",
-                "type_precent",
-                "reason_for_precent"
-            ]
-            ).all()
+        presents =  await Present.all()
     return presents 
     
 

@@ -173,7 +173,7 @@
    <v-dialog v-model="dialogDelete" max-width="500px">
             <v-card>
               <v-card-title class="text-h5"
-                >Вы действительно хотите  категорию корзины?</v-card-title
+                >Вы действительно хотите удалить категорию корзины?</v-card-title
               >
               <v-card-actions>
                 <v-spacer></v-spacer>
