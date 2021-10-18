@@ -28,7 +28,7 @@ conf = ConnectionConfig(
     MAIL_FROM_NAME="Подарки",
     MAIL_TLS = True,
     MAIL_SSL = False,
-    USE_CREDENTIALS = True,
+    USE_CREDENTIALS = False,
     VALIDATE_CERTS = True
 )
 
