@@ -1,28 +1,3 @@
-from fastapi import (
-    APIRouter, 
-    BackgroundTasks, 
-    UploadFile, File, 
-    Form, 
-    Query,
-    Body,
-    Depends
-)
-import smtplib
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-
-
-
-
-
-
-app = APIRouter(
-    prefix="/api/v1/present/email",
-    tags=["Email"],
-)
-
-
-html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,25 +74,3 @@ html = """
     }
 </style>
 </html>
-"""
-def send_message_mail(email,message):
-    you = email
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = "Оформление заказа"
-    msg['From'] = 'info@giftcity.kz'
-    msg['To'] = email
-    part2 = MIMEText(message, 'html')
-    msg.attach(part2)
-    mail = smtplib.SMTP('smtp.mail.ru', 587)
-    mail.ehlo()
-    mail.starttls()
-    mail.login('info@giftcity.kz', "Ch123456#")
-    mail.sendmail('info@giftcity.kz', email, msg.as_string())
-    mail.quit()
-
-@app.post("/email")
-async def simple_send(
-    email: str
-    ) :
-    send_message_mail(email, html)
-    return 'ok'
