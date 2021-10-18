@@ -265,7 +265,7 @@ export default {
   background-repeat: no-repeat;
   /* background-position: center; */
   /* background-size: ;  */
-  background-image: url("/footeremail.png");
+  background-image: url("/footeremail.webp");
   width: 100%;
   padding-bottom: 2rem;
 }

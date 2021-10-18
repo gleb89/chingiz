@@ -114,7 +114,7 @@
         </div>
       </section>
     </v-parallax>
-    <v-parallax class="d-block d-lg-none d-md-none" src="/bonus2.png">
+    <v-parallax class="d-block d-lg-none d-md-none" src="/bonus2.webp">
       <section id="baner-bonys">
         <div style="width: 100%">
           <h2 class="ban">
@@ -246,7 +246,7 @@
                 ассортимент
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="one.png" />
+            <img style="max-width: 100%;width: 35rem;" src="one.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -258,7 +258,7 @@
                 каждый день
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="two.png" />
+            <img style="max-width: 100%;width: 35rem;" src="two.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -268,7 +268,7 @@
                 до двери
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="thre.png" />
+            <img style="max-width: 100%;width: 35rem;" src="thre.webp" />
           </div>
         </div>
         <div style="text-align: center">
@@ -586,7 +586,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url("/header.png");
+  background-image: url("/header.webp");
   min-height: 100vh;
   color: white;
   display: flex;
@@ -629,7 +629,7 @@ h1 {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-image: url("/bonysball.png");
+  background-image: url("/bonysball.webp");
   min-height: 60vh;
   margin-bottom: 4rem;
   /* min-height: 400px;
