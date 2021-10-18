@@ -24,7 +24,8 @@ from routers import (
     commentsservice,
     podpicka,
     stocks,
-    subcategories
+    subcategories,
+    email
     )   
 
 
@@ -139,6 +140,9 @@ app.include_router(
 
 app.include_router(
     stocks.app
+)
+app.include_router(
+    email.app
 )
 
 

@@ -63,3 +63,4 @@ websockets==9.1
 requests
 httpx 
 httplib2
+fastapi-mail
