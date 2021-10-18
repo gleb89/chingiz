@@ -111,7 +111,7 @@ async def add_image(
 @precent_router.get('/')
 async def get_all():
 
-    presents =  await Present.objects.select_related(
+    presents =  await Present.objects.prefetch_related(
             [
                 "category__subcategory",
                 "form_precent",
