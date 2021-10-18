@@ -179,7 +179,7 @@
           >
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">01</span>
-              <img src="w1.webp" alt="" />
+              <img width="150" height="150" src="w1.webp" alt="" />
             </div>
             <div>
               <p style="color:#676767">
@@ -202,7 +202,7 @@
           >
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">02</span>
-              <img src="w2.webp" alt="" />
+              <img width="150" height="150" src="w2.webp" alt="" />
             </div>
             <div>
               <p style="color:#676767">
@@ -220,7 +220,7 @@
           <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">03</span>
-              <img src="w3.webp" alt="" />
+              <img width="150" height="150" src="w3.webp" alt="" />
             </div>
             <p style="color:#676767">
               Дарите <br />
@@ -239,14 +239,14 @@
         <div class="dflex" style="padding: 0.5rem">
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
-              <img style="height: 4rem; width: 4rem" src="pp1.svg" alt="" />
+              <img  style="height: 4rem; width: 4rem" src="pp1.svg" alt="" />
               <p class="textp">
                 Самый <br />
                 большой <br />
                 ассортимент
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="one.webp" />
+            <img width="560" height="auto" style="max-width: 100%;" src="one.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -258,7 +258,7 @@
                 каждый день
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="two.webp" />
+            <img width="560" height="auto" style="max-width: 100%;"  src="two.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -268,7 +268,7 @@
                 до двери
               </p>
             </div>
-            <img style="max-width: 100%;width: 35rem;" src="thre.webp" />
+            <img width="560" height="auto" style="max-width: 100%;"  src="thre.webp" />
           </div>
         </div>
         <div style="text-align: center">
@@ -640,7 +640,7 @@ h1 {
 }
 @media (max-width: 500px) {
   #bonus-opros .box-opros {
-    background-image: url("/oprmob.png");
+    background-image: url("/oprmob.webp");
   }
 }
 #scorosite .box-scoro {

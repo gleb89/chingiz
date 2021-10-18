@@ -10,6 +10,7 @@
       ></div>
       <div style="width:100%;text-align: center;">
         <img
+        width="auto" height="256"
           style="height: 16em;width: auto;max-width:100%"
           :class="{ 'on-hover': hover }"
           class="img"

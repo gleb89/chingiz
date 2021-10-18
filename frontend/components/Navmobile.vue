@@ -6,7 +6,7 @@
       color="white"
     >
       <v-btn  @click="openMenu()" icon>
-        <img style="width:23px" fluid src="/mobapp.png">
+        <img  width="23" height="12"  fluid src="/mobapp.png">
       </v-btn>
 
       <v-toolbar-title><img style="width: 8em;margin-top: .3em;" @click="onHome" src="/logo.png"></v-toolbar-title>
@@ -14,11 +14,11 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <img style="width:23px" fluid src="/Telephone.png">
+        <img width="23" height="auto"  fluid src="/Telephone.png">
       </v-btn>
 
       <v-btn icon @click="onCatalog">
-        <img style="width:23px" fluid src="/Search.png">
+        <img width="23" height="auto" fluid src="/Search.png">
       </v-btn>
     </v-app-bar>
 <nav  id="nav" class="nav">

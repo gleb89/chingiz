@@ -18,21 +18,21 @@
       
       <v-btn icon @click="onCatalog">
         <span style="color:white" >Поиск</span>
-        <img src="/searchbtn.png" alt="">
+        <img width="26" height="28" src="/searchbtn.png" alt="">
       </v-btn>
       
 
     
      <v-btn v-if="!userauth" icon @click="dialog = !dialog">
         <span style="color:white" >Войти</span>
-        <img src="/userbtn.png" alt="">
+        <img width="26" height="26"  src="/userbtn.png" alt="">
       </v-btn>
  <v-btn @click="dialogcabinet = !dialogcabinet" v-if="userauth" icon
             class=""
             style="height: max-content;"
           >
         <div style="margin-right: 7px;margin-top: .65rem;">
-        <img style="width: 1.5rem;" src="/login.svg" alt="" />
+        <img width="26" height="26"  style="width: 1.5rem;" src="/login.svg" alt="" />
         <p style="color:white">
           кабинет
         </p>
