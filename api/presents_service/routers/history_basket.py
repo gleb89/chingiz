@@ -1,4 +1,4 @@
-from fastapi import APIRouter,File, UploadFile
+from fastapi import APIRouter,BackgroundTasks
 from fastapi.responses import RedirectResponse
 import datetime
 
@@ -8,6 +8,7 @@ from models.history_basket import HistoryBasket
 from routers.bonus import *
 from models.users import Users
 from logics.history import image_add
+from routers.email import simple_send
 
 history_router = APIRouter(
     prefix="/api/v1/present/history",
@@ -61,7 +62,11 @@ async def spic_bonus_update_bonus(history):
    
 
 @history_router.post("/oplata/{basket_id}")
-async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
+async def add_basket_in_history(
+    oplata_data:HistoryBasket,
+    basket_id:int,
+    background_tasks: BackgroundTasks
+    ):
     
     oplata_data =  await HistoryBasket(**oplata_data.dict()).save()
     basket = await Basket.objects.get(id=basket_id)
@@ -75,9 +80,11 @@ async def add_basket_in_history(oplata_data:HistoryBasket,basket_id:int):
 
     await basket.history.add(oplata_data)
     if oplata_data.oplata_user == 'Оплатить картой Visa / Master Card':
-        print('Оплатить картой Visa / Master Card')
         await oplata_data.update(succes_oplata = True)
         await spic_bonus_update_bonus(oplata_data )
+    if oplata_data.oplata_user != 'Оплатить картой Visa / Master Card':
+       
+        background_tasks.add_task(simple_send, oplata_data.email_user,oplata_data)
     return oplata_data
 
 @history_router.get("/oplata/for_end/{basket_id}")

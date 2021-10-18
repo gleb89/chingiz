@@ -5,6 +5,7 @@ from fastapi import APIRouter,Depends, File, UploadFile,Form
 from models.reason_for_precent import Reason
 from logics.jwt_token import jwt_auth
 from logics.category import image_add
+from logics.category import image_delete
 
 
 reason_precent = APIRouter(
@@ -58,6 +59,7 @@ async def update_one(
     reason = await Reason.objects.get_or_none(id=id)
 
     if image:
+        await image_delete(reason.icon)
         icon = await image_add(image)
         await reason.update(icon = icon)
     if name_reason:
@@ -70,6 +72,7 @@ async def update_one(
 @reason_precent.delete('/{id}')
 async def delete(id: int):
     form = await Reason.objects.get_or_none(id=id)
+    await image_delete(form.icon)
     try:
         await form.delete()
         return await Reason.objects.order_by("serial_number").all()

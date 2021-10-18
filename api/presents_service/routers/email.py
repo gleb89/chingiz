@@ -21,87 +21,173 @@ app = APIRouter(
     tags=["Email"],
 )
 
+def send_me_html(oplata_data):
+    summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    if oplata_data.fiz_oplata:
+        oplata = 'Оплата физическим лицом'
+        oplata_data_method = 'Оплата по выставленному счету'
+    if oplata_data.ur_oplata:
+        oplata = 'Оплата Юридическим лицом'
+        oplata_data_method = oplata_data.oplata_user
 
-html = """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div class="header">
-        <img src="http://giftcity.kz/logo.png" alt="">
-    </div>
-    <div class="text-email">
-         <h3>Здравствуйте ,Уважаемый(ая) Чингиз!</h3>
-         
-         <h4>Номер заказа El125</h4>
-         
-         <div class="text-detail">
-            <p class="detail">Детали вашего заказа :</p>
-            <p><span>Сумма итого: </span> 56 000 тг</p>
-            <p><span>Счет для оплаты: </span> 89493000029377589</p>
-         </div>
-         <div>
-            <p>Благодарим , за доверие к нашему сервису!</p>
-         </div>
-    </div>
+    style = """
+    <style>
 
-</body>
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
-    body{
-        font-family: 'Raleway', sans-serif;
-    }
-    .header{
-        max-width: 100%;
-        min-height: 20vh;
-        padding: 1em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .header img{
-        max-width: 100%;
-    }
-    .text-email{
-        min-height: 60vh;
-        max-width: 100%;
-        padding: 1em;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-image: url("http://giftcity.kz/bonysball.png");
-    }
-    .detail{
-        font-size: 1.3em;
-        font-weight: bold;
-    }
-    h4{
-        text-align: center;
-        text-align: center;
+        .header{
+            max-width: 100%;
+            min-height: 20vh;
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header img{
+            max-width: 100%;
+        }
+        .text-email{
+            min-height: 60vh;
+            max-width: 100%;
+            padding: 1em;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .detail{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+  
+        h3{
+            
+        }
+        .text-detail{
         
-
-    }
-    h3{
         
-    }
-    .text-detail{
-       
-        padding: 1em;
-    }
-    span{
-        font-size: 1.2em;
-        font-weight: 600;
-    }
-</style>
-</html>
-"""
+        }
+        span{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+    """
+    # </html>
+    # '''.format(**locals())
+    html = '''\
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <style type="text/css">
+            {style}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <img src="http://giftcity.kz/logo.png" alt="">
+        </div>
+        <div class="text-email">
+            <h3>Здравствуйте ,Уважаемый(ая) администратор!</h3>
+            <h4>Поступил новый заказ</h4>
+            <h4>Артикул заказа -{oplata_data.id}</h4>
+            
+            <div class="text-detail">
+                <p class="detail">Детали  заказа :</p>
+                <p><span>Статус лица оплаты: </span> {oplata} тг</p>
+                <p><span>Сумма итого: </span> {summa} тг</p>
+                <p><span>Метод оплаты: </span> {oplata_data_method}</p>
+                <p><span>Дата доставки: </span> {oplata_data.data_dostavki}</p>
+            </div>
+            <div>
+                <p>Удачи в бизнесе!Подарки в каждый дом</p>
+            </div>
+        </div>
+    </body>
+
+    </html>
+    '''.format(**locals())
+    return html
+
+def get_html(oplata_data):
+    summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    
+
+    style = """
+    <style>
+
+        .header{
+            max-width: 100%;
+            min-height: 20vh;
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header img{
+            max-width: 100%;
+        }
+        .text-email{
+            min-height: 60vh;
+            max-width: 100%;
+            padding: 1em;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .detail{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+  
+        h3{
+            
+        }
+        .text-detail{
+        
+        
+        }
+        span{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+    """
+    # </html>
+    # '''.format(**locals())
+    html = '''\
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <style type="text/css">
+            {style}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <img src="http://giftcity.kz/logo.png" alt="">
+        </div>
+        <div class="text-email">
+            <h3>Здравствуйте ,Уважаемый(ая) {oplata_data.name_user}!</h3>
+            
+            <h4>Номер заказа EL-{oplata_data.id}</h4>
+            
+            <div class="text-detail">
+                <p class="detail">Детали вашего заказа :</p>
+                <p><span>Сумма итого: </span> {summa} тг</p>
+                <p><span>Счет для оплаты: </span> 89493000029377589</p>
+            </div>
+            <div>
+                <p>Благодарим за доверие к нашему сервису!</p>
+            </div>
+        </div>
+    </body>
+
+    </html>
+    '''.format(**locals())
+    return html
 def send_message_mail(email,message):
-    you = email
     msg = MIMEMultipart('alternative')
     msg['Subject'] = "Оформление заказа"
     msg['From'] = 'info@giftcity.kz'
@@ -116,8 +202,13 @@ def send_message_mail(email,message):
     mail.quit()
 
 @app.post("/email")
-async def simple_send(
-    email: str
+def simple_send(
+    email: str,
+    oplata_data
     ) :
-    send_message_mail(email, html)
+    me_email = "info@giftcity.kz"
+    send_html = get_html(oplata_data)
+    send_message_mail(email, send_html)
+    send_me = send_me_html(oplata_data)
+    send_message_mail(me_email,send_me)
     return 'ok'

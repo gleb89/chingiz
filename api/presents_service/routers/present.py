@@ -15,6 +15,7 @@ from models.type_present import TypePresent
 from logics.precents import image_add
 from models.subcategories import SubCategories
 from logics.jwt_token import jwt_auth
+from logics.category import image_delete
 
 
 
@@ -191,6 +192,7 @@ async def update_one(
         'presentsubcategories'
         ]).get_or_none(id=id)
     if image:
+        await image_delete(present.image_precent)
         new_image = await image_add(image)
         await present.update(image_precent = new_image)
     if body:
@@ -259,6 +261,7 @@ async def update_one(
 async def delete_one(id: int):
     try:
         product = await Present.objects.get_or_none(id=id)
+        await image_delete(product.image_precent)
         await product.delete()
         return True
     except:

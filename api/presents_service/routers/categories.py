@@ -5,7 +5,7 @@ from fastapi import APIRouter, Depends,File, UploadFile,Form
 from models.category import Categories
 from shemas.categories import CreateCategory
 from logics.jwt_token import jwt_auth
-from logics.category import image_add
+from logics.category import image_add, image_delete
 
 categories_router = APIRouter(
     prefix="/api/v1/present/categories",
@@ -78,6 +78,7 @@ async def update_one(
     
     
     if image:
+        await image_delete(category.icon)
         icon = await image_add(image)
         await category.update(icon = icon)
     if name_category:
@@ -93,13 +94,17 @@ async def update_one(
 
 
 @categories_router.delete('/{id}')
-async def delete(id: int,admin = Depends(jwt_auth)):
+async def delete(id: int):
     category = await Categories.objects.select_related(
             [
                 "subcategory",
             ]
         ).get_or_none(id=id)
+    
     try:
+        
+        
+        await image_delete(category.icon)
         await category.delete()
         return await Categories.objects.select_related(
             [
