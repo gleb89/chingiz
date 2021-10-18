@@ -13,7 +13,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {name :"apple-mobile-web-app-status-bar-style", content :"default"},
       { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: 'format-detection', content: 'telephone=no' },
+      {name:"mailru-domain" ,content:"H4AMvCUJss9mZlhr"} 
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

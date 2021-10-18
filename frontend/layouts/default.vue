@@ -29,7 +29,7 @@
 export default {
   head(){
     return{
-      link:[{rel:"canonical",href:`https://el-bazaar.kz/${this.$route.path}`}]
+      link:[{rel:"canonical",href:`http://giftcity.kz/${this.$route.path}`}]
     }
   },
 
