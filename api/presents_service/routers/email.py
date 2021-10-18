@@ -20,10 +20,10 @@ class EmailSchema(BaseModel):
 
 
 conf = ConnectionConfig(
-    MAIL_USERNAME = "",
+    MAIL_USERNAME = "info@giftcity.kz",
     MAIL_PASSWORD = "Ch123456#",
     MAIL_FROM = "info@giftcity.kz",
-    MAIL_PORT = 587,
+    MAIL_PORT = 465,
     MAIL_SERVER = "smtp.mail.ru",
     MAIL_FROM_NAME="Подарки",
     MAIL_TLS = True,
