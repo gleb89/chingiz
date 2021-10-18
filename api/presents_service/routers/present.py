@@ -121,9 +121,11 @@ async def get_all():
             ]
             ).exclude_fields(
     [
-        'form_precent__presentformpresent',
-        'subcategory__presentsubcategories',
-        'reason_for_precent__presentreason'
+        'presentformpresent',
+        'presenttypepresent',
+        'presentcategories',
+        'presentreason',
+        'presentsubcategories'
         ]).all()
     return presents 
 
