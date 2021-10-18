@@ -94,7 +94,7 @@
         </div>
       </v-container>
     </section>
-    <v-parallax class="d-none d-md-block d-lg-block" src="/bonus.png">
+    <v-parallax class="d-none d-md-block d-lg-block" src="/bonus.webp">
       <section id="baner-bonys">
         <div style="width: 100%">
           <h2 class="ban">
@@ -179,7 +179,7 @@
           >
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">01</span>
-              <img src="w1.png" alt="" />
+              <img src="w1.webp" alt="" />
             </div>
             <div>
               <p style="color:#676767">
@@ -202,7 +202,7 @@
           >
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">02</span>
-              <img src="w2.png" alt="" />
+              <img src="w2.webp" alt="" />
             </div>
             <div>
               <p style="color:#676767">
@@ -220,7 +220,7 @@
           <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">03</span>
-              <img src="w3.png" alt="" />
+              <img src="w3.webp" alt="" />
             </div>
             <p style="color:#676767">
               Дарите <br />
