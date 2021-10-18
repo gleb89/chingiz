@@ -136,7 +136,7 @@
                     <v-file-input
                       v-model="image_precent"
                      
-                      accept="image/png, image/jpeg, image/png"
+                      accept="image/png, image/jpeg, image/png, image/webp"
                       placeholder="Загрузите изображение"
                       prepend-inner-icon="*"
                       class="prep"
@@ -310,7 +310,7 @@
                        
                         <v-file-input
                           v-model="image"
-                          accept="image/png, image/jpeg, image/bmp"
+                          accept="image/png, image/jpeg, image/png, image/webp"
                           placeholder="Загрузите изображение"
                           prepend-icon="mdi-camera"
                           label="Загрузите изображение"
