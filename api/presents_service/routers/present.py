@@ -139,15 +139,22 @@ async def get_allsss():
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
-    return await Present.objects.select_related(
-        [
-            "category__subcategory",
-            "form_precent",
-            "type_precent",
-            "subcategory",
-            "reason_for_precent"
+    return await Present.objects.prefetch_related(
+            [
+                "category__subcategory",
+                "form_precent",
+                "subcategory",
+                "type_precent",
+                "reason_for_precent"
             ]
-        ).get_or_none(id=id)
+            ).exclude_fields(
+    [
+        'presentformpresent',
+        'presenttypepresent',
+        'presentcategories',
+        'presentreason',
+        'presentsubcategories'
+        ]).get_or_none(id=id)
 
 
 @precent_router.put('/{id}') 
@@ -167,15 +174,22 @@ async def update_one(
     # admin = Depends(jwt_auth)
 
     ):
-    present = await Present.objects.select_related(
-        [
-            "category__subcategory",
-            "form_precent",
-            "type_precent",
-            "subcategory",
-            "reason_for_precent"
-        ]
-    ).exclude_fields("presentreason").get_or_none(id=id)
+    present = await Present.objects.prefetch_related(
+            [
+                "category__subcategory",
+                "form_precent",
+                "subcategory",
+                "type_precent",
+                "reason_for_precent"
+            ]
+            ).exclude_fields(
+    [
+        'presentformpresent',
+        'presenttypepresent',
+        'presentcategories',
+        'presentreason',
+        'presentsubcategories'
+        ]).get_or_none(id=id)
     if image:
         new_image = await image_add(image)
         await present.update(image_precent = new_image)
