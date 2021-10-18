@@ -64,3 +64,4 @@ requests
 httpx 
 httplib2
 fastapi-mail
+Pillow

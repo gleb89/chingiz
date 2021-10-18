@@ -78,7 +78,10 @@ async def update_one(
     
     
     if image:
-        await image_delete(category.icon)
+        try:
+            await image_delete(category.icon)
+        except:
+            pass
         icon = await image_add(image)
         await category.update(icon = icon)
     if name_category:

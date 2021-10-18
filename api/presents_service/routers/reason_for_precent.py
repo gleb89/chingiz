@@ -57,8 +57,9 @@ async def update_one(
     
     ):
     reason = await Reason.objects.get_or_none(id=id)
-
+    
     if image:
+        
         await image_delete(reason.icon)
         icon = await image_add(image)
         await reason.update(icon = icon)

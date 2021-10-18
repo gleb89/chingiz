@@ -61,7 +61,7 @@
       <v-col cols="12" lg="10" class="box-products">
         <div class="d-none d-lg-block">
         <h2 >
-          <span v-if="!filter_name && !search">Все корзины ({{ listproducts.length }})</span>
+          <span v-if="!filter_name && !search">Все подарки ({{ listproducts.length }})</span>
           <span v-if="filter_name && !search">
             {{ filter_name }} ({{ listproducts.length }})</span
           >
