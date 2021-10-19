@@ -1,12 +1,33 @@
 <template>
 <v-container>
-    <div  class="text-center" style="margin-top:6rem;padding:1rem;min-height: 100vh;display: flex;justify-content: center;align-items: center;">
+    <div v-if="olata === 'kaspioplata'"  class="text-center" style="margin-top:6rem;padding:1rem;min-height: 100vh;display: flex;justify-content: center;align-items: center;">
     <v-alert
       dense
       text
       type="success"
     >
-      Реквизиты <strong>для оплаты заказа</strong> отправлены на указанную вами почту 
+      Реквизиты <strong>для оплаты заказа</strong> отправлены на указанную вами почту !
+      <p>Спасибо за заказ</p>
+    </v-alert>
+    </div>
+      <div v-if="olata === 'uroplata'"  class="text-center" style="margin-top:6rem;padding:1rem;min-height: 100vh;display: flex;justify-content: center;align-items: center;">
+    <v-alert
+      dense
+      text
+      type="success"
+    >
+      Реквизиты <strong>для оплаты заказа</strong> отправлены на указанную вами почту !
+      <p>Спасибо за заказ</p>
+    </v-alert>
+    </div>
+      <div v-if="olata === 'presend'"  class="text-center" style="margin-top:6rem;padding:1rem;min-height: 100vh;display: flex;justify-content: center;align-items: center;">
+    <v-alert
+      dense
+      text
+      type="success"
+    >
+      Наш специалист <strong>свяжется с вами в ближайшее время!</strong>
+      <p>Спасибо за заказ</p>
     </v-alert>
     </div>
     <!-- <div v-if="olata === 'kaspioplata'" class="text-center" style="margin-top:6rem;padding:1rem;min-height: 100vh;display: flex;justify-content: center;align-items: center;">

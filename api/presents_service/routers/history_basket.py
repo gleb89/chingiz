@@ -83,7 +83,6 @@ async def add_basket_in_history(
         await oplata_data.update(succes_oplata = True)
         await spic_bonus_update_bonus(oplata_data )
     if oplata_data.oplata_user != 'Оплатить картой Visa / Master Card':
-       
         background_tasks.add_task(simple_send, oplata_data.email_user,oplata_data)
     return oplata_data
 

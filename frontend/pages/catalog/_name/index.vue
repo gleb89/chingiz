@@ -145,6 +145,7 @@
             </v-col>
             <v-container>
           <v-row class="mobile-hei">
+           
             <v-col
               class="boxs-cardprod"
               v-for="present in listproducts"
@@ -282,6 +283,10 @@ export default {
     };
   },
   methods: {
+        toTop () {
+          console.log(this.$vuetify.goTo(0));
+      
+    },
     onPodSub(sub_id){
       this.sub_id = sub_id
       this.products = this.$store.getters["products/products"].filter((elem) => {

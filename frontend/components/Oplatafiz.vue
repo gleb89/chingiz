@@ -146,7 +146,8 @@
             
               v-for="n in [
                 'Kaspi, KZ, Kaspi Pay',
-                'Оплатить картой Visa / Master Card'
+                'Оплатить картой Visa / Master Card',
+                'Оплата при получении'
               ]"
               :key="n"
               color="orange"
@@ -531,9 +532,16 @@ mounted: function () {
 
         this.$store.commit("localStorage/set_summBasket",Number(0));
         this.retbonus()
+                        
+                
+                
         if(this.oplata_methods === 'Kaspi, KZ, Kaspi Pay'){
           this.$router.push('/cabinet/oplata/kaspioplata')
-        }else{
+        }
+        if(this.oplata_methods === 'Оплата при получении'){
+          this.$router.push('/cabinet/oplata/presend')
+        }
+        if(this.oplata_methods === 'Оплатить картой Visa / Master Card'){
           this.$router.push('/cabinet/oplata')
         }
         
