@@ -12,9 +12,9 @@
           >/
           <span>{{ product.name_precent }}</span>
         </div>
-        <h2 class="mt-6">{{ product.prevue_name }}</h2>
-        <h2 class="">"{{ product.name_precent }}"</h2>
-        <div style="position: relative">
+        <h2 class="namep mt-6" style="font-weight: 400;" >{{ product.prevue_name }}</h2>
+        <h2 class="namep" style="font-weight: 900;" >"{{ product.name_precent }}"</h2>
+        <div style="position: relative" class="mt-4">
           <v-img
             fluid
             :lazy-src="product.image_precent"
@@ -189,12 +189,18 @@ export default {
       };
      if(this.$store.state.localStorage.uid_auth_user){
        if(!this.reveal){
+         if (this.count_present === 0){
+           this.count_present = 1
+         }
+          if (this.count_present > 0){
+           this.count_present = this.count_present 
+         }
       let data = {
         'id_user':this.$store.state.localStorage.uid_auth_user,
         'precent_id':present_id
       }
         this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/basket/user_basket/add`,data, {
+        .$post(`http://giftcity.kz/api/v1/present/users/basket/user_basket/add/${this.count_present}`,data, {
           headers: headers,
         })
         .then((resp) => {
@@ -208,7 +214,7 @@ export default {
             this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
           }
           this.reveal = true
-          this.count_present = this.count_present +1
+          
           
           
         })
@@ -229,8 +235,14 @@ export default {
         'id_basket':this.$store.state.localStorage.basket.id_basket,
         'precent_id':present_id
       }
+          if (this.count_present === 0){
+           this.count_present = 1
+         }
+          if (this.count_present > 0){
+           this.count_present = this.count_present 
+         }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/basket/anonim_basket/add`,data, {
+        .$post(`http://giftcity.kz/api/v1/present/users/basket/anonim_basket/add/${this.count_present}`,data, {
           headers: headers,
         })
         .then((resp) => {
@@ -243,7 +255,7 @@ export default {
             this.$store.commit("localStorage/set_idBasket",Number(resp.basket_id));
           }
           this.reveal = true
-          this.count_present = this.count_present +1
+          
           
         })
         .catch(function (error) {
@@ -260,10 +272,20 @@ export default {
 </script>
 
 <style >
+.namep{
+    max-width: 50%;
+    text-align: center;
+    
+}
 @media (max-width:500px) {
     .box-formob{
     margin-top: 4rem;
   }
+  .namep{
+    max-width: 100%;
+    text-align: left;
+    
+}
 }
 
 </style>

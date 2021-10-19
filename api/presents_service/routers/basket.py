@@ -45,8 +45,8 @@ async def add_present_for_basket(present_id:int,basket)->Basket:
   
     
 
-@app.post('/anonim_basket/add')
-async def add_present_anonim(data:AddBasketAnonim)->JSONResponse:
+@app.post('/anonim_basket/add/{count_pres}')
+async def add_present_anonim(data:AddBasketAnonim, count_pres:int)->JSONResponse:
     """
     Добавляет товары в корзину от анонимного
     пользователя
@@ -59,7 +59,8 @@ async def add_present_anonim(data:AddBasketAnonim)->JSONResponse:
         basket = await Basket.objects.get(id=data.id_basket)
     else: 
         basket = await create()
-    await  add_present_for_basket(data.precent_id, basket)
+    for pres in range(count_pres):
+        await  add_present_for_basket(data.precent_id, basket)
     basket =  await Basket.objects.get(id=basket.id)
     summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
     cont = {"basket_id": basket.id,
@@ -72,8 +73,8 @@ async def add_present_anonim(data:AddBasketAnonim)->JSONResponse:
     )
 
 
-@app.post('/user_basket/add')
-async def add_present_user(data:AddBasketUser)->JSONResponse:
+@app.post('/user_basket/add/{count_pres}')
+async def add_present_user(data:AddBasketUser, count_pres:int)->JSONResponse:
     """
     Добавляет товары в корзину от зарегистрированного
     пользователя
@@ -83,7 +84,8 @@ async def add_present_user(data:AddBasketUser)->JSONResponse:
     """
     user = await Users.objects.get(uid_firebase=data.id_user)
     basket = await Basket.objects.get(user__id=user.id)
-    await  add_present_for_basket(data.precent_id, basket)
+    for pres in range(count_pres):
+        await  add_present_for_basket(data.precent_id, basket)
     basket = await Basket.objects.get(user__id=user.id)
     summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
     cont = {"basket_id": basket.id,
