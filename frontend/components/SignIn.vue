@@ -53,7 +53,7 @@
                 <v-col
                 cols="12"
           class="mb-12 d-flex"
-          style="align-items: center;min-height:200px"
+          style="align-items: center;min-height:max-content"
           color="white"
           
         >
@@ -98,7 +98,7 @@
                 <v-col
                 cols="12"
           class="mb-12 d-flex flex-wrap"
-          style="align-items: center;min-height:200px"
+         style="align-items: center;min-height:max-content"
           color="white"
           
         >
