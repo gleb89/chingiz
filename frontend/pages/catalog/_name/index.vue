@@ -51,7 +51,6 @@
             :onReason="onReason"
             :form="form"
             :type_precent="type_precent"
-            
             />
             
        

@@ -140,8 +140,8 @@
           </div>
         </v-col>
         <v-col cols="12" sm="12" md="12">
-          <v-radio-group v-model="oplata_methods" background-color="transparent" style="min-width:100%">
-            
+          <v-radio-group :rules="[(v) => !!v || 'Не может быть пустым']" v-model="oplata_methods" background-color="transparent" style="min-width:100%">
+       
             <v-radio 
             
               v-for="n in [
@@ -211,7 +211,7 @@
            <v-menu
             ref="menu1"
             v-model="menu1"
-            :rules="[(v) => !!v || 'Не может быть пустым']"
+            
             :close-on-content-click="false"
             transition="scale-transition"
             offset-y
@@ -222,6 +222,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 v-model="data_dostavki"
+                :rules="[(v) => !!v || 'Не может быть пустым']"
                 label="Дата доставки"
                        class="prep"
               prepend-inner-icon="*"
@@ -301,65 +302,50 @@
               </tbody>
             </template>
           </v-simple-table>
-          <v-simple-table class="d-lg-none d-md-none d-block">
-            <template v-slot:default>
-              <thead>
-                <tr>
-                  <th v-if="!scrol" style="color:#1F2128" class="text-left">
-                    Фото товара
-                  </th>
-                  <th v-if="!scrol" style="color:#1F2128" class="text-left">
-                    Наименование товара
-                  </th>
-                  <th v-if="!scrol" style="color:#1F2128" class="text-left">
-                    Артикул
-                  </th>
-                <th v-if="scrol" style="color:#1F2128" class="text-left">
-                   вернуться
-                  </th>
-                    <th v-if="!scrol" style="color:#1F2128" class="text-left">
-                   смотреть подробнее
-                  </th>
-                  <th v-if="scrol" style="color:#1F2128" class="text-left">
-                    Количество
-                  </th>
-                  <th v-if="scrol" style="color:#1F2128" class="text-left">
-                    Бонусы
-                  </th>
-                  <th v-if="scrol" style="color:#1F2128" class="text-left">
-                    Итого
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(item, index) in presents_in_basket.count_present_item
-                    .presents"
-                  :key="index"
-                >
-                  <td v-if="!scrol">
-                    <img
-                      style="max-width: 4rem;"
-                      :src="item.image_precent"
-                      alt=""
-                    />
-                  </td>
-                  <td style="font-size: .8rem;" v-if="!scrol">{{ item.name_precent }}</td>
-                  <td v-if="!scrol">00129{{ item.id }}</td>
-                   <td style="height: 10rem;" @click="scrol = !scrol" v-if="!scrol" class="text-center"><fa icon="long-arrow-alt-right"></fa> </td>
-                   <td style="height: 10rem;" @click="scrol = !scrol" v-if="scrol" class="text-center"><fa icon="long-arrow-alt-left"></fa> </td>
-                  <td style="height: 10rem;" v-if="scrol">{{ item.count }} шт</td>
+ <div class="d-lg-none d-md-none d-block" >
+           <v-card
+           v-for="(item,index) in  presents_in_basket.count_present_item.presents"
+          :key="index"
+         style="border: none;"
+    class="mx-auto"
+    
+    outlined
+  >
+    <v-list-item three-line>
+              <v-avatar
+                
+                size="125"
+                tile
+              >
+                <v-img :src="item.image_precent"></v-img>
+              </v-avatar>
 
-                  <td style="height: 10rem;" v-if="scrol">
-                    <span style="color:#FF7A00;font-weight: bold;">+500</span>
-                  </td>
-                  <td v-if="scrol">
-                    {{ item.price.toLocaleString() }} тг
-                  </td>
-                </tr>
-              </tbody>
-            </template>
-          </v-simple-table>
+      <v-list-item-content style="margin-left: 2em;">
+        <div class=" mb-4" >
+         
+          <span>Название:</span> <span style="font-weight: 500;"> {{item.name_precent}}</span>
+
+        </div>
+        <v-list-item-title class=" mb-1">
+           <span>Артикул:</span> <span style="font-weight: 500;"> EL-{{item.id}}</span>
+           <p class="mt-3">
+          Цена: <span style="font-weight: 500;"> {{ item.price.toLocaleString() }} тг </span>
+          </p>
+          <p class="mt-3">
+          Количество: <span style="font-weight: 500;"> {{ item.count }} шт</span>
+          </p>
+        </v-list-item-title>
+        <v-list-item-subtitle>
+         <span style="font-weight: 500;font-size: 1.1em;">Бонусы:</span>  <span style="color:#FF7A00;font-weight: bold;font-size: 1.2em;">+500</span>
+        </v-list-item-subtitle>
+      </v-list-item-content>
+
+
+    </v-list-item>
+     <hr>
+  </v-card>
+       
+</div>
         </v-col>
                 <v-col cols="12" sm="12" md="12">
             <div style="text-align: end;">
