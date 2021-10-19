@@ -23,7 +23,7 @@
             ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="6">
-          {{phone.length}}
+          
           <v-text-field
             label="Номер телефона" 
             v-mask="'+7 (###) ###-##-##'"
