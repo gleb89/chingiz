@@ -114,7 +114,15 @@
 
         
       </v-form>
-      <p style="width:100%" class="error-code text-left" v-if="error_cod">Неверный код!</p>
+      <v-alert
+      v-if="error_cod"
+      dense
+      outlined
+      type="error"
+    >
+      <strong>Неверный код!</strong> попробуйте еще раз
+    </v-alert>
+      
       </v-col>
 
         <v-btn
@@ -177,7 +185,7 @@ export default {
     return {
       code_sign_time: 0,
       valid: true,
-      e1: 1,
+      e1: 2,
       message_error:'',
       stoptime: true,
       error_cod:false,
