@@ -185,7 +185,7 @@ export default {
     return {
       code_sign_time: 0,
       valid: true,
-      e1: 2,
+      e1: 1,
       message_error:'',
       stoptime: true,
       error_cod:false,
