@@ -24,39 +24,51 @@
     </div>
     <div v-if="phone_form_sign">
       <v-form ref="form" v-model="valid" lazy-validation>
-        <v-text-field
+          <v-text-field
+          :rules="[rulesphone.required,rulesphone.counter]"
           v-model="phone"
-          :rules="phonerules"
-          label="Phone"
-          required
-        ></v-text-field>
+          prepend-inner-icon="*" 
+          class="prep"
+          v-mask="'+7 (###) ###-##-##'"
+            label="Введите номер телефона"
+                   
+            
+            
+            solo
+            style="min-width:100%"
+          ></v-text-field>
         
         <p v-if="error_num_phone" class="error-phone" >{{message_error}}</p> 
         <v-btn
           v-if="code_sign_time === 0"
           :disabled="!valid"
-          color="success"
+          rounded
+          color="#ff7a00"
+          dark
           class="mr-4"
           @click="validate"
         >
           {{ onrecapcha }}
           получить код
         </v-btn>
-        <v-btn  v-if="code_sign_time <= 60 && code_sign_time > 0">
-          повторно через {{ code_sign_time }} с
-        </v-btn>
+        
+         <p v-if="code_sign_time <= 60 && code_sign_time > 0">повторно через <span style="font-weight: 500;">{{ code_sign_time }}  секунд</span></p> 
+        
       </v-form>
       <v-form v-if="code_form" ref="form_code" v-model="valid" lazy-validation>
         <v-text-field
           v-model="code"
-          :rules="coderules"
-          label="code"
+           :rules="[coderules.required,coderules.counter]"
+          
+          label="Проверочный код"
           required
         ></v-text-field>
         <p class="error-code" v-if="error_cod">Неверный код!</p>
         <v-btn
           :disabled="!valid"
-          color="success"
+          rounded
+          color="#ff7a00"
+          dark
           class="mr-4"
           @click="validate_code"
         >
@@ -102,20 +114,21 @@ export default {
       message_error:'',
       stoptime: true,
       error_cod:false,
-      phonerules: [
-        (v) => v.length > 1 || "номер обязателен",
-        (v) => v[0] == "+" || "+ обязателен",
-      ],
-      coderules: [
-        (v) => v.length == 6 || "должно быть 6 знаков",
-        (v) => !!v || "не может быть пустым!",
-      ],
+      rulesphone: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length === 18 || 'Минимум 11 цифр',
+         
+        },
+      coderules: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length === 6 || 'Код должен быть 6 цифр',
+      },
       sign: false,
       google_name: "",
       phone_form_sign: false,
       code_form: false,
       error_num_phone:false, 
-      phone: "+",
+      phone: "",
       code: "",
     };
   },
@@ -255,7 +268,7 @@ export default {
     },
     timecode() {
      
-      intervalId = setInterval(this.stopSec_time, 1000);
+      intervalId = this.stopSec_time
   
     },
     validate() {
@@ -401,5 +414,10 @@ img {
   position: absolute;
   top: 0;
   color: red;
+}
+.prep .v-icon.v-icon {
+
+  
+    color: #ff7a00;
 }
 </style>

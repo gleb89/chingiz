@@ -68,9 +68,11 @@
                   v-model="phone_user"
                     class="rounded-xl"
                     label="Номер телефона"
+                    v-mask="'+7 (###) ###-##-##'"
+                    :rules="[rulesphone.required,rulesphone.counter]"
                     placeholder="Номер телефона"
                     outlined
-                    :rules="[(v) => !!v || 'Не может быть пустым']"
+                   
                     required
                   ></v-text-field>
 
@@ -80,7 +82,7 @@
                     label="E-mail"
                     placeholder="E-mail"
                     outlined
-                    :rules="[v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'Введите E-mail']"
+                    :rules="[rules.required, rules.email]"
                     required
                   ></v-text-field>
                 </v-col>
@@ -159,6 +161,19 @@ export default {
     return {
       text_alert:'',
       body:'',
+            rules: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length <= 20 || 'Максимум 20 символов',
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Невалидный e-mail.'
+          },
+        },
+     rulesphone: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length === 18 || 'Минимум 11 цифр',
+         
+        },
       email_user:'',
       phone_user:'',
       name_user:'',

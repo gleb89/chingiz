@@ -23,12 +23,14 @@
             ></v-text-field>
         </v-col>
         <v-col cols="12" sm="6" md="6">
+          {{phone.length}}
           <v-text-field
             label="Номер телефона" 
+            v-mask="'+7 (###) ###-##-##'"
                    class="prep"
               prepend-inner-icon="*"
             v-model="phone"
-            :rules="[(v) => !!v || 'Не может быть пустым']"
+            :rules="[rulesphone.required,rulesphone.counter]"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -47,9 +49,10 @@
         <v-col cols="12" sm="6" md="6">
           <v-text-field
             label="E-mail" 
+            class="prep"
             v-model="email"
             prepend-inner-icon="*" 
-            :rules="[(v) => !!v || 'Не может быть пустым']"
+            :rules="[rules.required, rules.email]"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -430,6 +433,20 @@ mounted: function () {
       kvartira:'',
       home:'',
       stret:'',
+     rulesphone: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length === 18 || 'Минимум 11 цифр',
+         
+        },
+      rules: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length <= 20 || 'Максимум 20 символов',
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Невалидный e-mail.'
+          },
+        },
+    
       city:localStorage.getItem('city')||'',
       name:'',
       count_spis_bonus:0,

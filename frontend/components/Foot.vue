@@ -27,6 +27,7 @@
               <div class="input-box-email">
                 <v-text-field
                   label="E-mail"
+                  :rules="[rules.required, rules.email]"
                   class="text-green"
                   v-model="email"
                   outlined
@@ -162,6 +163,14 @@ export default {
   data() {
     return {
       comand_dialog: false,
+      rules: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length <= 20 || 'Максимум 20 символов',
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Невалидный e-mail.'
+          },
+        },
       email:'',
       alert:false
     };
@@ -169,6 +178,13 @@ export default {
   },
     methods: {
       onPodpiska() {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        if(!pattern.test(this.email)){
+          console.log(1);
+        } 
+        else{    
+          
+               
   let headers = {
         "Content-Type": "application/json"
       };
@@ -191,6 +207,7 @@ export default {
           console.log(error);
         });
         }
+         }
       },
     },
 };

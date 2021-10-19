@@ -23,10 +23,12 @@
             style="min-width:100%"
           ></v-text-field>
         </v-col>
+        
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-          :rules="[(v) => !!v || 'Не может быть пустым']"
+          :rules="[rulesphone.required,rulesphone.counter]"
           v-model="phone"
+          v-mask="'+7 (###) ###-##-##'"
             label="Номер телефона"
                    class="prep"
             
@@ -48,7 +50,7 @@
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-          :rules="[(v) => !!v || 'Не может быть пустым']"
+          :rules="[rules.required, rules.email]"
           v-model="email"
             label="E-mail"
                    class="prep"
@@ -484,6 +486,19 @@ mounted: function () {
       .substr(0, 10),
           scrol: false,
           valid: true,
+          rules: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length <= 20 || 'Максимум 20 символов',
+          email: value => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || 'Невалидный e-mail.'
+          },
+        },
+        rulesphone: {
+          required: value => !!value || 'Не может быть пустым.',
+          counter: value => value.length === 18 || 'Минимум 11 цифр',
+         
+        },
           scrol: false,
           menu1:false,
           kvartira:'',
@@ -498,7 +513,7 @@ mounted: function () {
           adress:'',
           email:'',
           familyname:'',
-          phone:'+7(000)000-00-00',
+          phone:'',
           name_company:'',
           bank_benefic:'',
           bin_bank:'',
