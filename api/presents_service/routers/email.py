@@ -187,6 +187,38 @@ def get_html(oplata_data):
 
     </html>
     '''.format(**locals())
+    if oplata_data.oplata_user == 'Оплата при получении':
+        html = '''\
+        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+            <meta name="viewport" content="width=device-width"/>
+            <style type="text/css">
+                {style}
+            </style>
+        </head>
+        <body>
+            <div class="header">
+                <img src="http://giftcity.kz/logo.png" alt="">
+            </div>
+            <div class="text-email">
+                <h3>Здравствуйте ,Уважаемый(ая) {oplata_data.name_user}!</h3>
+                
+                <h4>Номер заказа EL-{oplata_data.id}</h4>
+                
+                <div class="text-detail">
+                    <p class="detail">Наш специалист свяжется с вами в ближайшее время! :</p>
+                   
+                </div>
+                <div>
+                    <p>Благодарим за доверие к нашему сервису!</p>
+                </div>
+            </div>
+        </body>
+
+        </html>
+        '''.format(**locals())
     return html
 def send_message_mail(email,message):
     msg = MIMEMultipart('alternative')
