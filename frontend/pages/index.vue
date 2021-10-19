@@ -372,6 +372,32 @@
 
 <script>
 export default {
+ head: {
+    title: "Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)",
+    meta: [
+      {
+        hid: "description",
+        name: "description",
+        content:
+          "Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)",
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: '/logo.png'
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: '/logo.png'
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+    ],
+  },
   asyncData({ $axios }) {
     const headers = {
       "Content-Type": "application/json"

@@ -6,13 +6,15 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Подарки',
-    title: 'Подарки',
+    titleTemplate: 'Подарки на любой праздник | (Нур-Султан,Алматы)',
+    title: 'Подарки на любой праздник | (Нур-Султан,Алматы)',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {name :"apple-mobile-web-app-status-bar-style", content :"default"},
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
+      { hid: 'keywords', name: 'keywords', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
+      {property: "og:image", content :"/logo.png"},
       { name: 'format-detection', content: 'telephone=no' },
       {name:"mailru-domain" ,content:"H4AMvCUJss9mZlhr"} 
     ],
@@ -54,10 +56,20 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/fontawesome',
     '@nuxtjs/pwa',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap',
+
     
     // '@nuxtjs/recaptcha',
 
   ],
+  // sitemap: {
+  //   generate: true,
+  //   hostname: 'giftcity.kz',
+  //   exclude: [
+ 
+  //   ]
+  // },
 
   
   fontawesome:{

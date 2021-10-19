@@ -23,7 +23,7 @@
         >
       </div>
     </div>
-    <v-stepper v-if="phone_form_sign" v-model="e1">
+    <v-stepper  v-if="phone_form_sign" v-model="e1">
     <v-stepper-header>
       <v-stepper-step
         :complete="e1 > 1"
@@ -49,15 +49,16 @@
     </v-stepper-header>
 
     <v-stepper-items>
-      <v-stepper-content step="1">
+      <v-stepper-content style="padding:.5em" step="1">
                 <v-col
                 cols="12"
           class="mb-12 d-flex"
-          style="align-items: center;"
+          style="align-items: center;min-height:200px"
           color="white"
-          height="200px"
+          
         >
          <v-form ref="form" v-model="valid" lazy-validation style="width:100%">
+           <span style="color: #f67929"> Введите номер телефона</span>
           <v-text-field
           :rules="[rulesphone.required,rulesphone.counter]"
           v-model="phone"
@@ -85,7 +86,7 @@
           rounded
           color="#ff7a00"
           dark
-          class="mr-4"
+          style="margin-bottom: 3em;"
           @click="validate"
         >
           {{ onrecapcha }}
@@ -93,16 +94,17 @@
         </v-btn>
       </v-stepper-content>
 
-      <v-stepper-content step="2">
+      <v-stepper-content style="padding:.5em" step="2">
                 <v-col
                 cols="12"
           class="mb-12 d-flex flex-wrap"
-          style="align-items: center;"
+          style="align-items: center;min-height:200px"
           color="white"
-          height="200px"
+          
         >
         <p style="width:100%"  v-if="code_sign_time <= 60 && code_sign_time > 0">повторно через <span style="font-weight: 500;">{{ code_sign_time }}  секунд</span></p> 
  <v-form style="width:100%"  ref="form_code" v-model="valid" lazy-validation>
+        <span style="color: #f67929"> Введите проверочный код</span>
         <v-text-field
           v-model="code"
            :rules="[coderules.required,coderules.counter]"
@@ -110,6 +112,7 @@
           label="Проверочный код"
           required
         ></v-text-field>
+        
         
 
         
@@ -129,6 +132,7 @@
           :disabled="!valid"
           rounded
           color="#ff7a00"
+          style="margin-bottom: 3em;"
           dark
           class="mr-4"
           @click="validate_code"

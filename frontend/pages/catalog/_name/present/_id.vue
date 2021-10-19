@@ -134,6 +134,42 @@
 
 <script>
 export default {
+  
+    head() {
+      return {
+    title: `подарок-${this.product.name_precent}`,
+    meta: [
+      {
+        hid: `подарок-${this.product.id}`,
+        name: 'description',
+        content:
+          `Купить ${this.product.name_precent},${this.product.body}`,
+      },
+      {
+        hid: `подарок-${this.product.name_precent}`,
+        name: 'keywords',
+        content:
+          `Подарок на праздник ${this.product.name_precent},${this.product.body}`,
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${this.product.image_precent}`
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: `${this.product.image_precent}`
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+     
+    ],
+    }
+    },
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let product = await $axios.get(
