@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{time_code}}
     <div id="sign-in-button"></div>
     <div v-if="!phone_form_sign">
       <div v-if="!sign">
@@ -22,8 +23,41 @@
         >
       </div>
     </div>
-    <div v-if="phone_form_sign">
-      <v-form ref="form" v-model="valid" lazy-validation>
+    <v-stepper v-if="phone_form_sign" v-model="e1">
+    <v-stepper-header>
+      <v-stepper-step
+        :complete="e1 > 1"
+        step="1"
+        color="#ff7a00"
+      >
+         Введите номер телефона
+      </v-stepper-step>
+
+      <v-divider></v-divider>
+
+      <v-stepper-step
+        :complete="e1 > 2"
+        step="2"
+        color="#ff7a00"
+      >
+       Введите проверочный код
+      </v-stepper-step>
+
+      <v-divider></v-divider>
+
+     
+    </v-stepper-header>
+
+    <v-stepper-items>
+      <v-stepper-content step="1">
+                <v-col
+                cols="12"
+          class="mb-12 d-flex"
+          style="align-items: center;"
+          color="white"
+          height="200px"
+        >
+         <v-form ref="form" v-model="valid" lazy-validation style="width:100%">
           <v-text-field
           :rules="[rulesphone.required,rulesphone.counter]"
           v-model="phone"
@@ -38,9 +72,15 @@
             style="min-width:100%"
           ></v-text-field>
         
-        <p v-if="error_num_phone" class="error-phone" >{{message_error}}</p> 
+       
+
+        
+         
+        
+      </v-form>
+        
+      </v-col>
         <v-btn
-          v-if="code_sign_time === 0"
           :disabled="!valid"
           rounded
           color="#ff7a00"
@@ -51,19 +91,32 @@
           {{ onrecapcha }}
           получить код
         </v-btn>
-        
-         <p v-if="code_sign_time <= 60 && code_sign_time > 0">повторно через <span style="font-weight: 500;">{{ code_sign_time }}  секунд</span></p> 
-        
-      </v-form>
-      <v-form v-if="code_form" ref="form_code" v-model="valid" lazy-validation>
+      </v-stepper-content>
+
+      <v-stepper-content step="2">
+                <v-col
+                cols="12"
+          class="mb-12 d-flex flex-wrap"
+          style="align-items: center;"
+          color="white"
+          height="200px"
+        >
+        <p style="width:100%"  v-if="code_sign_time <= 60 && code_sign_time > 0">повторно через <span style="font-weight: 500;">{{ code_sign_time }}  секунд</span></p> 
+ <v-form style="width:100%"  ref="form_code" v-model="valid" lazy-validation>
         <v-text-field
           v-model="code"
            :rules="[coderules.required,coderules.counter]"
-          
+          solo
           label="Проверочный код"
           required
         ></v-text-field>
-        <p class="error-code" v-if="error_cod">Неверный код!</p>
+        
+
+        
+      </v-form>
+      <p style="width:100%" class="error-code text-left" v-if="error_cod">Неверный код!</p>
+      </v-col>
+
         <v-btn
           :disabled="!valid"
           rounded
@@ -74,9 +127,12 @@
         >
           вход
         </v-btn>
-        
-      </v-form>
-    </div>
+
+      </v-stepper-content>
+
+
+    </v-stepper-items>
+  </v-stepper>
         <div style="text-align: end;margin-top:2rem" >
       <v-btn text @click="close_dialog">Закрыть</v-btn>
     </div>
@@ -90,6 +146,16 @@ var provider = new firebase.auth.GoogleAuthProvider();
 export default {
   props:['dialog_exit','close'],
   computed: {
+    time_code(){
+      
+      if(this.code_sign_time === 1){
+        this.code_sign_time = 0
+        this.phone = ''
+        this.e1 = 1
+ 
+      }
+    },
+    
     onrecapcha() {
       if (process.browser) {
         console.log("kkk");
@@ -111,6 +177,7 @@ export default {
     return {
       code_sign_time: 0,
       valid: true,
+      e1: 1,
       message_error:'',
       stoptime: true,
       error_cod:false,
@@ -253,34 +320,42 @@ export default {
     close_dialog(){
       this.close()
       this.phone_form_sign = false
+      this.code = ''
+      this.phone = ''
+      this.code_sign_time = 0
+      this.e1 = 1
       this.sign = false;
     },
     stopSec_time() {
-        if(this.code_sign_time <=1){
-        clearInterval(intervalId);
-        this.code_form = false
-        this.code_sign_time = 0
-      }
-      else{
-        this.code_sign_time = this.code_sign_time - 1;
+
+      if(this.code_sign_time > 0) {
+          setTimeout(() => {
+              this.code_sign_time -= 1
+              this.stopSec_time()
+          }, 1000)
       }
  
     },
     timecode() {
-     
-      intervalId = this.stopSec_time
+     console.log(11);
+      this.stopSec_time()
   
     },
     validate() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
         this.phoneSign();
+        console.log(444);
+        
       }
     },
     validate_code() {
       this.$refs.form_code.validate();
       if (this.$refs.form.validate()) {
-        this.codeSignin();
+        if(this.code){
+          this.codeSignin();
+        }
+        
       }
     },
     phoneSign() {
@@ -293,6 +368,7 @@ export default {
           window.confirmationResult = confirmationResult;
           self.code_form = true;
           self.code_sign_time = 60;
+          self.e1 = 2
           self.timecode();
         })
         .catch((error) => {
@@ -329,9 +405,12 @@ export default {
           setTimeout(() => {
             self.phone_form_sign = false
             self.sign = false;
+            
             self.dialog_exit()
           }, 2000);
           self.google_name = user.uid;
+          self.e1 = 1
+          
           self.code_sign_time = 0;
         })
         .catch((error) => {
