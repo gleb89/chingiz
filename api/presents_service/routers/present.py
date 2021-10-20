@@ -87,6 +87,7 @@ async def create(
     for reason_id in list_id_reason:
         reason_for_precent = await Reason.objects.get_or_none(id=reason_id)
         await new_present.reason_for_precent.add(reason_for_precent)
+    await new_present.update(sort_id_catalog = new_present.id)
     return new_present
 
 
@@ -313,4 +314,27 @@ async def get_all_filter():
     status_code=200,
     content=json_compatible_item_data
     )
+
+@precent_router.get('/sort/catalog')
+async def get_all_sort_catalog():
+    for i in await Present.objects.all():
+        await i.update(sort_id_catalog = i.id)
+    return await Present.objects.order_by("sort_id_catalog").all()
+
+
+@precent_router.put(
+    '/update/sort_id_catalog/{id_one}/{id_two}'
+    )
+async def update_sort_id_catalog(
+    id_one:int,
+    id_two:int
+    ):
+    present_one = await Present.objects.get(id = id_one)
+    sort_id_catalog_one = present_one.sort_id_catalog
+    present_two = await Present.objects.get(id = id_two)
+    sort_id_catalog_two = present_two.sort_id_catalog 
+    await present_one.update(sort_id_catalog = sort_id_catalog_two)
+    await present_two.update(sort_id_catalog = sort_id_catalog_one)
+    return await Present.objects.order_by("sort_id_catalog").all()
+
 

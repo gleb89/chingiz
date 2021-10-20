@@ -37,6 +37,9 @@ class Present(ormar.Model):
         database = database
 
     id: int = ormar.Integer(primary_key=True)
+    sort_id_catalog: int = ormar.Integer(null=True,nullable=True)
+    sort_id_popularnoe: int = ormar.Integer(null=True,nullable=True)
+    sort_id_novinki: int = ormar.Integer(null=True,nullable=True)
     prevue_name: str = ormar.String(max_length=1000,nullable=True,default='')
     name_precent: str = ormar.String(max_length=1000)
     body: str = ormar.String(max_length=1000,nullable=True,default='')
