@@ -222,12 +222,13 @@
           <th class="text-left">
             Изменить/Удалить
           </th>
-          <th class="text-left">
-            Подкатегории
-          </th>
-          <th class="text-left">
+                    <th class="text-left">
             Создать подкатегорию
           </th>
+          <th class="text-center">
+            Подкатегории
+          </th>
+
         </tr>
       </thead>
       <tbody
@@ -252,27 +253,7 @@
           <td>
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
         <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
-          
-          </td>
-          <td>
-            <div style="font-size: 1.2em;font-weight: bold;display: flex;justify-content: flex-start;align-items: center;" v-for="(i, index) in item.subcategory" :key="i.id">
-             <div>
-               
-               <v-btn style="min-width: 14em;" @click="resetSub(item,i,i.name_subcategory,index)"    class="ma-2"
-      outlined
-      color="indigo">
-      
-                 <span>{{index+1}}.</span> {{i.name_subcategory}}  <v-icon style="font-size:1.2em;color:green;cursor:pointer;margin-left:1rem" v-if="admin_data.filters_present_change" small class="mr-2" > mdi-pencil </v-icon>
-               </v-btn>
-             </div>
-               <div class="text-center">
-              <v-icon @click="deleteSub(item,i,index)" style="font-size:1.2em;color:red;cursor:pointer" v-if="admin_data.filters_present_change" small > mdi-delete </v-icon>
-             </div>
-             
-            </div>
-            
-          </td>
-          <td>
+                    <td>
         <v-btn
         @click="openSupcategory(item)"
       class="mx-2"
@@ -283,6 +264,56 @@
 <v-icon dark style="color:white"> mdi-plus </v-icon>
     </v-btn>
           </td>
+          
+          <td >
+                   
+          
+              <v-sheet
+    class="mx-auto"
+    max-width="700"
+  >
+      <v-slide-group
+              
+      multiple
+      show-arrows
+    >
+      <v-slide-item
+       v-for="(i, index) in item.subcategory" :key="i.id"
+        v-slot="{ active, toggle }"
+      >
+       <v-btn
+       text
+          
+        >
+        <div style="font-size: 1.2em;font-weight: bold;display: flex;justify-content: flex-start;align-items: center;">
+             <div>
+                      <v-chip
+      class="ma-2"
+      color="cyan"
+      label
+      style="padding: 1em;"
+      @click="resetSub(item,i,i.name_subcategory,index)"    
+      text-color="white"
+    >
+       <v-icon left>
+        mdi-label
+      </v-icon>
+                 <span>{{index+1}}.</span> {{i.name_subcategory}}  <v-icon style="font-size:1.2em;color:green;cursor:pointer;margin-left:1rem" v-if="admin_data.filters_present_change" small class="mr-2" > mdi-pencil </v-icon>
+                </v-chip>
+             </div>
+               <div class="text-center">
+              <v-icon @click="deleteSub(item,i,index)" style="font-size:1.2em;color:red;cursor:pointer" v-if="admin_data.filters_present_change" small > mdi-delete </v-icon>
+             </div>
+             
+            </div>
+        </v-btn>
+      </v-slide-item>
+    </v-slide-group>
+
+           
+       </v-sheet>
+          </td>
+
         </tr>
       </tbody>
     </template>
