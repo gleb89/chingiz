@@ -9,8 +9,8 @@
       <img
       @click="onHome()"
       width="240" height="auto"
-        style="cursor:pointer;margin-top: .5em;"
-        src="/logo.png"
+        style="cursor:pointer;"
+        src="/giftcity.svg"
       >
     </v-col>
 
