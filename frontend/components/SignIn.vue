@@ -82,7 +82,7 @@
         
       </v-col>
         <v-btn
-          :disabled="!valid"
+          
           rounded
           color="#ff7a00"
           dark
@@ -129,7 +129,7 @@
       </v-col>
 
         <v-btn
-          :disabled="!valid"
+          
           rounded
           color="#ff7a00"
           style="margin-bottom: 3em;"
@@ -364,7 +364,7 @@ export default {
     validate_code() {
       this.$refs.form_code.validate();
       if (this.$refs.form.validate()) {
-        if(this.code){
+        if(this.code && this.code.length === 6){
           this.codeSignin();
         }
         
