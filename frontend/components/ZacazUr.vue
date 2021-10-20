@@ -27,6 +27,20 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog style="padding:1em" v-model="dialogImage">
+       <v-card>
+        <v-container class="">
+                      <v-col
+              class="d-flex justify-center"
+            style="padding:1em"
+              cols="12"
+            >
+      <img style="max-width: 30em;;height:auto"  :src="link_image" alt="">
+       </v-col>
+          
+     </v-container>
+     </v-card>
+    </v-dialog>
 <v-dialog
       v-model="dialog"
       scrollable
@@ -78,10 +92,16 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <div class="pl-4">
-      <h4 style="margin-top:4em">Сортировка</h4>
-      
-      <div>
+
+  <v-expansion-panels style="background: #f7f7f7;margin-top:3em;margin-bottom:3em">
+          <v-expansion-panel>
+            <v-expansion-panel-header>
+              <h4 class="pb-6">Фильтры</h4>
+            </v-expansion-panel-header>
+            <v-expansion-panel-content>
+              <v-row>
+                <v-col cols="12" >
+                        <div>
       <v-radio-group v-model="radioGroup">
         <v-row>
           <v-col  v-for="n in [
@@ -103,18 +123,45 @@
       </v-row>
     </v-radio-group>
       </div>
-    </div>
+                </v-col>
+   
+                <v-col cols="12">
+                  <v-btn @click="radioGroup = 'Все'" class="ma-2" outlined color="indigo">
+                    Сбросить фильтры
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
+        </v-expansion-panels>
+          <v-autocomplete
+            v-model="valueforsearch"
+            :items="forsearch"
+            dense
+            solo
+            filled
+            label="Поиск по артиклю заказа"
+          ></v-autocomplete>
+                                <v-col cols="12">
+                  <v-btn v-if="valueforsearch " @click="valueforsearch = null" class="ma-2" outlined color="indigo">
+                     Очистить поиск
+                  </v-btn>
+                </v-col>
+
     <v-data-table
+    style="margin-top:4em"
       :headers="headers"
       :items="sorted"
       :items-per-page="5"
       class="elevation-1"
     >
       <template v-slot:item.pres_list="{ item }">
-        <v-btn @click="onAllpresent(item.history)" text>
-          смотреть
+        <v-btn @click="onAllpresent(item.history)" outlined color="indigo">
+           смотреть
+          <fa style="font-size: 1em;color: #7c7cc5;" icon="eye"></fa> 
         </v-btn>
       </template>
+
       <template v-slot:item.admin_succes_oplata="{ item,index }">
         <v-switch
             @click="succesOplata(item.id,item.succes_oplata,index)"
@@ -123,21 +170,50 @@
                 v-model="item.succes_oplata"
                 ></v-switch>
       </template>
+
       <template v-slot:item.admin_send_curer="{ item,index }">
        <div v-if="admin_data.history_basket_change">
-
-       
-        <v-btn v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
+        <v-btn  v-if="!item.admin_send_curer" @click="openCurer(item,index)" text>
           выбрать
         </v-btn>
         </div>
-        <span v-if="item.admin_send_curer">отправлен курьеру c id :{{item.send_id_curer}}/
-          имя: {{item.send_name_curer}}/
-        </span>
+         <div v-if="item.admin_send_curer">
+           <fa  style="color:green" icon="check"></fa> отправлен:
+           <p v-if="item.admin_send_curer">курьеру c id :{{item.send_id_curer}}</p>
+           
+         </div>
+        
+        
+          
+        
+      </template>
+       
+              <template v-slot:item.adress_user="{ item }">
+                <div style="background: azure;padding:1em">
+       <p>{{item.adress_user.split(',')[0]}}</p>
+       <p>{{item.adress_user.split(',')[1]}}</p>
+       <p>{{item.adress_user.split(',')[2]}}</p>
+       <p>{{item.adress_user.split(',')[3]}}</p>
+       </div>
+       
+       
       </template>
         <template v-slot:item.photo_otchet="{ item }">
-       <img style="max-width: 6rem;" :src="item.photo_otchet" alt="еще не доставлено">
+       <img @click="onImage(item.photo_otchet)" v-if="item.photo_otchet" style="max-width: 6rem;cursor:pointer" :src="item.photo_otchet" alt="">
        
+       
+      </template>
+
+              <template v-slot:item.timestamp="{ item }">
+       <span>{{new Date(item.timestamp).toLocaleDateString()}}</span>
+       
+       
+      </template>
+      <template v-slot:item.succes_dostavka_curer="{ item }">
+       <fa v-if="item.succes_dostavka_curer" style="color:green" icon="check"></fa>
+       <fa v-if="!item.succes_dostavka_curer" style="color:red" icon="stop-circle"></fa>
+       
+      
       </template>
     </v-data-table>
   </div>
@@ -145,15 +221,32 @@
 
 <script>
 export default {
-  props: ["data_history_ur","curers"],
+  props:['data_history_ur',"curers"],
 computed: {
        admin_data(){
        return this.$store.state.localStorage.admin_data
        },
+    forsearch(){
+      for(let i of this.data_history_ur){
+        this.search_items.push(`артикул заказа:${i.id}`)
+      }
+      return this.search_items
+    },
     sorted(){
+      if(this.valueforsearch){
+        console.log('rrr');
+        return this.data_history_ur.filter(elem => {
+          return elem.id === Number(this.valueforsearch.split(':')[1])
+            
+          
+        });
+      }
+      else{
       if(this.radioGroup === 'Все'){
+        
         return this.data_history_ur
       }
+ 
       if(this.radioGroup === 'Неоплаченные'){
         return this.data_history_ur.filter((elem) => {
         return elem.succes_oplata  === false
@@ -176,21 +269,24 @@ computed: {
       }
         if(this.radioGroup === 'Отправлено курьеру но еще не доставлено'){ 
         return this.data_history_ur.filter((elem) => {
-        return elem.photo_otchet ===  false && elem.admin_send_curer  === true
+        return elem.admin_send_curer  ===  true && elem.succes_dostavka_curer === false
       });
       }
         if(this.radioGroup === 'Отправлено курьеру и доставлено'){
         return this.data_history_ur.filter((elem) => {
-        return elem.photo_otchet  ===  true && elem.admin_send_curer  === true
+        return elem.admin_send_curer  ===  true && elem.succes_dostavka_curer === true
       });
       }
-
+      }
     },
+
 },
+ 
   data() {
     return {
-      headers: [
+headers: [
         { text: "Артикул заказа", value: "id" },
+        { text: "Доставлено ?", value: "succes_dostavka_curer" },
         { text: "Дата заказа", value: "timestamp" },
         { text: "Конт. лицо", value: "name_user" },
         { text: "Фамилия", value: "famaly_name_user" },
@@ -219,14 +315,28 @@ computed: {
       presents_for_zakaz: [],
       dialog_pres: false,
       curer:{},
+      link_image : '',
+      dialogImage : false,
       history_data:{},
+      search_items:[],
       dialog:false,
       ind:null,
       radioGroup: 'Все',
+      valueforsearch:null,
+    
     };
   },
-  
   methods: {
+    onAllpresent(presents) {
+      this.presents_for_zakaz = presents;
+      this.dialog_pres = true;
+    },
+    openCurer(item,index){
+        this.ind = index
+        this.history_data = item
+        this.dialog = true
+        
+    },
     succesOplata(pk,bool_olata,index){
      let oplata
      if(bool_olata){
@@ -247,15 +357,9 @@ computed: {
         console.log('error');
       });
     },
-    onAllpresent(presents) {
-      this.presents_for_zakaz = presents;
-      this.dialog_pres = true;
-    },
-    openCurer(item,index){
-        this.ind = index
-        this.history_data = item
-        this.dialog = true
-        
+    onImage(link_image){
+      this.link_image = link_image
+      this.dialogImage = true
     },
     sendCurers(){
         
@@ -267,6 +371,7 @@ computed: {
                 "email_user": this.history_data.email_user,
                 "adress_user": this.history_data.adress_user
         }
+
         this.$axios
         .$post(`http://giftcity.kz/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
@@ -283,5 +388,9 @@ computed: {
       });
     }
   }
-};
+
+}
 </script>
+
+
+ 
