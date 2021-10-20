@@ -42,13 +42,7 @@
             <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
-              <v-list-item @click="onPage('o_nas')">
-            <v-list-item-icon>
-             <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="people-arrows"></fa>
-            </v-list-item-icon>
-            <v-list-item-title>О нас</v-list-item-title>
-            <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
-          </v-list-item>
+
 
             <v-list-item @click="onPage('for_work')">
             <v-list-item-icon>
