@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 class AdminLogin(BaseModel):
-    name:str
+    email:str
     password:str
