@@ -317,9 +317,6 @@ async def get_all_filter():
 
 @precent_router.get('/sort/catalog')
 async def get_all_sort_catalog():
-    for i in await Present.objects.all():
-        await i.update(sort_id_popularnoe = i.id)
-        await i.update(sort_id_novinki = i.id)
     return await Present.objects.order_by("sort_id_catalog").all()
 
 
