@@ -381,15 +381,21 @@ export default {
         content:
           "Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)",
       },
+        {
+        hid: `GIFTCITY`,
+        name: 'keywords',
+        content:
+          "Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)",
+      },
        {
           hid: 'og:image',
           property: 'og:image',
-          content: '/logo.png'
+          content: '/giftcity.svg'
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: '/logo.png'
+          content: '/giftcity.svg'
         },
         {
           hid: 'og:image:alt',

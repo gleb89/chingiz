@@ -28,6 +28,13 @@
             <v-list-item-title>подарочные корзины</v-list-item-title>
           </v-list-item>
 
+            <v-list-item v-if="admin_data.present_read" @click="onadminPage('/admin/sort_presents')">
+            <v-list-item-icon>
+              <fa class="mt-1" icon='list-alt'></fa>
+            </v-list-item-icon>
+            <v-list-item-title> Сортировка подарков</v-list-item-title>
+          </v-list-item>
+
           <v-list-item v-if="admin_data.filters_present_read" @click="onadminPage('/admin/form')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-alt'></fa>

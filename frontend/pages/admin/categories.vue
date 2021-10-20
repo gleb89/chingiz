@@ -517,8 +517,10 @@ createSub(){
   const id_one =  event.dataTransfer.getData("itemID")
   const id_two = drop_item.id
   
- 
-  this.updateSerialNumb(id_one,id_two )
+ if (id_one != id_two){
+   this.updateSerialNumb(id_one,id_two )
+ }
+  
 },
 updateSerialNumb(id_one,id_two ){
         let headers = {
