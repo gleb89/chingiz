@@ -128,7 +128,7 @@ async def get_all():
         'presentcategories',
         'presentreason',
         'presentsubcategories'
-        ]).sorder_by("sort_id_catalog").all()
+        ]).all()
     return presents 
 
 
