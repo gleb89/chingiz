@@ -4,7 +4,7 @@ import httpx
 from models.orders import Orders
 from models.couriers import Couriers
 from logics.orders import image_add
-from routers.email import simple_send
+from routers.email import simple_send,simple_send_admin
 
 orders_router = APIRouter(
     prefix="/api/v1/couriers/orders",
@@ -42,7 +42,7 @@ async def get_one(id: int):
 
 
 @orders_router.put('/{id}')
-async def update_one(id: int, image: UploadFile = File(...)):
+async def update_one(id: int,background_tasks: BackgroundTasks, image: UploadFile = File(...)):
     order =  await Orders.objects.prefetch_related(['self_zakaz']).get_or_none(id=id)
     photo_dostavka = await image_add(image)
     await order.update(dostavleno = True,photo_dostavka = photo_dostavka)
@@ -51,6 +51,7 @@ async def update_one(id: int, image: UploadFile = File(...)):
         f'http://present_api:8000/api/v1/present/history/otchet_photo_curer/{order.history_id}',
         json={'image': photo_dostavka}
          )
+    background_tasks.add_task(simple_send_admin, order.self_zakaz[0], order)
     return await Couriers.objects.prefetch_related(['orders']).get_or_none(id=id_user)
 
 @orders_router.delete('/{id}')
