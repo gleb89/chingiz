@@ -1,9 +1,10 @@
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, UploadFile,BackgroundTasks
 import httpx
 
 from models.orders import Orders
 from models.couriers import Couriers
 from logics.orders import image_add
+from routers.email import simple_send
 
 orders_router = APIRouter(
     prefix="/api/v1/couriers/orders",
@@ -13,7 +14,7 @@ orders_router = APIRouter(
 
 
 @orders_router.post('/create/{courier_id}')
-async def create(order_new:Orders, courier_id:int):
+async def create(order_new:Orders, courier_id:int,background_tasks: BackgroundTasks):
     courier = await Couriers.objects.get(id = courier_id)
     order = await order_new.save()
     await courier.orders.add(order)
@@ -24,6 +25,7 @@ async def create(order_new:Orders, courier_id:int):
             'courier_name': str(courier.name)
              }
          )
+    background_tasks.add_task(simple_send, courier, order_new)
     return order
 
 
