@@ -66,12 +66,23 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        label="Поиск"
         single-line
         hide-details
       ></v-text-field>
     </v-card-title>
     <v-data-table :headers="headers" :items="curers" :search="search">
+            <template v-slot:item.delete="{ item,index}">
+        <v-icon
+          color="red"
+          style="font-size:1.5em;cursor:pointer"
+          v-if="admin_data.present_change"
+          small
+          @click="deleteItem(item,index)"
+        >
+          mdi-delete
+        </v-icon>
+      </template>
     </v-data-table>
   </v-card>
 </template>
@@ -101,7 +112,8 @@ computed: {
         { text: "телефон", value: "phone_courier" },
         { text: "Тел.бл.родственника", value: "phone_family_people" },
         { text: "адр.прописки", value: "adress_propiski" },
-        { text: "адр.проживания", value: "adress_prozjivania" }
+        { text: "адр.проживания", value: "adress_prozjivania" },
+        { text: "удалить", value: "delete" }
       ],
       search: "",
       dialog: false,
@@ -115,6 +127,21 @@ computed: {
     };
   },
   methods: {
+
+  deleteItem(item,index){
+    this.$axios
+        .$delete(`http://giftcity.kz/api/v1/couriers/${item.id}`, {
+    
+        })
+        .then((data) => {
+            this.curers.splice(index,1);
+        })
+        .catch(function (error) {
+        console.log('error');
+      });
+      
+    
+  },
     createCurier() {
       let data = {
         name: this.name,

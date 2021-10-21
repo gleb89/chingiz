@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire">
-   <AdminMenu/>
+   <AdminMenu />
     <v-main>
       <Nuxt />
     </v-main>
@@ -13,9 +13,11 @@ export default {
   data() {
     return {
       auth: false,
+      
     };
   },
   mounted: function () {
+
     if (!localStorage.getItem('Jwt')) {
         
       this.$router.push('/admin')
