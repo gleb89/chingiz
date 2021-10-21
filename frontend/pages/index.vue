@@ -3,6 +3,7 @@
     <div style="margin-top:3rem" id="header__content">
       <div style="text-alignt: center; width: 100%">
         <h1>ЛУЧШИЙ СЕРВИС ОРИГИНАЛЬНЫХ ПОДАРКОВ</h1>
+        {{onAnimation}}
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость....”
         </p>
@@ -72,8 +73,8 @@
         </v-container>
       </div>
     </div>
-    <section id="best-products" style="margin-bottom:4rem;margin-top:4rem">
-      <v-container>
+    <section id="best-products" class="newsection" style="margin-bottom:4rem;margin-top:4rem">
+      <v-container class="newsection-container">
         <h2 class="head-sect">ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
         <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
@@ -97,7 +98,8 @@
     <v-parallax class="d-none d-md-block d-lg-block" src="/bonus.webp">
       <section id="baner-bonys">
         <div style="width: 100%">
-          <h2 class="ban">
+          <h2 class="ban"         
+>
             СОБЕРИ БОНУСЫ
             <br />
             НА ОРИГИНАЛЬНЫЙ ПОДАРОК
@@ -134,8 +136,8 @@
         </div>
       </section>
     </v-parallax>
-    <section id="new-products">
-      <v-container>
+    <section id="new-products" class="newsection22">
+      <v-container class="newsection-container2">
         <h2 class="head-sect">
           НОВИНКИ В ТРЕНДЕ
         </h2>
@@ -165,16 +167,17 @@
       </v-container>
     </section>
 
-    <section id="whywork" style="">
+    <section id="whywork" style="" class="newsection3">
       <v-container style="padding: 1rem">
         <h2 class="head-sect">
           КАК ЭТО РАБОТАЕТ
         </h2>
         <v-row>
           <v-col
+          
             cols="12"
             lg="4"
-            class="text-center"
+            class="text-center newsection-container3" 
             style="padding-top: 3rem;position: relative;"
           >
             <div>
@@ -197,7 +200,7 @@
           <v-col
             cols="12"
             lg="4"
-            class="text-center"
+            class="text-center newsection-container4"
             style="padding-top: 3rem;position: relative;"
           >
             <div>
@@ -217,7 +220,7 @@
               alt=""
             />
           </v-col>
-          <v-col cols="12" lg="4" class="text-center" style="padding-top: 3rem">
+          <v-col cols="12" lg="4" class="text-center newsection-container5" style="padding-top: 3rem">
             <div>
               <span style="font-size: 4rem;color: #FF7A00;">03</span>
               <img width="150" height="150" src="w3.webp" alt="" />
@@ -422,6 +425,43 @@ export default {
     }
   },
   computed: {
+    onAnimation(){
+      if(!process.client) return;
+      setTimeout(() => {
+        
+     
+      var newsectionpresents = new IntersectionObserver(function (entries) {
+            if (entries[0].intersectionRatio <= 0) return;
+            var menu = document.querySelector(".newsection-container");
+            menu.classList.add("newsection2");
+          });
+
+      var newsectionpresents2 = new IntersectionObserver(function (entries) {
+      if (entries[0].intersectionRatio <= 0) return;
+      var menu = document.querySelector(".newsection-container2");
+      menu.classList.add("newsection2");
+    });
+
+      var newsectionpresents3 = new IntersectionObserver(function (entries) {
+      if (entries[0].intersectionRatio <= 0) return;
+      var menu = document.querySelector(".newsection-container3");
+      menu.classList.add("newsection2");
+      setTimeout(() => {
+      var menu2 = document.querySelector(".newsection-container4");
+      menu2.classList.add("newsection2");
+      }, 1000);
+
+      setTimeout(() => {
+      var menu3 = document.querySelector(".newsection-container5");
+      menu3.classList.add("newsection2");
+      }, 1000);
+    });
+
+      newsectionpresents.observe(document.querySelector(".newsection"));
+      newsectionpresents2.observe(document.querySelector(".newsection22"));
+      newsectionpresents3.observe(document.querySelector(".newsection3"));
+       }, 1000);
+    },
     listproducts() {
       this.presents = this.$store.getters["products/products"];
       return this.presents;
@@ -442,6 +482,7 @@ export default {
     dateFormatted: "",
     presents: [],
     menu1: false,
+    isIntersecting: false,
     menu2: false,
     dialog: false,
     radioGroup: 1,
@@ -544,6 +585,7 @@ export default {
   }),
 
   methods: {
+
     otzivclick(){
       this.otziv = !this.otziv
     },
@@ -816,5 +858,36 @@ h1 {
   border-radius: 100%;
   border-color: #f4e5de;
   border: 1px solid #f4e7e0;
+}
+
+.newsection-container{
+    opacity: 0;
+    margin-top: 7rem;
+    /* transition-delay: .5s; */
+}
+
+.newsection-container2{
+    opacity: 0;
+    margin-top: 7rem;
+    /* transition-delay: .5s; */
+}
+
+.newsection-container3{
+      opacity: 0;
+      margin-top: 7rem;
+}
+.newsection-container4{
+      opacity: 0;
+      margin-top: 7rem;
+}
+.newsection-container5{
+      opacity: 0;
+      margin-top: 7rem;
+}
+.newsection2{
+    opacity: 1; 
+    margin-top: 0;
+    transition: .7s linear .5s; 
+     
 }
 </style>
