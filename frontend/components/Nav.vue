@@ -8,7 +8,7 @@
     <v-col class="mr-lg-8" lg="2" md="1" xl="3" style="text-align: start;">
       <img
       @click="onHome()"
-      width="240" height="auto"
+      width="200" height="auto"
         style="cursor:pointer;"
         src="/giftcity.svg"
       >
