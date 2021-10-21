@@ -15,8 +15,6 @@ from email.mime.text import MIMEText
 
 
 def get_html(curer_data, oplata_data):
-    summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
-    
 
     style = """
     <style>
