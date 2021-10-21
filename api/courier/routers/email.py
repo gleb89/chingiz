@@ -76,7 +76,7 @@ def get_html_admin(curer_data, oplata_data):
             <h4>Номер заказа для доставки EL-{oplata_data.history_id}</h4>
             <h4>ID курьера  ,который доставил -{curer_data.id}</h4>
             <div>
-                <p>Благодарим за работу с нашим сервисом!</p>
+                <p>Желаем вам хорошего дня!</p>
             </div>
         </div>
     </body>
@@ -175,6 +175,20 @@ def send_message_mail(email,message):
     mail.sendmail('info@giftcity.kz', email, msg.as_string())
     mail.quit()
 
+def send_message_mail_me(email,message):
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Доставлен заказ"
+    msg['From'] = 'info@giftcity.kz'
+    msg['To'] = email
+    part2 = MIMEText(message, 'html')
+    msg.attach(part2)
+    mail = smtplib.SMTP('smtp.mail.ru', 587)
+    mail.ehlo()
+    mail.starttls()
+    mail.login('info@giftcity.kz', "Ch123456#")
+    mail.sendmail('info@giftcity.kz', email, msg.as_string())
+    mail.quit()
+
 
 def simple_send(
     curer_data,
@@ -189,5 +203,5 @@ def simple_send_admin(
     order_data
     ) :
     send_html = get_html_admin(curer_data, order_data)
-    send_message_mail('info@giftcity.kz', send_html)
+    send_message_mail_me('info@giftcity.kz', send_html)
     return 'ok'
