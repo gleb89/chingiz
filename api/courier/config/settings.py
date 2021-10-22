@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     postgres_user:str = None
     postgres_password:str = None
     secret_key:str = 'nrtyyio57676mmm'
+    email_password:str = None
     
 
     class Config:

@@ -11,6 +11,8 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
+from config.config_cls import settings
+
 
 
 
@@ -230,7 +232,7 @@ def send_message_mail(email,message):
     mail = smtplib.SMTP('smtp.mail.ru', 587)
     mail.ehlo()
     mail.starttls()
-    mail.login('info@giftcity.kz', "Ch123456#")
+    mail.login('info@giftcity.kz', settings.email_password)
     mail.sendmail('info@giftcity.kz', email, msg.as_string())
     mail.quit()
 
