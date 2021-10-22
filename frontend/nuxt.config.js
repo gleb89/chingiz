@@ -12,6 +12,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {name :"apple-mobile-web-app-status-bar-style", content :"default"},
+      {name :"theme-color", content :"#ffffff"},
       { hid: 'description', name: 'description', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
       { hid: 'keywords', name: 'keywords', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
       {property: "og:image", content :"/logo.png"},
