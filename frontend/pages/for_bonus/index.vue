@@ -1,6 +1,6 @@
 <template>
   <div id="bonus">
-    <v-container>
+    <v-container style="padding-top: 5rem;">
       <v-row justify="center">
         <v-col cols="12">
           <div>

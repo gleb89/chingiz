@@ -1,6 +1,7 @@
 <template>
   <div style="margin-bottom:4rem">
-    <v-container>
+    <v-container class="d-flex" style="min-height: 100vh;
+    align-items: center;">
       <v-row justify="center">
         <v-col cols="12">
           <div>

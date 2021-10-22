@@ -161,7 +161,7 @@
             </div>
           </div>
         </template>
-        <v-card>
+        <v-card class="open" style="">
           <v-toolbar dark color="orange">
             <v-btn icon dark @click="dialog = false">
               <v-icon>mdi-close</v-icon>
@@ -184,6 +184,7 @@
               <h3>Форма:</h3>
               <div class="mt-4">
                 <v-checkbox
+                @click="onalert()"
                   v-for="n in form"
                   :key="n.id"
                   style="height: 1.3rem; width: 20rem"
