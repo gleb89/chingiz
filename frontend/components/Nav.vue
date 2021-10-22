@@ -90,7 +90,7 @@
         </v-list>
       </v-menu>
     </v-col>
-<v-col style="min-width: 8em;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)"  class="d-flex flex-nowrap justify-center nav-li">
+<v-col style="min-width: 2em;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)"  class="d-flex flex-nowrap justify-center nav-li">
    
       <div style="margin-right: 7px">
         <img src="/bascket.svg" alt="" />
