@@ -374,6 +374,8 @@ computed: {
             this.data_history_fiz[this.ind].admin_send_curer = true
             this.data_history_fiz[this.ind].send_id_curer = this.curer.id
             this.data_history_fiz[this.ind].send_name_curer = this.curer.name
+            this.data_history_fiz[this.ind].admin_send_curer = true
+            
             this.dialog = false
         })
         .catch(function (error) {

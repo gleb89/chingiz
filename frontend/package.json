@@ -27,6 +27,7 @@
     "nuxt": "^2.15.3",
     "nuxt-seo-module": "^1.0.0",
     "v-mask": "^2.3.0",
+    "@nuxtjs/vuetify": "^1.12.1",
     "vuedraggable": "^2.24.3",
     "vuetify": "^2.5.5"
   },
