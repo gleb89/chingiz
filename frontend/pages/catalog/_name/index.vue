@@ -378,7 +378,7 @@ export default {
       this.filter_name = name
       }
       
-    
+    this.$vuetify.goTo(0)
     },
     onselectfilter() {
       if (this.selected.length === 1) {

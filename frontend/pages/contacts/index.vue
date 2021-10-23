@@ -91,28 +91,52 @@
               <h4 style="font-size: 1.5rem;" class="text-center mb-4">
                 Задать вопрос
               </h4>
+                            <v-form
+                style=" width: 100%;position: relative;"
+                ref="form"
+                
+              >
               <v-text-field
               
               class="rounded-lg"
                 label="Ваше имя"
+                v-model="name"
+                :rules="[v => !!v || 'Не может быть пустым']"
+                
                 solo
                 style="min-width:100%"
               ></v-text-field>
               <v-text-field
               class="rounded-lg"
                 label="Телефон"
+                  v-mask="'+7 (###) ###-##-##'"
+                      v-model="phone"
+                      :rules="[rulesphone.required, rulesphone.counter]"
                 solo
                 style="min-width:100%"
               ></v-text-field>
+                              <v-alert
+              v-model="alert_succes"
+              style="top: 50%;position: absolute;z-index: 1;width: 100%;"
+              
+              color="orange"
+              elevation="13"
+              type="success"
+              >Успешно отправлено!</v-alert
+            >
               <v-textarea
               class="rounded-lg"
                 solo
+                v-model="text"
+                
+                :rules="[v => !!v || 'Не может быть пустым']"
                 style="min-width:100%"
                 name="input-7-4"
                 label="Ваше сообщение или вопрос"
               ></v-textarea>
               <div class="text-center">
                               <v-btn
+                              @click="validate"
               rounded
               color="#ff7a00"
               style="height: 49px;color: white;;margin-bottom:1.8rem;width: 50%;"
@@ -127,6 +151,7 @@
                     согласие на обработку персональных данных
                   </p>
               </div>
+              </v-form>
             </v-card>
           </v-col>
         </v-row>
@@ -134,3 +159,39 @@
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      text: '',
+      phone:'',
+      alert_succes:false,
+      name:'',
+      rulesphone: {
+        required: value => !!value || "Не может быть пустым.",
+        counter: value => value.length === 18 || "Минимум 11 цифр"
+      },
+    };
+  },
+  methods: {
+    validate() {
+      this.$refs.form.validate();
+      if (this.$refs.form.validate()) {
+        this.alert_succes = true
+        setTimeout(() => {
+        this.alert_succes = false;
+        this.phone = ''
+        this.text = ''
+        this.name = ''
+        }, 2000);
+            
+
+        
+      } else {
+        console.log("0000");
+      }
+    },
+  },
+}
+</script>
