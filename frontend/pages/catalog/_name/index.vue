@@ -117,8 +117,10 @@
         </div>
         <v-container class="box-scrol" >
           <v-row justify="start">
-            <v-col cols="12" lg="10" md="10" style="min-height: 4em;">
+            
+            <v-col  cols="12" lg="12" md="12" style="min-height: 4em;position: relative;" >
                <v-slide-group
+               class="grop"
                v-if="categories_for_sub.length > 0"
       multiple
       show-arrows
@@ -129,7 +131,7 @@
         v-slot="{ active, toggle }"
       >
        <v-btn
-       style="background: white;color: #505050;border: 2px solid #ff7a00;"
+       style="background: white;color: #505050;border: 1px solid #ff7a00;min-width:10em:padding:1em"
           class="mx-2"
           :input-value="sub.id === sub_id"
           active-class="orange white--text"
@@ -137,12 +139,14 @@
           rounded
           @click="onPodSub(sub.id)"
         >
-          {{ sub.name_subcategory }}
+        <span style="font-size:.8em">{{ sub.name_subcategory }}</span>
+          
         </v-btn>
       </v-slide-item>
     </v-slide-group>
               
             </v-col>
+            
             <v-container>
           <v-row class="mobile-hei">
             <v-col
@@ -283,6 +287,24 @@ export default {
   },
   methods: {
     onPodSub(sub_id){
+      if(this.sub_id === sub_id){
+          this.sub_id = 0
+          this.products = this.$store.getters["products/products"].filter((elem) => {
+        
+        if(elem.category[0].name_category === this.filter_name) {
+          for(let i of this.categories){
+            if( i.name_category === this.filter_name){
+              this.categories_for_sub = i.subcategory
+            }
+            else{
+
+            }
+          }
+          return elem
+        }
+      });
+      }
+      else{
       this.sub_id = sub_id
       this.products = this.$store.getters["products/products"].filter((elem) => {
       for(let i of elem.subcategory){
@@ -293,7 +315,7 @@ export default {
         // return elem.id === pk
       
       });
-
+      }
     },
     onresSearch(i){
       this.search = i
@@ -455,7 +477,12 @@ export default {
 @media (max-width:500px){
     .box-products h2{
   margin-top: 1rem;
+
   
+}
+.grop{
+  position: absolute;
+    left: 0;
 }
 .mobile-hei{
   min-height: 80vh;

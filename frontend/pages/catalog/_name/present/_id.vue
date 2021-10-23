@@ -51,12 +51,14 @@
             ></v-img>
             <span>есть в наличии</span>
           </div>
+          
           <p v-if="product.body.length > 4"  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
           <p  v-if="product.body.length > 4" class="ml-1 mt-1">
             
             {{product.body }}
           </p>
                         <div v-if="product.composition">
+                          <p class="ml-1 mt-7" style="font-weight: bold;font-size:1.3em">Состав:</p>
                     <p
                       v-for="(comp, index) in product.composition.split(/\d[.]+/g)"
                       :key="index"
@@ -64,8 +66,8 @@
                       <span style="font-weight: bold;" v-if="index"
                         >{{ index }}.</span
                       >
-                      <span style="font-weight: 500;" v-if="['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))" >{{ comp.slice(0,-1) }}</span>
-                      <span style="font-weight: 500;"  v-if="!['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))">{{ comp }}</span>
+                      <span style="" v-if="['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))" >{{ comp.slice(0,-1) }}</span>
+                      <span style=""  v-if="!['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))">{{ comp }}</span>
                       
                     </p>
                   </div>
@@ -109,7 +111,7 @@
           </div>
           <div class="mt-14">
             <p>
-Внимание! Возможна замена одного или нескольких элементов подарочной корзины на равнозначный, в зависимости от наличия на складе и у поставщиков.
+Внимание! Возможна замена одного или нескольких элементов  на равнозначный, в зависимости от наличия на складе.
 Хороших покупок! Подарки в каждый дом!
             </p>
           </div>
