@@ -57,7 +57,7 @@
       </v-col>
 
       <!-- box-productsr -->
-      <v-col cols="12" lg="10" class="box-products">
+      <v-col cols="12" lg="10" id="box-products" class="box-products">
         <div class="d-none d-lg-block">
         <h2 >
           <span v-if="!filter_name && !search">Все подарки ({{ listproducts.length }})</span>
@@ -318,6 +318,7 @@ export default {
           return elem
         }
       }
+      
         // return elem.id === pk
       
       });
@@ -376,7 +377,8 @@ export default {
       });
       this.filter_name = name
       }
-
+      
+    
     },
     onselectfilter() {
       if (this.selected.length === 1) {

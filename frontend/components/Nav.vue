@@ -138,6 +138,7 @@ export default {
   methods: {
     onHome(){
       this.$router.push('/')
+      this.$vuetify.goTo(0)
     },
     onCabinet(){
       this.$router.push('/cabinet')

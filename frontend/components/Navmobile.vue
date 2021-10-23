@@ -117,6 +117,8 @@ export default {
       let nav = document.querySelector('#nav')
        nav.classList.remove("expanded");
       this.$router.push('/')
+      this.$vuetify.goTo(0)
+      
     },
     onCatalog(){
       let nav = document.querySelector('#nav')
