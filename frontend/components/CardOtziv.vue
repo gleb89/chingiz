@@ -8,19 +8,17 @@
           >
          
             <p class="text-left " style="color:#676767;font-size: 1rem;">
-              Михаил Шафутинский 
+              {{comment.name_user}} 
             </p>
-            <p class="text-left " style="color: #C4C4C4;;font-size: .8rem;">г. Алма-ата</p>
+            <!-- <p class="text-left " style="color: #C4C4C4;;font-size: .8rem;">г. Алма-ата</p> -->
             <div style="padding-bottom:1rem" class="text-left">
               <img src="/oot.png" alt="">
             </div>
             
             
             
-              <div class="text--primary text-left">
-        Заказал маме фруктовую корзину на день Рождения.
-       Когда доставили, не поверил свом глазам
-        - свежайшие фрукты, без единого нюанса...
+              <div class="text--primary text-left" style="min-height: 9em;">
+        {{comment.body}}
       </div>
           <v-dialog
           
@@ -30,22 +28,14 @@
       
       <v-card class="rounded-xl">
         <v-card-title>
-          <span class="text-h6" style="color:#676767;font-size: 1rem;">Михаил Шафутинский</span>
+          <span class="text-h6" style="color:#676767;font-size: 1rem;">{{comment.name_user}} </span>
         </v-card-title>
-        <p  class="text-left " style="color: #C4C4C4;;font-size: .8rem;padding-left:1.5rem">г. Алма-ата</p>
+        <!-- <p  class="text-left " style="color: #C4C4C4;;font-size: .8rem;padding-left:1.5rem">г. Алма-ата</p> -->
                     <div style="padding-bottom:1rem;padding-left:1.5rem" class="text-left">
               <img src="/oot.png" alt="">
             </div>
         <v-card-text>
-                 Заказал маме фруктовую корзину на день Рождения.
-       Когда доставили, не поверил свом глазам
-        - свежайшие фрукты, без единого нюанса. Мама даже расплакалась от радости. Спас
-                Заказал маме фруктовую корзину на день Рождения.
-       Когда доставили, не поверил свом глазам
-        - свежайшие фрукты, без единого нюанса. Мама даже расплакалась от радости. Спас
-                Заказал маме фруктовую корзину на день Рождения.
-       Когда доставили, не поверил свом глазам
-        - свежайшие фрукты, без единого нюанса. Мама даже расплакалась от радости. Спас
+        {{comment.body}}
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -73,6 +63,7 @@
 
 <script>
   export default {
+    props:['comment'],
     data: () => ({
       reveal: false,
       dialog:false

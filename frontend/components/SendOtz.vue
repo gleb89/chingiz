@@ -176,7 +176,7 @@ export default {
         setTimeout(() => {
           this.alert = false
           this.otzivclick()
-        }, 4000);
+        }, 2000);
         })
         .catch(function (error) {
           console.log("error");

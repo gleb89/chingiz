@@ -287,13 +287,14 @@
         </div>
       </v-container>
     </section>
-    <section id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
+    <section  id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
       <v-container>
         <h2 class="head-sect">
           ОТЗЫВЫ
         </h2>
-        <ListOtz class="d-none d-lg-block" />
-        <Otzmob class="d-block d-lg-none" />
+        
+        <ListOtz :comments_serv="comments_serv" class="d-none d-lg-block" />
+        <Otzmob :comments_serv="comments_serv" class="d-block d-lg-none" />
         <SendOtz  :otzivclick="otzivclick" :otziv="otziv"/>
         <div class=" buttun d-flex text-center justify-center flex-wrap" >
           <v-btn
@@ -407,17 +408,20 @@ export default {
         }
     ],
   },
-  asyncData({ $axios }) {
+  async asyncData({ $axios }) {
     const headers = {
       "Content-Type": "application/json"
     };
-    return $axios
-      .$get(`http://giftcity.kz/api/v1/present/stocks/`, {
-        headers: headers
-      })
-      .then(stocks => {
-        return { stocks };
-      });
+    const stocks = await $axios.get(
+      `http://giftcity.kz/api/v1/present/stocks/`
+    );
+    const comments= await $axios.get(
+      `http://giftcity.kz/api/v1/present/commentsservice/`
+    );
+    const comments_serv = comments.data.filter(elem => {
+          return elem.moderation
+        });
+    return { stocks: stocks.data,comments_serv:comments_serv };
   },
   async fetch({ store }) {
     if (store.getters["products/products"].length === 0) {

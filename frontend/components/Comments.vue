@@ -35,7 +35,8 @@
     </div>
 
 
- <div id="form-comments" class="mt-10">
+ <div id="form-comments" class="mt-10" >
+    
       <h2>Написать отзыв</h2>
       <div>
         <p class="mt-3" style="max-width: 70%">
@@ -45,11 +46,12 @@
         </p>
       </div>
 
-      <div class="form-otziv pt-6 rounded-xl" style="padding: 2rem">
-        <h3 class="text-center">Ваш  отзыв:</h3>
+      <div class="form-otziv pt-6 rounded-xl" style="display: flex;justify-content: center;align-items: center;">
+        
   
         <!-- form -->
         <div>
+          <h3 class="text-center">Ваш  отзыв:</h3>
           <v-form ref="form" lazy-validation>
             <v-container>
               <v-row>

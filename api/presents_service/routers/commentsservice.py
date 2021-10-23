@@ -68,6 +68,8 @@ async def create(newcomment:CommentsService):
 async def get_all():
     return  await CommentsService.objects.all()
 
+
+
 @comment_router.post('/moderation/{comm_id}/{moder}')
 async def get_all(comm_id:int,moder:bool):
     comment = await CommentsService.objects.get(id=comm_id)

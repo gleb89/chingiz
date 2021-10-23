@@ -56,12 +56,19 @@
             
             {{product.body }}
           </p>
-          <div v-if="product.composition" >
-            <p style="font-weight: bold;margin-top:2em">Состав корзины:</p>
-            <p v-for="(comp,index) in product.composition.split(/\d[.]+/g)" :key="index">
-            <span style="font-weight: bold;" v-if="index">{{index}}.</span> {{comp}}
-            </p>
-          </div>
+                        <div v-if="product.composition">
+                    <p
+                      v-for="(comp, index) in product.composition.split(/\d[.]+/g)"
+                      :key="index"
+                    >
+                      <span style="font-weight: bold;" v-if="index"
+                        >{{ index }}.</span
+                      >
+                      <span style="font-weight: 500;" v-if="['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))" >{{ comp.slice(0,-1) }}</span>
+                      <span style="font-weight: 500;"  v-if="!['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))">{{ comp }}</span>
+                      
+                    </p>
+                  </div>
           <!-- card basket -->
           <div class="d-flex flex-wrap">
           <div

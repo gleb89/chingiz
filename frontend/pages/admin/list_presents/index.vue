@@ -95,6 +95,7 @@
                       пример(1.)
                     </h4>
                     <h6>Превью отображения на сайте</h6>
+                        <div v-if="composition">
                     <p
                       v-for="(comp, index) in composition.split(/\d[.]+/g)"
                       :key="index"
@@ -102,8 +103,11 @@
                       <span style="font-weight: bold;" v-if="index"
                         >{{ index }}.</span
                       >
-                      {{ comp }}
+                      <span style="font-weight: 500;" v-if="['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))" >{{ comp.slice(0,-1) }}</span>
+                      <span style="font-weight: 500;"  v-if="!['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))">{{ comp }}</span>
+                      
                     </p>
+                  </div>
                     <v-textarea
                       outlined
                       name="input-7-4"
@@ -286,18 +290,19 @@
                           пример(1.)
                         </h4>
                         <h6>Превью отображения на сайте</h6>
-                        <p
-                          v-for="(comp, index) in String(
-                            itemadit.composition
-                          ).split(/\d[.]+/g)"
-                          :key="index"
-                        >
-                          <span style="font-weight: bold;" v-if="index"
-                            >{{ index }}.</span
-                          >
-                          {{ comp }}
-                        </p>
-
+                        <div v-if="itemadit.composition">
+                    <p
+                      v-for="(comp, index) in itemadit.composition.split(/\d[.]+/g)"
+                      :key="index"
+                    >
+                      <span style="font-weight: bold;" v-if="index"
+                        >{{ index }}.</span
+                      >
+                      <span style="font-weight: 500;" v-if="['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))" >{{ comp.slice(0,-1) }}</span>
+                      <span style="font-weight: 500;"  v-if="!['1','2','3','4','5','6','7','8','9'].includes(comp.charAt(comp.length - 1))">{{ comp }}</span>
+                      
+                    </p>
+                  </div>
                         <v-textarea
                           outlined
                           name="input-7-4"
