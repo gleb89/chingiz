@@ -827,8 +827,9 @@ h1 {
   margin: 1rem;
 }
 .buttun{
-  padding-bottom: 2em;
+  
 }
+
 @media (max-width: 500px) {
   .forinp {
     width: 100%;
@@ -840,7 +841,7 @@ h1 {
     margin: 0;
   }
 .buttun{
-  padding-top: 2em;
+  margin-top: 2em;
   padding-bottom: 0;
 }
   h2 {
@@ -855,6 +856,17 @@ h1 {
   .b-b {
     justify-content: center;
   }
+  .buttun{
+  margin-top: 2em;
+  padding-bottom: 0;
+}
+}
+@media (max-width: 1260px) {
+
+  .buttun{
+  margin-top: 2em;
+  padding-bottom: 0;
+}
 }
 .v-application--is-ltr .v-input--selection-controls__input {
   background: white;

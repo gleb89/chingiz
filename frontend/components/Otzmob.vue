@@ -1,6 +1,6 @@
 <template>
 <div id="cars">
-  <v-carousel :show-arrows="false" class="carsmob" height="400"  >
+  <v-carousel  :show-arrows="false" class="carsmob" height="400"  >
     <v-carousel-item  v-for="(comment,i) in comments_serv" :key="i">
             <CardOtziv :comment="comment"/>
     </v-carousel-item>

@@ -1,7 +1,7 @@
 <template>
   
         <v-card
-        class="rounded-xl co"
+        class="bodycard rounded-xl co"
             color="#FFFFFF"
             
             style="padding:1rem;min-height: 300px;"
@@ -17,7 +17,7 @@
             
             
             
-              <div class="text--primary text-left" style="min-height: 9em;">
+              <div class="body text--primary text-left" style="">
         {{comment.body}}
       </div>
           <v-dialog
@@ -80,6 +80,14 @@
 .co{
   width: 80%;
   min-height: 30vh;
+}
+.body{
+  min-height: 9em;
+}
+@media (max-width: 1260px) {
+  .bodycard{
+      margin-bottom: 5em;
+}
 }
 @media (max-width: 2600px){
   .co{
