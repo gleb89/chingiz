@@ -46,12 +46,11 @@
         </p>
       </div>
 
-      <div class="form-otziv pt-6 rounded-xl" style="display: flex;justify-content: center;align-items: center;">
-        
+      <div class="form-otziv pt-6 rounded-xl" style="padding: 2rem">
+        <h3 class="text-center">Ваш  отзыв:</h3>
   
         <!-- form -->
         <div>
-          <h3 class="text-center">Ваш  отзыв:</h3>
           <v-form ref="form" lazy-validation>
             <v-container>
               <v-row>
@@ -119,7 +118,7 @@
           <p class="text-center">{{text_alert}}</p>
           </v-alert>
               <v-btn
-              :disabled="!onlformdata"
+              
               @click="sendComment"
                 rounded
                 color="#ff7a00"
@@ -184,6 +183,9 @@ export default {
   },
   methods: {
     sendComment(){
+      if(this.onlformdata){
+
+     
       let data = {
           "present_id": this.product_id,
           "name_user": this.name_user,
@@ -212,6 +214,7 @@ export default {
         .catch(function (error) {
           console.log("error");
         });
+         }
     },
     onOtz() {
       this.$router.push('#form-comments')
