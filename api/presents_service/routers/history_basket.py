@@ -5,6 +5,7 @@ import datetime
 
 from models.basket_users import Basket
 from models.history_basket import HistoryBasket
+from models.present import Present
 from routers.bonus import *
 from models.users import Users
 from logics.history import image_add
@@ -74,6 +75,12 @@ async def add_basket_in_history(
     
     
     dict_basket = basket.count_present_item.get('presents')
+    for pres in basket.count_present_item.get('presents'):
+        _present = await Present.objects.get(id = pres['id'])
+        try:
+            await _present.update(popular = _present.popular + 1)
+        except:
+            pass
     
     await oplata_data.update(history = dict_basket)
     await basket.update(count_present_item={'presents':[]})
@@ -84,6 +91,7 @@ async def add_basket_in_history(
         await spic_bonus_update_bonus(oplata_data )
     if oplata_data.oplata_user != 'Оплатить картой Visa / Master Card':
         background_tasks.add_task(simple_send, oplata_data.email_user,oplata_data)
+
     return oplata_data
 
 @history_router.get("/oplata/for_end/{basket_id}")

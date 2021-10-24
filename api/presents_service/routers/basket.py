@@ -66,12 +66,7 @@ async def add_present_anonim(data:AddBasketAnonim, count_pres:int)->JSONResponse
     cont = {"basket_id": basket.id,
            "summa": sum(summ),
           }
-    for pres in basket.count_present_item.get('presents'):
-        _present = await Present.objects.get(id = pres.id)
-    try:
-        await _present.update(popular = _present.popular + 1)
-    except:
-        pass
+
     json_compatible_item_data = jsonable_encoder(cont)
     return JSONResponse(
         status_code=200,
@@ -94,12 +89,7 @@ async def add_present_user(data:AddBasketUser, count_pres:int)->JSONResponse:
         await  add_present_for_basket(data.precent_id, basket)
     basket = await Basket.objects.get(user__id=user.id)
     summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
-    for pres in basket.count_present_item.get('presents'):
-        _present = await Present.objects.get(id = pres.id)
-        try:
-            await _present.update(popular = _present.popular + 1)
-        except:
-            pass
+
     cont = {"basket_id": basket.id,
            "summa": sum(summ),
           }

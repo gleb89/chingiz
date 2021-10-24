@@ -134,12 +134,7 @@ async def get_all():
 
 
     
-@precent_router.get('/222')
-async def get_all2():
-    pres = await Present.objects.all()
-    for i in pres:
-        await i.update(popular = 0)
-    return 'ok'
+
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
