@@ -28,7 +28,7 @@
                       <h5 class="text-center nums">01</h5>
                       <h4 class="h4_text text-center">за каждый заказ</h4>
                       <p class="text-center other-text">После каждого успешного заказа <br>
-вы получаете 200 балов</p>
+вы получаете 500 бонусов.</p>
                   </div>
           <v-img fluid src="/b1.png"></v-img>
           
@@ -37,7 +37,7 @@
                         <div>
                       <h5 class="text-center nums">02</h5>
                       <h4 class="h4_text text-center">отзыв на сайте</h4>
-                      <p class="text-center other-text">Оставив отзыв на нашем сайте вы <br> получите ещё 200 балов</p>
+                      <p class="text-center other-text">Оставив отзыв на нашем сайте вы <br> получите ещё 500 бонусов.</p>
                   </div>
           <v-img fluid src="/b2.png"></v-img>
           
@@ -46,7 +46,7 @@
                                     <div>
                       <h5 class="text-center nums">03</h5>
                       <h4 class="h4_text text-center">отметка в инстаграм</h4>
-                      <p class="text-center other-text">Отметка нашей страницы в инстаграм <br> подарит вам 300 балов</p>
+                      <p class="text-center other-text">Отметка нашей страницы в инстаграм <br> подарит вам 2000 бонусов.</p>
                   </div>
           <v-img fluid src="/b3.png"></v-img>
          

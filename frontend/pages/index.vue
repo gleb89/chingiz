@@ -76,11 +76,11 @@
     <section id="best-products" class="newsection" style="margin-bottom:4rem;margin-top:4rem">
       <v-container class="newsection-container">
         <h2 class="head-sect">ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
-        <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
+        <Listcart class="d-lg-block d-none" :listproducts="popular_product" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct
           class="d-lg-none d-block"
-          :listproducts="listproducts"
+          :listproducts="popular_product"
         />
         <div class="b1" style="text-align: center">
           <v-btn
@@ -326,7 +326,7 @@
           <h2 style="color: #ff7a00; font-size: 2.7rem">Бонусы за опрос!</h2>
           <p style="margin-top: 3rem;font-weight: 500;;color:#505050">
             Войдите в личный кабинет, пройдите опрос и получите
-            <span style="color: #ff7a00; font-weight: bold">50 бонусов.</span>
+            <span style="color: #ff7a00; font-weight: bold">500 бонусов.</span>
             <br />
             Копите бонусы и обменивайте на овощи и фрукты!*
           </p>
@@ -473,6 +473,10 @@ export default {
     new_product(){
       let new_array = this.$store.getters["products/products"].slice(-18)
         return new_array.sort(function(a, b) { return b.id - a.id; });
+    },
+    popular_product(){
+      let new_array = this.$store.getters["products/products"].slice(-18)
+        return new_array.sort(function(a, b) { return b.popular - a.popular; });
     },
     computedDateFormatted() {
       return this.formatDate(this.date);

@@ -133,7 +133,7 @@
        <v-btn
        style="background: white;color: #505050;border: 1px solid #ff7a00;min-width:10em:padding:1em"
           class="mx-2"
-          :input-value="sub.id === sub_id"
+          :input-value="sub_id.includes(sub.id)"
           active-class="orange white--text"
           depressed
           rounded
@@ -282,16 +282,44 @@ export default {
       categoriesfilter: [],
       selected: [],
       page: 1,
-      sub_id:0
+      sub_id: []
     };
   },
   methods: {
     onPodSub(sub_id){
-      if(this.sub_id === sub_id){
-          this.sub_id = 0
+      if(this.sub_id.includes(sub_id)){
+          for( var i = 0; i < this.sub_id.length; i++){ 
+    
+            if ( this.sub_id[i] === Number(sub_id)) { 
+    
+              this.sub_id.splice(i, 1); 
+            }
+    
+          }
           this.products = this.$store.getters["products/products"].filter((elem) => {
-        
-        if(elem.category[0].name_category === this.filter_name) {
+              for(let i of elem.subcategory){
+        if(this.sub_id.includes(i.id)){
+          return elem
+        }
+      }
+
+      });
+      }
+      else{
+      this.sub_id.push(sub_id) 
+      this.products = this.$store.getters["products/products"].filter((elem) => {
+      for(let i of elem.subcategory){
+        if(this.sub_id.includes(i.id)){
+          return elem
+        }
+      }
+        // return elem.id === pk
+      
+      });
+      }
+      if(this.sub_id.length === 0){
+        this.products = this.$store.getters["products/products"].filter((elem) => {
+          if(elem.category[0].name_category === this.filter_name) {
           for(let i of this.categories){
             if( i.name_category === this.filter_name){
               this.categories_for_sub = i.subcategory
@@ -302,19 +330,7 @@ export default {
           }
           return elem
         }
-      });
-      }
-      else{
-      this.sub_id = sub_id
-      this.products = this.$store.getters["products/products"].filter((elem) => {
-      for(let i of elem.subcategory){
-        if(i.id == sub_id){
-          return elem
-        }
-      }
-        // return elem.id === pk
-      
-      });
+         });
       }
     },
     onresSearch(i){
@@ -331,7 +347,10 @@ export default {
       }
     },
     onReason(pk,name_reason){
+     
+      this.categories_for_sub = []
       this.search = ''
+      this.sub_id = []
       this.filter_name = name_reason
       this.products = []
       this.products = this.$store.getters["products/products"].filter((elem) => {
@@ -373,6 +392,7 @@ export default {
       });
     },
     onfilterslug(slug,pk,name) {
+      this.sub_id = []
       this.search = ''
       this.categories_for_sub = []
       if(slug === 'Все_продукты'){

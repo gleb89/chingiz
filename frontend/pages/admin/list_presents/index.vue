@@ -507,6 +507,12 @@
           {{ item.id }}
         </v-chip>
       </template>
+
+      <template v-slot:item.popular="{ item }">
+        <v-chip color="cyan" style="padding:1em" dark>
+          {{ item.popular }}
+        </v-chip>
+      </template>
       <!-- изменить удалить -->
       <template v-slot:item.actions="{ item}">
         <v-icon
@@ -564,6 +570,7 @@ export default {
       items: [],
       headers: [
         { text: "Артикул", value: "id" },
+        { text: "Заказали раз", value: "popular" },
         { text: "Превью Названия", value: "prevue_name" },
         { text: "Название", value: "name_precent" },
         { text: "Изображение", value: "image", sortable: false },
