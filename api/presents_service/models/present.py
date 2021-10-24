@@ -37,6 +37,7 @@ class Present(ormar.Model):
         database = database
 
     id: int = ormar.Integer(primary_key=True)
+    popular: int = ormar.Integer(null=True,nullable=True,default=0)
     sort_id_catalog: int = ormar.Integer(null=True,nullable=True)
     sort_id_popularnoe: int = ormar.Integer(null=True,nullable=True)
     sort_id_novinki: int = ormar.Integer(null=True,nullable=True)

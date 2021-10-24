@@ -90,7 +90,7 @@
             style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
-            <span style="font-size: 12px;">перейти в каталог</span>
+            <span style="font-size: 12px;">посмотреть все подарки</span>
           </v-btn>
         </div>
       </v-container>
@@ -141,11 +141,11 @@
         <h2 class="head-sect">
           НОВИНКИ В ТРЕНДЕ
         </h2>
-        <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
+        <Listcart class="d-lg-block d-none" :listproducts="new_product" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct
           class="d-lg-none d-block"
-          :listproducts="listproducts"
+          :listproducts="new_product"
         />
         <div class="b1" style="text-align: center;margin-bottom:2rem">
           <v-btn
@@ -155,7 +155,7 @@
             style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
           >
-            <span style="font-size: 12px;">перейти в каталог</span>
+            <span style="font-size: 12px;">посмотреть все подарки</span>
           </v-btn>
         </div>
       </v-container>
@@ -469,6 +469,10 @@ export default {
     listproducts() {
       this.presents = this.$store.getters["products/products"];
       return this.presents;
+    },
+    new_product(){
+      let new_array = this.$store.getters["products/products"].slice(-18)
+        return new_array.sort(function(a, b) { return b.id - a.id; });
     },
     computedDateFormatted() {
       return this.formatDate(this.date);

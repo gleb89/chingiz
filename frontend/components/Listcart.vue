@@ -10,7 +10,7 @@
       </v-container>
     </v-carousel-item>
 
-     <v-carousel-item  >
+     <v-carousel-item  v-if="listproducts.length > 5">
       <v-container>
         <v-row justify="center" class="text-center">
           <v-col class="text-center d-flex justify-center" cols="4"  md="4" lg="4"  v-for="present in listproducts.slice(3, 6)" :key="present.id">
@@ -20,7 +20,7 @@
       </v-container>
     </v-carousel-item>
 
-     <v-carousel-item  >
+     <v-carousel-item v-if="listproducts.length  > 8" >
       <v-container>
         <v-row justify="center" class="text-center">
           <v-col class="text-center d-flex justify-center" cols="4"  md="4" lg="4"  v-for="present in listproducts.slice(6, 9)" :key="present.id">
@@ -29,6 +29,39 @@
         </v-row>
       </v-container>
     </v-carousel-item>
+
+     <v-carousel-item  v-if="listproducts.length > 11">
+      <v-container>
+        <v-row justify="center" class="text-center">
+          <v-col class="text-center d-flex justify-center" cols="4"  md="4" lg="4"  v-for="present in listproducts.slice(9, 12)" :key="present.id">
+            <CardProduct :present="present"/>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-carousel-item>
+
+     <v-carousel-item  v-if="listproducts.length > 14">
+      <v-container>
+        <v-row justify="center" class="text-center">
+          <v-col class="text-center d-flex justify-center" cols="4"  md="4" lg="4"  v-for="present in listproducts.slice(12, 15)" :key="present.id">
+            <CardProduct :present="present"/>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-carousel-item>
+
+
+     <v-carousel-item v-if="listproducts.length > 17" >
+      <v-container>
+        <v-row justify="center" class="text-center">
+          <v-col class="text-center d-flex justify-center" cols="4"  md="4" lg="4"  v-for="present in listproducts.slice(15, 18)" :key="present.id">
+            <CardProduct :present="present"/>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-carousel-item>
+  
+  
   </v-carousel>
 </template>
 
@@ -45,7 +78,6 @@ export default {
       this.$router.push("/"+'catalog/Все_продукты');
     },
   },
-
 };
 </script>
 
@@ -57,7 +89,6 @@ export default {
   background: #FFFFFF;
 box-shadow: -1px 0px 7px #80808087;
 }
-
 .v-window__prev{
   background: #FFFFFF;
   box-shadow: 2px 2px 2px gray;
@@ -71,7 +102,6 @@ box-shadow: -1px 0px 7px #80808087;
   height: 100%;
   padding-left: 4rem;
   top: 10rem;
-
 }
 </style>
 
@@ -93,7 +123,6 @@ box-shadow: -1px 0px 7px #80808087;
             this.start = this.start-3,
             this.end = this.end-3
         }
-
       },
       next(){
         if (this.end === 6){
@@ -116,8 +145,8 @@ position: absolute;
 width: 100%;
 display: flex;
 z-index: 1;
-
 justify-content: space-between;
 top: 18rem;
   }
 </style>
+

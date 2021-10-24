@@ -11,20 +11,7 @@ export default {
     props:['listproducts'],
   data() {
     return {
-      items: [
-        {
-          src: "slide1.png",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/bird.jpg",
-        },
-        {
-          src: "https://cdn.vuetifyjs.com/images/carousel/planet.jpg",
-        },
-      ],
+  
     };
   },
   methods: {
