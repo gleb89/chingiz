@@ -5,6 +5,7 @@ services:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
+    container_name: data_present
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
@@ -14,12 +15,12 @@ services:
     ports:
         - "5431:5432"
 
-#
-      
+
   data_courier:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
+    container_name: data_courier
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
@@ -27,7 +28,7 @@ services:
         - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
         - POSTGRES_DB=${COURIER_POSTGRES_DB}
     ports:
-        - "5434:5432"
+        - "5437:5432"
 
 
 
