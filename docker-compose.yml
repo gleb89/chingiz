@@ -120,4 +120,4 @@ services:
 
 volumes:
   data_courier:
-    external: true
+    driver: local
