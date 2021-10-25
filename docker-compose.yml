@@ -6,6 +6,7 @@ services:
     image: "postgres:14.0-alpine"
     restart: always
     container_name: data_present
+    user: root
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
@@ -22,6 +23,7 @@ services:
     image: "postgres:14.0-alpine"
     restart: always
     container_name: data_courier
+    user: root
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
