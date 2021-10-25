@@ -41,7 +41,7 @@ services:
     ports:
       - 8001:8000
     depends_on: 
-      - data_present
+      - data_present33
     volumes:
       - ./api/presents_service:/app/presents
 
@@ -55,7 +55,7 @@ services:
       - 8002:8000
 
     depends_on: 
-      - data_courier
+      - data_courier33
     volumes:
       - ./api/courier:/app/courier
 
