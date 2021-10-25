@@ -8,7 +8,6 @@ services:
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
         - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
         - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
         - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
