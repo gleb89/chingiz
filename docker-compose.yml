@@ -9,7 +9,7 @@ services:
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
+      # PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
       POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
       POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
@@ -25,7 +25,7 @@ services:
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
+      # PGDATA: /var/lib/postgresql/data/pgdata
       POSTGRES_USER: ${COURIER_POSTGRES_USER}
       POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
       POSTGRES_DB: ${COURIER_POSTGRES_DB}
