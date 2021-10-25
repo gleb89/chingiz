@@ -6,11 +6,12 @@ services:
     image: "postgres:14-alpine"
     restart: always
     volumes:
-        - ./present_data/:/var/lib/postgresql/data/
+        - ./present_data/:/var/lib/postgresql/data
     environment:
-        - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
-        - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
-        - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
     ports:
         - "5431:5432"
 
@@ -20,11 +21,12 @@ services:
     image: "postgres:14-alpine"
     restart: always
     volumes:
-        - ./data_courier/:/var/lib/postgresql/data/
+        - ./data_courier/:/var/lib/postgresql/data
     environment:
-        - POSTGRES_USER=${COURIER_POSTGRES_USER}
-        - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
-        - POSTGRES_DB=${COURIER_POSTGRES_DB}
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_USER: ${COURIER_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${COURIER_POSTGRES_DB}
     ports:
         - "5434:5432"
 
