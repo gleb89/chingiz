@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  data_present2:
+  data_present:
     restart: always
     image: "postgres:14.0-alpine"
     restart: always
@@ -12,12 +12,12 @@ services:
       POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
       POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
       POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
-      PGDATA: /tmp
+      # PGDATA: /tmp
     ports:
         - "5431:5432"
 
 
-  data_courier2:
+  data_courier:
     restart: always
     image: "postgres:14.0-alpine"
     restart: always
@@ -28,7 +28,7 @@ services:
       POSTGRES_USER: ${COURIER_POSTGRES_USER}
       POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
       POSTGRES_DB: ${COURIER_POSTGRES_DB}
-      PGDATA: /tmp
+      # PGDATA: /tmp
     ports:
         - "5437:5432"
 
@@ -43,7 +43,7 @@ services:
     ports:
       - 8001:8000
     depends_on: 
-      - data_present2
+      - data_present
     volumes:
       - ./api/presents_service:/app/presents
 
@@ -57,7 +57,7 @@ services:
       - 8002:8000
 
     depends_on: 
-      - data_courier2
+      - data_courier
     volumes:
       - ./api/courier:/app/courier
 
