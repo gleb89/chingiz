@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  data_present:
+  data_present2:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
@@ -16,7 +16,7 @@ services:
 
 
       
-  data_courier:
+  data_courier2:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
