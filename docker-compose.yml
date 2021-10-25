@@ -23,7 +23,7 @@ services:
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
-      PGDATA: /var/lib/postgresql/data_courier/
+      PGDATA: /var/lib/postgresql/data/
         - POSTGRES_USER=${COURIER_POSTGRES_USER}
         - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
         - POSTGRES_DB=${COURIER_POSTGRES_DB}
