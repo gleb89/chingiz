@@ -6,14 +6,13 @@ services:
     image: "postgres:14.0-alpine"
     restart: always
     container_name: data_present
-    user: root
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
       POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
       POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
-      PGDATA: /var/lib/postgresql/data/
+      PGDATA: /var/lib/postgresql/pgdata/
     ports:
         - "5431:5432"
 
@@ -23,14 +22,13 @@ services:
     image: "postgres:14.0-alpine"
     restart: always
     container_name: data_courier
-    user: root
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: ${COURIER_POSTGRES_USER}
       POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
       POSTGRES_DB: ${COURIER_POSTGRES_DB}
-      PGDATA: /var/lib/postgresql/data/
+      PGDATA: /var/lib/postgresql/pgdata/
     ports:
         - "5437:5432"
 
