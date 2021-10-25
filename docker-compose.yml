@@ -8,9 +8,9 @@ services:
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
-        - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
-        - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
-        - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
+        - POSTGRES_USER=gleb
+        - POSTGRES_PASSWORD=postgres1
+        - POSTGRES_DB=albazar
     ports:
         - "5431:5432"
 
@@ -22,9 +22,9 @@ services:
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
-        - POSTGRES_USER=${COURIER_POSTGRES_USER}
-        - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
-        - POSTGRES_DB=${COURIER_POSTGRES_DB}
+        - POSTGRES_USER=gleb
+        - POSTGRES_PASSWORD=postgres1
+        - POSTGRES_DB=courier
     ports:
         - "5434:5432"
 
