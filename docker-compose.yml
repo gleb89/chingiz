@@ -3,28 +3,28 @@ version: '3'
 services:
   data_present:
     restart: always
-    image: "postgres:13.4-alpine"
+    image: "postgres:13"
     restart: always
     volumes:
         - ./present_data/:/var/lib/postgresql/data/
     environment:
-        - POSTGRES_USER=gleb
-        - POSTGRES_PASSWORD=postgres1
-        - POSTGRES_DB=albazar
+        - POSTGRES_USER=${PRODUCTS_POSTGRES_USER}
+        - POSTGRES_PASSWORD=${PRODUCTS_POSTGRES_PASSWORD}
+        - POSTGRES_DB=${PRODUCTS_POSTGRES_DB}
     ports:
         - "5431:5432"
 
 
   data_courier:
     restart: always
-    image: "postgres:13.4-alpine"
+    image: "postgres:13"
     restart: always
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
-        - POSTGRES_USER=gleb
-        - POSTGRES_PASSWORD=postgres1
-        - POSTGRES_DB=courier
+        - POSTGRES_USER=${COURIER_POSTGRES_USER}
+        - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
+        - POSTGRES_DB=${COURIER_POSTGRES_DB}
     ports:
         - "5434:5432"
 
