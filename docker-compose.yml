@@ -7,7 +7,7 @@ services:
     restart: always
     container_name: data_present
     volumes:
-        - ./present_data/:/var/lib/postgresql/data/
+        - ./present_data2/:/var/lib/postgresql/data/
     environment:
       POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
       POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
