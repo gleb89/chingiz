@@ -24,7 +24,6 @@ services:
     volumes:
         - ./data_courier/:/var/lib/postgresql/data/
     environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
         - POSTGRES_USER=${COURIER_POSTGRES_USER}
         - POSTGRES_PASSWORD=${COURIER_POSTGRES_PASSWORD}
         - POSTGRES_DB=${COURIER_POSTGRES_DB}
