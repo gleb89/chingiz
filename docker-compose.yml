@@ -7,9 +7,8 @@ services:
     restart: always
     container_name: data_present
     volumes:
-        - ./present_data/:/var/lib/postgresql/data/
+        - ./data_present/:/var/lib/postgresql/data/
     environment:
-      PGDATA: /var/lib/postgresql/data/
       POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
       POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
       POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
@@ -23,9 +22,8 @@ services:
     restart: always
     container_name: data_courier
     volumes:
-        - ./data_courier/:/var/lib/postgresql/data/
+        - ./courier_data/:/var/lib/postgresql/data/
     environment:
-      PGDATA: /var/lib/postgresql/data/
       POSTGRES_USER: ${COURIER_POSTGRES_USER}
       POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
       POSTGRES_DB: ${COURIER_POSTGRES_DB}
