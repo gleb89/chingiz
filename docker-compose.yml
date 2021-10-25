@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  data_present2:
+  data_present:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
@@ -16,7 +16,7 @@ services:
 
 
       
-  data_courier2:
+  data_courier:
     restart: always
     image: "postgres:13.4-alpine"
     restart: always
@@ -40,7 +40,7 @@ services:
     ports:
       - 8001:8000
     depends_on: 
-      - data_present2
+      - data_present
     volumes:
       - ./api/presents_service:/app/presents
 
@@ -54,7 +54,7 @@ services:
       - 8002:8000
 
     depends_on: 
-      - data_courier2
+      - data_courier
     volumes:
       - ./api/courier:/app/courier
 
