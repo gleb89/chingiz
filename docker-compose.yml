@@ -3,7 +3,7 @@ version: '3'
 services:
   data_present:
     restart: always
-    image: "postgresql:latest"
+    image: postgresql:latest
     restart: always
     container_name: data_present
     volumes:
@@ -18,7 +18,7 @@ services:
 
   data_courier:
     restart: always
-    image: "postgresql:latest"
+    image: postgresql:latest
     restart: always
     container_name: data_courier
     volumes:
