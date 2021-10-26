@@ -237,20 +237,31 @@ export default {
     validate() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
-     this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/email/commands`,data, {
-        })
-        .then((resp) => {
+        let bodyFormData = new FormData();
+        bodyFormData.append("name", this.name);
+        bodyFormData.append("email", this.email);
+        bodyFormData.append("phone", this.phone);
+        if(this.fileres ){
+          bodyFormData.append("fileres", this.fileres);
+        }
+        if(this.text){
+          bodyFormData.append("text ", this.text);
+        }
         this.alert_succes = true
         setTimeout(() => {
          this.alert_succes = false;
         this.comand_dialog = false;
+        }, 2000);
+     this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/email/commands`,bodyFormData, {
+        })
+        .then((resp) => {
         this.email = ''
         this.phone = ''
         this.fileres = null
         this.text = ''
         this.name = ''
-        }, 2000);
+       
           return 
         });
         
