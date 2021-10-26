@@ -14,7 +14,7 @@
         <h2 class="text-center d-lg-block d-none">Настройки профиля</h2>
         {{property}}
 <div style="width:100%" class="d-flex justify-center">
-    <form class="forms"   @submit.prevent="onNAme">
+    <form  style="width:100%" class="forms"   @submit.prevent="onNAme">
         <v-text-field
         
         
@@ -64,7 +64,7 @@
      </div>
 
      <div style="width:100%" class="d-flex justify-center">
-     <form class="forms"  style=""  @submit.prevent="onAvatar">
+     <form style="width:100%" class="forms"    @submit.prevent="onAvatar">
       <v-file-input
       required
       v-model="avatar"
