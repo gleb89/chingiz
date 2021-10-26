@@ -328,7 +328,7 @@
             Войдите в личный кабинет, пройдите опрос и получите
             <span style="color: #ff7a00; font-weight: bold">500 бонусов.</span>
             <br />
-            Копите бонусы и обменивайте на овощи и фрукты!*
+            Копите бонусы и обменивайте на подарки!*
           </p>
           <p
             style="margin-top: 3rem;font-weight: bold;font-size:1em;color:#505050"
