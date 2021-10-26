@@ -261,7 +261,7 @@
                 каждый день
               </p>
             </div>
-            <img width="560" height="auto" style="max-width: 100%;"  src="two.webp" />
+            <img width="560" height="auto" style="max-width: 100%;"  src="new2.png" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">

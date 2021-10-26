@@ -178,6 +178,17 @@ export default {
     validate() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
+        let data = {
+          
+        "name": this.name,
+        "phone": this.phone,
+        "text": this.text
+      }
+        
+        this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/email/contact`,data, {
+        })
+        .then((resp) => {
         this.alert_succes = true
         setTimeout(() => {
         this.alert_succes = false;
@@ -185,9 +196,8 @@ export default {
         this.text = ''
         this.name = ''
         }, 2000);
-            
-
-        
+          return 
+        });
       } else {
         console.log("0000");
       }

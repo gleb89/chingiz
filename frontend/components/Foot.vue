@@ -142,6 +142,7 @@
                       style="margin-top:2rem"
                       class="append "
                       v-model="fileres"
+                      accept=".pdf"
                       label="Прикрепить резюме"
                       solo
                       prepend-icon=""
@@ -236,9 +237,13 @@ export default {
     validate() {
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
+     this.$axios
+        .$post(`http://giftcity.kz/api/v1/present/email/commands`,data, {
+        })
+        .then((resp) => {
         this.alert_succes = true
         setTimeout(() => {
-        this.alert_succes = false;
+         this.alert_succes = false;
         this.comand_dialog = false;
         this.email = ''
         this.phone = ''
@@ -246,6 +251,10 @@ export default {
         this.text = ''
         this.name = ''
         }, 2000);
+          return 
+        });
+        
+    
             
 
         
