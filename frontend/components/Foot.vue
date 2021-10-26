@@ -143,7 +143,7 @@
                       class="append "
                       v-model="fileres"
                       accept=".pdf"
-                      label="Прикрепить резюме"
+                      label="Прикрепить резюме(PDF-формат)"
                       solo
                       prepend-icon=""
                       append-icon="mdi-cloud-upload"
@@ -264,11 +264,6 @@ export default {
        
           return 
         });
-        
-    
-            
-
-        
       } else {
         console.log("0000");
       }
