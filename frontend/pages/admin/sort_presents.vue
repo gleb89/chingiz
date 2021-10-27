@@ -1,7 +1,8 @@
 <template>
     <v-container>
-        <v-row justify="center" class="drop-zone">
+        <v-row justify="center" class="drop-zone" style="">
             <v-col
+            style="min-height:40vh"
                 @drop="onDrop($event,present)"
                 @dragenter.prevent
                 @dragover.prevent
@@ -11,7 +12,7 @@
               class="d-flex justify-center drag-el"
               v-for="(present,index) in data_presents"
               :key="index"
-              cols="12" lg="2" md="2"
+              cols="12" lg="12" md="12"
             >
                 <v-card
       style="box-shadow: none;max-height:500px;position: relative;padding:1rem;max-width:100%"

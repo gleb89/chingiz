@@ -353,13 +353,16 @@ export default {
       this.sub_id = []
       this.filter_name = name_reason
       this.products = []
+      setTimeout(() => {
+        
+      
       this.products = this.$store.getters["products/products"].filter((elem) => {
       for(let i of elem.reason_for_precent){
         if(i.id == pk){
           return elem
         }
       }
-      
+      }, 200);
         // return elem.id === pk
       
       });
@@ -392,15 +395,22 @@ export default {
       });
     },
     onfilterslug(slug,pk,name) {
+
+      this.products = []
       this.sub_id = []
       this.search = ''
       this.categories_for_sub = []
+      setTimeout(() => {
+        
+        
+      
       if(slug === 'Все_продукты'){
+        
         this.products = this.$store.getters["products/products"]
         this.filter_name = ''
       }
       else{ 
-      
+     
       this.products = this.$store.getters["products/products"].filter((elem) => {
         
         if(elem.category[0].id === pk) {
@@ -417,10 +427,11 @@ export default {
           return elem
         }
       });
-      this.filter_name = name
-      }
       
-    this.$vuetify.goTo(0)
+      }
+      }, 200);
+      
+    this.filter_name = name
     },
     onselectfilter() {
       if (this.selected.length === 1) {

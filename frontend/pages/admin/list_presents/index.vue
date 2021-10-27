@@ -149,29 +149,27 @@
                      
                       label="Загрузите изображение"
                     ></v-file-input>
-                    
+              
                     <span>Выбрать категорию</span>
-                    <v-select
+                      <v-combobox
                       v-model="category"
-                      @click="subcategory = []"
                       :items="categories"
-                      item-text="name_category"
-                      item-value="id"
-                      persistent-hint
-                      return-object
-                      single-line
-                      class="prep"
-                      prepend-inner-icon="*"
                       label="Выбрать категорию"
+                      prepend-inner-icon="*"
+                      item-text="name_category"
+                      class="prep"
+                      item-value="id"
+                      multiple
                       outlined
-                    ></v-select>
+                      return-object
+                    ></v-combobox>
                     
-                    <div v-if="category.id">
-                      <span v-if="category.subcategory.length > 0"> Добавить  подкатегорию</span>
-                      
+                    <div v-if="category.length">
+                      <span> Добавить  подкатегорию</span>
+                     
                     <v-combobox
-                    v-model="subcategory"
-                    :items="category.subcategory"
+                    v-model="category_subcategory"
+                    :items="subcategory"
                     item-text="name_subcategory"
                     item-value="id"
                     label="Добавить подкатегорию"
@@ -325,18 +323,17 @@
                       <v-col cols="12" sm="12" md="12">
                         
                         <span>Изменить категорию</span>
-                        <v-select
-                       
-                          v-model="category"
+                     <v-combobox
+                          v-model="itemadit.category"
                           :items="categories"
+                          label="Изменить категорию"
                           item-text="name_category"
                           item-value="id"
-                          persistent-hint
-                          return-object
-                          single-line
-                          label="Изменить категорию"
+                          multiple
+                          chips
                           outlined
-                        ></v-select>
+                          return-object
+                        ></v-combobox>
                       </v-col>
                      
                       <v-col cols="12" >
@@ -344,8 +341,8 @@
                       <span> Изменить/Добавить  подкатегорию</span>
                     <v-combobox
                    
-                    v-model="for_sub_update"
-                    :items="category.subcategory"
+                    v-model="itemadit.subcategory"
+                    :items="category_subcategory"
                     item-text="name_subcategory"
                     item-value="id"
                     label="Добавить/изменить подкатегорию"
@@ -456,6 +453,16 @@
       
       class="elevation-1"
     >
+          <template v-slot:item.category="{ item }">
+        <div
+          v-for="(category, index) in item.category"
+          :key="category.id"
+        >
+          <span>{{ index + 1 }}.{{ category.name_category }}</span>
+          <p></p>
+        </div>
+      </template>
+
       <template v-slot:item.image="{ item }">
         <img style="width: 10rem;" :src="item.image_precent" alt="none" />
       </template>
@@ -579,7 +586,7 @@ export default {
         { text: "Описание", value: "body" },
         {
           text: "Категория",
-          value: "category[0].name_category",
+          value: "category",
           sortable: false
         },
         {
@@ -625,7 +632,7 @@ export default {
     prevue_name: "",
     filtform: null,
     dialog_save:'',
-    category: {},
+    category: [],
     subcategory:[],
     image: null,
     dialogsub:false,
@@ -637,6 +644,7 @@ export default {
     type_precent: [],
     type: {},
     select: [],
+    category_subcategory:[],
     dialogreset:false,
     search_items:[],
     ind:null
@@ -648,7 +656,7 @@ export default {
         this.name_precent &&
         this.price &&
         this.image_precent &&
-        this.category.id &&
+        this.category.length &&
         this.select.length
       ) {
         return true;
@@ -657,20 +665,57 @@ export default {
       }
     },
     get_data_present() {
-      if(this.category){
-        try {
-          if(this.itemadit.category[0].id != this.category.id){
-            this.for_sub_update = []
+      if(this.itemadit){
+      if(this.itemadit.category){
+        if(this.itemadit.category.length){
+        this.category_subcategory = []
+          for(let category of this.itemadit.category){
+          
+          if(category.subcategory.length){
+            for(let sub of category.subcategory){
+              this.category_subcategory.push(sub)
+
+            } 
+
           }
-          if(this.itemadit.category[0].id === this.category.id){
-            this.for_sub_update = this.itemadit.subcategory
-          }
-        } catch (error) {
-          console.log('err');
+
+        }  
+              // for(let i of this.itemadit.subcategory){
+                
+              // if(!this.category_subcategory.includes(i)){
+              //   let ind  = this.itemadit.subcategory.findIndex(function (elem) {
+                  
+	            //   return elem.id === i.id ;
+              // });
+              // // console.log(ind);
+              // this.itemadit.subcategory.splice(ind,1)
+              
+              // }
+              // }
+
         }
-        
-        
+        else{
+          this.itemadit.subcategory = []
+          this.category_subcategory = []
+        }
+      } 
       }
+      if(this.category.length){
+        this.subcategory = []
+        
+        for(let category of this.category){
+          
+          if(category.subcategory.length){
+            for(let sub of category.subcategory){
+              this.subcategory.push(sub)
+            } 
+          }
+        }  
+      }
+      else{
+          this.subcategory = []
+          this.category_subcategory = []
+        }
         if(this.value){
           this.filtform = null;
           this.filtpovod = null
@@ -754,10 +799,6 @@ export default {
   mounted() {},
 
   methods: {
-
-  
-
-
     dialog_close(){
       this.image_precent = null;
           this.image = null;
@@ -768,9 +809,10 @@ export default {
           this.name_precent = "";
           this.subcategory = []
           this.select = [];
+          
           this.type = {};
           this.form = {};
-          this.category = {};
+          this.category = [];
       this.dialog_save = false
     },
     editItem(item){
@@ -779,7 +821,7 @@ export default {
     });
     
     this.itemadit = this.data_presents[this.ind]
-    this.category = item.category[0]
+    this.category = item.category
     this.for_sub_update = this.itemadit.subcategory
     for (let i of this.data_filter.categories){
       if (i.id === this.category.id){
@@ -805,6 +847,10 @@ export default {
       for (let i of this.select) {
         select_id.push(i.id);
       }
+      let category_id = []
+      for (let i of this.category) {
+        category_id.push(i.id);
+      }
       let bodyFormData = new FormData();
       if (this.prevue_name) {
         bodyFormData.append("prevue_name", this.prevue_name);
@@ -815,16 +861,16 @@ export default {
         bodyFormData.append("composition", this.composition);
       }
       bodyFormData.append("image", this.image_precent);
-      bodyFormData.append("category_id", this.category.id);
+      bodyFormData.append("category_id", String(category_id));
       if (this.form.id) {
         bodyFormData.append("form_precent_id", this.form.id);
       }
       if (this.type.id) {
         bodyFormData.append("type_precent_id", this.type.id);
       }
-      if (this.subcategory.length > 0) {
+      if (this.category_subcategory.length > 0) {
       let sub_id = [];
-      for (let i of this.subcategory) {
+      for (let i of this.category_subcategory) {
         sub_id.push(i.id);
       }
         bodyFormData.append("sub_list_id",String(sub_id));
@@ -851,10 +897,11 @@ export default {
           this.prevue_name = "";
           this.name_precent = "";
           this.subcategory = []
+          this.category_subcategory = []
           this.select = [];
           this.type = {};
           this.form = {};
-          this.category = {};
+          this.category = [];
           this.itemadit = {}
         })
         .catch(function(error) {
@@ -872,10 +919,15 @@ export default {
       for (let i of this.itemadit.reason_for_precent) {
         select_id.push(i.id);
       }
+      let category_id = [];
+      for (let i of this.itemadit.category){
+        category_id.push(i.id);
+      }
       bodyFormData.append("reason_for_precent_id", String(select_id));
+      bodyFormData.append("category_id", String(category_id));
       if (this.for_sub_update.length > 0) {
       let sub_id = [];
-      for (let i of this.for_sub_update) {
+      for (let i of this.itemadit.subcategory) {
         sub_id.push(i.id);
       }
      
@@ -905,12 +957,7 @@ export default {
       if (this.image) {
         bodyFormData.append("image", this.image);
       }
-      if (this.category.id) {
-        bodyFormData.append("category_id", this.category.id);
-        this.itemadit.category[0] = this.category;
-        
-      }
-    
+
       if (this.form) {
         bodyFormData.append("form_precent_id", this.form.id);
         this.itemadit.form_precent[0] = this.form;
@@ -958,7 +1005,7 @@ export default {
         });
                     this.type = {};
            this.form = {};
-      this.category = {};
+
       this.for_sub_update = []
       this.subcategory = []
                 this.ind = null
@@ -1007,7 +1054,7 @@ export default {
       this.dialogreset = false
       this.type = {};
       this.form = {};
-      this.category = {};
+      this.category = [];
       this.for_sub_update = []
       this.subcategory = []
       this.ind = null

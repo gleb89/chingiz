@@ -3,7 +3,7 @@
     <div style="margin-top:3rem" id="header__content">
       <div style="text-alignt: center; width: 100%">
         <h1>ЛУЧШИЙ СЕРВИС ОРИГИНАЛЬНЫХ ПОДАРКОВ</h1>
-        {{onAnimation}}
+      
         <p style="margin-top: 1rem">
           “...Подарки сближают сердца , вселяют в них радость....”
         </p>
@@ -75,7 +75,7 @@
     </div>
     <section id="best-products" class="newsection" style="margin-bottom:4rem;margin-top:4rem">
       <v-container class="newsection-container">
-        <h2 class="head-sect">ПОПУЛЯРНЫЕ КОРЗИНЫ И БОКСЫ</h2>
+        <h2 class="head-sect">ПОПУЛЯРНЫЕ ПОДАРКИ</h2>
         <Listcart class="d-lg-block d-none" :listproducts="popular_product" />
         <!-- <Listcartmob class="d-lg-none d-block" :listproducts="listproducts" /> -->
         <CaruselProduct
@@ -429,53 +429,57 @@ export default {
     }
   },
   computed: {
-    onAnimation(){
-      if(!process.client) return;
-      setTimeout(() => {
+    // onAnimation(){
+    //   if(!process.client) return;
+    //   setTimeout(() => {
         
      
-      var newsectionpresents = new IntersectionObserver(function (entries) {
-            if (entries[0].intersectionRatio <= 0) return;
-            var menu = document.querySelector(".newsection-container");
-            menu.classList.add("newsection2");
-          });
+    //   var newsectionpresents = new IntersectionObserver(function (entries) {
+    //         if (entries[0].intersectionRatio <= 0) return;
+    //         var menu = document.querySelector(".newsection-container");
+    //         menu.classList.add("newsection2");
+    //       });
 
-      var newsectionpresents2 = new IntersectionObserver(function (entries) {
-      if (entries[0].intersectionRatio <= 0) return;
-      var menu = document.querySelector(".newsection-container2");
-      menu.classList.add("newsection2");
-    });
+    //   var newsectionpresents2 = new IntersectionObserver(function (entries) {
+    //   if (entries[0].intersectionRatio <= 0) return;
+    //   var menu = document.querySelector(".newsection-container2");
+    //   menu.classList.add("newsection2");
+    // });
 
-      var newsectionpresents3 = new IntersectionObserver(function (entries) {
-      if (entries[0].intersectionRatio <= 0) return;
-      var menu = document.querySelector(".newsection-container3");
-      menu.classList.add("newsection2");
-      setTimeout(() => {
-      var menu2 = document.querySelector(".newsection-container4");
-      menu2.classList.add("newsection2");
-      }, 1000);
+    //   var newsectionpresents3 = new IntersectionObserver(function (entries) {
+    //   if (entries[0].intersectionRatio <= 0) return;
+    //   var menu = document.querySelector(".newsection-container3");
+    //   menu.classList.add("newsection2");
+    //   setTimeout(() => {
+    //   var menu2 = document.querySelector(".newsection-container4");
+    //   menu2.classList.add("newsection2");
+    //   }, 1000);
 
-      setTimeout(() => {
-      var menu3 = document.querySelector(".newsection-container5");
-      menu3.classList.add("newsection2");
-      }, 1000);
-    });
+    //   setTimeout(() => {
+    //   var menu3 = document.querySelector(".newsection-container5");
+    //   menu3.classList.add("newsection2");
+    //   }, 1000);
+    // });
 
-      newsectionpresents.observe(document.querySelector(".newsection"));
-      newsectionpresents2.observe(document.querySelector(".newsection22"));
-      newsectionpresents3.observe(document.querySelector(".newsection3"));
-       }, 1000);
-    },
+    //   newsectionpresents.observe(document.querySelector(".newsection"));
+    //   newsectionpresents2.observe(document.querySelector(".newsection22"));
+    //   newsectionpresents3.observe(document.querySelector(".newsection3"));
+    //    }, 1000);
+    // },
     listproducts() {
       this.presents = this.$store.getters["products/products"];
       return this.presents;
     },
     new_product(){
-      let new_array = this.$store.getters["products/products"].slice(-18)
+      let new_array = this.$store.getters["products/products"].filter((elem) => {
+            return elem.category[0].id === 2;
+          }).slice(-18)
         return new_array.sort(function(a, b) { return b.id - a.id; });
     },
     popular_product(){
-      let new_array = this.$store.getters["products/products"].slice(-18)
+      let new_array = this.$store.getters["products/products"].filter((elem) => {
+            return elem.category[0].id === 2;
+          }).slice(-18)
         return new_array.sort(function(a, b) { return b.popular - a.popular; });
     },
     computedDateFormatted() {
@@ -884,34 +888,5 @@ h1 {
   border: 1px solid #f4e7e0;
 }
 
-.newsection-container{
-    opacity: 0;
-    margin-top: 7rem;
-    /* transition-delay: .5s; */
-}
 
-.newsection-container2{
-    opacity: 0;
-    margin-top: 7rem;
-    /* transition-delay: .5s; */
-}
-
-.newsection-container3{
-      opacity: 0;
-      margin-top: 7rem;
-}
-.newsection-container4{
-      opacity: 0;
-      margin-top: 7rem;
-}
-.newsection-container5{
-      opacity: 0;
-      margin-top: 7rem;
-}
-.newsection2{
-    opacity: 1; 
-    margin-top: 0;
-    transition: .7s linear .5s; 
-     
-}
 </style>

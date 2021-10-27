@@ -34,7 +34,7 @@ async def create(
     name_precent: str = Form(...),
     price: int = Form(...),
     composition: str = Form(None),
-    category_id: str = Form(...),
+    category_id:list = Form(None),
     form_precent_id: str = Form(None),
     type_precent_id: str = Form(None),
     reason_for_precent_id: list = Form(...),
@@ -73,8 +73,7 @@ async def create(
     if form_precent_id:
         form_precent = await FormPresent.objects.get_or_none(id=form_precent_id)
         await new_present.form_precent.add(form_precent)
-    category = await Categories.objects.get_or_none(id=category_id)
-    await new_present.category.add(category)
+  
 
     if sub_list_id:
         list_id_sub = re.findall(r'\d+', sub_list_id[0])
@@ -82,6 +81,12 @@ async def create(
         for sub_id in list_id_sub:
             subcategory = await SubCategories.objects.get(id = sub_id)
             await new_present.subcategory.add(subcategory)
+
+    list_id_category = re.findall(r'\d+', category_id[0])
+    list_id_category = [int(i) for i in list_id_category]
+    for id_category in list_id_category:
+        category = await Categories.objects.get_or_none(id=id_category)
+        await new_present.category.add(category)
     
     list_id_reason = re.findall(r'\d+', reason_for_precent_id[0])
     list_id_reason = [int(i) for i in list_id_reason]
@@ -163,7 +168,7 @@ async def update_one(
     name_precent: str = Form(None),
     price: int = Form(None),
     composition: str = Form(None),
-    category_id: int= Form(None),
+    category_id: list = Form(...),
     form_precent_id: int = Form(None),
     type_precent_id: int= Form(None),
     body: str = Form(None),
@@ -208,12 +213,12 @@ async def update_one(
     if not composition:
         await present.update(composition = '')
     if category_id:
-        category = await Categories.objects.get_or_none(
-                                        id=category_id
-                                        )
-
-        await present.category.remove(present.category[0])
-        await present.category.add(category)
+        list_id_category = re.findall(r'\d+', category_id[0])
+        list_id_category = [int(i) for i in list_id_category]
+        await present.category.clear()
+        for id_category in list_id_category:
+            category = await Categories.objects.get_or_none(id=id_category)
+            await present.category.add(category)
 
     if type_precent_id:
         type_precent = await TypePresent.objects.get_or_none(
