@@ -427,8 +427,9 @@ export default {
           return elem
         }
       });
-      
+      this.products.sort(function(a, b) { return b.id - a.id; })
       }
+      
       }, 200);
       
     this.filter_name = name
