@@ -18,7 +18,7 @@ host = 'http://giftcity.kz'
 async def image_add(image):
     data = str(datetime.datetime.now()).replace(" ", "")
     image = Image.open(image.file)
-    image.save(f'static/images/{data}.webp', format = "WebP", lossless = True)
+    image.save(f'static/images/{data}.webp', format = "WebP", quality=20,optimize=True)
     return f'{host}/api/v1/present/static/images/{data}.webp'
 
 
