@@ -17,8 +17,11 @@
       </v-btn> -->
       
       <v-btn icon @click="onCatalog">
-        <span style="color:white" >Поиск</span>
-        <img width="26" height="28" src="/searchbtn.png" alt="">
+        <span style="color:white;margin-top:.2em" >Подарки</span>
+        <!-- <img width="26" height="28" src="/searchbtn.png" alt=""> -->
+        <fa style="color: #f67a04;
+    font-size: 2em;" icon="gift"></fa>
+        
       </v-btn>
       
 

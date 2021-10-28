@@ -57,7 +57,7 @@
       <v-col>
         <div>
           <h2 class="text-left mt-5">
-          <span v-if="!filter_name && !search">Все корзины ({{ listproducts.length }})</span>
+          <span v-if="!filter_name && !search">Все подарки ({{ listproducts.length }})</span>
           <span v-if="filter_name && !search">
             {{ filter_name }} ({{ listproducts.length }})</span
           >

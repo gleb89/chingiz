@@ -36,6 +36,7 @@
             
             <Filters
             class="d-none d-lg-block"
+            
             :listproducts="listproducts"
             :selected="selected"
             :maxprice="maxprice"
@@ -274,7 +275,6 @@ export default {
       form:this.$store.getters["allfilter/allfilter"].form_precent,
       maxprice: null,
       minprice: null,
-      form_id: null,
       type_id: null,
       reason_id: null,
       list_products: [],
@@ -287,6 +287,8 @@ export default {
   },
   methods: {
     onPodSub(sub_id){
+      this.form_id = null
+      this.search = ''
       if(this.sub_id.includes(sub_id)){
           for( var i = 0; i < this.sub_id.length; i++){ 
     
@@ -350,6 +352,7 @@ export default {
      
       this.categories_for_sub = []
       this.search = ''
+      this.form_id = null
       this.sub_id = []
       this.filter_name = name_reason
       this.products = []
@@ -395,7 +398,7 @@ export default {
       });
     },
     onfilterslug(slug,pk,name) {
-
+      this.form_id = null
       this.products = []
       this.sub_id = []
       this.search = ''
@@ -412,20 +415,23 @@ export default {
       else{ 
      
       this.products = this.$store.getters["products/products"].filter((elem) => {
-        
-        if(elem.category[0].id === pk) {
-          for(let i of this.categories){
-            if( i.id === pk){
+         for(let i of elem.category){
+        if(i.id == pk){
+          return elem
+        }
+      }
+      for(let i of this.categories){
+          if( i.id === pk){
               this.categories_for_sub = i.subcategory
             }
             else{
 
             }
-          }
-          
-          
-          return elem
         }
+      
+
+      
+
       });
       this.products.sort(function(a, b) { return b.id - a.id; })
       }
@@ -435,6 +441,8 @@ export default {
     this.filter_name = name
     },
     onselectfilter() {
+      this.form_id = null
+      this.search = ''
       if (this.selected.length === 1) {
         if (this.selected[0] === "availability") {
           this.list_products = this.list_products.filter((elem) => {
@@ -473,6 +481,7 @@ export default {
     },
     sortedProductReason(){
       this.search = ''
+      this.form_id = null
        this.list_products = this.list_products.filter((elem) => {
         return (
           elem.reason_for_precent.id === Number(this.reason_id) 

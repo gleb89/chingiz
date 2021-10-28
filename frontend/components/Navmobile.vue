@@ -17,8 +17,9 @@
         <img width="23" height="auto"  fluid src="/Telephone.png">
       </v-btn>
 
-      <v-btn icon @click="onCatalog">
-        <img width="23" height="auto" fluid src="/Search.png">
+      <v-btn icon > 
+        <img width="23" height="auto" fluid src="/whatsapp.svg">
+ 
       </v-btn>
     </v-app-bar>
 <nav  id="nav" class="nav">

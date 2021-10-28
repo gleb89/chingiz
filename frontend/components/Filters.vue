@@ -45,23 +45,6 @@
       </div>
     </div> 
 
-    <!-- <div style="margin-top: 2rem">
-      <h3>Тип:</h3>
-      <div class="mt-4">
-        <v-checkbox
-          v-for="n in type_precent"
-          :key="n.id"
-          style="height: 1.3rem; width: 20rem"
-          color="orange"
-          v-model="type_id"
-          :label="`${n.name_type}`"
-          :value="n.id"
-        ></v-checkbox>
-      </div>
-    </div>  -->
-
-
-
     <div style="margin-top: 2rem">
       <h3>Цена</h3>
       <!-- forms-price-filter -->
@@ -122,8 +105,12 @@ export default {
     "reason_present",
     "onReason",
     "form",
-    "type_precent"
+    "type_precent",
   ],
+  computed: {
+
+  
+  },
 
   data() {
     return {
