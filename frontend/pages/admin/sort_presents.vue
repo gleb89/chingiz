@@ -12,7 +12,7 @@
               class="d-flex justify-center drag-el"
               v-for="(present,index) in data_presents"
               :key="index"
-              cols="12" lg="12" md="12"
+              cols="12" lg="3" md="3"
             >
                 <v-card
       style="box-shadow: none;max-height:500px;position: relative;padding:1rem;max-width:100%"
