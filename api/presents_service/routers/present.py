@@ -196,7 +196,10 @@ async def update_one(
         'presentsubcategories'
         ]).get_or_none(id=id)
     if image:
-        await image_delete(present.image_precent)
+        try:
+            await image_delete(present.image_precent)
+        except:
+            pass
         origin_image, dubl_image = await image_add(image)
         await present.update(
                     image_precent = dubl_image
