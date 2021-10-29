@@ -197,8 +197,11 @@ async def update_one(
         ]).get_or_none(id=id)
     if image:
         await image_delete(present.image_precent)
-        new_image = await image_add(image)
-        await present.update(image_precent = new_image)
+        origin_image, dubl_image = await image_add(image)
+        await present.update(
+                    image_precent = dubl_image,
+                    image_origin = origin_image,
+        )
     if body:
         await present.update(body= body)
     if not body:
