@@ -46,6 +46,7 @@ class Present(ormar.Model):
     body: str = ormar.String(max_length=1000,nullable=True,default='')
     price: int = ormar.Integer()
     image_precent: str = ormar.String(max_length=1000, nullable=True)
+    image_origin: str = ormar.String(max_length=1000, nullable=True)
     composition: str = ormar.String(max_length=10000, nullable=True)
     category: Optional[List[Categories]] = ormar.ManyToMany(
         Categories,  related_name="self_present",nullable=True

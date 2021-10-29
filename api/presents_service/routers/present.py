@@ -51,7 +51,7 @@ async def create(
         composition = ''
     else:
         composition = composition
-    new_image = await image_add(image)
+    origin_image, dubl_image = await image_add(image)
     if not prevue_name:
         prevue_name = ''
     new_present = await Present.objects.create(
@@ -59,7 +59,8 @@ async def create(
         name_precent = name_precent,
         price = price,
         composition = composition,
-        image_precent = new_image,
+        image_precent = dubl_image,
+        image_origin = origin_image,
         body = body,
         popular = 0
         
