@@ -199,8 +199,10 @@ async def update_one(
         await image_delete(present.image_precent)
         origin_image, dubl_image = await image_add(image)
         await present.update(
-                    image_precent = dubl_image,
-                    image_origin = origin_image,
+                    image_precent = dubl_image
+        )
+        await present.update(
+            image_origin = origin_image,
         )
     if body:
         await present.update(body= body)
