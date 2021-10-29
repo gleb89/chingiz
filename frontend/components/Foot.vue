@@ -376,6 +376,7 @@ export default {
 .box-form {
   display: flex;
   flex-wrap: nowrap;
+  align-items: baseline;
 }
 @media (max-width: 600px) {
   .box-form {
