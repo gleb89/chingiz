@@ -9,7 +9,7 @@
             >Каталог</nuxt-link
           >
           
-          
+          <Goend/>
         </div>
 
         <Mobfilter 

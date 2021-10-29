@@ -120,7 +120,7 @@
      
       
 
-      <v-btn icon style="position: relative;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)">
+      <v-btn icon style="position: relative;" @click="onBasket">
     
         <span style="color: #ff7a00;" >{{basket.summ_present.toLocaleString()}} тг</span>
         <img src="/baskbtn.png" alt="">
@@ -176,15 +176,18 @@ export default {
       this.dialogcabinet = false
     },
     onBasket(basket_id){
-      if(this.$store.state.localStorage.basket.id_basket > 0){
+ if(this.$store.state.localStorage.basket.id_basket > 0){
         if(this.$store.state.localStorage.uid_auth_user){
         this.$router.push('/'+'cabinet/basket')
         }
         else{
-        this.$router.push('/'+basket_id)
+        this.$router.push('/basket/'+this.$store.state.localStorage.basket.id_basket)
         }
         
       }
+          else{
+        this.$router.push('/basket')
+        }
      
       
     },

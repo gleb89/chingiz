@@ -19,3 +19,4 @@ docker-compose run courier_api alembic stamp head
 docker exec -i data_present /bin/bash -c "PGPASSWORD=postgres1 pg_dump --username gleb albazar" > dump11.sql
 удалить версию алембик в файле sql
 docker exec -i data_present /bin/bash -c "PGPASSWORD=postgres1 psql --username gleb albazar" < dump11.sql
+scp root@188.68.220.99:~/chingiz/dump11.sql /home/gleb/test

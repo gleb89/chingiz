@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row justify="center" style="margin-top:5rem">
+    <v-row justify="center" class="rrow" style="">
       
       <!-- box-img tovar and name-->
       <v-col cols="12" lg="6" class="box-formob">
@@ -12,6 +12,7 @@
           >/
           <span>{{ product.name_precent }}</span>
         </div>
+        <Goend/>
         <h2 class="namep mt-6" style="font-weight: 400;" >{{ product.prevue_name }}</h2>
         <h2 class="namep" style="font-weight: 900;" >"{{ product.name_precent }}"</h2>
         <div style="position: relative" class="mt-4">
@@ -321,10 +322,16 @@ export default {
     text-align: center;
     
 }
+.rrow{
+  margin-top:5rem
+}
 @media (max-width:500px) {
     .box-formob{
     margin-top: 4rem;
   }
+  .rrow{
+  margin-top:2rem
+}
   .namep{
     max-width: 100%;
     text-align: left;

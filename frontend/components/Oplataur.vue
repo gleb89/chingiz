@@ -439,7 +439,7 @@
             style="min-width: 30%;height: 3rem;"
             dark
           >
-            <span style="font-size: .6rem">перейти к оформлению</span>
+            <span style="font-size: .6rem">оформить заказ</span>
           </v-btn>
             </div>
         

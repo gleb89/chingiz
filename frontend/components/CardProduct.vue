@@ -200,7 +200,7 @@ hr {
 }
 @media (max-width: 500px) {
   .onhov {
-    left: 8rem;
+    left: 8em;
   }
 }
 </style>

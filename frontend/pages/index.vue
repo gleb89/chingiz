@@ -490,9 +490,15 @@ export default {
     },
     popular_product(){
       let new_array = this.$store.getters["products/products"].filter((elem) => {
-            return elem.category[0].id === 2;
-          }).slice(-18)
-        return new_array.sort(function(a, b) { return b.popular - a.popular; });
+        for (let i of elem.category){
+          if(i.id === 2){
+            return elem
+          }
+        }
+            
+          })
+        return new_array.sort(function(a, b) { return b.popular - a.popular; })
+        
     },
     computedDateFormatted() {
       return this.formatDate(this.date);
