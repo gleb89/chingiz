@@ -9,7 +9,7 @@
         <div @click="gopage" class=""
            style="background: whitesmoke;width: 100%;padding:1rem;color:#7C7C7C;cursor:pointer">
             <fa style="font-size: 1rem;" icon="chevron-left"></fa>
-             <span style="margin-left:1rem">Продолжить покупки</span>
+             <span style="margin-left:1rem">назад</span>
           </div>
         <h4 style="margin-top:8rem" class="text-center" >Корзина еще пуста</h4>
     </v-container>
