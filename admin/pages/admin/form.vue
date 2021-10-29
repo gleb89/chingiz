@@ -154,7 +154,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`http://giftcity.kz/api/v1/present/form_product/`, {
+      .$get(`https://giftcity.kz/api/v1/present/form_product/`, {
         headers: headers,
       })
       .then((form_presents) => {
@@ -206,7 +206,7 @@ export default {
       };
 
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/form_product/`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/form_product/`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -250,7 +250,7 @@ export default {
 
       this.$axios
         .$get(
-          `http://giftcity.kz/api/v1/present/form_product/update/${this.editedItem.id}?name_form=${this.editedItem.name_form}`,
+          `https://giftcity.kz/api/v1/present/form_product/update/${this.editedItem.id}?name_form=${this.editedItem.name_form}`,
           {
             headers: headers,
           }
@@ -276,7 +276,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`http://giftcity.kz/api/v1/present/form_product/${this.editedItem.id}`, {
+        .$delete(`https://giftcity.kz/api/v1/present/form_product/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

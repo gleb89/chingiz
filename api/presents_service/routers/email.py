@@ -112,7 +112,7 @@ def get_html_contact(data):
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая) администратор!</h3>
@@ -213,7 +213,7 @@ def send_message_commands(
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая) администратор!</h3>
@@ -312,7 +312,7 @@ def send_me_html(oplata_data):
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая) администратор!</h3>
@@ -395,7 +395,7 @@ def get_html(oplata_data):
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая) {oplata_data.name_user}!</h3>
@@ -428,7 +428,7 @@ def get_html(oplata_data):
         </head>
         <body>
             <div class="header">
-                <img src="http://giftcity.kz/logo.png" alt="">
+                <img src="https://giftcity.kz/logo.png" alt="">
             </div>
             <div class="text-email">
                 <h3>Здравствуйте ,Уважаемый(ая) {oplata_data.name_user}!</h3>

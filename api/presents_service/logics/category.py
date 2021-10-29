@@ -7,8 +7,8 @@ import PIL
 
 from PIL import ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES = True
-# host = 'http://giftcity.kz:8080'
-host = 'http://giftcity.kz'
+# host = 'https://giftcity.kz:8080'
+host = 'https://giftcity.kz'
 
 async def image_add(image):
     data = str(datetime.datetime.now()).replace(" ", "")

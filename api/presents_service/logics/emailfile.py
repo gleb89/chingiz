@@ -1,7 +1,7 @@
 import shutil
 import datetime
-# host = 'http://giftcity.kz:8080'
-host = 'http://giftcity.kz'
+# host = 'https://giftcity.kz:8080'
+host = 'https://giftcity.kz'
 
 def file_add(files):
     data = str(datetime.datetime.now()).replace(" ", "")

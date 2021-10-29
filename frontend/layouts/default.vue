@@ -29,7 +29,7 @@
 export default {
   head(){
     return{
-      link:[{rel:"canonical",href:`http://giftcity.kz/${this.$route.path}`}]
+      link:[{rel:"canonical",href:`https://giftcity.kz/${this.$route.path}`}]
     }
   },
 
@@ -90,7 +90,7 @@ export default {
 
     retbonus() {
         this.$axios
-        .$get(`http://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`https://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(resp);

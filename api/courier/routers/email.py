@@ -70,7 +70,7 @@ def get_html_admin(curer_data, oplata_data):
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая)  Администратор!</h3>
@@ -145,7 +145,7 @@ def get_html(curer_data, oplata_data):
     </head>
     <body>
         <div class="header">
-            <img src="http://giftcity.kz/logo.png" alt="">
+            <img src="https://giftcity.kz/logo.png" alt="">
         </div>
         <div class="text-email">
             <h3>Здравствуйте ,Уважаемый(ая) {curer_data.name}!</h3>

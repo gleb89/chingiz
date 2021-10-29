@@ -93,7 +93,7 @@ export default {
 
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
-    let curers = await $axios.get(`http://giftcity.kz/api/v1/couriers/`);
+    let curers = await $axios.get(`https://giftcity.kz/api/v1/couriers/`);
 
     return { curers: curers.data };
   },
@@ -130,7 +130,7 @@ computed: {
 
   deleteItem(item,index){
     this.$axios
-        .$delete(`http://giftcity.kz/api/v1/couriers/${item.id}`, {
+        .$delete(`https://giftcity.kz/api/v1/couriers/${item.id}`, {
     
         })
         .then((data) => {
@@ -154,7 +154,7 @@ computed: {
       };
       console.log(data);
 this.$axios
-        .$post(`http://giftcity.kz/api/v1/couriers/`, data, {
+        .$post(`https://giftcity.kz/api/v1/couriers/`, data, {
     
         })
         .then((data) => {

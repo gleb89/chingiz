@@ -105,7 +105,7 @@ export default {
     };
     const id_basket = route.params.id;
       return $axios
-        .$get(`http://giftcity.kz/api/v1/present/users/basket/${id_basket}`, {
+        .$get(`https://giftcity.kz/api/v1/present/users/basket/${id_basket}`, {
           headers: headers,
         })
         .then((presents_in_basket) => {
@@ -136,7 +136,7 @@ export default {
   },
   mounted: function () {
     let self = this; 
-    this.ws = new WebSocket("ws://giftcity.kz/ws/present/basket");
+    this.ws = new WebSocket("wss://giftcity.kz/ws/present/basket");
     this.ws.onmessage = (event) => {
       let response = JSON.parse(event.data)
       if (response.message === 'remove_all'){

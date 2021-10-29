@@ -124,7 +124,7 @@ let headers = {
 export default {
   async asyncData({ $axios, store }) {
     const presents_in_basket = await $axios.get(
-      `http://giftcity.kz/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
+      `https://giftcity.kz/api/v1/present/users/basket/${store.state.localStorage.basket.id_basket}`
     );
 
     return { presents_in_basket: presents_in_basket.data };
@@ -162,7 +162,7 @@ export default {
   },
   mounted: function () {
     let self = this;
-    this.ws = new WebSocket("ws://giftcity.kz/ws/present/basket");
+    this.ws = new WebSocket("wss://giftcity.kz/ws/present/basket");
     this.ws.onmessage = (event) => {
       let response = JSON.parse(event.data);
       if (response.message === "remove_all") {
@@ -204,7 +204,7 @@ export default {
       console.log(44,this.$store.state.localStorage.basket.id_basket);
 
           await this.$axios.get(
-     `http://giftcity.kz/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
+     `https://giftcity.kz/api/v1/present/users/basket/${this.$store.state.localStorage.basket.id_basket}`
     )
     .then((resp) =>{
       this.data_present = resp.data.count_present_item.presents

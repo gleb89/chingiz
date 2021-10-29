@@ -425,10 +425,10 @@ export default {
       "Content-Type": "application/json"
     };
     const stocks = await $axios.get(
-      `http://giftcity.kz/api/v1/present/stocks/`
+      `https://giftcity.kz/api/v1/present/stocks/`
     );
     const comments= await $axios.get(
-      `http://giftcity.kz/api/v1/present/commentsservice/`
+      `https://giftcity.kz/api/v1/present/commentsservice/`
     );
     const comments_serv = comments.data.filter(elem => {
           return elem.moderation

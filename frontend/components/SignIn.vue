@@ -214,7 +214,7 @@ export default {
   methods: {
     retbonus() {
         this.$axios
-        .$get(`http://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        .$get(`https://giftcity.kz/api/v1/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
         })
         .then((resp) => {
           console.log(111111,resp);
@@ -237,7 +237,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -260,7 +260,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -289,7 +289,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/anonim/${this.$store.state.localStorage.basket.id_basket}`, data, {
           headers: headers,
         })
         .then((resp) => {
@@ -312,7 +312,7 @@ export default {
 
       }
       this.$axios
-        .$post(`http://giftcity.kz/api/v1/present/users/`, data, {
+        .$post(`https://giftcity.kz/api/v1/present/users/`, data, {
           headers: headers,
         })
         .then((resp) => {
