@@ -102,7 +102,7 @@
                       <v-file-input
                       v-model="image_precent"
                       :rules="rulesImage"
-                      accept="image/png, image/jpeg, image/png"
+                      accept="image/png, image/jpeg, image/png, image/webp"
                       placeholder="Загрузите изображение"
                       prepend-icon="mdi-camera"
                       required
