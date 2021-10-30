@@ -143,12 +143,13 @@ async def get_all_admin():
 @precent_router.get('/catalog')
 async def get_all_catalog():
     redis = await aioredis.Redis.from_url("redis://redis", max_connections=10, decode_responses=True)
-    # cache = await redis.get('presents_list')
     cache = await redis.get('presents_list')
 
     if cache :
+        print(3)
         return json.loads(cache)
     else:
+        print(4)
         presents = await Present.objects.prefetch_related(
         [
         "category__subcategory",
