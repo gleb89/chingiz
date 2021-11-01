@@ -94,16 +94,16 @@ services:
   #   depends_on:
   #     - data_present
   #     - courier_api
-  redis:
-    image: redis
-    container_name: redis
-    restart: unless-stopped
-    volumes:
-      - ./redis/data:/data
-      - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-    expose:
-      - 6379
-    command: redis-server /usr/local/etc/redis/redis.conf
+  # redis:
+  #   image: redis
+  #   container_name: redis
+  #   restart: unless-stopped
+  #   volumes:
+  #     - ./redis/data:/data
+  #     - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+  #   expose:
+  #     - 6379
+  #   command: redis-server /usr/local/etc/redis/redis.conf
 
 
   nginx:
