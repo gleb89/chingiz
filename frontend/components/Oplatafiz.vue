@@ -68,7 +68,7 @@
           </div>
         </v-col>
         <v-col cols="12" sm="12" md="12">
-          <v-text-field
+          <!-- <v-text-field
           id=""
           label="Укажите город "
           placeholder=""
@@ -78,8 +78,20 @@
             solo
             v-model="city" 
             style="min-width:100%"
-          ></v-text-field>
-      
+          ></v-text-field> -->
+                    <v-autocomplete
+                
+                class="prep"
+                label="Город доставки"
+                prepend-inner-icon="*"
+                v-model="city"
+                :rules="[(v) => !!v || 'Не может быть пустым']"
+                color="orange"
+                item-color="orange"
+                :items="list_cituys"
+                solo
+                no-data-text="Ничего не найдено"
+              ></v-autocomplete>
         </v-col>
         <v-col cols="12" sm="12" md="12">
           <v-text-field
@@ -431,6 +443,10 @@ mounted: function () {
       scrol: false,
       menu1:false,
       kvartira:'',
+      list_cituys: [
+      "Алматы",
+      "Нур-Султан"
+    ],
       home:'',
       stret:'',
      rulesphone: {
