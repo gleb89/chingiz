@@ -51,7 +51,12 @@
   
         <!-- form -->
         <div>
-          <v-form ref="form" lazy-validation>
+          <v-form ref="form"
+           lazy-validation
+           
+            @submit.prevent="sendComment"
+
+          >
             <v-container>
               <v-row>
                 <v-col class="namephone" cols="12" md="6">

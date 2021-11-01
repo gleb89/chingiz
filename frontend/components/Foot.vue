@@ -84,6 +84,8 @@
               style="padding:2rem;align-items: center;"
             >
               <v-form
+               @submit.prevent="validate"
+               lazy-validation
                 style=" width: 100%;position: relative;"
                 ref="form"
                 

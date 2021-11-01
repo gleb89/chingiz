@@ -57,7 +57,7 @@
           color="white"
           
         >
-         <v-form ref="form" v-model="valid" lazy-validation style="width:100%">
+         <v-form  @submit.prevent="validate" ref="form" v-model="valid" lazy-validation style="width:100%">
            <span style="color: #f67929"> Введите номер телефона</span>
           <v-text-field
           :rules="[rulesphone.required,rulesphone.counter]"
@@ -72,12 +72,6 @@
             solo
             style="min-width:100%"
           ></v-text-field>
-        
-       
-
-        
-         
-        
       </v-form>
         
       </v-col>
@@ -103,7 +97,7 @@
           
         >
         <p style="width:100%"  v-if="code_sign_time <= 60 && code_sign_time > 0">повторно через <span style="font-weight: 500;">{{ code_sign_time }}  секунд</span></p> 
- <v-form style="width:100%"  ref="form_code" v-model="valid" lazy-validation>
+ <v-form @submit.prevent="validate_code" style="width:100%"  ref="form_code" v-model="valid" lazy-validation>
         <span style="color: #f67929"> Введите проверочный код</span>
         <v-text-field
           v-model="code"
@@ -354,6 +348,7 @@ export default {
   
     },
     validate() {
+      console.log(444);
       this.$refs.form.validate();
       if (this.$refs.form.validate()) {
         this.phoneSign();
