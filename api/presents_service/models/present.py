@@ -35,6 +35,7 @@ class Present(ormar.Model):
         tablename = "present"
         metadata = metadata
         database = database
+        constraints = [ormar.IndexColumns("popular","id")]
 
     id: int = ormar.Integer(primary_key=True)
     popular: int = ormar.Integer(null=True,nullable=True,default=0)
