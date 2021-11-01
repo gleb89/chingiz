@@ -8,14 +8,16 @@
         style="text-align: start;"
         @click="onPageProduct(present.id, present.category[0].slug_category)"
       ></div>
-      <div style="width:100%;text-align: center;">
-        <img
-        width="auto" height="256"
-          style="height: 16em;width: auto;max-width:100%"
-          :class="{ 'on-hover': hover }"
-          class="img"
-          :src="present.image_precent"
-        />
+      <div style="width:100%;text-align: center;text-align: -webkit-center;">
+          <v-img
+          style="width:256px;height:auto"
+          
+        :src="present.image_precent"
+        :lazy-src="present.image_precent"
+       
+       
+      >
+      </v-img>
       </div>
       <div v-if="hover" class="text-center onhov">
         <v-btn
