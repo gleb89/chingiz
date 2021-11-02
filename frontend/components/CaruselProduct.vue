@@ -1,7 +1,7 @@
 <template>
   <v-carousel  hide-delimiters style="position:relitative">
     <v-carousel-item v-for="(present, i) in listproducts" :key="i" >
-      <CardProduct :present="present"/>
+      <CardCar :present="present"/>
     </v-carousel-item>
   </v-carousel>
 </template>
