@@ -162,7 +162,7 @@
             <v-radio 
             
               v-for="n in [
-                'Kaspi, KZ, Kaspi Pay',
+                'Kaspi.kz, Kaspi Pay',
                 'Оплатить картой Visa / Master Card',
                 'Оплата при получении'
               ]"
@@ -468,7 +468,7 @@ mounted: function () {
       city:localStorage.getItem('city')||'',
       name:'',
       count_spis_bonus:0,
-      spis_bonus:null,
+      spis_bonus:'Не использовать',
       oplata_methods:null,
       text_comment:'',
       adress: '',

@@ -1,62 +1,13 @@
 <template>
   <div>
     <v-row justify="center" style="margin-top:1rem">
-      <v-col
-        class="box-cat rounded-lg text-center"
-        @click="onfilterslug('Все_продукты', 0, '')"
-        cols="6"
-      >
-
-      
-        <img style="height: 30px;width: auto;" src="/mobca.png" alt="" />
-        
-        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
-          Все подарки
-          {{ selected_list }}
-        </p>
-        
-      </v-col>
-
-      <v-col
-        class="box-cat rounded-lg text-center"
-        @click="
-          onfilterslug(
-            category.slug_category,
-            category.id,
-            category.name_category
-          )
-        "
-        v-for="category in categories.slice(0, 3)"
-        :key="category.id"
-      >
-        <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
-        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
-          {{ category.name_category }}
-        </p>
-      </v-col> 
-
-      <v-col
-      class="box-cat rounded-lg text-center"
-        v-for="reason in reason_present.slice(0, 0)"
-        :key="'A' + reason.id"
-        @click="onReason(reason.id, reason.name_reason)"
-      >
-        <img
-          style="max-height: 30px;max-width: 30px;"
-          :src="reason.icon"
-          alt=""
-        />
-        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
-          {{ reason.name_reason }}
-        </p>
-      </v-col>
-      <a @click="dialogcategory = true"  style="color: black;margin-top: 1em;text-decoration: underline;">больше категорий</a>
     </v-row>
     <v-row justify="center">
       
       <v-col>
         <div>
-          <h2 class="text-left mt-5">
+          
+          <h2 class="text-left mt-8">
           <span v-if="!filter_name && !search">Все подарки ({{ listproducts.length }})</span>
           <span v-if="filter_name && !search">
             {{ filter_name }} ({{ listproducts.length }})</span
@@ -65,8 +16,10 @@
             >Результат поиска ({{ listproducts.length }})</span
           >
           </h2>
+
         </div>
       </v-col>
+      
       <v-dialog
         v-model="dialogcategory"
         fullscreen
@@ -159,8 +112,11 @@
                 <img src="/filter.png" alt="" />
               </v-btn>
             </div>
+
           </div>
+ 
         </template>
+        
         <v-card class="open" style="">
           <v-toolbar dark color="orange">
             <v-btn icon dark @click="dialog = false">
@@ -240,6 +196,21 @@
           </div>
         </v-card>
       </v-dialog>
+    <div style="width:100%;text-align: left;   padding-left: 1em;
+    padding-top: .5em;">
+    <v-btn
+       style="background: #fb8c00;;color: white;"
+          class="mx-2"
+          
+          depressed
+          rounded
+          @click="dialogcategory = true" 
+        >
+        <span style="font-size:.8em">Выбрать категорию</span>
+          
+        </v-btn>
+
+            </div>
     </v-row>
   </div>
 </template>

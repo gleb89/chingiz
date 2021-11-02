@@ -3,15 +3,15 @@
     <v-row justify="center">
       <!-- box-filterss -->
       <v-col class="bocc-filter" cols="12" lg="2">
-        <div class="mobp " style="margin-top:6rem">
+        <div class="mobp d-none d-lg-block d-md-block" style="margin-top:6rem">
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
           <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
             >Каталог</nuxt-link
           >
           
-          <Goend/>
+          
         </div>
-
+        
         <Mobfilter 
             class="d-block d-lg-none"  
          

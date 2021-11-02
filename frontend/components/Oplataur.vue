@@ -523,7 +523,7 @@ mounted: function () {
           city:localStorage.getItem('city')||'',
           name:'',
           count_spis_bonus:0,
-          spis_bonus:null,
+          spis_bonus:'Не использовать',
           oplata_methods:null,
           text_comment:'',
           adress:'',

@@ -94,7 +94,7 @@
             <span style="font-size: .6rem">перейти к оформлению</span>
           </v-btn>
           <p style="margin-top:3rem;">
-          <nuxt-link  style="color:black" to="/catalog/Все_продукты">продолжить покупки</nuxt-link> 
+          <nuxt-link  style="color:black" to="/catalog/Все_продукты">продолжить покупки на сайте</nuxt-link> 
               </p>
               </div>
         <div style="font-size: 0.9rem; margin-top: 4rem">
