@@ -30,8 +30,9 @@ async def watermark_photo(input_image_path):
 async def image_add(image):
     data = str(datetime.datetime.now()).replace(" ", "")
     image = Image.open(image.file)
-    image.save(f'static/images/{data}origin.webp', format = "WebP", lossless = True)
-    image.save(f'static/images/{data}.webp', format = "WebP", quality=50,optimize=True)
+    resized_im = image.resize((430, 430))
+    resized_im.save(f'static/images/{data}origin.webp', format = "WebP", lossless = True)
+    resized_im.save(f'static/images/{data}.webp', format = "WebP", quality=50,optimize=True)
     dubl = f'{host}/api/v1/present/static/images/{data}.webp'
     origin = f'{host}/api/v1/present/static/images/{data}origin.webp'
 
