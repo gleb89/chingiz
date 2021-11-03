@@ -33,26 +33,20 @@ export default {
   pwa: {
     workbox: {
       runtimeCaching: [
-        {
-          urlPattern: 'https://fonts.googleapis.com/.*',
-          handler: 'networkFirst',
-          method: 'GET',
-          strategyOptions: {
-            cacheName: 'my-api-cache',
-            cacheableResponse: {statuses: [0, 200]}
-          }
-        },
-        {
-          urlPattern: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/fonts/materialdesignicons-webfont.woff2?v=6.4.95',
-          handler: 'networkFirst',
-          method: 'GET',
-          strategyOptions: {
-            cacheName: 'my-api-cache',
-            cacheableResponse: {statuses: [0, 200]}
-          }
-        }
+          {
+              urlPattern: 'https://fonts.googleapis.com/.*',
+              handler: 'cacheFirst',
+              method: 'GET',
+              strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+          },
+          {
+              urlPattern: 'https://fonts.gstatic.com/.*',
+              handler: 'cacheFirst',
+              method: 'GET',
+              strategyOptions: {cacheableResponse: {statuses: [0, 200]}}
+          },
       ]
-    },
+  },
     manifest: {
       name: 'GIFTCITY',
       short_name: 'GIFTCITY',
