@@ -255,6 +255,7 @@ def send_me_html(oplata_data):
     summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
     date = oplata_data.data_dostavki
     adress_user = oplata_data.adress_user
+    phone = oplata_data.phone_user
     if oplata_data.fiz_oplata:
         oplata = 'Оплата физическим лицом'
         oplata_data_method = oplata_data.oplata_user 
@@ -331,6 +332,7 @@ def send_me_html(oplata_data):
                 <p style="font-size:1em">Дата доставки:  <span style="font-weight: 600;"> {date}</span></p>
                 <p style="font-size:1em">Адрес доставки:<span style="font-weight: 600;">  {adress_user}</span></p>
                 <p style="font-size:1em">Имя заказчика:<span style="font-weight: 600;">  {oplata_data.name_user}</span></p>
+                <p style="font-size:1em">Номер телефона:<span style="font-weight: 600;">  {phone}</span></p>
                  <p style="font-size:1em">Метод оплаты:<span style="font-weight: 600;">  {oplata_data_method}</span></p>
                   <p style="font-size:1em">Статус:<span style="font-weight: 600;">  {oplata}</span></p>
                 </div>
