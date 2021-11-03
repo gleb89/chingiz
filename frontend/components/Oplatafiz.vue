@@ -556,7 +556,7 @@ mounted: function () {
                         
                 
                 
-        if(this.oplata_methods === 'Kaspi, KZ, Kaspi Pay'){
+        if(this.oplata_methods === 'Kaspi.kz, Kaspi Pay'){
           this.$router.push('/cabinet/oplata/kaspioplata')
         }
         if(this.oplata_methods === 'Оплата при получении'){
