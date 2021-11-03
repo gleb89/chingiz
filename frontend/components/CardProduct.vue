@@ -19,7 +19,7 @@
       >
       </v-img>
       </div>
-      <div v-if="hover" class="text-center onhov">
+      <div v-if="hover" style="left: 0;" class="text-center onhov">
         <v-btn
           @click="onPageProduct(present.id, present.category[0].slug_category)"
           style="color:white;opacity:1"
@@ -197,15 +197,7 @@ hr {
 .onhov {
     width: 100%;
     position: absolute;
-    left: 0;
     text-align: center;
 }
-@media (max-width: 500px) {
-  .onhov {
-    width: 100%;
-    position: absolute;
-    left: 0;
-    text-align: center;
-  }
-}
+
 </style>
