@@ -29,7 +29,11 @@ export default {
   css: [
     '@/style/index.css'
   ],
+  
   pwa: {
+    workbox: {
+      /* workbox options */
+    },
     manifest: {
       name: 'GIFTCITY',
       short_name: 'GIFTCITY',
@@ -39,9 +43,6 @@ export default {
     },
   },
   plugins: ['~/plugins/firebase.js','~/plugins/v-mask.js'],
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  // plugins: ['@/plugins/firebase'],
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

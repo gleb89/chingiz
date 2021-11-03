@@ -20,7 +20,8 @@
               </v-btn>
         </div>
         <v-container class="d-lg-block d-md-block d-none">
-          <v-row justify="center">
+          <v-row justify="center" style="display: flex;
+    align-items: baseline;">
             <v-col cols="12" lg="3" md="3">
               <v-autocomplete
                 class="rounded-lg"

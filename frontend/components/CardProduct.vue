@@ -195,14 +195,17 @@ hr {
   width: 100%;
 }
 .onhov {
-  position: absolute;
-  left: 9rem;
-  top: 10rem;
-  opacity: 1;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    text-align: center;
 }
 @media (max-width: 500px) {
   .onhov {
-    left: 8em;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    text-align: center;
   }
 }
 </style>
