@@ -29,7 +29,7 @@
           <td style="height: 5rem;"  ><span class="tdd">{{item.enum_povod}}</span> </td>
 
           <td style="height: 5rem;color:#ff7a00"  ><span class="tdd">{{item.count_points}}</span> </td>
-          <td style="height: 5rem;"  ><span class="tdd">{{item.summ_check.toLocaleString()}} тг</span> </td>
+          <td style="height: 5rem;"  ><span class="tdd">{{(item.summ_check -item.count_points).toLocaleString()}} тг</span> </td>
        
         </tr>
       </tbody>
