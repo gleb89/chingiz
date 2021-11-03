@@ -191,14 +191,10 @@ hr {
   width: 100%;
 }
 .onhov {
-  position: absolute;
-  left: 9rem;
-  top: 10rem;
-  opacity: 1;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    left: 0;
 }
-@media (max-width: 500px) {
-  .onhov {
-    left: 8em;
-  }
-}
+
 </style>
