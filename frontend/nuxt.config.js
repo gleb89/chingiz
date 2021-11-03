@@ -32,7 +32,17 @@ export default {
   
   pwa: {
     workbox: {
-      /* workbox options */
+      runtimeCaching: [
+        {
+          urlPattern: 'https://fonts.googleapis.com/.*',
+          handler: 'networkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheName: 'my-api-cache',
+            cacheableResponse: {statuses: [0, 200]}
+          }
+        }
+      ]
     },
     manifest: {
       name: 'GIFTCITY',
