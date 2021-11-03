@@ -20,3 +20,6 @@ couriers_error:
 
 couriers_merge:
 	docker-compose run courier_api alembic merge heads
+
+run_dev:
+	docker-compose --file docker-compose.dev.yml up

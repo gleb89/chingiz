@@ -1,0 +1,87 @@
+version: '3'
+
+services:
+  data_present:
+    restart: always
+    image: "postgres:14-alpine"
+    restart: always
+    container_name: data_present
+    volumes:
+        - ./present_data/:/var/lib/postgresql/data
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_USER: ${PRODUCTS_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${PRODUCTS_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${PRODUCTS_POSTGRES_DB}
+    ports:
+        - "5431:5432"
+
+
+  data_courier:
+    restart: always
+    image: "postgres:14-alpine"
+    restart: always
+    container_name: data_courier
+    volumes:
+        - ./data_courier/:/var/lib/postgresql/data
+    environment:
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+      POSTGRES_USER: ${COURIER_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${COURIER_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${COURIER_POSTGRES_DB}
+    ports:
+        - "5437:5432"
+
+
+
+  present_api:
+    restart: always
+    build: ./api/presents_service
+    env_file:
+      - .env
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8001:8000
+
+    depends_on: 
+      - data_present
+    volumes:
+      - ./api/presents_service:/app/presents
+
+  courier_api:
+    restart: always
+    build: ./api/courier
+    env_file:
+      - .env
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8002:8000
+
+    depends_on: 
+      - data_courier
+    volumes:
+      - ./api/courier:/app/courier
+
+  # front:
+  #   restart: always
+  #   build: ./frontend
+  #   ports:
+  #     - 3001:3000
+
+
+  nginx:
+    image: nginx:1.17
+    restart: unless-stopped
+    volumes:
+      - ./dev/nginx:/etc/nginx/conf.d
+    depends_on:
+      - present_api
+      - courier_api
+      # - front
+      # - admin
+    ports:
+      - "8080:8080"
+      - "80:80"
+      - "443:443"
+
+  

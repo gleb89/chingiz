@@ -1,10 +1,7 @@
 from fastapi import FastAPI 
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
-
-
-
-
+from fastapi.templating import Jinja2Templates
 
 
 from config.database import metadata, engine, database
@@ -84,6 +81,8 @@ async def shutdown() -> None:
         await database_.disconnect()
 
 app.mount("/api/v1/present/static", StaticFiles(directory="static"), name="static")
+
+
 
 app.include_router(
     present.precent_router  
