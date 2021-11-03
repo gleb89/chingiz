@@ -37,6 +37,7 @@ export default {
     manifest: {
       name: 'GIFTCITY',
       short_name: 'GIFTCITY',
+      description:'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
       lang: 'ru',
       display: 'standalone',
 
