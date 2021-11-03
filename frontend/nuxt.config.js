@@ -41,6 +41,15 @@ export default {
             cacheName: 'my-api-cache',
             cacheableResponse: {statuses: [0, 200]}
           }
+        },
+        {
+          urlPattern: 'https://cdn.jsdelivr.net/npm/@mdi/font@latest/fonts/materialdesignicons-webfont.woff2?v=6.4.95',
+          handler: 'networkFirst',
+          method: 'GET',
+          strategyOptions: {
+            cacheName: 'my-api-cache',
+            cacheableResponse: {statuses: [0, 200]}
+          }
         }
       ]
     },
