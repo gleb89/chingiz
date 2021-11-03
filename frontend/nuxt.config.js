@@ -59,10 +59,14 @@ export default {
       description:'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
       lang: 'ru',
       display: 'standalone',
+      
 
     },
   },
-  plugins: ['~/plugins/firebase.js','~/plugins/v-mask.js'],
+  plugins: ['~/plugins/firebase.js',
+  '~/plugins/v-mask.js',
+  { src: '~/plugins/pwa-update.js', mode: 'client' }
+],
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
