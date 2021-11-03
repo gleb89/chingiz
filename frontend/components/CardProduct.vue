@@ -198,6 +198,7 @@ hr {
     width: 100%;
     position: absolute;
     text-align: center;
+    top: 10em;
 }
 
 </style>

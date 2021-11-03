@@ -195,6 +195,7 @@ hr {
     position: absolute;
     text-align: center;
     left: 0;
+    top: 10em;
 }
 
 </style>
