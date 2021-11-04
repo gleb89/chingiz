@@ -13,8 +13,9 @@ from routers import (
 origins = [
      "https://giftcity.kz/",
      "https://giftcity.kz/",
-    "https://giftcity.kz:3000",
-    "https://el-bazaar.kz"
+     "https://el-bazaar.kz",
+     "https://el-bazaar.kz/",
+     "http://el-bazaar.kz/"
 ]
 
 
@@ -33,7 +34,7 @@ app = FastAPI(
 # cors настройки!
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
