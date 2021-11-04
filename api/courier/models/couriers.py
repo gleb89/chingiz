@@ -67,11 +67,11 @@ class Couriers(ormar.Model):
         Orders,  related_name="self_zakaz",nullable=True
     )
 
-    # @validator('password')
-    # def hash_password(cls, pw: str) -> str:
-    #     if is_hash(pw):
-    #         return pw
-    #     return hash_password(pw)
+    @validator('password')
+    def hash_password(cls, pw: str) -> str:
+        if is_hash(pw):
+            return pw
+        return hash_password(pw)
 
     class Config:
         orm_mode = True
