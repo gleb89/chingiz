@@ -25,9 +25,9 @@
               </div>
               <div class="ml-3">
                 <span style="color:#B2B2B2">телефон</span>
-                <p style="font-weight: bold;">                   <a  href="tel:+77273124050" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
+                <p style="font-weight: bold;">                   <a  href="tel:+77200000000" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
             >
-            <span  style="color: #676767;">+7(727) 312 40 50</span>
+            <span  style="color: #676767;">+7(727) 000 00 00</span>
             
             </a></p>
               </div>
