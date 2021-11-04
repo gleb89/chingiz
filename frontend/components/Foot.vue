@@ -181,7 +181,12 @@
             <nuxt-link to="/contacts"><span>Контакты</span></nuxt-link>
           </v-col>
           <v-col cols="12" md="6" lg="2" class="box-phone">
-            <span>+7 (888) 777 77 88</span>
+                   <a  href="tel:+77273124050" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
+            >
+            <span  style="color: #676767;">+7(727) 312 40 50</span>
+            
+            </a
+          >
           </v-col>
 
           <v-col cols="12" md="6" lg="3" class="box-phone">

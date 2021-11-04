@@ -42,8 +42,12 @@
     </v-col>
 
    <v-col  class="d-flex justify-center nav-li" style="margin-left: 1em;">
-      <span class="d-xl-block d-lg-none">+7 (888) 777 77 88</span>
-      <img class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
+       <a  href="tel:+77273124050" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
+            >
+            <span class="d-xl-block d-lg-none" style="color: #676767;">+7(727) 312 40 50</span>
+            <img class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
+            </a
+          >
       <img style="margin-left:.7rem;width:23px" src="/telegram.svg" alt="" />
       <img style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
     </v-col>

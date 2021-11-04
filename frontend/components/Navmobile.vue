@@ -14,7 +14,11 @@
       <v-spacer></v-spacer>
 
       <v-btn icon>
-        <img width="23" height="auto"  fluid src="/Telephone.png">
+               <a  href="tel:+77273124050" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
+            >
+            <img  style="width:23px" fluid src="/Telephone.png">
+            </a
+          >
       </v-btn>
 
       <v-btn icon > 
