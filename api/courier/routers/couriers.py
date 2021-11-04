@@ -22,7 +22,7 @@ async def create(courier: Couriers):
 @couriers_router.post('/login')
 async def create_token_jwt(admin:AdminLogin):
     user = await Couriers.objects.get_or_none(email=admin.email)
-    print(verify_password(user.password, admin.password))
+    print(user)
     # if verify_password(user.password, admin.password):
     #     access_token, access_token_expires =  await admin_token.token_password(user.password)
     #     cont = {
