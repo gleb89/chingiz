@@ -22,28 +22,29 @@ async def create(courier: Couriers):
 @couriers_router.post('/login')
 async def create_token_jwt(admin:AdminLogin):
     user = await Couriers.objects.get_or_none(email=admin.email)
-    if verify_password(user.password, admin.password):
-        access_token, access_token_expires =  await admin_token.token_password(user.password)
-        cont = {
-            'status':True,
-            "access_token": access_token,
-            "access_token_expires": access_token_expires,
-            }
-        json_compatible_item_data = jsonable_encoder(cont)
-        return JSONResponse(
-        status_code=200,
-        content=json_compatible_item_data
-        )
-    else:
-        cont = {
-            'status':False,
-            "detail": " Неверный логин или пароль",
-        }
-        json_compatible_item_data = jsonable_encoder(cont)
-        return JSONResponse(
-        status_code=400,
-        content=json_compatible_item_data
-        )
+    print(verify_password(user.password, admin.password))
+    # if verify_password(user.password, admin.password):
+    #     access_token, access_token_expires =  await admin_token.token_password(user.password)
+    #     cont = {
+    #         'status':True,
+    #         "access_token": access_token,
+    #         "access_token_expires": access_token_expires,
+    #         }
+    #     json_compatible_item_data = jsonable_encoder(cont)
+    #     return JSONResponse(
+    #     status_code=200,
+    #     content=json_compatible_item_data
+    #     )
+    # else:
+    #     cont = {
+    #         'status':False,
+    #         "detail": " Неверный логин или пароль",
+    #     }
+    #     json_compatible_item_data = jsonable_encoder(cont)
+    #     return JSONResponse(
+    #     status_code=400,
+    #     content=json_compatible_item_data
+    #     )
 
 
 @couriers_router.get('/')
