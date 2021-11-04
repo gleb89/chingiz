@@ -15,7 +15,7 @@
       
       <v-dialog v-model="dialog_send" persistent max-width="600px">
         <template v-slot:activator="{ on, attrs }">
-          <div v-if="admin_data.present_change" style="width: 100%; padding: 1rem">
+          <div v-if="admin_data.akcia_change" style="width: 100%; padding: 1rem">
             <v-btn
               v-bind="attrs"
               v-on="on"
@@ -179,10 +179,10 @@
 
         <!-- изменить удалить -->
         <template v-slot:item.actions="{ item }">
-          <v-icon small class="mr-2" @click="editItem(item)">
+          <v-icon v-if="admin_data.akcia_change" small class="mr-2" @click="editItem(item)">
             mdi-pencil
           </v-icon>
-          <v-icon  small @click="deleteItem(item)"> mdi-delete </v-icon>
+          <v-icon v-if="admin_data.akcia_delete"  small @click="deleteItem(item)"> mdi-delete </v-icon>
         </template>
  
       </v-data-table>

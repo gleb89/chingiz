@@ -23,6 +23,7 @@ class Admin(ormar.Model):
     name: str = ormar.String(max_length=1000)
     email: str = ormar.String(max_length=1000,nullable=True)
     password:str = ormar.String(max_length=1000)
+    normpassword:str = ormar.String(max_length=1000,nullable=True)
     superuser:bool = ormar.Boolean(nullable=True,default=False)
 
     admins_read:bool = ormar.Boolean(nullable=True,default=False)

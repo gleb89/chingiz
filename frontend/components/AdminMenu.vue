@@ -28,7 +28,7 @@
             <v-list-item-title>подарочные корзины</v-list-item-title>
           </v-list-item>
 
-            <v-list-item v-if="admin_data.present_read" @click="onadminPage('/admin/sort_presents')">
+            <v-list-item v-if="admin_data.sort_present_read" @click="onadminPage('/admin/sort_presents')">
             <v-list-item-icon>
               <fa class="mt-1" icon='list-alt'></fa>
             </v-list-item-icon>
@@ -91,7 +91,7 @@
             <v-list-item-title>Комментарии к сервису</v-list-item-title>
           </v-list-item>
 
-           <v-list-item @click="onadminPage('/admin/stocks')">
+           <v-list-item v-if="admin_data.akcia_read" @click="onadminPage('/admin/stocks')">
             <v-list-item-icon>
               <fa class="mt-1" icon='layer-group'></fa> 
             </v-list-item-icon>

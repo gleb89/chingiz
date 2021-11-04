@@ -57,6 +57,7 @@ class Couriers(ormar.Model):
     id: int = ormar.Integer(primary_key=True)
     name: str = ormar.String(max_length=100,nullable=True, null=True)
     password:str = ormar.String(max_length=1000,nullable=True, null=True)
+    norm_password:str = ormar.String(max_length=1000,nullable=True, null=True)
     email:str = ormar.String(max_length=100,nullable=True, null=True)
     adress_propiski:str = ormar.String(max_length=1000)
     adress_prozjivania:str = ormar.String(max_length=1000)
@@ -66,11 +67,11 @@ class Couriers(ormar.Model):
         Orders,  related_name="self_zakaz",nullable=True
     )
 
-    @validator('password')
-    def hash_password(cls, pw: str) -> str:
-        if is_hash(pw):
-            return pw
-        return hash_password(pw)
+    # @validator('password')
+    # def hash_password(cls, pw: str) -> str:
+    #     if is_hash(pw):
+    #         return pw
+    #     return hash_password(pw)
 
     class Config:
         orm_mode = True

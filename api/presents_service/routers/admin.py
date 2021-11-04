@@ -86,6 +86,7 @@ async def update_one(
     comments_read:bool = Form(None),
     podpiska_read:bool = Form(None),
     courer_read:bool = Form(None),
+    akcia_read:bool = Form(None),
 
     courer_change:bool = Form(None),
     history_basket_change:bool = Form(None),
@@ -94,6 +95,16 @@ async def update_one(
     users_change:bool = Form(None),
     comments_change:bool = Form(None),
     podpiska_change:bool = Form(None),
+    akcia_change:bool = Form(None),
+
+    courer_delete:bool = Form(None),
+    history_basket_delete:bool = Form(None),
+    present_delete:bool = Form(None),
+    filters_present_delete:bool = Form(None),
+    users_delete:bool = Form(None),
+    comments_delete:bool = Form(None),
+    podpiska_delete:bool = Form(None),
+    akcia_delete:bool = Form(None),
 ):
     user = await Admin.objects.get_or_none(id = id)
     if history_basket_read != None:
@@ -118,6 +129,11 @@ async def update_one(
     if courer_read != None:
         await user.update(courer_read = courer_read)
 
+    if akcia_read!= None:
+        await user.update(akcia_read = akcia_read)
+
+
+
     if courer_change != None:
         await user.update(courer_change = courer_change)
 
@@ -140,11 +156,43 @@ async def update_one(
     if podpiska_change != None:
         await user.update(podpiska_change = podpiska_change)
 
+    if akcia_change != None:
+        await user.update(akcia_change = akcia_change)
+
+
+    if courer_delete != None:
+        await user.update(courer_delete = courer_delete)
+
+    if history_basket_delete != None:
+        await user.update(history_basket_delete = history_basket_delete)
+
+    if present_delete != None:
+        await user.update(present_delete = present_delete)
+
+    if filters_present_delete != None:
+        await user.update(filters_present_delete = filters_present_delete)
+
+    if users_delete != None:
+        await user.update(users_delete = users_delete)
+        
+    if comments_delete != None:
+        
+        await user.update(comments_delete = comments_delete)
+
+    if podpiska_delete != None:
+        await user.update(podpiska_delete = podpiska_delete)
+
+    if akcia_delete != None:
+        await user.update(akcia_delete = akcia_delete)
+
     return await Admin.objects.all()
 
 
 @admin_router.put('/password/{id}')
 async def update_password(id:int,password:str = Form(...)):
     user = await Admin.objects.get_or_none(id = id)
-    return await user.update(password = password)
+    return await user.update(
+        password = password,
+        normpassword = password,
+        )
     

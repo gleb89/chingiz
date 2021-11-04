@@ -534,7 +534,7 @@
         <v-icon
           color="red"
           style="font-size:1.5em"
-          v-if="admin_data.present_change"
+          v-if="admin_data.present_delete"
           small
           @click="deleteItem(item)"
         >

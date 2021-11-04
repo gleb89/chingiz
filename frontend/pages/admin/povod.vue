@@ -154,7 +154,7 @@
           </td>
           <td>
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon v-if="admin_data.filters_present_delete" small @click="deleteItem(item)"> mdi-delete </v-icon>
           </td>
         </tr>
       </tbody>

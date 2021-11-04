@@ -76,7 +76,7 @@
         <v-icon
           color="red"
           style="font-size:1.5em;cursor:pointer"
-          v-if="admin_data.present_change"
+          v-if="admin_data.courer_delete"
           small
           @click="deleteItem(item,index)"
         >
@@ -109,6 +109,7 @@ computed: {
         { text: " id курьера", value: "id" },
         { text: "Имя", value: "name" },
         { text: "email", value: "email" },
+        { text: "пароль", value: "norm_password" },
         { text: "телефон", value: "phone_courier" },
         { text: "Тел.бл.родственника", value: "phone_family_people" },
         { text: "адр.прописки", value: "adress_propiski" },
@@ -146,6 +147,7 @@ computed: {
       let data = {
         name: this.name,
         password: this.password,
+        norm_password:this.password,
         email: this.email,
         adress_propiski: this.adress_propiski,
         adress_prozjivania: this.adress_prozjivania,

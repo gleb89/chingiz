@@ -252,7 +252,7 @@
           </td>
           <td>
         <v-icon v-if="admin_data.filters_present_change" small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
-        <v-icon v-if="admin_data.filters_present_change" small @click="deleteItem(item)"> mdi-delete </v-icon>
+        <v-icon v-if="admin_data.filters_present_delete" small @click="deleteItem(item)"> mdi-delete </v-icon>
                     <td>
         <v-btn
         @click="openSupcategory(item)"
@@ -302,7 +302,7 @@
                 </v-chip>
              </div>
                <div class="text-center">
-              <v-icon @click="deleteSub(item,i,index)" style="font-size:1.2em;color:red;cursor:pointer" v-if="admin_data.filters_present_change" small > mdi-delete </v-icon>
+              <v-icon @click="deleteSub(item,i,index)" style="font-size:1.2em;color:red;cursor:pointer" v-if="admin_data.filters_present_delete" small > mdi-delete </v-icon>
              </div>
              
             </div>
