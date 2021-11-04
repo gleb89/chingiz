@@ -348,7 +348,7 @@ def send_me_html(oplata_data):
     rows_present = ""
     for present in oplata_data.history:
         # image = present['image_precent']
-        image = 'https://giftcity.kz/api/v1/present/static/images/2021-11-0118:21:20.938081.webp'
+        image = 'v1/present/static/images/2021-11-0118:21:20.938081.webp'
         articul = present['id']
         name = present['name_precent']
         count = present['count']
@@ -506,7 +506,7 @@ def get_html(oplata_data):
     rows_present = ""
     for present in oplata_data.history:
         # image = present['image_precent']
-        image = 'https://giftcity.kz/api/v1/present/static/images/2021-11-0118:21:20.938081.webp'
+        image = 'v1/present/static/images/2021-11-0118:21:20.938081.webp'
         articul = present['id']
         name = present['name_precent']
         count = present['count']
