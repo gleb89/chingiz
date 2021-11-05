@@ -27,7 +27,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/style/index.css'
+    '@/style/index.css',
+    '~/assets/fonts.css',
   ],
   
   pwa: {
