@@ -29,6 +29,7 @@ export default {
   css: [
     '@/style/index.css',
     '~/assets/fonts.css',
+    "@mdi/font/css/materialdesignicons.css"
   ],
   
   pwa: {
@@ -84,6 +85,7 @@ export default {
     // '@nuxtjs/recaptcha',
 
   ],
+
   // sitemap: {
   //   generate: true,
   //   hostname: 'https://giftcity.kz',
@@ -119,6 +121,7 @@ export default {
       brands:true
     },
   },
+
   axios: {
  
     },
