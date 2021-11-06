@@ -167,8 +167,8 @@ async def get_all_catalog():
             'presentsubcategories'
             ]).order_by("sort_id_catalog").all()
 
-            # await redis.set('presents_list',json.dumps(presents,default=jsonable_encoder) ,ex=360)
-            # await redis.close()
+        await redis.set('presents_list',json.dumps(presents,default=jsonable_encoder) ,ex=360)
+        await redis.close()
         return presents
 
 
