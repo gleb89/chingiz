@@ -142,33 +142,33 @@ async def get_all_admin():
 
 @precent_router.get('/catalog')
 async def get_all_catalog():
-    # redis = await aioredis.Redis.from_url("redis://redis", max_connections=10, decode_responses=True)
-    # cache = await redis.get('presents_list')
+    redis = await aioredis.Redis.from_url("redis://redis", max_connections=10, decode_responses=True)
+    cache = await redis.get('presents_list')
 
-    # if cache :
-    #     return json.loads(cache)
-    # else:
+    if cache :
+        return json.loads(cache)
+    else:
       
-    presents = await Present.objects.prefetch_related(
-        [
-        "category",
-        "form_precent",
-        "subcategory",
-        "type_precent",
-        "reason_for_precent"
-        ]
-        ).exclude_fields(
-        [
-        'presentformpresent',
-        'presenttypepresent',
-        'presentcategories',
-        'presentreason',
-        'presentsubcategories'
-        ]).order_by("sort_id_catalog").all()
+        presents = await Present.objects.prefetch_related(
+            [
+            "category",
+            "form_precent",
+            "subcategory",
+            "type_precent",
+            "reason_for_precent"
+            ]
+            ).exclude_fields(
+            [
+            'presentformpresent',
+            'presenttypepresent',
+            'presentcategories',
+            'presentreason',
+            'presentsubcategories'
+            ]).order_by("sort_id_catalog").all()
 
-        # await redis.set('presents_list',json.dumps(presents,default=jsonable_encoder) ,ex=360)
-        # await redis.close()
-    return presents
+            # await redis.set('presents_list',json.dumps(presents,default=jsonable_encoder) ,ex=360)
+            # await redis.close()
+        return presents
 
 
 @precent_router .get('/{id}')
