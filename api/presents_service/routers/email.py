@@ -450,7 +450,7 @@ def get_html(oplata_data):
                 <p class="detail">Детали вашего заказа :</p>
                 {rows_present}
                 <p >Сумма итого: <span style="font-weight: 600;"> {summa} тг </span></p>
-                <p style="font-size:1em"> Счет для оплаты: <span style="font-weight: 600;">  89493000029377589</span></p>
+                <p style="font-size:1em"> Счет для оплаты: <span style="font-weight: 600;"></span></p>
                  <p style="font-size:1em">Дата доставки:  <span style="font-weight: 600;"> {date}</span></p>
                 <p style="font-size:1em">Адрес доставки:<span style="font-weight: 600;">  {adress_user}</span></p>
             </div>
