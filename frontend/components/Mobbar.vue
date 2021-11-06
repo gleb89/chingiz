@@ -34,7 +34,7 @@
             class=""
             style="height: max-content;"
           >
-        <div style="margin-right: 7px;margin-top: .65rem;">
+        <div style="margin-right: 7px;margin-top: 0.32rem;">
         <img width="26" height="26"  style="width: 1.5rem;" src="/login.svg" alt="" />
         <p style="color:white">
           кабинет
