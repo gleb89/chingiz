@@ -113,7 +113,9 @@ export default {
     ]
   },
 
-  
+    gtm: {
+    id: 'GTM-5FQRDZB'
+   },
   fontawesome:{
     component:'fa',
     icons:{
