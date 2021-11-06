@@ -563,7 +563,7 @@ mounted: function () {
           this.$router.push('/cabinet/oplata/presend')
         }
         if(this.oplata_methods === 'Оплатить картой Visa / Master Card'){
-          this.$router.push('/cabinet/oplata')
+          this.$router.push('/cabinet/oplata/presend')
         }
         
         
