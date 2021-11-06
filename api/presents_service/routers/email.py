@@ -17,10 +17,6 @@ from config.config_cls import settings
 from logics.emailfile import file_add
 
 
-
-
-
-
 app = APIRouter(
     prefix="/api/v1/present/email",
     tags=["Email"],
