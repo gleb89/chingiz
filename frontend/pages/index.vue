@@ -487,7 +487,7 @@ export default {
       let new_array = this.$store.getters["products/products"].filter((elem) => {
             return elem.category[0].id === 2;
           }).slice(-18)
-        return new_array.sort(function(a, b) { return b.id - a.id; });
+        return new_array.sort(function(a, b) { return b.id - a.id; }).slice(0,18)
     },
     popular_product(){
       let new_array = this.$store.getters["products/products"].filter((elem) => {
@@ -498,7 +498,7 @@ export default {
         }
             
           })
-        return new_array.sort(function(a, b) { return b.popular - a.popular; })
+        return new_array.sort(function(a, b) { return b.popular - a.popular; }).slice(0,18)
         
     },
     computedDateFormatted() {
@@ -632,7 +632,10 @@ h1 {
   h1 {
     font-size: 2rem;
   }
+#header__content {
+  background-image: url("/header.webp");
 
+}
   .head-sect {
     margin-top: 1rem;
     margin-bottom: 1rem;
