@@ -146,9 +146,10 @@ async def get_all_catalog():
     cache = await redis.get('presents_list')
 
     if cache :
+        print(4)
         return json.loads(cache)
     else:
-      
+        print(5)
         presents = await Present.objects.prefetch_related(
             [
             "category",
