@@ -9,7 +9,7 @@
         <img  width="23" height="12"  fluid src="/mobapp.png">
       </v-btn>
 
-      <v-toolbar-title><img style="width: 8em;margin-top: .3em;" @click="onHome" src="/giftcity.svg"></v-toolbar-title>
+      <v-toolbar-title><img width="50" height="50" style="width: 8em;margin-top: .3em;" @click="onHome" src="/giftcity.svg"></v-toolbar-title>
 
       <v-spacer></v-spacer>
 
