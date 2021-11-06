@@ -31,6 +31,7 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/style/index.css',
+    '@mdi/font/css/materialdesignicons.min.css'
   ],
   
   pwa: {
@@ -70,7 +71,7 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify',
+    ['@nuxtjs/vuetify', { iconfont: 'mdi' }]
     
   ],
 
@@ -82,11 +83,17 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
-
+    'nuxt-webfontloader',
     
     // '@nuxtjs/recaptcha',
 
   ],
+
+  webfontloader: {
+    google: {
+      families: ['Roboto:100,300,400,500,700,900&display=swap'] //Loads Lato font with weights 400 and 700
+    }
+  },
 
   // sitemap: {
   //   generate: true,
@@ -155,7 +162,8 @@ export default {
           success: colors.green.accent3
         }
       }
-    }
+    },
+    defaultAssets:false
   },
 
 
