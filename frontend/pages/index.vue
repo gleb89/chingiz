@@ -274,7 +274,7 @@
                 каждый день
               </p>
             </div>
-            <img width="560" height="auto" style="max-width: 100%;"  src="new2.png" />
+            <img width="560" height="auto" style="max-width: 100%;"  src="new2-min.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
