@@ -10,5 +10,3 @@ export default () => {
     gtag('js', new Date());
     gtag('config', 'AW-836709512');
   };
-
-  AW-836709512
