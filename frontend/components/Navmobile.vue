@@ -87,13 +87,13 @@
             <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
           <hr style="border: none;color: #ffa5008c;background-color: #ffa5008c;height: 2px;">
-                     <div >
+                     <!-- <div >
                 <span style="margin-left:1rem;font-size:1rem;width:100%">Мы в мессенджерах:</span>
                 <div style="width:100%">
              
              </div>
-              </div>
-            <v-list-item  @click="closeMenu"> 
+              </div> -->
+            <!-- <v-list-item  @click="closeMenu"> 
    
               
               <v-list-item-icon>
@@ -109,7 +109,7 @@
               </v-list-item-icon>
               <v-list-item-title>WhatsApp</v-list-item-title> 
                <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
-          </v-list-item>
+          </v-list-item> -->
         </v-list-item-group>
     </nav>
     </div>
