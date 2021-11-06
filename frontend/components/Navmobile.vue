@@ -22,7 +22,13 @@
       </v-btn>
 
       <v-btn icon > 
-        <img width="23" height="auto" fluid src="/whatsapp.svg">
+               <a style=" text-decoration: none;color:black ;    display: flex;
+    align-items: center;" href="https://wa.me/77071015157/" target="blank">
+                
+               <img width="23" height="auto" fluid src="/whatsapp.svg">
+                   
+                    </a>
+       
  
       </v-btn>
     </v-app-bar>

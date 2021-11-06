@@ -49,7 +49,13 @@
             </a
           >
       <img style="margin-left:.7rem;width:23px" src="/telegram.svg" alt="" />
-      <img style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
+       <a style=" text-decoration: none;color:black ;    display: flex;
+    align-items: center;" href="https://wa.me/77071015157/" target="blank">
+                
+              <img style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
+                   
+                    </a>
+      
     </v-col>
       <v-col v-if="!userauth"  class="d-flex flex-nowrap justify-center nav-li" style="margin-left: .7em;">
     

@@ -189,7 +189,7 @@
           >
           </v-col>
 
-          <v-col cols="12" md="6" lg="3" class="box-phone">
+          <!-- <v-col cols="12" md="6" lg="3" class="box-phone">
             <img style="height: 14px; width: 20px" src="/vk.png" />
             <img
               style="height: 14px; width: 14px; margin-left: 3px"
@@ -199,7 +199,7 @@
               style="height: 16; width: 14px; margin-top: 3px; margin-left: 3px"
               src="/insta.png"
             />
-          </v-col>
+          </v-col> -->
         </v-row>
       </v-container>
       <div

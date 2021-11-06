@@ -52,14 +52,26 @@
               <div class="ml-3">
                 <span style="color:#B2B2B2">мы в мессенджерах</span>
                 <div class="d-flex">
-                  <div class="d-flex ">
+                  <div class="d-flex " style="cursor:pointer">
                     <span>Telegram</span>
+                 
+                                                       <a style=" text-decoration: none;color:black ;    display: flex;
+    align-items: center;" href="#" target="blank">
+                
+              
+                     
                     <img src="/ts.png" alt="">
+                    </a>
                     
                   </div>
                    <div class="d-flex ml-3">
+                                   <a style=" text-decoration: none;color:black ;    display: flex;
+    align-items: center;" href="https://wa.me/77071015157/" target="blank">
+                
+              
                      <span>WhatsApp</span>
                     <img src="/ws.png" alt="">
+                    </a>
                   </div>
                 </div>
               </div>
