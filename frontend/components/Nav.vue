@@ -42,9 +42,9 @@
     </v-col>
 
    <v-col  class="d-flex justify-center nav-li" style="margin-left: 1em;">
-       <a  href="tel:+77200000000" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
+       <a  href="tel:+77071015157" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
             >
-            <span class="d-xl-block d-lg-none" style="color: #676767;">+7(727) 000 00 00</span>
+            <span class="d-xl-block d-lg-none" style="color: #676767;">+7 (707) 101 51 57</span>
             <img class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
             </a
           >

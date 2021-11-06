@@ -23,6 +23,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    
     ],
 
   },
@@ -61,6 +62,7 @@ export default {
   },
   plugins: ['~/plugins/firebase.js',
   '~/plugins/v-mask.js',
+  '~/plugins/google-analytics.client.js' ,
   { src: '~/plugins/pwa-update.js', mode: 'client' }
 ],
   components: true,
