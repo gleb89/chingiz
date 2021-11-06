@@ -16,6 +16,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
       { hid: 'keywords', name: 'keywords', content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'},
       {property: "og:image", content :"/logo.png"},
+      {name:"google-site-verification" ,content:"C8Sgw6TMMzyU5mGjZaTWmhl54YP1VHAbn-dwnPGo9qU" },
       { name: 'format-detection', content: 'telephone=no' },
       {name:"mailru-domain" ,content:"H4AMvCUJss9mZlhr"} 
     ],
