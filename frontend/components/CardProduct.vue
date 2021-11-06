@@ -10,6 +10,7 @@
       ></div>
       <div style="width:100%;text-align: center;text-align: -webkit-center;">
           <v-img
+          width="256" height="300"
           style="width:256px;height:auto"
           
         :src="present.image_precent"
@@ -41,7 +42,7 @@
 
       <v-card-actions class="d-flex justify-center" style="text-align: center;">
         <div style="min-width: 40%;">
-          <img v-if="reveal" src="/checbasket.png" alt="" />
+          <img  v-if="reveal" src="/checbasket.png" alt="" />
           <span style="font-weight: bold;font-size: 1.3rem;"
             >{{ present.price.toLocaleString() }} тг</span
           >
@@ -55,6 +56,7 @@
             ><span v-if="reveal">добавлено</span>
             <span v-if="!reveal">купить</span>
             <img
+            width="24" height="20"
               style="width: 1.5rem;cursor:pointer"
               src="/shopcart.png"
               alt=""

@@ -247,7 +247,7 @@
       </v-container>
     </section>
 
-    <section id="preimyshestva" class="e" style="">
+    <section v-if="prem" id="preimyshestva" class="e" style="">
       <v-container>
         <h2 class="head-sect">
           НАШИ ПРЕИМУЩЕСТВА
@@ -262,7 +262,7 @@
                 ассортимент
               </p>
             </div>
-            <img width="560" height="auto" style="max-width: 100%;" src="one.webp" />
+            <img width="560"  height="auto" style="max-width: 100%;" src="one.webp" />
           </div>
           <div style="padding: 1rem; position: relative">
             <div class="boxpreim">
@@ -300,7 +300,7 @@
         </div>
       </v-container>
     </section>
-    <section  id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
+    <section v-if="prem"  id="whywork" style="margin-bottom: 4rem;background:#F4F5F6">
       <v-container>
         <h2 class="head-sect">
           ОТЗЫВЫ
@@ -333,7 +333,7 @@
         </div>
       </v-container>
     </section>
-    <section id="bonus-opros">
+    <section v-if="prem" id="bonus-opros">
       <v-container class="box-opros">
         <div style="padding: 2rem; padding-top: 4rem">
           <h2 style="color: #ff7a00; font-size: 2.7rem">Бонусы за опрос!</h2>
@@ -441,44 +441,13 @@ export default {
       await store.dispatch("products/fetch");
     }
   },
+  mounted() {
+    setTimeout(() => {
+      this.prem = true
+    }, 4000);
+  },
+  
   computed: {
-    // onAnimation(){
-    //   if(!process.client) return;
-    //   setTimeout(() => {
-        
-     
-    //   var newsectionpresents = new IntersectionObserver(function (entries) {
-    //         if (entries[0].intersectionRatio <= 0) return;
-    //         var menu = document.querySelector(".newsection-container");
-    //         menu.classList.add("newsection2");
-    //       });
-
-    //   var newsectionpresents2 = new IntersectionObserver(function (entries) {
-    //   if (entries[0].intersectionRatio <= 0) return;
-    //   var menu = document.querySelector(".newsection-container2");
-    //   menu.classList.add("newsection2");
-    // });
-
-    //   var newsectionpresents3 = new IntersectionObserver(function (entries) {
-    //   if (entries[0].intersectionRatio <= 0) return;
-    //   var menu = document.querySelector(".newsection-container3");
-    //   menu.classList.add("newsection2");
-    //   setTimeout(() => {
-    //   var menu2 = document.querySelector(".newsection-container4");
-    //   menu2.classList.add("newsection2");
-    //   }, 1000);
-
-    //   setTimeout(() => {
-    //   var menu3 = document.querySelector(".newsection-container5");
-    //   menu3.classList.add("newsection2");
-    //   }, 1000);
-    // });
-
-    //   newsectionpresents.observe(document.querySelector(".newsection"));
-    //   newsectionpresents2.observe(document.querySelector(".newsection22"));
-    //   newsectionpresents3.observe(document.querySelector(".newsection3"));
-    //    }, 1000);
-    // },
     listproducts() {
       this.presents = this.$store.getters["products/products"];
       return this.presents;
@@ -517,6 +486,7 @@ export default {
     dateFormatted: "",
     presents: [],
     menu1: false,
+    prem:false,
     isIntersecting: false,
     menu2: false,
     dialog: false,

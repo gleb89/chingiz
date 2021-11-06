@@ -16,7 +16,7 @@
       <v-btn icon>
                <a  href="tel:+77071015157" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
             >
-            <img  style="width:23px" fluid src="/Telephone.png">
+            <img width="23" height="23"  style="width:23px" fluid src="/Telephone.png">
             </a
           >
       </v-btn>
@@ -25,7 +25,7 @@
                <a style=" text-decoration: none;color:black ;    display: flex;
     align-items: center;" href="https://wa.me/77071015157/" target="blank">
                 
-               <img width="23" height="auto" fluid src="/whatsapp.svg">
+               <img width="23" height="23"  fluid src="/whatsapp.svg">
                    
                     </a>
        

@@ -123,7 +123,7 @@
       <v-btn icon style="position: relative;" @click="onBasket">
     
         <span style="color: #ff7a00;" >{{basket.summ_present.toLocaleString()}} тг</span>
-        <img src="/baskbtn.png" alt="">
+        <img width="26" height="26" src="/baskbtn.png" alt="">
       </v-btn>
 
           <v-dialog

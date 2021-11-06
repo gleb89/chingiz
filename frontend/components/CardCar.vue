@@ -10,6 +10,7 @@
       ></div>
       <div style="width:100%;text-align: center;text-align: -webkit-center;">
           <img
+          width="256" height="300"
           style="width:256px;height:auto" 
         :src="present.image_precent"
         :alt="present.name_precent"
@@ -51,6 +52,7 @@
             ><span v-if="reveal">добавлено</span>
             <span v-if="!reveal">купить</span>
             <img
+             width="24" height="20"
               style="width: 1.5rem;cursor:pointer"
               src="/shopcart.png"
               alt=""

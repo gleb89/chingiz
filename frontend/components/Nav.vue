@@ -8,7 +8,7 @@
     <v-col class="mr-lg-8" lg="2" md="1" xl="3" style="text-align: start;">
       <img
       @click="onHome()"
-      width="200" height="auto"
+      width="200" height="80"
         style="cursor:pointer;"
         src="/giftcity.svg"
       >
@@ -16,7 +16,7 @@
 
    <v-col class="d-flex justify-center nav-li">
       <div style="margin-right: 7px">
-        <img src="/menu.png" alt="" />
+        <img  width="14" height="12" src="/menu.png" alt="" />
       </div>
       <div @click="onPage('catalog/Все_продукты')">
         <span class="text-nav">КАТАЛОГ</span>
@@ -38,21 +38,21 @@
    </v-col>
    <v-col @click="onCatalog"  class="d-flex justify-center nav-li" style="margin-left: .7em;">
     
-      <img style="width: 1.5rem;" src="/search.svg" alt="" />
+      <img width="32" height="32" style="width: 1.5rem;" src="/search.svg" alt="" />
     </v-col>
 
    <v-col  class="d-flex justify-center nav-li" style="margin-left: 1em;">
        <a  href="tel:+77071015157" style="font-weight: bold;color: #676767;text-decoration: none; color: black"
             >
             <span class="d-xl-block d-lg-none" style="color: #676767;">+7 (707) 101 51 57</span>
-            <img class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
+            <img width="23" height="23" class="d-xl-none d-lg-block" style="width:23px" fluid src="/Telephone.png">
             </a
           >
-      <img style="margin-left:.7rem;width:23px" src="/telegram.svg" alt="" />
+      <img width="23" height="23" style="margin-left:.7rem;width:23px" src="/telegram.svg" alt="" />
        <a style=" text-decoration: none;color:black ;    display: flex;
     align-items: center;" href="https://wa.me/77071015157/" target="blank">
                 
-              <img style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
+              <img width="23" height="23" style="margin-left:.7rem;width:23px" src="/whatsapp.svg" alt="" />
                    
                     </a>
       
@@ -82,7 +82,7 @@
             style="height: max-content;"
           >
         <div style="margin-right: 7px">
-        <img src="/login.svg" alt="" />
+        <img width="24" height="24"  src="/login.svg" alt="" />
       </div>
           </v-btn>
         </template>
@@ -103,7 +103,7 @@
 <v-col style="min-width: 2em;" @click="onBasket('basket/'+$store.state.localStorage.basket.id_basket)"  class="d-flex flex-nowrap justify-center nav-li">
    
       <div style="margin-right: 7px">
-        <img src="/bascket.svg" alt="" />
+        <img width="24" height="24" src="/bascket.svg" alt="" />
       </div>
       <div>
         <span class="text-nav">{{basket.summ_present.toLocaleString()}} тг</span>
