@@ -94,7 +94,14 @@ export default {
       families: ['Roboto:100,300,400,500,700,900&display=swap'] //Loads Lato font with weights 400 and 700
     }
   },
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file, type) => {
+        return ['script', 'style', 'font'].includes(type)
+      }
+    }
 
+  },
   // sitemap: {
   //   generate: true,
   //   hostname: 'https://giftcity.kz',
