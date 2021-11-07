@@ -2,6 +2,65 @@
   <div>
     <v-row justify="center" style="margin-top:1rem">
     </v-row>
+    <v-container style="padding:1em">
+    <v-row justify="center" style="margin-top:2rem">
+ <v-col
+         @click="
+          onfilterslugmob(
+            'all_presents',
+          )
+        "
+        class="box-cat rounded-lg text-center"
+        
+      >
+        <img style="height: 30px;width: auto;" src="/g1.png" alt="" />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          Все категории
+        </p>
+      </v-col> 
+                  <v-alert
+              v-model="alertcat"
+              style="position: fixed;z-index: 2;width: 90%;"
+              color="orange"
+              elevation="13"
+              type="success"
+              >Фильтр применен!</v-alert
+            >
+        <v-col
+        class="box-cat rounded-lg text-center"
+        @click="
+          onfilterslugmob(
+            category.slug_category,
+            category.id,
+            category.name_category
+          )
+        "
+        v-for="category in categories"
+        :key="category.id"
+      >
+        <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ category.name_category }}
+        </p>
+      </v-col> 
+
+      <v-col
+      class="box-cat rounded-lg text-center"
+        v-for="reason in reason_present"
+        :key="'A' + reason.id"
+        @click="onReasonmob(reason.id, reason.name_reason)"
+      >
+        <img
+          style="max-height: 30px;max-width: 30px;"
+          :src="reason.icon"
+          alt=""
+        />
+        <p class="text-center" style="font-size: .9rem;font-weight: bold;">
+          {{ reason.name_reason }}
+        </p>
+      </v-col>
+</v-row>
+</v-container>
     <v-row justify="center">
       
       {{selected_list}}
@@ -198,7 +257,7 @@
           </div>
         </v-card>
       </v-dialog>
-    <div style="width:100%;text-align: left;   padding-left: 1em;
+    <!-- <div style="width:100%;text-align: left;   padding-left: 1em;
     padding-top: .5em;">
     <v-btn
        style="background: #fb8c00;;color: white;"
@@ -212,7 +271,7 @@
           
         </v-btn>
 
-            </div>
+            </div> -->
     </v-row>
   </div>
 </template>
@@ -245,6 +304,7 @@ export default {
       dialog: false,
       dialogcategory:false,
       selected_list1: [],
+      alertcat:false,
       maxp: null,
       minp: null,
       form_id: null,
@@ -262,10 +322,20 @@ export default {
   methods: {
   onfilterslugmob(slug_category,id,name_category){
     this.onfilterslug(slug_category,id,name_category)
+    this.alertcat = true
+    setTimeout(() => {
+      this.alertcat =false
+    }, 1000);
+    this.$vuetify.goTo(750)
     this.dialogcategory = false
   },
   onReasonmob(id, name_reason){
     this.onReason(id, name_reason)
+        this.alertcat = true
+    setTimeout(() => {
+      this.alertcat =false
+    }, 1000);
+    this.$vuetify.goTo(750)
     this.dialogcategory = false
   },
     onalert() {
