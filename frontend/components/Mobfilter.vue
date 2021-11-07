@@ -35,7 +35,7 @@
             category.name_category
           )
         "
-        v-for="category in categories.slice(0,5)"
+        v-for="category in categories.slice(0,4)"
         :key="category.id"
       >
         <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
