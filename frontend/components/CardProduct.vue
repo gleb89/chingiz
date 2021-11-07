@@ -10,14 +10,27 @@
       ></div>
       <div style="width:100%;text-align: center;text-align: -webkit-center;">
           <v-img
-          width="256" height="300"
-          style="width:256px;height:auto"
+          width="230" height="230"
+          aspect-ratio="2"
           
         :src="present.image_precent"
-        :lazy-src="present.image_precent"
+        lazy-src="/giftcity.svg"
+       
        
        
       >
+             <template v-slot:placeholder>
+        <v-row
+          class="fill-height ma-0"
+          align="center"
+          justify="center"
+        >
+          <v-progress-circular
+            indeterminate
+            color="grey lighten-5"
+          ></v-progress-circular>
+        </v-row>
+      </template>
       </v-img>
       </div>
       <div v-if="hover" style="left: 0;" class="text-center onhov">

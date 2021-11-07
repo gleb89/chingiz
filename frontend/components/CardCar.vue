@@ -9,12 +9,29 @@
         @click="onPageProduct(present.id, present.category[0].slug_category)"
       ></div>
       <div style="width:100%;text-align: center;text-align: -webkit-center;">
-          <img
-          width="256" height="300"
-          style="width:256px;height:auto" 
+          <v-img
+          width="260" height="260"
+          aspect-ratio="2"
+          
         :src="present.image_precent"
-        :alt="present.name_precent"
+        lazy-src="/giftcity.svg"
+       
+       
+       
       >
+             <template v-slot:placeholder>
+        <v-row
+          class="fill-height ma-0"
+          align="center"
+          justify="center"
+        >
+          <v-progress-circular
+            indeterminate
+            color="grey lighten-5"
+          ></v-progress-circular>
+        </v-row>
+      </template>
+      </v-img>
       </div>
       <div v-if="hover" class="text-center onhov">
         <v-btn
