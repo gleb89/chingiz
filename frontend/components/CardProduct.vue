@@ -14,7 +14,7 @@
           aspect-ratio="2"
           
         :src="present.image_precent"
-        lazy-src="/giftcity.svg"
+        :lazy-src="present.image_precent"
        
        
        
