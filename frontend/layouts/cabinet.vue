@@ -26,7 +26,7 @@
             <v-list-item-title>Главная</v-list-item-title>
           </v-list-item>
 
-          <v-list-item @click="onPage('/catalog/Все_продукты')">
+          <v-list-item @click="onPage('/catalog/all_presents')">
             <v-list-item-icon>
              <fa style="color:#FF7A00"  icon="th-list"></fa>
             </v-list-item-icon>

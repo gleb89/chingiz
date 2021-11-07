@@ -18,7 +18,7 @@
       <div style="margin-right: 7px">
         <img  width="14" height="12" src="/menu.png" alt="" />
       </div>
-      <div @click="onPage('catalog/Все_продукты')">
+      <div @click="onPage('catalog/all_presents')">
         <span class="text-nav">КАТАЛОГ</span>
       </div> 
     </v-col>
@@ -179,7 +179,7 @@ export default {
       this.$router.push('/'+url)
     },
     onCatalog(){
-      this.$router.push("/"+'catalog/Все_продукты');
+      this.$router.push("/"+'catalog/all_presents');
     },
     onsign(){
      this.dialog = true

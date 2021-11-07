@@ -540,12 +540,12 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     oncatalog() {
-      this.$router.push("/" + "catalog/Все_продукты");
+      this.$router.push("/" + "catalog/all_presents");
     },
     onsavecity_pushCatalog() {
       this.$store.commit("localStorage/set_Sity", this.city);
       this.$store.commit("localStorage/set_Date", this.date);
-      this.$router.push("/" + "catalog/Все_продукты");
+      this.$router.push("/" + "catalog/all_presents");
     },
     getEvents(event) {
       // event only has the 'current month'

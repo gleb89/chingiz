@@ -194,7 +194,7 @@ export default {
 
 
     onCatalog(){
-      this.$router.push("/"+'catalog/Все_продукты');
+      this.$router.push("/"+'catalog/all_presents');
     },
     onCabinet(){
       this.$router.push('/cabinet')

@@ -15,7 +15,7 @@
       
     </main>
     
-    <footer v-if="$route.params.name != 'Все_продукты'"  id="contact" style="background: #f6f6f6">
+    <footer v-if="$route.params.name != 'all_presents'"  id="contact" style="background: #f6f6f6">
       <Foot/>
     </footer>
     <div class="nav-mnav">
@@ -105,7 +105,7 @@ export default {
       this.$router.push('/')
     },
     onCatalog(){
-      this.$router.push("/"+'catalog/Все_продукты');
+      this.$router.push("/"+'catalog/all_presents');
     },
     drawerclick() {
       this.drawer = !this.drawer

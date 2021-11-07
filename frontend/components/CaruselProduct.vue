@@ -16,7 +16,7 @@ export default {
   },
   methods: {
       onCatalog(){
-      this.$router.push("/"+'catalog/Все_продукты');
+      this.$router.push("/"+'catalog/all_presents');
     },
   },
 

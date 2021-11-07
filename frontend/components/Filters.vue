@@ -1,6 +1,6 @@
 <template>
   <div style="margin-top: 4rem">
-    <div @click="onfilterslug('Все_продукты',0,'')" class="box-filter">
+    <div @click="onfilterslug('all_presents',0,'')" class="box-filter">
       <img src="/fructs.png" alt="" /><span 
       :class="{ active: !filter_name }"
         >Все подарки

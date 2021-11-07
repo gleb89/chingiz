@@ -5,7 +5,7 @@
       <v-col class="bocc-filter" cols="12" lg="2">
         <div class="mobp d-none d-lg-block d-md-block" style="margin-top:6rem">
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-          <nuxt-link style="color: #303030" to="/catalog/Все_продукты"
+          <nuxt-link style="color: #303030" to="/catalog/all_presents"
             >Каталог</nuxt-link
           >
           
@@ -407,7 +407,7 @@ export default {
         
         
       
-      if(slug === 'Все_продукты'){
+      if(slug === 'all_presents'){
         
         this.products = this.$store.getters["products/products"]
         this.filter_name = ''
