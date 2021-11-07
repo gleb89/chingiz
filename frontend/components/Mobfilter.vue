@@ -24,7 +24,7 @@
               color="orange"
               elevation="13"
               type="success"
-              >Фильтр применен!</v-alert
+              >Категория выбрана!</v-alert
             >
         <v-col
         class="box-cat rounded-lg text-center"
@@ -59,6 +59,11 @@
           {{ reason.name_reason }}
         </p>
       </v-col>
+      <div @click="dialogcategory = true" style="width: 100%;
+    margin-left: 2em;margin-top:1em">
+<a style="color:black;font-weight: 500;text-decoration: underline;">Больше категорий</a>
+      </div>
+      
 </v-row>
 </v-container>
     <v-row justify="center">
@@ -273,6 +278,7 @@
 
             </div> -->
     </v-row>
+ 
   </div>
 </template>
 
