@@ -91,7 +91,7 @@ export default {
   }),
   methods: {
     onPageProduct(id, name_slug) {
-      this.$router.push(`/catalog/${name_slug}/present/${id}`);
+      this.$router.push(`/catalog/all_presents/present/${id}`);
     },
     addBasket(present_id) {
       let headers = {
