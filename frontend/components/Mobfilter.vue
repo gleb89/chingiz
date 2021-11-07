@@ -59,8 +59,8 @@
           {{ reason.name_reason }}
         </p>
       </v-col>
-      <div @click="dialogcategory = true" style="width: 100%;
-    margin-left: 2em;margin-top:1em">
+      <div @click="dialogcategory = true" style="width: 100%;text-align: center;
+    margin-top:1em">
 <a style="color:black;font-weight: 500;text-decoration: underline;">Больше категорий</a>
       </div>
       
