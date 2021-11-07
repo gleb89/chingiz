@@ -8,8 +8,6 @@
           <nuxt-link style="color: #303030" to="/catalog/all_presents"
             >Каталог</nuxt-link
           >
-          
-          
         </div>
         
         <Mobfilter 
@@ -199,23 +197,11 @@ export default {
   computed: {
 
     listproducts() {
-      
+      // if(!process.client) return;
       let self = this;
       if (this.search) {
         // this.upd_serch = [...new Set(this.search_element)]
         this.products = this.$store.getters["products/products"].filter((elem) => {
-          // if(elem.name_precent.toLowerCase().includes(
-          // this.search.toLowerCase()
-          // ) ){
-          //   this.search_element.push(elem.name_precent.toLowerCase())
-          // }
-
-          // if(elem.category[0].name_category.toLowerCase().includes(
-          //   this.search.toLowerCase()
-          // )){
-          //   this.search_element.push(elem.category[0].name_category.toLowerCase())
-          // }
-
         return elem.name_precent.toLowerCase().includes(
           this.search.toLowerCase()
           ) 
@@ -261,7 +247,7 @@ export default {
   data() {
     return {
       age: null,
-      sort_price:'сначала недорогие',
+      sort_price:'',
       ws: null,
       categories_for_sub:[],
       categories: this.$store.getters["allfilter/allfilter"].categories,

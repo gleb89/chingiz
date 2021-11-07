@@ -4,6 +4,8 @@
     </v-row>
     <v-row justify="center">
       
+      {{selected_list}}
+      
       <v-col>
         <div>
           
@@ -252,6 +254,7 @@ export default {
   },
   computed: {
     selected_list() {
+    
       this.ads_select(this.minp, this.maxp, this.form_id,this.sort_price);
     }
   },
