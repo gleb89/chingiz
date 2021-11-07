@@ -35,7 +35,7 @@
             category.name_category
           )
         "
-        v-for="category in categories"
+        v-for="category in categories.slice(0,5)"
         :key="category.id"
       >
         <img style="height: 30px;width: auto;" :src="category.icon" alt="" />
@@ -46,7 +46,7 @@
 
       <v-col
       class="box-cat rounded-lg text-center"
-        v-for="reason in reason_present"
+        v-for="reason in reason_present.slice(0,5)"
         :key="'A' + reason.id"
         @click="onReasonmob(reason.id, reason.name_reason)"
       >
