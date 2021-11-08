@@ -13,6 +13,7 @@ from models.present import Present
 from models.category import Categories
 from models.form_precent import FormPresent
 from models.reason_for_precent import Reason
+from models.counter import Counter
 from models.type_present import TypePresent
 from logics.precents import image_add
 from models.subcategories import SubCategories
@@ -170,8 +171,17 @@ async def get_all_catalog():
 
         # await redis.set('presents_list',json.dumps(presents,default=jsonable_encoder) ,ex=360)
         # await redis.close()
+    conter = await Counter.objects.get_or_none(id=1)
+    await conter.update(counter = conter.counter+1)
     return presents
 
+@precent_router.post('/counter')
+async def create_counter(coun:Counter):
+    return await coun.save()
+
+@precent_router.get('/counter')
+async def get_counter():
+    return await Counter.objects.get_or_none(id=1)
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
