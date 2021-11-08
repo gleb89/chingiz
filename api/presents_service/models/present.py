@@ -62,7 +62,7 @@ class Present(ormar.Model):
         TypePresent,nullable=True,skip_reverse=True
     )
     reason_for_precent: Optional[List[Reason]] = ormar.ManyToMany(
-        Reason,nullable=True, skip_reverse=True
+        Reason,nullable=True,related_name="self_presents"
     )
 
 

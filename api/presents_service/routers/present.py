@@ -6,6 +6,7 @@ import json
 from fastapi import APIRouter, File, UploadFile, Depends, Form
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
+from fastapi_pagination import Page, Params, paginate
 import aioredis
 
 from models.present import Present
@@ -297,7 +298,22 @@ async def update_one(
         
     return await get_one(id)
     
+@precent_router.get('/catalog/paginations',response_model=Page[Present])
+async def get_all_catalog_paginations(params: Params = Depends()):
 
+    presents = await Present.objects.all()
+    
+    return paginate(presents, params)
+
+@precent_router.get('/catalog/paginations/categories',response_model=Page[Present])
+async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
+    cat = await Categories.objects.prefetch_related(['self_present']).get(id=pk)
+    return paginate(cat.self_present, params)
+   
+@precent_router.get('/catalog/paginations/reason',response_model=Page[Present])
+async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
+    cat = await Reason.objects.prefetch_related(['self_presents']).get(id=pk)
+    return paginate(cat.self_presents, params)
 
 @precent_router.delete('/{id}')
 async def delete_one(id: int):

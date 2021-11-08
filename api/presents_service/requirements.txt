@@ -66,3 +66,4 @@ httplib2
 fastapi-mail
 Pillow
 aioredis
+fastapi-pagination
