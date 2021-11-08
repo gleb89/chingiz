@@ -187,7 +187,7 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=20`
+       `http://localhost/api/v1/present/catalog/paginations?page=1&size=20`
     );
 
     return { productsfetch: products.data};
@@ -203,7 +203,7 @@ export default {
       this.client = true
     }, 2000);
     // let self = this;
-    // this.ws = new WebSocket("wss://giftcity.kz/ws/present/search");
+    // this.ws = new WebSocket("wss://localhost/ws/present/search");
     // this.ws.onmessage = (event) => {
     //   console.log("message");
     //   self.products = JSON.parse(event.data);
@@ -403,7 +403,7 @@ export default {
       this.page = this.page +1
           console.log('page',this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reason_pk}&page=${this.page}&size=20`,{
+        .$get(`http://localhost/api/v1/present/catalog/paginations/reason?pk=${this.reason_pk}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {
@@ -425,7 +425,7 @@ export default {
           this.page = this.page +1
           console.log('page',this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations/categories?pk=${this.pk_category}&page=${this.page}&size=20`,{
+        .$get(`http://localhost/api/v1/present/catalog/paginations/categories?pk=${this.pk_category}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {
@@ -448,7 +448,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
+        .$get(`http://localhost/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
           
         })
         .then((resp) => {

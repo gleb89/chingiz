@@ -15,7 +15,7 @@
       
     </main>
     
-    <footer v-if="$route.params.name != 'all_presents'"  id="contact" style="background: #f6f6f6">
+    <footer v-if="$route.params.name != 'all_presents' && $route.path != '/catalog'"  id="contact" style="background: #f6f6f6">
       <Foot/>
     </footer>
     <div class="nav-mnav">
