@@ -181,7 +181,8 @@ async def create_counter(coun:Counter):
 
 @precent_router.get('/counter')
 async def get_counter():
-    return await Counter.objects.get_or_none(id=1)
+    coun =  await Counter.objects.get_or_none(id=1)
+    return {'посещений на сайте':coun.counter}
 
 @precent_router .get('/{id}')
 async def get_one(id: int):
