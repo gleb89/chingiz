@@ -344,9 +344,7 @@ export default {
           }
         );
       }
-      this.products.sort(function (a, b) {
-            return b.id - a.id;
-          });
+      // this.products.sort(() => Math.random() - 0.5)
     },
     onresSearch(i) {
       this.search = i;
@@ -377,9 +375,10 @@ export default {
           },
           200
         );
-          this.products.sort(function (a, b) {
-            return b.id - a.id;
-          });
+          // this.products.sort(function (a, b) {
+          //   return b.id - a.id;
+          // });
+          this.products.sort(() => Math.random() - 0.5)
         // return elem.id === pk
       });
     },
@@ -435,9 +434,10 @@ export default {
               }
             }
           );
-          this.products.sort(function (a, b) {
-            return b.id - a.id;
-          });
+          // this.products.sort(function (a, b) {
+          //   return b.id - a.id;
+          // });
+          this.products.sort(() => Math.random() - 0.5)
         }
       }, 200);
 
