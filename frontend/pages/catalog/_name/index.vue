@@ -228,7 +228,7 @@ export default {
         this.upd_serch = [];
       }
       if (!this.search && this.filter_name === "") {
-        this.products = this.$store.getters["products/products"];
+        // this.products = this.$store.getters["products/products"];
       }
       if (this.form_id) {
         this.sortedProductForm();
@@ -416,8 +416,9 @@ export default {
       this.categories_for_sub = [];
       setTimeout(() => {
         if (slug === "all_presents") {
+        
           this.products = this.$store.getters["products/products"];
-          this.filter_name = "";
+          
         } else {
           this.products = this.$store.getters["products/products"].filter(
             (elem) => {
