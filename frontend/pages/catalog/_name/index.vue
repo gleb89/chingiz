@@ -370,9 +370,13 @@ export default {
                 return elem;
               }
             }
+
           },
           200
         );
+          this.products.sort(function (a, b) {
+            return b.id - a.id;
+          });
         // return elem.id === pk
       });
     },

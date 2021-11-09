@@ -56,6 +56,7 @@
       <v-card-actions class="d-flex justify-center" style="text-align: center;">
         <div style="min-width: 40%;">
           <img  v-if="reveal" src="/checbasket.png" alt="" />
+         
           <span style="font-weight: bold;font-size: 1.3rem;"
             >{{ present.price.toLocaleString() }} тг</span
           >
