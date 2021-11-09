@@ -17,6 +17,8 @@
       <v-col class="bocc-filter" cols="12" lg="2">
         <!-- desc filter -->
                 <FiltersCatalog
+                :onfilterslugPage="onfilterslugPage"
+                :onReason="onReason"
           class="d-none d-lg-block"
        
 
@@ -24,17 +26,14 @@
       </v-col>
 
       <!-- box-productsr -->
-      <v-col cols="12" lg="10" id="box-products" class="box-products">
+      <v-col cols="12" lg="10" style="margin-top: 2em;" id="box-products" class="box-products addhid">
         
         <div class="d-none d-lg-block">
           <h2  class="nemepresent">
-              {{name_category}} 
+              {{name_category}} ({{count}})
           </h2>
         </div>
-        <div class="d-flex flex-wrap mt-6 mb-6">
-          <v-row>
-
-          </v-row>
+        <div class="d-flex flex-wrap ">
         </div>
         <v-container class="box-scrol">
           <v-row justify="start">
@@ -59,13 +58,35 @@ mounted() {
 computed: {
     name_category(){
       return this.$store.state.categories.name_category
+    },
+    count(){
+      return this.$store.state.categories.count_present
     }
 
 },
 
-methods: {
+  methods: {
+    onfilterslugPage(pk,name,cat_or_reason) {
+      
+      if(pk === 0){
+        
+        this.$router.push('/catalog')
+      }
+      else{
+        this.$router.push('/catalog/category/'+pk)
+      }
+      this.$store.commit("categories/setcategoriesname",name); 
 
-},
+    },
+    onReason(pk,name) {
+      
+
+        this.$router.push('/catalog/reason/'+pk)
+     
+      this.$store.commit("categories/setcategoriesname",name); 
+
+    },
+  },
 };
 </script>
 
@@ -135,6 +156,7 @@ methods: {
     padding-left: 3rem;
   }
 }
+
 @media (min-width: 1259px) {
   .box-products {
     overflow-x: hidden;

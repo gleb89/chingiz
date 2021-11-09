@@ -1,6 +1,9 @@
 <template>
 
                   <v-row class="mobile-hei">
+                    <v-col cols="12">
+                      <Search/>
+                    </v-col>
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -62,12 +65,17 @@ export default {
   
  computed: {
     listproducts() {
-      this.products = this.productsfetch.items
-      this.len_items = this.productsfetch.total
+            this.len_items = this.productsfetch.total
+      this.$store.commit("categories/setSizepresent",this.len_items); 
+       setTimeout(() => {
+              this.products = this.productsfetch.items
+
+      }, 100);
       
       return this.products
     },
   },
+
   data() {
       return {
           

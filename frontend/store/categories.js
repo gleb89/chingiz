@@ -1,7 +1,8 @@
 export const state = () => {
     return {
       categories:[],
-      name_category:'Все подарки'
+      name_category:'Все подарки',
+      count_present:0
   
   
   
@@ -17,6 +18,10 @@ export const state = () => {
       state.name_category = name
     
       },
+      setSizepresent (state,count) {
+        state.count_present = count
+      
+        },
   
   
   }

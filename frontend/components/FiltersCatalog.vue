@@ -92,6 +92,7 @@
 
 <script>
 export default {
+  props:['onReason','onfilterslugPage'],
 computed: {
     categories() {
         return this.$store.state.allfilter.allfilter.categories
@@ -110,25 +111,6 @@ computed: {
 
     };
   },
-  methods: {
-    onfilterslugPage(pk,name,cat_or_reason) {
-      
-      if(pk === 0){
-        
-        this.$router.push('/catalog')
-      }
-      else{
-        this.$router.push('/catalog/category/'+pk)
-      }
-      this.$store.commit("categories/setcategoriesname",name); 
-    },
-    onReason(pk,name) {
-      
 
-        this.$router.push('/catalog/reason/'+pk)
-     
-      this.$store.commit("categories/setcategoriesname",name); 
-    },
-  },
 }
 </script>
