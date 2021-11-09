@@ -59,7 +59,7 @@
           {{present.id}}
           <span style="font-weight: bold;font-size: 1.3rem;"
             >{{ present.price.toLocaleString() }} тг</span
-          
+          >
         </div>
         <div style="width: 50%; text-align: center">
           <v-btn
