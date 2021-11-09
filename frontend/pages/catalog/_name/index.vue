@@ -344,6 +344,9 @@ export default {
           }
         );
       }
+      this.products.sort(function (a, b) {
+            return b.id - a.id;
+          });
     },
     onresSearch(i) {
       this.search = i;
