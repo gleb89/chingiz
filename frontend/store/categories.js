@@ -1,6 +1,7 @@
 export const state = () => {
     return {
       categories:[],
+      name_category:'Все подарки'
   
   
   
@@ -12,6 +13,10 @@ export const state = () => {
     state.categories = categories
   
     },
+    setcategoriesname (state,name) {
+      state.name_category = name
+    
+      },
   
   
   }

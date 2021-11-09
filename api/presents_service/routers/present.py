@@ -317,8 +317,8 @@ async def get_all_catalog_paginations(params: Params = Depends()):
     return paginate(presents, params)
 
 @precent_router.get('/catalog/paginations/categories',response_model=Page[Present])
-async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
-    cat = await Categories.objects.prefetch_related(['self_present','self_present__subcategory']).get(id=pk)
+async def get_all_catalog_paginations(id:int, params: Params = Depends()):
+    cat = await Categories.objects.prefetch_related(['self_present','self_present__subcategory']).get(id=id)
     return paginate(cat.self_present, params)
    
 @precent_router.get('/catalog/paginations/reason',response_model=Page[Present])
