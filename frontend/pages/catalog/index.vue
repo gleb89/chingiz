@@ -43,7 +43,7 @@ export default {
  async asyncData({ route, $axios }) {
   
     let products1 = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=20`
+       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=40`
     );
     return { productsfetch: products1.data};
   },
@@ -76,7 +76,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
+        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=40`,{
           
         })
         .then((resp) => {

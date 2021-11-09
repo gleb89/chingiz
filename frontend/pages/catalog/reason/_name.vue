@@ -55,7 +55,7 @@ export default {
  async asyncData({ route, $axios }) {
     const reson_id = Number(route.params.name)
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=20`
+       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=40`
     );
     return { productsfetch: products.data,reson_id:reson_id};
   },
@@ -100,7 +100,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=20`,{
+        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=40`,{
           
         })
         .then((resp) => {
