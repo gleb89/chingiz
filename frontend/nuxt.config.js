@@ -102,38 +102,38 @@ export default {
     }
 
   },
-  sitemap: {
-    generate: true,
-    hostname: 'https://giftcity.kz',
-    exclude: [
-      '/admin/list_presents',
-      '/admin/all_couries',
-      '/admin/alladmins',
-      '/admin/categories',
-      '/admin/comments',
-      '/admin/commentserv',
-      '/admin/sort_presents',
-      '/admin/type',
-      '/admin/form',
-      'admin/form',
-      'admin/type',
-      '/admin/stocks',
-      '/admin/podpiska',
-      '/admin/users',
-      '/admin/povod',
-      '/admin/orders',
-      '/admin/all_couries',
-      '/cabinet',
-      '/cabinet/basket',
-      '/cabinet/bonus',
-      '/cabinet/history',
-      '/cabinet/oplata',
-      '/oferta',
-      '/basket',
-      '/admin',
-      '/cabinet'
-    ]
-  },
+  // sitemap: {
+  //   generate: true,
+  //   hostname: 'https://giftcity.kz',
+  //   exclude: [
+  //     '/admin/list_presents',
+  //     '/admin/all_couries',
+  //     '/admin/alladmins',
+  //     '/admin/categories',
+  //     '/admin/comments',
+  //     '/admin/commentserv',
+  //     '/admin/sort_presents',
+  //     '/admin/type',
+  //     '/admin/form',
+  //     'admin/form',
+  //     'admin/type',
+  //     '/admin/stocks',
+  //     '/admin/podpiska',
+  //     '/admin/users',
+  //     '/admin/povod',
+  //     '/admin/orders',
+  //     '/admin/all_couries',
+  //     '/cabinet',
+  //     '/cabinet/basket',
+  //     '/cabinet/bonus',
+  //     '/cabinet/history',
+  //     '/cabinet/oplata',
+  //     '/oferta',
+  //     '/basket',
+  //     '/admin',
+  //     '/cabinet'
+  //   ]
+  // },
 
     gtm: {
     id: 'GTM-5FQRDZB'

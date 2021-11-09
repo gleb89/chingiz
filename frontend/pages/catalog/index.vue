@@ -10,7 +10,7 @@
           >
         </div>
 
-         <!-- <Mobfilter
+        <Mobfilter
           class="d-block d-lg-none"
           :selected="selected"
           :maxprice="maxprice"
@@ -27,14 +27,13 @@
           :onReason="onReason"
           :form="form"
           :type_precent="type_precent"
-        />  -->
+        />
 
         <!-- desc filter -->
 
-        <Filters2
+        <Filters
           class="d-none d-lg-block"
           :listproducts="listproducts"
-          :pageData="pageData"
           :selected="selected"
           :maxprice="maxprice"
           :minprice="minprice"
@@ -58,8 +57,15 @@
         <div class="d-none d-lg-block">
           <h2 v-scroll="onScroll" class="nemepresent">
 
-          
-              {{filter_name}} ({{ len_items }})
+            <span v-if="!filter_name && !search"
+              >Все подарки ({{ listproducts.length }})</span
+            >
+            <span v-if="filter_name && !search">
+              {{ filter_name }} ({{ listproducts.length }})</span
+            >
+            <span v-if="search"
+              >Результат поиска ({{ listproducts.length }})</span
+            >
           </h2>
         </div>
         <div class="d-flex flex-wrap mt-6 mb-6">
@@ -67,7 +73,8 @@
             <v-col cols="12" lg="8" md="8">
               <div style="flex-grow: 3; position: relative; width: 100%">
                 <img class="searc-inp" style="" src="/search .png" alt="" />
-<v-text-field
+
+                <v-text-field
                   v-model="search"
                   style="border: 1px solid #989898; width: 100%; height: 3.5rem"
                   placeholder="Введите повод, форму, категорию или название "
@@ -144,7 +151,7 @@
                 <fa style="font-size:1.4em" icon="angle-up"></fa>
                 </v-btn>
               </div>
-              <v-row class="mobile-hei" style="">
+              <v-row class="mobile-hei">
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -164,15 +171,8 @@
                     "
                   >
                     <CardProduct :present="present" />
-                    
                   </div>
                 </v-col>
-                <div style="width:100%;text-align: center;" v-if="client && this.productsfetch.total > this.productsfetch.items.length" v-intersect="onIntersect">
-                     <v-progress-circular
-      indeterminate
-      color="amber"
-    ></v-progress-circular>
-                </div>
               </v-row>
             </v-container>
           </v-row>
@@ -184,26 +184,17 @@
 
 <script>
 export default {
-  async asyncData({ route, $axios }) {
-    const product_id = Number(route.params.id);
-    let products = await $axios.get(
-       `http://localhost/api/v1/present/catalog/paginations?page=1&size=20`
-    );
-
-    return { productsfetch: products.data};
-  },
   async fetch({ store }) {
-
+    if (store.getters["products/products"].length === 0) {
+      await store.dispatch("products/fetch");
+    }
     if (store.getters["allfilter/allfilter"].length === 0) {
       await store.dispatch("allfilter/fetch");
     }
   },
   mounted: function () {
-    setTimeout(() => {
-      this.client = true
-    }, 2000);
     // let self = this;
-    // this.ws = new WebSocket("wss://localhost/ws/present/search");
+    // this.ws = new WebSocket("wss://giftcity.kz/ws/present/search");
     // this.ws.onmessage = (event) => {
     //   console.log("message");
     //   self.products = JSON.parse(event.data);
@@ -211,21 +202,67 @@ export default {
   },
   computed: {
     listproducts() {
-      this.products = this.productsfetch.items
-      this.len_items = this.productsfetch.total
-      return this.products
+      // if(!process.client) return;
+      let self = this;
+      if (this.search) {
+        // this.upd_serch = [...new Set(this.search_element)]
+        this.products = this.$store.getters["products/products"].filter(
+          (elem) => {
+            return (
+              elem.name_precent
+                .toLowerCase()
+                .includes(this.search.toLowerCase()) ||
+              elem.category[0].name_category
+                .toLowerCase()
+                .includes(this.search.toLowerCase()) ||
+              this.reasonsearch(elem)
+            );
+          }
+        );
+
         // this.ws.onopen;
         // this.ws.send(this.search);
-
+      }
+      if (!this.search) {
+        this.search_element = [];
+        this.upd_serch = [];
+      }
+      if (!this.search && this.filter_name === "") {
+        this.products = this.$store.getters["products/products"];
+      }
+      if (this.form_id) {
+        this.sortedProductForm();
+      }
+      if (this.sort_price === "более дорогие") {
+        let new_array = this.products.slice();
+        this.products = new_array.sort(function (a, b) {
+          return b.price - a.price;
+        });
+      }
+      if (this.sort_price === "сначала недорогие") {
+        let new_array = this.products.slice();
+        this.products = new_array.sort(function (a, b) {
+          return a.price - b.price;
+        });
+      }
+      if (this.minprice && this.maxprice) {
+        this.products = this.$store.getters["products/products"].filter(
+          (elem) => {
+            return (
+              elem.price >= Number(this.minprice) &&
+              elem.price <= Number(this.maxprice)
+            );
+          }
+        );
+      }
+      return this.products;
     },
   },
   data() {
     return {
       age: null,
       sort_price: "",
-      len_items:null,
       fab: false,
-      client:false,
       ws: null,
       categories_for_sub: [],
       categories: this.$store.getters["allfilter/allfilter"].categories,
@@ -241,12 +278,9 @@ export default {
       maxprice: null,
       minprice: null,
       type_id: null,
-      isIntersecting :false,
-      pk_category:0,
-      reason_pk:0,
       reason_id: null,
       list_products: [],
-      filter_name:'Все подарки',
+      filter_name: "",
       categoriesfilter: [],
       selected: [],
       page: 1,
@@ -263,26 +297,6 @@ export default {
     toTop () {
  this.$vuetify.goTo(0)
     },
-        onIntersect (entries, observer) {
-        // More information about these options
-        // is located here: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
-        this.isIntersecting = entries[0].isIntersecting
-        if(this.isIntersecting ){
-          if(this.filter_name === 'Все подарки'){
-          this.pageData()
-          }
-          
-          else{
-            if(this.pk_category){
-          this.pageDataCategory()
-          }
-          if(this.reason_pk){
-          this.pageDataReason()
-            
-          }
-        }
-        }
-        },
     onPodSub(sub_id) {
       this.form_id = null;
       this.search = "";
@@ -301,7 +315,8 @@ export default {
             }
           }
         );
-      } else {
+      } 
+      else {
         this.sub_id.push(sub_id);
         this.products = this.$store.getters["products/products"].filter(
           (elem) => {
@@ -341,17 +356,25 @@ export default {
       }
     },
     onReason(pk, name_reason) {
-      this.pk_category = 0
-      this.page = 0
-    this.client = false
+      this.categories_for_sub = [];
+      this.search = "";
+      this.form_id = null;
+      this.sub_id = [];
+      this.filter_name = name_reason;
+      this.products = [];
       setTimeout(() => {
-        this.client = true
-      }, 1000);
-       this.productsfetch.items = []
-       this.reason_pk = pk
-        this.filter_name = name_reason
-        this.pageDataReason()
-        
+        this.products = this.$store.getters["products/products"].filter(
+          (elem) => {
+            for (let i of elem.reason_for_precent) {
+              if (i.id == pk) {
+                return elem;
+              }
+            }
+          },
+          200
+        );
+        // return elem.id === pk
+      });
     },
     ads_select(minp, maxp, form_id, sort_price) {
       this.minprice = minp;
@@ -359,6 +382,7 @@ export default {
       this.form_id = form_id;
       this.sort_price = sort_price;
     },
+
     minmaxPrice() {
       let list_price = [];
       for (let i of this.products) {
@@ -379,92 +403,39 @@ export default {
       });
     },
     onfilterslug(slug, pk, name) {
-      this.reason_pk = 0
-      this.client = false
+      this.form_id = null;
+      this.products = [];
+      this.sub_id = [];
+      this.search = "";
+      this.categories_for_sub = [];
       setTimeout(() => {
-        this.client = true
-      }, 1000);
-      this.pk_category = pk
-      this.page = 0
-      if(slug === 'all_presents'){
-        this.productsfetch.items = []
-        this.filter_name = 'Все подарки'
-        this.pageData()    
-      }else{
-        
-        this.productsfetch.items = []
-        this.filter_name = name
-        this.pageDataCategory()
-        console.log(this.page);
-      }
-      
+        if (slug === "all_presents") {
+          this.products = this.$store.getters["products/products"];
+          this.filter_name = "";
+        } else {
+          this.products = this.$store.getters["products/products"].filter(
+            (elem) => {
+              for (let i of elem.category) {
+                if (i.id == pk) {
+                  return elem;
+                }
+              }
+              for (let i of this.categories) {
+                if (i.id === pk) {
+                  this.categories_for_sub = i.subcategory;
+                } else {
+                }
+              }
+            }
+          );
+          this.products.sort(function (a, b) {
+            return b.id - a.id;
+          });
+        }
+      }, 200);
+
+      this.filter_name = name;
     },
-    pageDataReason(){
-      this.page = this.page +1
-          console.log('page',this.page);
-        this.$axios
-        .$get(`http://localhost/api/v1/present/catalog/paginations/reason?pk=${this.reason_pk}&page=${this.page}&size=20`,{
-          
-        })
-        .then((resp) => {
-    console.log(resp.total);
-          
-          for (let i of resp.items){
-            
-            this.productsfetch.items.push(i)
-          }
-          
-          this.page = resp.page
-          this.productsfetch.total = resp.total
-        })
-        .catch(function (error) {
-        console.log('error');
-      });
-    },
-        pageDataCategory(){
-          this.page = this.page +1
-          console.log('page',this.page);
-        this.$axios
-        .$get(`http://localhost/api/v1/present/catalog/paginations/categories?pk=${this.pk_category}&page=${this.page}&size=20`,{
-          
-        })
-        .then((resp) => {
-    console.log(resp.total);
-          
-          for (let i of resp.items){
-            
-            this.productsfetch.items.push(i)
-          }
-          
-          this.page = resp.page
-          this.productsfetch.total = resp.total
-        })
-        .catch(function (error) {
-        console.log('error');
-      });
-        
-     },
-          pageData(){
-          this.page = this.page +1
-          console.log(this.page);
-        this.$axios
-        .$get(`http://localhost/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
-          
-        })
-        .then((resp) => {
-          
-          for (let i of resp.items){
-            this.productsfetch.items.push(i)
-          }
-          
-           this.page = resp.page
-          this.productsfetch.total = resp.total
-        })
-        .catch(function (error) {
-        console.log('error');
-      });
-        
-     },
     onselectfilter() {
       this.form_id = null;
       this.search = "";
@@ -486,7 +457,8 @@ export default {
         });
       }
     },
-  sortedProductForm() {
+
+    sortedProductForm() {
       this.search = "";
       this.products = this.$store.getters["products/products"].filter(
         (elem) => {

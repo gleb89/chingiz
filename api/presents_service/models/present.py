@@ -56,7 +56,7 @@ class Present(ormar.Model):
         SubCategories,  related_name="self_sub_present",nullable=True
     )
     form_precent: Optional[List[ FormPresent]] = ormar.ManyToMany(
-         FormPresent,nullable=True,skip_reverse=True
+         FormPresent,nullable=True,related_name="self_presents_form"
     )
     type_precent: Optional[List[TypePresent]] = ormar.ManyToMany(
         TypePresent,nullable=True,skip_reverse=True

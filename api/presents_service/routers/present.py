@@ -318,13 +318,18 @@ async def get_all_catalog_paginations(params: Params = Depends()):
 
 @precent_router.get('/catalog/paginations/categories',response_model=Page[Present])
 async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
-    cat = await Categories.objects.prefetch_related(['self_present']).get(id=pk)
+    cat = await Categories.objects.prefetch_related(['self_present','self_present__subcategory']).get(id=pk)
     return paginate(cat.self_present, params)
    
 @precent_router.get('/catalog/paginations/reason',response_model=Page[Present])
 async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
     cat = await Reason.objects.prefetch_related(['self_presents']).get(id=pk)
     return paginate(cat.self_presents, params)
+
+@precent_router.get('/catalog/paginations/form',response_model=Page[Present])
+async def get_all_catalog_paginations(pk:int, params: Params = Depends()):
+    cat = await FormPresent.objects.prefetch_related(['self_presents_form']).get(id=pk)
+    return paginate(cat.self_presents_form, params)
 
 @precent_router.delete('/{id}')
 async def delete_one(id: int):

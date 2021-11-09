@@ -315,7 +315,8 @@ export default {
             }
           }
         );
-      } else {
+      } 
+      else {
         this.sub_id.push(sub_id);
         this.products = this.$store.getters["products/products"].filter(
           (elem) => {
