@@ -35,7 +35,7 @@
       </div>
       <div v-if="hover" style="left: 0;" class="text-center onhov">
         <v-btn
-          @click="onPageProduct(present.id, present.category[0].slug_category)"
+          @click="onPageProduct(present.id)"
           style="color:white;opacity:1"
           color="#ff7a00"
         >
@@ -91,7 +91,7 @@ export default {
     //  transparent: 'rgba(255, 255, 255, 0)',
   }),
   methods: {
-    onPageProduct(id, name_slug) {
+    onPageProduct(id) {
       this.$router.push(`/catalog/all_presents/present/${id}`);
     },
     addBasket(present_id) {

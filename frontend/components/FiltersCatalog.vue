@@ -115,17 +115,17 @@ computed: {
       
       if(pk === 0){
         
-        this.$router.push('/newcatalog')
+        this.$router.push('/catalog')
       }
       else{
-        this.$router.push('/newcatalog/category/'+pk)
+        this.$router.push('/catalog/category/'+pk)
       }
       this.$store.commit("categories/setcategoriesname",name); 
     },
     onReason(pk,name) {
       
 
-        this.$router.push('/newcatalog/reason/'+pk)
+        this.$router.push('/catalog/reason/'+pk)
      
       this.$store.commit("categories/setcategoriesname",name); 
     },

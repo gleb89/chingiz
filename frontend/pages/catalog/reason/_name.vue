@@ -10,6 +10,18 @@
                   md="6"
                   sm="6"
                 >
+                <div class="" style="width: 100%; text-align: end; position: relative">
+                <v-btn
+                @click="toTop"
+                v-show="fab"
+                  style="position: fixed; right: 3em; bottom: 7em; z-index: 1"
+                  fab
+                  dark
+                  color="orange"
+                >
+                <fa style="font-size:1.4em" icon="angle-up"></fa>
+                </v-btn>
+              </div>
                   <div
                     style="
                       width: 98%;
@@ -41,17 +53,18 @@ export default {
     }
   },
  async asyncData({ route, $axios }) {
-  
-    let products1 = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=20`
+    const reson_id = Number(route.params.name)
+    let products = await $axios.get(
+       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=20`
     );
-    return { productsfetch: products1.data};
+    return { productsfetch: products.data,reson_id:reson_id};
   },
   
  computed: {
     listproducts() {
       this.products = this.productsfetch.items
       this.len_items = this.productsfetch.total
+      
       return this.products
     },
   },
@@ -62,21 +75,32 @@ export default {
           isIntersecting :false,
           len_items:0,
           page:1,
-          client:false
+          client:false,
+          fab:false
       };
   },
     mounted: function () {
     setTimeout(() => {
       this.client = true
     }, 2000);
+  
 
   },
   methods: {
+      onScroll (e) {
+      
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset ||   e.target.scrollTop || 0
+      this.fab = top > 160
+    },
+    toTop () {
+ this.$vuetify.goTo(0)
+    },
         pageData(){
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
+        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {
