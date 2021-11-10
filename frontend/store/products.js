@@ -1,6 +1,7 @@
 export const state = () => {
     return {
       products:[],
+      presents:[]
   
   
   
@@ -12,6 +13,31 @@ export const state = () => {
     state.products = products
   
     },
+    setpresents (state,products) {
+      state.presents = products
+    
+      },
+      setpresentspush (state,products) {
+        state.presents.push(products)
+      
+        },
+
+        SetSortPriceNav(state,sort_price){
+          if (sort_price === "более дорогие") {
+      
+            state.presents.sort(function (a, b) {
+              return b.price - a.price;
+            });
+          }
+          if (sort_price === "сначала недорогие") {
+            
+            state.presents.sort(function (a, b) {
+              return a.price - b.price;
+            });
+          }
+        }
+
+
   
   
   }

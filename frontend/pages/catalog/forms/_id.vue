@@ -54,12 +54,12 @@ export default {
     }
   },
  async asyncData({ route, $axios }) {
-    const reson_id = Number(route.params.name)
+    const form_id = Number(route.params.id)
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=40`
+       `https://giftcity.kz/api/v1/present/catalog/paginations/form?pk=${form_id}&page=1&size=40`
     );
     products.data.items.sort(() => Math.random() - 0.5)
-    return { productsfetch: products.data,reson_id:reson_id};
+    return { productsfetch: products.data,form_id:form_id};
   },
   
  computed: {
@@ -109,7 +109,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=40`,{
+        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/form?pk=${this.form_id}&page=${this.page}&size=40`,{
           
         })
         .then((resp) => {

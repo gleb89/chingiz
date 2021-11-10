@@ -23,14 +23,39 @@
               md="3"
               class="d-lg-block d-md-block d-none"
               style="align-items: center; display: flex"
-            >
+            >{{onPrice}}
               <v-select
-                
-                :label="sort_price || 'Cначала недорогие'"
-                
+                :items="['сначала недорогие', 'более дорогие']"
+                :label="sort || 'Cначала недорогие'"
+                v-model="sort"
                 single-line
               ></v-select>
             </v-col>
           </v-row>
         </div>
 </template>
+
+<script>
+export default {
+  props:['sortPriceNav'],
+  data() {
+    return {
+      sort: "",
+    };
+  },
+  methods: {
+    methodName() {
+      
+    },
+  },
+  computed: {
+    onPrice(){
+          if(this.sort){
+            
+      this.sortPriceNav(this.sort);
+    }
+    }
+  
+  },
+}
+</script>

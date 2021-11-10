@@ -1,9 +1,7 @@
 <template>
 
                   <v-row class="mobile-hei">
-                                     <v-col cols="12">
-                      <Search/>
-                    </v-col>
+    
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -60,6 +58,7 @@ export default {
     let products = await $axios.get(
        `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=40`
     );
+    products.data.items.sort(() => Math.random() - 0.5)
     return { productsfetch: products.data,categoru_id:categoru_id};
   },
   
@@ -67,9 +66,11 @@ export default {
     listproducts() {
             this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
-      setTimeout(() => {
-              this.products = this.productsfetch.items
-
+      this.$store.commit("products/setpresents",this.productsfetch.items); 
+      
+              
+setTimeout(() => {
+  this.products = this.$store.state.products.presents
       }, 100);
 
       return this.products
@@ -114,8 +115,9 @@ export default {
         .then((resp) => {
           
           for (let i of resp.items){
-            this.productsfetch.items.push(i)
+            this.$store.commit("products/setpresentspush",i); 
           }
+          console.log('tt',this.$store.state.products.presents.length);
           
            this.page = resp.page
           this.productsfetch.total = resp.total
