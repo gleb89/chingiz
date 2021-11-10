@@ -31,7 +31,7 @@
         
         <div class="d-none d-lg-block">
           <h2  class="nemepresent">
-              {{name_category}} ({{count}})
+              {{name_category}} ({{count}}) 
           </h2>
         </div>
                                                    <v-col cols="12">

@@ -63,18 +63,35 @@ export default {
   },
   
  computed: {
-    listproducts() {
-            this.len_items = this.productsfetch.total
+     listproducts() {
+
+      if(this.$store.state.products.price_min && this.$store.state.products.maxs){
+        var arrs =  this.$store.state.products.presents.filter(
+          (elem) => {
+            
+            return (
+              
+              elem.price >= Number(this.$store.state.products.price_min) &&
+              elem.price <= Number(this.$store.state.products.maxs)
+            );
+          }
+        );
+      this.len_items = arrs.length
+      this.$store.commit("categories/setSizepresent",this.len_items); 
+        return arrs
+        
+      }
+
+      else{
+      this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-       setTimeout(() => {
-              
-              this.products = this.$store.state.products.presents
-
+        setTimeout(() => {
+    this.products = this.$store.state.products.presents
       }, 100);
-      
-      return this.products
-    },
+        return this.products
+    }
+      }  
   },
 
   data() {

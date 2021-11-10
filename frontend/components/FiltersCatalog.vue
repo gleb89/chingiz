@@ -97,8 +97,14 @@ export default {
 computed: {
     categories() {
             if (this.minprice && this.maxprice) {
+              this.$store.commit("products/setpresentsPrice",this.minprice); 
+               this.$store.commit("products/setpresentsMaxs",this.maxprice); 
                 
+      }else{
+        this.$store.commit("products/setpresentsPrice",0); 
+        this.$store.commit("products/setpresentsMaxs",0); 
       }
+
         return this.$store.state.allfilter.allfilter.categories
     },
     reason_present(){
@@ -121,6 +127,9 @@ computed: {
   methods: {
     onReset(){
       this.name_form = ''
+      this.minprice = null
+      this.maxprice = null
+      this.$store.commit("products/setpresentsPrice",0 ,0); 
       this.onfilterslugPage(0,'Все подарки','')
     }
   },

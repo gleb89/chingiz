@@ -1,7 +1,10 @@
 export const state = () => {
     return {
       products:[],
-      presents:[]
+      presents:[],
+      maxs:0,
+      price_min:0,
+      
   
   
   
@@ -21,6 +24,14 @@ export const state = () => {
         state.presents.push(products)
       
         },
+
+        setpresentsPrice (state,price_min) {
+          state.price_min = price_min
+          },
+          setpresentsMaxs (state,price_max) {
+            state.maxs= price_max
+            },
+          
 
         SetSortPriceNav(state,sort_price){
           if (sort_price === "более дорогие") {
@@ -61,3 +72,4 @@ export const state = () => {
   
   
   }
+
