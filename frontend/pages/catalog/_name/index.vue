@@ -55,7 +55,7 @@
       <v-col cols="12" lg="10" id="box-products" class="box-products">
         
         <div class="d-none d-lg-block">
-          <h2 v-scroll="onScroll" class="nemepresent">
+          <h2 style="margin-top: 4em;" v-scroll="onScroll" class="nemepresent2">
 
             <span v-if="!filter_name && !search"
               >Все подарки ({{ listproducts.length }})</span
