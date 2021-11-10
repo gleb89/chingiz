@@ -17,6 +17,15 @@
         <h2 class="namep" style="font-weight: 900;" >"{{ product.name_precent }}"</h2>
         <div style="position: relative" class="mt-4">
           <v-img
+          v-if="product.image_origin"
+            fluid
+            :lazy-src="product.image_precent"
+            max-height="500"
+            max-width="500"
+            :src="product.image_origin"
+          ></v-img>
+                    <v-img
+          v-if="!product.image_origin"
             fluid
             :lazy-src="product.image_precent"
             max-height="500"
@@ -113,7 +122,7 @@
           <div class="mt-14">
             <div>
 <span style="font-weight: 500;
-    ">Внимание!</span>  <br> <p style="margin-top: 1.4em;font-size: .8em;"> Возможна замена одного или нескольких элементов подарочной корзины на равнозначный, в зависимости от наличия на складе и у поставщиков.
+    ">Внимание!</span>  <br> <p style="margin-top: 1.4em;font-size: .8em;"> Возможна замена одного или нескольких элементов на равнозначный, в зависимости от наличия на складе.
 Заказы принятые до 17.00 доставляются день-в-день, в ином случае на следующий день ! Минимальное время заказа до доставки: за 2 часа.
 
 </p>
