@@ -1,6 +1,39 @@
 <template>
 
                   <v-row class="mobile-hei">
+            <v-col
+              cols="12"
+              lg="12"
+              md="12"
+              style="min-height: 4em; position: relative"
+            >
+              <v-slide-group
+                class="grop"
+                v-if="subcategory_data.subcategory"
+                multiple
+                show-arrows
+              >
+                <v-slide-item
+                  v-for="sub in subcategory_data.subcategory"
+                  :key="sub.id"
+                  v-slot="{ active, toggle }"
+                >
+                  <v-btn
+                    style="background: white;color: #505050;border: 1px solid #ff7a00;min-width:10em:padding:1em"
+                    class="mx-2"
+                    :input-value="sub_id.includes(sub.id)"
+                    active-class="orange white--text"
+                    depressed
+                    rounded
+                    @click="onPodSub(sub.id)"
+                  >
+                    <span style="font-size: 0.8em">{{
+                      sub.name_subcategory
+                    }}</span>
+                  </v-btn>
+                </v-slide-item>
+              </v-slide-group>
+            </v-col>
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -55,15 +88,35 @@ export default {
  async asyncData({ route, $axios }) {
     const categoru_id = route.params.name
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=40`
+       `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=20`
     );
+    
+    let subcategory_data = await $axios.get(
+       `https://giftcity.kz/api/v1/present/categories/${categoru_id}`
+    );  
     products.data.items.sort(() => Math.random() - 0.5)
-    return { productsfetch: products.data,categoru_id:categoru_id};
+    return {subcategory_data:subcategory_data.data, productsfetch: products.data,categoru_id:categoru_id};
   },
-  
+ 
  computed: {
     listproducts() {
+        if(this.sub_id.length){ 
+        var sub = this.$store.state.products.presents.filter(
+          (elem) => {
+            for (let i of elem.subcategory) {
+              if (this.sub_id.includes(i.id)) {
+                
+                return elem;
+              }
+            }
+           
+          }
 
+        );
+      this.len_items = sub.length
+      this.$store.commit("categories/setSizepresent",this.len_items); 
+        return sub
+        }
       if(this.$store.state.products.price_min && this.$store.state.products.maxs){
         var arrs =  this.$store.state.products.presents.filter(
           (elem) => {
@@ -80,29 +133,36 @@ export default {
         return arrs
         
       }
-
+  
       else{
       this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-        setTimeout(() => {
+        
     this.products = this.$store.state.products.presents
-      }, 100);
+      
         return this.products
     }
       }   
 
   },
+  mounted() {
+   
+  },
+  
 
   data() {
       return {
           
           products: [],
           isIntersecting :false,
+          subcategory:null,
+          subcategories: this.$store.state.categories.subcategories,
           len_items:0,
           page:1,
           client:false,
-          fab:false
+          fab:false,
+          sub_id: [],
       };
   },
     mounted: function () {
@@ -126,7 +186,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${this.categoru_id}&page=${this.page}&size=40`,{
+        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${this.categoru_id}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {
@@ -152,6 +212,36 @@ export default {
           this.pageData()
         }
         },
+      onPodSub(sub_id) {
+  
+      if (this.sub_id.includes(sub_id)) {
+        for (var i = 0; i < this.sub_id.length; i++) {
+          if (this.sub_id[i] === Number(sub_id)) {
+            this.sub_id.splice(i, 1);
+          }
+        }
+      } 
+      else {
+        this.sub_id.push(sub_id);
+      }
+      if (this.sub_id.length === 0) {
+        // this.$store.state.products.presents.filter(
+        //   (elem) => {
+        //     if (elem.category[0].name_category === this.filter_name) {
+        //       for (let i of this.categories) {
+        //         if (i.name_category === this.filter_name) {
+        //           this.categories_for_sub = i.subcategory;
+        //         } else {
+        //         }
+        //       }
+        //       return elem;
+        //     }
+        //   }
+        // );
+      }
+      console.log(this.products.length);
+      // this.products.sort(() => Math.random() - 0.5)
+    },
   },
 
 }

@@ -56,7 +56,7 @@ export default {
  async asyncData({ route, $axios }) {
     const reson_id = Number(route.params.name)
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=40`
+       `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=20`
     );
     products.data.items.sort(() => Math.random() - 0.5)
     return { productsfetch: products.data,reson_id:reson_id};
@@ -86,9 +86,9 @@ export default {
       this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-        setTimeout(() => {
+ 
     this.products = this.$store.state.products.presents
-      }, 100);
+  
         return this.products
     }
       }  
@@ -126,7 +126,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=40`,{
+        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/reason?pk=${this.reson_id}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {

@@ -2,7 +2,8 @@ export const state = () => {
     return {
       categories:[],
       name_category:'Все подарки',
-      count_present:0
+      count_present:0,
+      subcategories:[]
   
   
   
@@ -14,6 +15,10 @@ export const state = () => {
     state.categories = categories
   
     },
+    setSubcategories(state,subcategories) {
+      state.subcategories = subcategories
+    
+      },
     setcategoriesname (state,name) {
       state.name_category = name
     

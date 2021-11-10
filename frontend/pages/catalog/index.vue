@@ -23,7 +23,12 @@
                     <CardProduct :present="present" />
                   </div>
                 </v-col>
-                  <div style="width:100%;text-align: center;" v-if="client && this.productsfetch.total > this.productsfetch.items.length"  v-intersect="onIntersect">
+                  <div style="width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 20vh;"
+                v-if="client && this.productsfetch.total > this.productsfetch.items.length"  v-intersect="onIntersect">
                      <v-progress-circular
                         indeterminate
                     color="amber"
@@ -44,7 +49,7 @@ export default {
  async asyncData({ route, $axios }) {
   
     let products1 = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=40`
+       `https://giftcity.kz/api/v1/present/catalog/paginations?page=1&size=20`
     );
     return { productsfetch: products1.data};
   },
@@ -73,9 +78,7 @@ export default {
       this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-        setTimeout(() => {
     this.products = this.$store.state.products.presents
-      }, 100);
         return this.products
     }
       } 
@@ -101,15 +104,16 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=40`,{
+        .$get(`https://giftcity.kz/api/v1/present/catalog/paginations?page=${this.page}&size=20`,{
           
         })
         .then((resp) => {
-          
+         
           for (let i of resp.items){
             // this.productsfetch.items.push(i)
             this.$store.commit("products/setpresentspush",i); 
           }
+          
           console.log('tt',this.$store.state.products.presents.length);
            this.page = resp.page
           this.productsfetch.total = resp.total
