@@ -355,10 +355,10 @@ export default {
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
-      `http://giftcity.kz:8001/api/v1/present/`
+      `https://giftcity.kz/api/v1/present/`
     );
     const data_filter= await $axios.get(
-      `http://giftcity.kz:8001/api/v1/present/filter/all`
+      `https://giftcity.kz/api/v1/present/filter/all`
     );
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
@@ -515,7 +515,7 @@ export default {
       bodyFormData.append("reason_for_precent_id", this.reason.id);
 
       this.$axios
-        .$post(`http://giftcity.kz:8001/api/v1/present/`, bodyFormData, {
+        .$post(`https://giftcity.kz/api/v1/present/`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -592,7 +592,7 @@ export default {
       }
 
       this.$axios
-        .$put(`http://giftcity.kz:8001/api/v1/present/${this.editedItem.id}`, bodyFormData, {
+        .$put(`https://giftcity.kz/api/v1/present/${this.editedItem.id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -616,7 +616,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`http://giftcity.kz:8001/api/v1/present/${this.editedItem.id}`, {
+        .$delete(`https://giftcity.kz/api/v1/present/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

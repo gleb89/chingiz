@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const history = await this.$axios
-        .$get(`http://giftcity.kz:8001/api/v1/present/history/`,{
+        .$get(`https://giftcity.kz/api/v1/present/history/`,{
           headers: headers
         })
         

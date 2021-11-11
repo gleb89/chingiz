@@ -11,8 +11,8 @@ from routers import (
 
 
 origins = [
-     "http://giftcity.kz:8001/",
-     "http://giftcity.kz:8001/",
+     "https://giftcity.kz/",
+     "https://giftcity.kz/",
      "https://el-bazaar.kz",
      "https://el-bazaar.kz/",
      "http://el-bazaar.kz/"

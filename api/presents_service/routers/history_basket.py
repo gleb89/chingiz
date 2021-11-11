@@ -147,7 +147,7 @@ async def html(name:str):
 
 @history_router.get("/oplata/for_end/{basket_id}")
 async def redirect_typer(basket_id:int):
-    return RedirectResponse("http://giftcity.kz:8001/cabinet/oplata")
+    return RedirectResponse("https://giftcity.kz/cabinet/oplata")
 
 
 @history_router.put('/send_curer/{pk}')

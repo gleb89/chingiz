@@ -564,10 +564,10 @@ export default {
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
-      `http://giftcity.kz:8001/api/v1/present/`
+      `https://giftcity.kz/api/v1/present/`
     );
     const data_filter = await $axios.get(
-      `http://giftcity.kz:8001/api/v1/present/filter/all`
+      `https://giftcity.kz/api/v1/present/filter/all`
     );
     return { data_presents: data_presents.data, data_filter: data_filter.data };
   },
@@ -881,7 +881,7 @@ export default {
       }
       bodyFormData.append("reason_for_precent_id", String(select_id));
       this.$axios
-        .$post(`http://giftcity.kz:8001/api/v1/present/`, bodyFormData, {
+        .$post(`https://giftcity.kz/api/v1/present/`, bodyFormData, {
           headers: headers
         })
         .then(resp => {
@@ -972,7 +972,7 @@ export default {
       
       this.$axios
         .$put(
-          `http://giftcity.kz:8001/api/v1/present/${this.itemadit.id}`,
+          `https://giftcity.kz/api/v1/present/${this.itemadit.id}`,
           bodyFormData,
           {
             headers: headers
@@ -1025,7 +1025,7 @@ export default {
       };
       this.dialogDelete = false;
       this.$axios
-        .$delete(`http://giftcity.kz:8001/api/v1/present/${this.deleteitemdict.id}`, {
+        .$delete(`https://giftcity.kz/api/v1/present/${this.deleteitemdict.id}`, {
           headers: headers
         })
         .then(resp => {

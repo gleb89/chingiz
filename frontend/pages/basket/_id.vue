@@ -105,7 +105,7 @@ export default {
     };
     const id_basket = route.params.id;
       return $axios
-        .$get(`http://giftcity.kz:8001/api/v1/present/users/basket/${id_basket}`, {
+        .$get(`https://giftcity.kz/api/v1/present/users/basket/${id_basket}`, {
           headers: headers,
         })
         .then((presents_in_basket) => {

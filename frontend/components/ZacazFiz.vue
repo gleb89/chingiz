@@ -339,7 +339,7 @@ computed: {
        oplata = 0
      }
     this.$axios
-        .$put(`http://giftcity.kz:8001/api/v1/present/history/succes_olata/${pk}/${oplata}`, {
+        .$put(`https://giftcity.kz/api/v1/present/history/succes_olata/${pk}/${oplata}`, {
     
         })
         .then((data) => {
@@ -366,7 +366,7 @@ computed: {
         }
 
         this.$axios
-        .$post(`http://giftcity.kz:8001/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`https://giftcity.kz/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {

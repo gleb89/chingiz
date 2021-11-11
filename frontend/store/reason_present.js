@@ -22,7 +22,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const reason_present = await this.$axios
-        .$get(`http://giftcity.kz:8001/api/v1/present/reason/`,{
+        .$get(`https://giftcity.kz/api/v1/present/reason/`,{
           headers: headers
         })
         commit('setreason_present',reason_present)

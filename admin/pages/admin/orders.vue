@@ -24,9 +24,9 @@ export default {
   layout: "admin",
   async asyncData({ route, $axios }) {
     let history_data = await $axios.get(
-      `http://giftcity.kz:8001/api/v1/present/history/`
+      `https://giftcity.kz/api/v1/present/history/`
     );
-    let curers = await $axios.get(`http://giftcity.kz:8001/api/v1/couriers/`);
+    let curers = await $axios.get(`https://giftcity.kz/api/v1/couriers/`);
 
     return { history_data: history_data.data, curers: curers.data };
   },

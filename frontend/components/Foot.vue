@@ -260,7 +260,7 @@ export default {
         this.comand_dialog = false;
         }, 2000);
      this.$axios
-        .$post(`http://giftcity.kz:8001/api/v1/present/email/commands`,bodyFormData, {
+        .$post(`https://giftcity.kz/api/v1/present/email/commands`,bodyFormData, {
         })
         .then((resp) => {
         this.email = ''
@@ -288,7 +288,7 @@ export default {
         };
         if (this.email) {
           this.$axios
-            .$post(`http://giftcity.kz:8001/api/v1/present/mailing/`, data, {
+            .$post(`https://giftcity.kz/api/v1/present/mailing/`, data, {
               headers: headers
             })
             .then(resp => {
