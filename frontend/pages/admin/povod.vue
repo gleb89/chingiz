@@ -172,7 +172,7 @@ export default {
       "Content-Type": "application/json",
     };
     return $axios
-      .$get(`https://giftcity.kz/api/v1/present/reason/`, {
+      .$get(`http://giftcity.kz:8001/api/v1/present/reason/`, {
         headers: headers,
       })
       .then((reason_presents) => {
@@ -242,7 +242,7 @@ updateSerialNumb(id_one,id_two ){
        };
        console.log(id_one,id_two );
       this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/reason/update/serial/${id_one}/${id_two}`,{
+        .$put(`http://giftcity.kz:8001/api/v1/present/reason/update/serial/${id_one}/${id_two}`,{
           headers: headers
         })
         .then((resp) => {
@@ -265,7 +265,7 @@ updateSerialNumb(id_one,id_two ){
        };
        
       this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/reason/?name_reason=${this.name_reason}`,bodyFormData ,{
+        .$post(`http://giftcity.kz:8001/api/v1/present/reason/?name_reason=${this.name_reason}`,bodyFormData ,{
           headers: headers
         })
         .then((resp) => {
@@ -295,7 +295,7 @@ updateSerialNumb(id_one,id_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`https://giftcity.kz/api/v1/present/reason/${this.item_id}`,{
+        .$delete(`http://giftcity.kz:8001/api/v1/present/reason/${this.item_id}`,{
           headers: headers
         })
         .then((resp) => {
@@ -333,7 +333,7 @@ updateSerialNumb(id_one,id_two ){
       bodyFormData.append("name_reason", this.name_reason);
       
       this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/reason/update/${this.item_id}`, bodyFormData, {
+        .$put(`http://giftcity.kz:8001/api/v1/present/reason/update/${this.item_id}`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
@@ -362,7 +362,7 @@ updateSerialNumb(id_one,id_two ){
         "Authorization":this.$store.state.localStorage.jwtToken
        };
         this.$axios
-        .$delete(`https://giftcity.kz/api/v1/present/reason/${this.editedItem.id}`,{
+        .$delete(`http://giftcity.kz:8001/api/v1/present/reason/${this.editedItem.id}`,{
           headers: headers
         })
         .then((resp) => {

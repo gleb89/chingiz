@@ -34,7 +34,7 @@ export default {
     sendLogin(){
 
         this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/admin/email/${localStorage.getItem('id_admin')}`, {
+        .$get(`http://giftcity.kz:8001/api/v1/present/admin/email/${localStorage.getItem('id_admin')}`, {
           
         })
         .then((admin_data) => {

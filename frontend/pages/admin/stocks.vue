@@ -200,7 +200,7 @@ export default {
       "Content-Type": "application/json"
     };
     return $axios
-      .$get(`https://giftcity.kz/api/v1/present/stocks/`, {
+      .$get(`http://giftcity.kz:8001/api/v1/present/stocks/`, {
         headers: headers
       })
       .then(stocks => {
@@ -302,7 +302,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken
       };
       this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/stocks/`, bodyFormData, {
+        .$post(`http://giftcity.kz:8001/api/v1/present/stocks/`, bodyFormData, {
           headers: headers
         })
         .then((resp) => {
@@ -365,7 +365,7 @@ export default {
       
       this.$axios
         .$post(
-          `https://giftcity.kz/api/v1/present/stocks/update/${this.editedItem.id}`,
+          `http://giftcity.kz:8001/api/v1/present/stocks/update/${this.editedItem.id}`,
           bodyFormData,
           {
             headers: headers
@@ -393,7 +393,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
       this.$axios
-        .$delete(`https://giftcity.kz/api/v1/present/stocks/${this.editedItem.id}`, {
+        .$delete(`http://giftcity.kz:8001/api/v1/present/stocks/${this.editedItem.id}`, {
           headers: headers,
         })
         .then((resp) => {

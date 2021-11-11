@@ -37,7 +37,7 @@ export const state = () => {
             "Content-Type": "application/json"
           };
         const categories = await this.$axios
-        .$get(`https://giftcity.kz/api/v1/present/categories/`,{
+        .$get(`http://giftcity.kz:8001/api/v1/present/categories/`,{
           headers: headers
         })
         commit('setcategories',categories)

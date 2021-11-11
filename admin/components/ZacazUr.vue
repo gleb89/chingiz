@@ -168,7 +168,7 @@ export default {
                 "adress_user": this.history_data.adress_user
         }
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`http://giftcity.kz:8001/api/v1/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {
