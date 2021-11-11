@@ -208,3 +208,19 @@ onfilterslugPageMob(category_id,category_name_category){
 
 }
 </script>
+<style>
+.active {
+  color: #ff7a00;
+}
+.box-cat {
+  background: #ff7a00;
+  color: white;
+  margin: 3px;
+  max-width: 45%;
+  min-width: 45%;
+}
+.mdi-close::before {
+    content: "\F0156";
+    color: white;
+}
+</style>
