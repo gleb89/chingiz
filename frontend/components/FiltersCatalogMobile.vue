@@ -150,16 +150,31 @@ computed: {
     };
   },
   methods: {
+onfilterslugPageMob(category_id,category_name_category){
+  this.onfilterslugPage(category_id,category_name_category)
+  setTimeout(() => {
+      
+  }, 1000);
+    //       this.alert=false
+    // this.dialogcategory = false
+    this.alertcat = true
+    setTimeout(() => {
+      this.alertcat =false
+    }, 700);
+            setTimeout(() => {
+      this.$vuetify.goTo(550)
+    },1100)
+},
 onReasonMob(reason_id,reason_name_reason){
     this.onReason(reason_id,reason_name_reason)
     this.alertcat = true
     setTimeout(() => {
       this.alertcat =false
-    }, 500)
+    }, 700)
 
         setTimeout(() => {
       this.$vuetify.goTo(550)
-    }, 500)
+    }, 1100)
     
 },
 onReasonMobDialog(reason_id,reason_name_reason){
@@ -185,18 +200,7 @@ onfilterslugPageMobDialog(category_id,category_name_category){
       this.$vuetify.goTo(550)
     }, 500)
 },
-onfilterslugPageMob(category_id,category_name_category){
-  this.onfilterslugPage(category_id,category_name_category)
-    //       this.alert=false
-    // this.dialogcategory = false
-    this.alertcat = true
-    setTimeout(() => {
-      this.alertcat =false
-    }, 500);
-            setTimeout(() => {
-      this.$vuetify.goTo(550)
-    }, 500)
-},
+
     onReset(){
       this.name_form = ''
       this.minprice = null

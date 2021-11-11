@@ -20,8 +20,8 @@
           />
             <FiltersCatalogMobile
             :onForm="onForm"
-            :onfilterslugPage="onfilterslugPage"
-            :onReason="onReason"
+            :onfilterslugPage="onfilterslugPageM"
+            :onReason="onReasonM"
             class="d-block d-lg-none d-md-none "
           />
         </v-col>
@@ -218,6 +218,29 @@ export default {
       }, 100);
 
       this.$store.commit("categories/setcategoriesname", name);
+    },
+        onfilterslugPageM(pk, name, cat_or_reason) {
+      this.sort_price = "";
+      let doc = document.querySelector(".box-products");
+      if (pk === 0) {
+        console.log(11);
+        doc.classList.remove("addheaich");
+        this.$router.push("/catalog");
+      } else {
+        this.$store.commit("categories/setcategoriesname", name);
+        this.$router.push("/catalog/category/" + pk);
+
+      }
+      
+    },
+        onReasonM(pk, name) {
+    
+      this.sort_price = "";
+       this.$store.commit("categories/setcategoriesname", name);
+      this.$router.push("/catalog/reason/" + pk);
+
+
+     
     },
     onForm(pk, name) {
       let doc = document.querySelector(".box-products");
