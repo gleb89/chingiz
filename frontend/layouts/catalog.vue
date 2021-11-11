@@ -7,7 +7,7 @@
       <Navmobile />
     </div>
 
-    <v-container style="margin-top: 3em">
+    <v-container class="cont-filter"> 
       <v-row justify="center">
         <!-- box-filterss -->
         <v-col class="bocc-filter" cols="12" lg="2">
@@ -16,7 +16,13 @@
             :onForm="onForm"
             :onfilterslugPage="onfilterslugPage"
             :onReason="onReason"
-            class="d-none d-lg-block mt-15"
+            class="d-none d-lg-block d-md-block mt-15"
+          />
+            <FiltersCatalogMobile
+            :onForm="onForm"
+            :onfilterslugPage="onfilterslugPage"
+            :onReason="onReason"
+            class="d-block d-lg-none d-md-none "
           />
         </v-col>
 
@@ -28,7 +34,7 @@
           id="box-products"
           class="box-products addheaich"
         >
-          <div class="d-none d-lg-block">
+          <div class="">
             <h2 class="nemepresent">{{ name_category }} ({{ count }})</h2>
           </div>
           <v-col cols="12">
@@ -36,14 +42,7 @@
               <v-row>
                 <v-col class="for-saerch" cols="12" lg="8" md="8">
                   <div style="flex-grow: 3; position: relative; width: 100%">
-                    <!-- <v-autocomplete
-                    class="appends"
-                    append-icon="mdi-magnify"
-                    rounded
-                    no-data-text="Ничего не найдено"
-                    solo
-                    ></v-autocomplete> -->
-                    <v-autocomplete
+                  <v-autocomplete
       v-model="model"
       :items="items"
       :loading="isLoading"
@@ -241,6 +240,9 @@ export default {
 </script>
 
 <style>
+.cont-filter{
+  margin-top: 3em;
+  }
 @media (max-width: 2800px) {
   .nav-dnav {
     display: block;
@@ -272,6 +274,9 @@ export default {
     z-index: 1;
     right: 4em;
 }
+.cont-filter{
+  margin-top: 0;
+  }
 }
 .addheaich {
   height: 100vh;
