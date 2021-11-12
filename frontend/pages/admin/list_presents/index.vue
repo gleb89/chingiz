@@ -930,12 +930,14 @@ export default {
       }
       bodyFormData.append("reason_for_precent_id", String(select_id));
       bodyFormData.append("category_id", String(category_id));
-      if (this.for_sub_update.length > 0) {
+      
+      if (this.itemadit.subcategory.length > 0) {
+        
       let sub_id = [];
       for (let i of this.itemadit.subcategory) {
         sub_id.push(i.id);
       }
-     
+      
         bodyFormData.append("sub_list_id",String(sub_id));
         
       }
