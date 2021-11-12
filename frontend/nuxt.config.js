@@ -88,6 +88,11 @@ export default {
     // '@nuxtjs/recaptcha',
 
   ],
+  robots: {
+    UserAgent: '*',
+    Disallow: ['/cabinet', '/admin'],
+    Allow: '/'
+  },
 
   webfontloader: {
     google: {
