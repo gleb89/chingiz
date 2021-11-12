@@ -454,7 +454,12 @@ export default {
     },
     new_product(){
       let new_array = this.$store.getters["products/products"].filter((elem) => {
-            return elem.category[0].id === 2;
+            for (let i of elem.category){
+          if(i.id === 2){
+            return elem
+          }
+        }
+            
           }).slice(-18)
         return new_array.sort(function(a, b) { return b.id - a.id; }).slice(0,18)
     },

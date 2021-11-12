@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
-
+from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
 
 from config.database import metadata, engine, database
 from routers import (
@@ -48,7 +48,7 @@ app = FastAPI(
     docs_url="/api/v1/present/docs",
 )
 
-
+# app.add_middleware(HTTPSRedirectMiddleware)
 
 
 # cors настройки!
