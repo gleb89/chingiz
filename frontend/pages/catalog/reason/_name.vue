@@ -46,9 +46,9 @@
 
 <script>
 export default {
-  transitions:false,
+  transitions:'false',
     layout: "catalog",
-    transition: 'false',
+    
 
     async fetch({ store }) {
     if (store.getters["allfilter/allfilter"].length === 0) {

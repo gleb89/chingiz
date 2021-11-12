@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  transition: 'false',
+  transition: 'bounce',
     layout: "catalog",
 
     async fetch({ store }) {

@@ -152,9 +152,9 @@ computed: {
   methods: {
 onfilterslugPageMob(category_id,category_name_category){
   this.onfilterslugPage(category_id,category_name_category)
-  setTimeout(() => {
+  // setTimeout(() => {
       
-  }, 1000);
+  // }, 1000);
     //       this.alert=false
     // this.dialogcategory = false
     this.alertcat = true
