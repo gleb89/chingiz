@@ -332,19 +332,21 @@ export default {
       if (this.sub_id.length === 0) {
         this.products = this.$store.getters["products/products"].filter(
           (elem) => {
-            if (elem.category[0].name_category === this.filter_name) {
-              for (let i of this.categories) {
-                if (i.name_category === this.filter_name) {
-                  this.categories_for_sub = i.subcategory;
-                } else {
-                }
-              }
+            
+            for  (let cat of elem.category) {
+              if(cat.name_category === this.filter_name)
+              // for (let i of this.categories) {
+              //   if (i.name_category === this.filter_name) {
+              //     this.categories_for_sub = i.subcategory;
+              //   } else {
+              //   }
+              // }
               return elem;
             }
           }
         );
       }
-      // this.products.sort(() => Math.random() - 0.5)
+      this.products.sort(() => Math.random() - 0.5)
     },
     onresSearch(i) {
       this.search = i;
