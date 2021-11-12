@@ -10,6 +10,7 @@
           <nuxt-link style="color: #303030" to="/catalog/all_presents"
             >Каталог</nuxt-link
           >/
+         
           <span>{{ product.name_precent }}</span>
         </div>
         <Goend/>
@@ -214,11 +215,18 @@ export default {
       if(this.count_present < 0){
         this.count_present = 0
       }
+      let arr_category_id = []
+      for (let prod of this.products){
+        for(let cat of prod.category){
+        arr_category_id.push(cat.id)
+        }
+      }
       this.products = this.products.filter((elem) => {
-        return (
-          elem.category[0].name_category ===
-          this.product.category[0].name_category
-        );
+            for (let i of elem.category){
+          if(arr_category_id.includes(i.id)){
+            return elem
+          }
+            }
       });
       return this.products;
     },
