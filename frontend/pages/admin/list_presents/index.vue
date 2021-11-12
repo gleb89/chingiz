@@ -762,7 +762,12 @@ export default {
       }
       if(this.filtcategory){
         this.items = this.data_presents.filter(elem => {
-          return elem.category[0].id === this.filtcategory;
+            for (let i of elem.category){
+          if(i.id === this.filtcategory){
+            return elem
+          }
+            }
+         
         });
       }
       if(this.filtform){
