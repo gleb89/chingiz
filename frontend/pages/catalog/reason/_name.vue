@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  transitions:'bounce',
+   transition: 'bounce',
     layout: "catalog",
     
 
