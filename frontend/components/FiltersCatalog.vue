@@ -22,9 +22,10 @@
       <div v-for="reason in reason_present" :key="'A'+reason.id">
       <div @click="onReason(reason.id,reason.name_reason)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="reason.icon" alt="" />
-        <span
         
-          >{{ reason.name_reason }}
+        <span
+        :class="{ active: Number($route.params.name) === reason.id && $route.path.includes('/catalog/reason')}"
+          >{{ reason.name_reason }} 
         </span>
       </div>
       <hr style="color: #e5e5e5" />

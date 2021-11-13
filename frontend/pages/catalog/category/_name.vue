@@ -114,8 +114,8 @@ export default {
           }
 
         );
-      this.len_items = sub.length
-      this.$store.commit("categories/setSizepresent",this.len_items); 
+      // this.len_items = sub.length
+      // this.$store.commit("categories/setSizepresent",this.len_items); 
         return sub
         }
       if(this.$store.state.products.price_min && this.$store.state.products.maxs){
@@ -214,7 +214,7 @@ export default {
         }
         },
       onPodSub(sub_id) {
-  
+        
       if (this.sub_id.includes(sub_id)) {
         for (var i = 0; i < this.sub_id.length; i++) {
           if (this.sub_id[i] === Number(sub_id)) {
@@ -240,7 +240,6 @@ export default {
         //   }
         // );
       }
-      console.log(this.products.length);
       // this.products.sort(() => Math.random() - 0.5)
     },
   },

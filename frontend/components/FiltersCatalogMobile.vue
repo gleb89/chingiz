@@ -186,7 +186,7 @@ onReasonMobDialog(reason_id,reason_name_reason){
     }, 500)
     setTimeout(() => {
       this.$vuetify.goTo(550)
-    }, 500)
+    }, 10200)
     
 },
 onfilterslugPageMobDialog(category_id,category_name_category){
@@ -198,7 +198,7 @@ onfilterslugPageMobDialog(category_id,category_name_category){
     }, 500)
     setTimeout(() => {
       this.$vuetify.goTo(550)
-    }, 500)
+    }, 1200)
 },
 
     onReset(){
