@@ -154,7 +154,7 @@ export default {
   proxy: {
     // Simple proxy
     "/api/": {
-      // target: "https://giftcity.kz/api/v1",
+      // target: "http://giftcity.kz:8001/api/v1",
       target: "http://present_api:8000/api/v1",
       pathRewrite: { "^/api/": "" },
       changeOrigin: true

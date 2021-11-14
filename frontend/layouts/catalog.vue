@@ -41,8 +41,9 @@
             <div class="d-flex flex-wrap">
               <v-row>
                 <v-col class="for-saerch" cols="12" lg="8" md="8">
-                  <div style="flex-grow: 3; position: relative; width: 100%">
+                  
                   <v-autocomplete
+                  style="width:100%;min-width:100%"
       v-model="model"
       :items="items"
       :loading="isLoading"
@@ -102,7 +103,7 @@
               
       
             </div> -->
-                  </div>
+                  
                 </v-col>
                 <v-col
                   lg="3"
