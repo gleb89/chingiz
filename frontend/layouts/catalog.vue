@@ -377,7 +377,7 @@ export default {
   display: none;
 }
 
-.v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
+/* .v-text-field.v-text-field--enclosed:not(.v-text-field--rounded)
   > .v-input__control
   > .v-input__slot,
 .v-text-field.v-text-field--enclosed .v-text-field__details {
@@ -386,7 +386,7 @@ export default {
 }
 .v-input__slot {
   width: 90%;
-}
+} */
 .result-search {
   position: absolute;
   z-index: 1;
