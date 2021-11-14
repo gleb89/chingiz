@@ -202,7 +202,7 @@ export default {
       }
         
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/email/contact`,data, {
+        .$post(`/api/present/email/contact`,data, {
         })
         .then((resp) => {
         this.alert_succes = true

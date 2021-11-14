@@ -151,9 +151,21 @@ export default {
     },
   },
 
+  proxy: {
+    // Simple proxy
+    "/api/": {
+      // target: "https://giftcity.kz/api/v1",
+      target: "http://present_api:8000/api/v1",
+      pathRewrite: { "^/api/": "" },
+      changeOrigin: true
+    }
+  },
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
- 
-    },
+    proxy: true,
+    // proxyHeaders: false,
+    // credentials: false
+  },
 
   // recaptcha: {
   //   hideBadge: true,

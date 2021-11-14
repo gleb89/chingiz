@@ -346,7 +346,7 @@ headers: [
        oplata = 0
      }
     this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/history/succes_olata/${pk}/${oplata}`, {
+        .$put(`/api/present/history/succes_olata/${pk}/${oplata}`, {
     
         })
         .then((data) => {
@@ -373,7 +373,7 @@ headers: [
         }
 
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`/api/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {

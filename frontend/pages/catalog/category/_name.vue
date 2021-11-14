@@ -89,11 +89,11 @@ export default {
  async asyncData({ route, $axios }) {
     const categoru_id = route.params.name
     let products = await $axios.get(
-       `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=20`
+       `/api/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=20`
     );
     
     let subcategory_data = await $axios.get(
-       `https://giftcity.kz/api/v1/present/categories/${categoru_id}`
+       `/api/present/categories/${categoru_id}`
     );  
     products.data.items.sort(() => Math.random() - 0.5)
     return {subcategory_data:subcategory_data.data, productsfetch: products.data,categoru_id:categoru_id};
@@ -187,7 +187,7 @@ export default {
           this.page = this.page +1
           console.log(this.page);
         this.$axios
-        .$get( `https://giftcity.kz/api/v1/present/catalog/paginations/categories?id=${this.categoru_id}&page=${this.page}&size=20`,{
+        .$get( `/api/present/catalog/paginations/categories?id=${this.categoru_id}&page=${this.page}&size=20`,{
           
         })
         .then((resp) => {

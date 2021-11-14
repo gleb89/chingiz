@@ -352,7 +352,7 @@ export default {
   async asyncData({ route, $axios }) {
    
     let admins = await $axios.get(
-       `https://giftcity.kz/api/v1/present/admin/`
+       `/api/present/admin/`
     );
 
     return { admins_list:admins.data};
@@ -379,7 +379,7 @@ export default {
     let bodyFormData = new FormData();
     bodyFormData.append('password',this.password);
       this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/admin/password/${this.admin_pk}`, bodyFormData, {
+        .$put(`/api/present/admin/password/${this.admin_pk}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -407,7 +407,7 @@ export default {
         Authorization: this.$store.state.localStorage.jwtToken,
       };
     this.$axios
-        .$delete(`https://giftcity.kz/api/v1/present/admin/${this.admin_pk}`, {
+        .$delete(`/api/present/admin/${this.admin_pk}`, {
           headers: headers,
         })
         .then((resp) => {
@@ -446,7 +446,7 @@ export default {
     let bodyFormData = new FormData();
     bodyFormData.append(key_admin,val);
     this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/admin/${admin_id}`, bodyFormData, {
+        .$put(`/api/present/admin/${admin_id}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -474,7 +474,7 @@ export default {
     }
 
     this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/admin/`, data, {
+        .$post(`/api/present/admin/`, data, {
           headers: headers,
         })
         .then((resp) => {

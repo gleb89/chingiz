@@ -162,7 +162,7 @@ export default {
         this.isLoading = true
 
         // Lazily load input items
-        fetch('https://giftcity.kz/api/v1/present/catalog')
+        fetch('/api/present/catalog')
           .then(res => res.clone().json())
           .then(res => {
             this.items = res

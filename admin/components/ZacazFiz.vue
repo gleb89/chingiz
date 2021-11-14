@@ -160,7 +160,7 @@ export default {
         }
 
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/couriers/orders/create/${this.curer.id}`, data, {
+        .$post(`/api/couriers/orders/create/${this.curer.id}`, data, {
     
         })
         .then((data) => {

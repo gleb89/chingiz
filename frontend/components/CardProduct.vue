@@ -110,7 +110,7 @@ export default {
         };
         this.$axios
           .$post(
-            `https://giftcity.kz/api/v1/present/users/basket/user_basket/add/1`,
+            `/api/present/users/basket/user_basket/add/1`,
             data,
             {
               headers: headers
@@ -153,7 +153,7 @@ export default {
         };
         this.$axios
           .$post(
-            `https://giftcity.kz/api/v1/present/users/basket/anonim_basket/add/1`,
+            `/api/present/users/basket/anonim_basket/add/1`,
             data,
             {
               headers: headers

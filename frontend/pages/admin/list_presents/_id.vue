@@ -80,7 +80,7 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let product = await $axios.get(
-       `https://giftcity.kz/api/v1/present/${product_id}`
+       `/api/present/${product_id}`
     );
     
     return { product: product.data};

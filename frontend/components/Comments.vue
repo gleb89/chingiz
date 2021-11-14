@@ -199,7 +199,7 @@ export default {
           "body": this.body
         }
       this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/comments/`, data, {
+        .$post(`/api/present/comments/`, data, {
           headers: headers,
         })
         .then((resp) => {

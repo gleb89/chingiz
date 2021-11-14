@@ -101,7 +101,7 @@ export default {
     //   };
       
     //    return $axios
-    //     .$get(`https://giftcity.kz/api/v1/present/users/${store.state.localStorage.uid_auth_user}`, {
+    //     .$get(`/api/present/users/${store.state.localStorage.uid_auth_user}`, {
     //       headers: headers
     //     })
     //     .then(
@@ -144,7 +144,7 @@ export default {
       let bodyFormData = new FormData();
       bodyFormData.append("image", this.avatar);
       this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/users/upload_avatar/${this.$store.state.localStorage.uid_auth_user}`, bodyFormData, {
+        .$post(`/api/present/users/upload_avatar/${this.$store.state.localStorage.uid_auth_user}`, bodyFormData, {
           headers: headers,
         })
         .then((resp) => {
@@ -162,7 +162,7 @@ export default {
       };
 
       this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/users/upload_firstname/${this.name}/${this.$store.state.localStorage.uid_auth_user}`, {
+        .$post(`/api/present/users/upload_firstname/${this.name}/${this.$store.state.localStorage.uid_auth_user}`, {
           headers: headers,
         })
         .then((resp) => {

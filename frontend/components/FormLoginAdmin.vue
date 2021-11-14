@@ -62,7 +62,7 @@ import { mapState } from "vuex";
           "password": this.password
         }
         this.$axios
-        .$post(`https://giftcity.kz/api/v1/present/admin/token-auth`, data, {
+        .$post(`/api/present/admin/token-auth`, data, {
           headers: headers
         })
         .then((token) => {

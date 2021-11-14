@@ -61,7 +61,7 @@ export default {
   async asyncData({ params, $axios }) {
     // We can use async/await ES6 feature
     const data_presents = await $axios.get(
-      `https://giftcity.kz/api/v1/present/sort/catalog`
+      `/api/present/sort/catalog`
     );
 
     return { data_presents: data_presents.data };
@@ -90,7 +90,7 @@ export default {
        };
        
       this.$axios
-        .$put(`https://giftcity.kz/api/v1/present/update/sort_id_catalog/${id_one}/${id_two}`,{
+        .$put(`/api/present/update/sort_id_catalog/${id_one}/${id_two}`,{
           headers: headers
         })
         .then((resp) => {

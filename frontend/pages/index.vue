@@ -426,10 +426,10 @@ export default {
       "Content-Type": "application/json"
     };
     const stocks = await $axios.get(
-      `https://giftcity.kz/api/v1/present/stocks/`
+      `/api/present/stocks/`
     );
     const comments= await $axios.get(
-      `https://giftcity.kz/api/v1/present/commentsservice/`
+      `/api/present/commentsservice/`
     );
     const comments_serv = comments.data.filter(elem => {
           return elem.moderation
