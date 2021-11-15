@@ -199,9 +199,10 @@ form
                 @click="onPrimPrice"
                 rounded
             depressed
-             style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+             style="height: 49px;width: 10em; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
             dark
-                >Применить цену</v-btn>
+            
+                > <span style="font-size:.7em"> Применить цену</span></v-btn>
               </div>
 
               <!-- form-check-filter -->
@@ -375,7 +376,7 @@ export default {
       this.sort_price = "";
       let doc = document.querySelector(".box-products");
       if (pk === 0) {
-        console.log(11);
+        this.$store.commit("categories/setcategoriesname", 'Все подарки');
         doc.classList.remove("addheaich");
         this.$router.push("/catalog");
         setTimeout(() => {
@@ -406,10 +407,11 @@ export default {
       this.$store.commit("categories/setcategoriesname", name);
     },
         onfilterslugPageM(pk, name, cat_or_reason) {
+      this.name_form = ''
       this.sort_price = "";
       let doc = document.querySelector(".box-products");
       if (pk === 0) {
-        console.log(11);
+       this.$store.commit("categories/setcategoriesname", 'Все подарки');
         doc.classList.remove("addheaich");
         this.$router.push("/catalog");
       } else {
