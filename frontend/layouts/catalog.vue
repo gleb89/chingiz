@@ -35,7 +35,7 @@ form
           class="box-products addheaich"
         >
           <div class="">
-            <h2 class="nemepresent">{{ name_category }} ({{ count }})</h2>
+            <h2 class="nemepresent">{{ name_category }}</h2>
           </div>
           <v-col cols="12">
             <div class="d-flex flex-wrap">
@@ -102,8 +102,41 @@ form
                   ></v-select>
                 </v-col>
                 <v-col class="d-lg-none d-md-none d-block col-12">
-                  <v-dialog  v-model="dialogres">
-                            <v-card class="open" style="">
+                  
+            <v-dialog
+        v-model="dialogres"
+        fullscreen
+        hide-overlay
+        transition="dialog-bottom-transition"
+      >
+        <template v-slot:activator="{ on, attrs }">
+          <div
+            style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;"
+            class="d-flex"
+          >
+            <div class="ned">
+              <v-select
+                style="margin-top:1rem"
+                :items="['сначала недорогие','более дорогие']"
+                solo
+                dense
+                v-model="sort_price"
+                :label="sort_price ||'сначала недорогие'"
+              ></v-select>
+            </div>
+
+            <div>
+              <v-btn v-bind="attrs" v-on="on" color="indigo" text>
+                <span style="color:#676767">Фильтры</span>
+                <img src="/filter.png" alt="" />
+              </v-btn>
+            </div>
+
+          </div>
+ 
+        </template>
+        
+<v-card class="open" style="">
           <v-toolbar dark color="orange">
             <v-btn icon dark @click="dialogres = false">
               <v-icon>mdi-close</v-icon>
@@ -126,7 +159,7 @@ form
               <h3>Форма:</h3>
               <div class="mt-4">
                 <v-checkbox
-                @click="onForm(n.id,n.name_form)"
+                @click="onForm(n.id,n.name_form,0,null)"
                   v-for="n in form"
                   :key="n.id"
                   style="height: 1.3rem; width: 20rem"
@@ -145,7 +178,7 @@ form
                 <div>
                   <span>от</span>
                   <v-text-field
-                    v-model="minprice"
+                    v-model="minpricem"
                     style="width: 100%"
                     type="number"
                     single-line
@@ -155,13 +188,20 @@ form
                 <div>
                   <span>до</span>
                   <v-text-field
-                    v-model="maxprice"
+                    v-model="maxpricem"
                     style="width: 100%"
                    type="number"
                     single-line
                     outlined
                   ></v-text-field>
                 </div>
+                <v-btn
+                @click="onPrimPrice"
+                rounded
+            depressed
+             style="height: 49px;min-width: 20%; margin: 0.7rem;background: white;color: #505050;border: 2px solid #ff7a00;"
+            dark
+                >Применить цену</v-btn>
               </div>
 
               <!-- form-check-filter -->
@@ -182,29 +222,7 @@ form
           </div>
         </v-card>
       </v-dialog>
-            <div
-            style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;"
-            class="d-flex"
-          >
-            <div class="ned">
-              <v-select
-                style="margin-top:1rem"
-                :items="['сначала недорогие','более дорогие']"
-                solo
-                dense
-                v-model="sort_price"
-                :label="sort_price ||'сначала недорогие'"
-              ></v-select>
-            </div>
 
-            <div>
-              <v-btn @click="dialogres = true"  color="indigo" text>
-                <span style="color:#676767">Фильтры</span>
-                <img src="/filter.png" alt="" />
-              </v-btn>
-            </div>
-
-          </div>
           </v-col>
               </v-row>
             </div>
@@ -260,6 +278,8 @@ export default {
       name_form : '',
       minprice : null,
       maxprice : null,
+      minpricem : null,
+      maxpricem : null,
       tab: null,
     };
   },
@@ -313,6 +333,20 @@ export default {
   },
 
   methods: {
+    onPrimPrice(){
+      if (this.minpricem && this.maxpricem) {
+       
+            this.minprice = this.minpricem 
+            this.maxprice = this.maxpricem
+             if(document.documentElement.clientWidth < 990){
+          this.alert = true
+          setTimeout(() => {
+            this.alert = false
+          }, 1000);
+      
+      }
+      }
+    },
         onReset(){
           this.alert = true
           setTimeout(() => {
@@ -322,6 +356,8 @@ export default {
       this.name_form = ''
       this.minprice = null
       this.maxprice = null
+      this.minpricem = null 
+      this.maxpricem = null
       this.$store.commit("products/setpresentsPrice",0 ,0); 
       this.onfilterslugPage(0,'Все подарки','')
     },
@@ -335,6 +371,7 @@ export default {
       this.fab = top > 160
     },
     onfilterslugPage(pk, name, cat_or_reason) {
+      this.name_form = ''
       this.sort_price = "";
       let doc = document.querySelector(".box-products");
       if (pk === 0) {
@@ -354,6 +391,7 @@ export default {
       this.$store.commit("categories/setcategoriesname", name);
     },
     onReason(pk, name) {
+      this.name_form = ''
       let doc = document.querySelector(".box-products");
       this.sort_price = "";
       //   setTimeout(() => {
@@ -382,7 +420,7 @@ export default {
       
     },
         onReasonM(pk, name) {
-    
+          this.name_form = ''
       this.sort_price = "";
        this.$store.commit("categories/setcategoriesname", name);
       this.$router.push("/catalog/reason/" + pk);
@@ -390,7 +428,23 @@ export default {
 
      
     },
-    onForm(pk, name) {
+    onForm(pk, name,dekstop,name_form) {
+      if(dekstop){
+      if (name_form){
+        this.name_form = name_form
+      }else{
+         this.name_form = name_form
+      }
+      }
+      if(this.name_form){
+      if(document.documentElement.clientWidth < 990){
+          this.alert = true
+          setTimeout(() => {
+            this.alert = false
+          }, 1000);
+      
+      }
+
       let doc = document.querySelector(".box-products");
       this.sort_price = "";
       doc.classList.remove("addheaich");
@@ -400,6 +454,13 @@ export default {
          
       }, 100);
       this.$store.commit("categories/setcategoriesname", name);
+      }else{
+        this.$store.commit("categories/setcategoriesname", 'Все подарки');
+        
+        let doc = document.querySelector(".box-products");
+        doc.classList.remove("addheaich");
+        this.$router.push("/catalog");
+      }
     },
     sortPriceNav(sort_price) {
       this.$store.commit("products/SetSortPriceNav", sort_price);

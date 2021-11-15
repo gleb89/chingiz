@@ -151,6 +151,7 @@ computed: {
   },
   methods: {
 onfilterslugPageMob(category_id,category_name_category){
+  this.name_form = ''
   this.onfilterslugPage(category_id,category_name_category)
   setTimeout(() => {
       
@@ -166,6 +167,7 @@ onfilterslugPageMob(category_id,category_name_category){
     },1100)
 },
 onReasonMob(reason_id,reason_name_reason){
+  this.name_form = ''
     this.onReason(reason_id,reason_name_reason)
     this.alertcat = true
     setTimeout(() => {
@@ -178,6 +180,7 @@ onReasonMob(reason_id,reason_name_reason){
     
 },
 onReasonMobDialog(reason_id,reason_name_reason){
+  this.name_form = ''
     this.onReason(reason_id,reason_name_reason)
     this.dialogcategory = false
     this.alertcat = true
@@ -190,6 +193,7 @@ onReasonMobDialog(reason_id,reason_name_reason){
     
 },
 onfilterslugPageMobDialog(category_id,category_name_category){
+  this.name_form = ''
   this.onfilterslugPage(category_id,category_name_category)
     this.dialogcategory = false
     this.alertcat = true

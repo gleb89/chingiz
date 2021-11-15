@@ -9,7 +9,7 @@
     </div>
     <hr style="color: #e5e5e5" />
     <div v-for="category in categories" :key="category.id">
-      <div @click="onfilterslugPage(category.id,category.name_category)" class="box-filter">
+      <div @click="onfilterslugPageF(category.id,category.name_category)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="category.icon" alt="" /><span
       
           :class="{ active: Number($route.params.name) === category.id}"
@@ -20,7 +20,7 @@
     </div>
     
       <div v-for="reason in reason_present" :key="'A'+reason.id">
-      <div @click="onReason(reason.id,reason.name_reason)" class="box-filter">
+      <div @click="onReasonF(reason.id,reason.name_reason)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="reason.icon" alt="" />
         
         <span
@@ -35,7 +35,7 @@
       <h3>Форма:</h3>
       <div class="mt-4">
         <v-checkbox
-        @click="onForm(n.id,n.name_form)"
+        @click="onFormF(n.id,n.name_form)"
           v-for="n in form"
           :key="n.id"
           style="height: 1.3rem; width: 20rem"
@@ -126,6 +126,17 @@ computed: {
     };
   },
   methods: {
+    onFormF(n_id,n_name_form){
+      this.onForm(n_id,n_name_form,1,this.name_form)
+    },
+    onfilterslugPageF(category_id,category_name_category){
+      this.name_form = ''
+      this.onfilterslugPage(category_id,category_name_category)
+    },
+    onReasonF(reason_id,reason_name_reason){
+      this.name_form = ''
+      this.onReason(reason_id,reason_name_reason)
+    },
     onReset(){
       this.name_form = ''
       this.minprice = null
