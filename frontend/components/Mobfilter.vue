@@ -74,12 +74,12 @@
         <div>
           
           <h2 class="text-left mt-8">
-          <span v-if="!filter_name && !search">Все подарки ({{ listproducts.length }})</span>
+          <span v-if="!filter_name && !search">Все подарки </span>
           <span v-if="filter_name && !search">
-            {{ filter_name }} ({{ listproducts.length }})</span
+            {{ filter_name }}</span
           >
           <span v-if="search"
-            >Результат поиска ({{ listproducts.length }})</span
+            >Результат поиска</span
           >
           </h2>
 
