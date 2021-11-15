@@ -30,7 +30,6 @@
         <v-col
           cols="12"
           lg="10"
-          style=""
           id="box-products"
           class="box-products addheaich"
         >
@@ -300,7 +299,36 @@ export default {
     };
   },
   mounted() {
-   
+     if(!process.client) return;
+   const id_basket = localStorage.getItem('id_basket')
+    const uid_auth_user = localStorage.getItem('uid_auth_user')
+    const summ_present =  localStorage.getItem('summ_present')
+     const city =  localStorage.getItem('city')
+     const date =  localStorage.getItem('date')
+    
+    
+    if(id_basket){
+      console.log('id basket');
+      this.$store.commit("localStorage/set_idBasket",Number(id_basket));
+   }
+   if(uid_auth_user){
+     console.log('uid_auth_user');
+    this.$store.commit("localStorage/setAuthuser",String(uid_auth_user));
+    this.retbonus()
+    
+ }
+ if(summ_present){
+   console.log('summ_present');
+  this.$store.commit("localStorage/set_summBasket",Number(summ_present));
+}
+ if(city){
+   console.log(city);
+  this.$store.commit("localStorage/set_Sity",String(city));
+}
+ if(date){
+   console.log('date',date);
+  this.$store.commit("localStorage/set_Date",String(date));
+}
   },
   watch: {
       model (val) {
@@ -352,6 +380,19 @@ export default {
   },
 
   methods: {
+        retbonus() {
+        this.$axios
+        .$get(`/api/present/users/${this.$store.state.localStorage.uid_auth_user}`,{
+        })
+        .then((resp) => {
+          console.log(resp);
+        this.$store.commit("user/setusers",resp);
+        })
+        .catch(function (error) {
+         console.log(error);
+        });
+
+  },
     toTopD(){
       var hiddenElement = document.getElementById("triger");
      hiddenElement.scrollIntoView({block: "center", behavior: "smooth"});
