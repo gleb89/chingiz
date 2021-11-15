@@ -1,7 +1,7 @@
 <template>
 
-                  <v-row class="mobile-hei">
- 
+                  <v-row class="mobile-hei" justify="center">
+  
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -23,13 +23,15 @@
                     <CardProduct :present="present" />
                   </div>
                 </v-col>
+               
                   <div style="width: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                min-height: 20vh;"
-                v-if="client && this.productsfetch.total > this.productsfetch.items.length"  v-intersect="onIntersect">
+                min-height: 40vh;"
+                v-if="client && productsfetch.total > $store.state.products.presents.length" >
                      <v-progress-circular
+                      v-intersect="onIntersect"
                         indeterminate
                     color="amber"
                      ></v-progress-circular>

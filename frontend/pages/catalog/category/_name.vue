@@ -1,6 +1,6 @@
 <template>
 
-                  <v-row class="mobile-hei">
+                  <v-row class="mobile-hei" justify="center">
             <v-col
               cols="12"
               lg="12"
@@ -56,8 +56,14 @@
                     <CardProduct :present="present" />
                   </div>
                 </v-col>
-                  <div style="width:100%;text-align: center;" v-if="client && this.productsfetch.total > this.productsfetch.items.length"  v-intersect="onIntersect">
+                  <div style="width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 40vh;"
+                v-if="client && productsfetch.total > $store.state.products.presents.length" >
                      <v-progress-circular
+                      v-intersect="onIntersect"
                         indeterminate
                     color="amber"
                      ></v-progress-circular>
