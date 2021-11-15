@@ -58,13 +58,13 @@
           <h2 style="margin-top: 4em;" v-scroll="onScroll" class="nemepresent2">
 
             <span v-if="!filter_name && !search"
-              >Все подарки ({{ listproducts.length }})</span
+              >Все подарки</span
             >
             <span v-if="filter_name && !search">
-              {{ filter_name }} ({{ listproducts.length }})</span
+              {{ filter_name }} </span
             >
             <span v-if="search"
-              >Результат поиска ({{ listproducts.length }})</span
+              >Результат поиска</span
             >
           </h2>
         </div>
@@ -223,12 +223,18 @@ export default {
         // this.ws.onopen;
         // this.ws.send(this.search);
       }
-      if (!this.search) {
-        this.search_element = [];
-        this.upd_serch = [];
-      }
+
       if (!this.search && this.filter_name === "") {
-        // this.products = this.$store.getters["products/products"];
+                this.search_element = [];
+        this.upd_serch = [];
+        this.products = this.$store.getters["products/products"].filter(
+            (elem) => {
+               for (let i of elem.category) {
+                if (i.id === 2 || i.id === 8 || i.id === 3) {
+                  return elem;
+                }
+              }
+            })
       }
       if (this.form_id) {
         this.sortedProductForm();
@@ -419,7 +425,14 @@ export default {
       setTimeout(() => {
         if (slug === "all_presents") {
         
-          this.products = this.$store.getters["products/products"];
+          this.products = this.$store.getters["products/products"].filter(
+            (elem) => {
+               for (let i of elem.category) {
+                if (i.id === 2 || i.id === 8 || i.id === 3) {
+                  return elem;
+                }
+              }
+            })
           
         } else {
           this.products = this.$store.getters["products/products"].filter(

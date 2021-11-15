@@ -56,7 +56,6 @@ export default {
 
  computed: {
     listproducts() {
-
       if(this.$store.state.products.price_min && this.$store.state.products.maxs){
         var arrs =  this.$store.state.products.presents.filter(
           (elem) => {
@@ -79,6 +78,7 @@ export default {
       this.$store.commit("categories/setSizepresent",this.len_items); 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
     this.products = this.$store.state.products.presents
+    
         return this.products
     }
       } 
