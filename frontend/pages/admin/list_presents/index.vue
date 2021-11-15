@@ -2,7 +2,7 @@
   <div>
 {{all_filter}}
     <h2>Все подарочные корзины</h2>
-    
+   
           <div
             v-if="admin_data.present_change"
             style="width: 100%; padding: 1rem"
@@ -432,7 +432,22 @@
               </v-card>
             
             </v-dialog>
-          
+                         <div class="" style="width: 100%; text-align: end; position: relative">
+                <v-btn
+                @click="toTop"
+                v-scroll="onScroll"
+                v-show="fab"
+                  style="position: fixed;
+              right: 1em;
+              z-index: 1;
+              bottom: 6em;"
+                  fab
+                  dark
+                  color="orange"
+                >
+                <fa style="font-size:1.4em" icon="angle-up"></fa>
+                </v-btn>
+              </div>
           <v-autocomplete
             v-model="value"
             :items="forsearch"
@@ -575,6 +590,7 @@ export default {
   data() {
     return {
       items: [],
+      fab:false,
       headers: [
         { text: "Артикул", value: "id" },
         { text: "Заказали раз", value: "popular" },
@@ -804,6 +820,15 @@ export default {
   mounted() {},
 
   methods: {
+       toTop () {
+ this.$vuetify.goTo(0)
+    },
+          onScroll (e) {
+     
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset ||   e.target.scrollTop || 0
+      this.fab = top > 160
+    },
     dialog_close(){
       this.image_precent = null;
           this.image = null;

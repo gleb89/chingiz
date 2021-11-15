@@ -6,7 +6,7 @@
     <div class="nav-mnav">
       <Navmobile />
     </div>
-form
+
     <v-container class="cont-filter"> 
       <v-row justify="center">
         <!-- box-filterss -->
@@ -248,8 +248,23 @@ form
                 <fa style="font-size:1.4em" icon="angle-up"></fa>
                 </v-btn>
               </div>
-                <v-main>
-
+                <v-main >
+ <div class="d-lg-block d-md-block d-none" style="width: 100%; text-align: end; position: relative">
+                <v-btn
+                @click="toTopD"
+            
+                  style="position: fixed;
+              right: 1em;
+              z-index: 1;
+              bottom: 6em;"
+                  fab
+                  dark
+                  color="orange"
+                >
+                <fa style="font-size:1.4em" icon="angle-up"></fa>
+                </v-btn>
+              </div>
+              <span id="triger" ></span>
                   <Nuxt />
 
                 </v-main>
@@ -323,6 +338,9 @@ export default {
       return this.$store.state.categories.name_category;
     },
     form(){
+            if (this.sort_price) {
+        this.sortPriceNav(this.sort_price);
+      }
         return this.$store.state.allfilter.allfilter.form_precent
     },
     count() {
@@ -334,6 +352,11 @@ export default {
   },
 
   methods: {
+    toTopD(){
+      var hiddenElement = document.getElementById("triger");
+     hiddenElement.scrollIntoView({block: "center", behavior: "smooth"});
+
+    },
     onPrimPrice(){
       if (this.minpricem && this.maxpricem) {
        
@@ -370,6 +393,11 @@ export default {
       if (typeof window === 'undefined') return
       const top = window.pageYOffset ||   e.target.scrollTop || 0
       this.fab = top > 160
+    },
+    onScrolld (e) {
+     
+      if (typeof window === 'undefined') return
+     console.log(11,e);
     },
     onfilterslugPage(pk, name, cat_or_reason) {
       this.name_form = ''

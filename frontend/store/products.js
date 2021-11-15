@@ -17,6 +17,7 @@ export const state = () => {
   
     },
     setpresents (state,products) {
+      console.log(products);
       state.presents = products
     
       },
