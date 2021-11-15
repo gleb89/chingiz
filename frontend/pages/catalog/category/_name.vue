@@ -43,18 +43,7 @@
                   md="6"
                   sm="6"
                 >
-                <div class="" style="width: 100%; text-align: end; position: relative">
-                <v-btn
-                @click="toTop"
-                v-show="fab"
-                  style="position: fixed; right: 3em; bottom: 7em; z-index: 1"
-                  fab
-                  dark
-                  color="orange"
-                >
-                <fa style="font-size:1.4em" icon="angle-up"></fa>
-                </v-btn>
-              </div>
+
                   <div
                     style="
                       width: 98%;

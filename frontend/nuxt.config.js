@@ -152,7 +152,7 @@ export default {
   },
 
   proxy: {
-    // Simple proxy
+
     "/api/": {
       // target: "http://giftcity.kz:8001/api/v1",
       target: "https://giftcity.kz/api/v1",
@@ -161,7 +161,7 @@ export default {
       changeOrigin: true
     }
   },
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+
   axios: {
     proxy: true,
     // proxyHeaders: false,

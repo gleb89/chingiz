@@ -1,7 +1,7 @@
 <template>
 
                   <v-row class="mobile-hei">
-             
+ 
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -100,6 +100,7 @@ export default {
 
   },
   methods: {
+
         pageData(){
           this.page = this.page +1
           console.log(this.page);

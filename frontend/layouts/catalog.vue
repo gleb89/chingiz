@@ -6,7 +6,7 @@
     <div class="nav-mnav">
       <Navmobile />
     </div>
-
+form
     <v-container class="cont-filter"> 
       <v-row justify="center">
         <!-- box-filterss -->
@@ -86,24 +86,7 @@
            
         </v-list-item-action>
       </template>
-    </v-autocomplete>
-                    <!-- <img class="searc-inp" style="" src="/search .png" alt="" /> -->
-
-                    <!-- <v-text-field
-                      style="
-                        border: 1px solid #989898;
-                        width: 100%;
-                        height: 3.5rem;
-                      "
-                      placeholder="Введите повод, форму, категорию или название "
-                      rounded
-                    ></v-text-field> -->
-                    <!-- <div class="result-search" style="">
-              <p @click="onresSearch(i)" v-for="i in upd_serch" :key="i">{{i}}</p>
-              
-      
-            </div> -->
-                  
+    </v-autocomplete>         
                 </v-col>
                 <v-col
                   lg="3"
@@ -118,6 +101,111 @@
                     single-line
                   ></v-select>
                 </v-col>
+                <v-col class="d-lg-none d-md-none d-block col-12">
+                  <v-dialog  v-model="dialogres">
+                            <v-card class="open" style="">
+          <v-toolbar dark color="orange">
+            <v-btn icon dark @click="dialogres = false">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+            <v-toolbar-title>Фильтры</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-toolbar-items> </v-toolbar-items>
+          </v-toolbar>
+          <div style="margin-top: 4rem;padding: 1rem;">
+            <v-alert
+            v-model="alert"
+              style="position: fixed;z-index: 2;width: 90%;"
+              color="orange"
+              elevation="13"
+              type="success"
+              >Фильтр применен</v-alert
+            >
+
+            <div style="margin-top: 2rem">
+              <h3>Форма:</h3>
+              <div class="mt-4">
+                <v-checkbox
+                @click="onForm(n.id,n.name_form)"
+                  v-for="n in form"
+                  :key="n.id"
+                  style="height: 1.3rem; width: 20rem"
+                  color="orange"
+                  v-model="name_form"
+                  :label="`${n.name_form}`"
+                  :value="n.id"
+                ></v-checkbox>
+              </div>
+            </div>
+
+            <div style="margin-top: 2rem">
+              <h3>Цена</h3>
+              <!-- forms-price-filter -->
+              <div class="mt-4">
+                <div>
+                  <span>от</span>
+                  <v-text-field
+                    v-model="minprice"
+                    style="width: 100%"
+                    type="number"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
+                <div>
+                  <span>до</span>
+                  <v-text-field
+                    v-model="maxprice"
+                    style="width: 100%"
+                   type="number"
+                    single-line
+                    outlined
+                  ></v-text-field>
+                </div>
+              </div>
+
+              <!-- form-check-filter -->
+
+              <!-- button reset filters -->
+              <div class="text-center mt-8">
+                <v-btn
+                  @click="onReset()"
+                  rounded
+                  color="#ff7a00"
+                  style="height: 39px; margin: 0.7rem"
+                  dark
+                >
+                  <span style="font-size: 12px">сбросить фильтры</span>
+                </v-btn>
+              </div>
+            </div>
+          </div>
+        </v-card>
+      </v-dialog>
+            <div
+            style="width:100%;background: #F4F5F6;padding-left:.5rem;align-items: center;"
+            class="d-flex"
+          >
+            <div class="ned">
+              <v-select
+                style="margin-top:1rem"
+                :items="['сначала недорогие','более дорогие']"
+                solo
+                dense
+                v-model="sort_price"
+                :label="sort_price ||'сначала недорогие'"
+              ></v-select>
+            </div>
+
+            <div>
+              <v-btn @click="dialogres = true"  color="indigo" text>
+                <span style="color:#676767">Фильтры</span>
+                <img src="/filter.png" alt="" />
+              </v-btn>
+            </div>
+
+          </div>
+          </v-col>
               </v-row>
             </div>
           </v-col>
@@ -125,8 +213,26 @@
           <v-container class="box-scrol">
             <v-row justify="start">
               <v-container>
+              <div class="" style="width: 100%; text-align: end; position: relative">
+                <v-btn
+                @click="toTop"
+                v-scroll="onScroll"
+                v-show="fab"
+                  style="position: fixed;
+              right: 1em;
+              z-index: 1;
+              bottom: 6em;"
+                  fab
+                  dark
+                  color="orange"
+                >
+                <fa style="font-size:1.4em" icon="angle-up"></fa>
+                </v-btn>
+              </div>
                 <v-main>
+
                   <Nuxt />
+
                 </v-main>
               </v-container>
             </v-row>
@@ -134,6 +240,9 @@
         </v-col>
       </v-row>
     </v-container>
+     <div class="nav-mnav">
+      <Mobbar />
+    </div>
   </v-app>
 </template>
 <script>
@@ -143,8 +252,14 @@ export default {
       sort_price: "",
       isLoading: false,
       items: [],
+      alert:false,
+      dialogres:false,
+      fab:false,
       model: null,
       search: null,
+      name_form : '',
+      minprice : null,
+      maxprice : null,
       tab: null,
     };
   },
@@ -176,7 +291,18 @@ export default {
     },
   computed: {
     name_category() {
+                  if (this.minprice && this.maxprice) {
+              this.$store.commit("products/setpresentsPrice",this.minprice); 
+               this.$store.commit("products/setpresentsMaxs",this.maxprice); 
+                
+      }else{
+        this.$store.commit("products/setpresentsPrice",0); 
+        this.$store.commit("products/setpresentsMaxs",0); 
+      }
       return this.$store.state.categories.name_category;
+    },
+    form(){
+        return this.$store.state.allfilter.allfilter.form_precent
     },
     count() {
       if (this.sort_price) {
@@ -187,6 +313,27 @@ export default {
   },
 
   methods: {
+        onReset(){
+          this.alert = true
+          setTimeout(() => {
+             this.alert = false
+          }, 1000);
+      this.dialogres = false
+      this.name_form = ''
+      this.minprice = null
+      this.maxprice = null
+      this.$store.commit("products/setpresentsPrice",0 ,0); 
+      this.onfilterslugPage(0,'Все подарки','')
+    },
+          toTop () {
+ this.$vuetify.goTo(0)
+    },
+          onScroll (e) {
+     
+      if (typeof window === 'undefined') return
+      const top = window.pageYOffset ||   e.target.scrollTop || 0
+      this.fab = top > 160
+    },
     onfilterslugPage(pk, name, cat_or_reason) {
       this.sort_price = "";
       let doc = document.querySelector(".box-products");
@@ -250,6 +397,7 @@ export default {
       this.$router.push("/catalog/forms/" + pk);
       setTimeout(() => {
         doc.classList.add("addheaich");
+         
       }, 100);
       this.$store.commit("categories/setcategoriesname", name);
     },
