@@ -207,7 +207,7 @@ async def get_counter():
     coun =  await Counter.objects.get_or_none(id=1)
     return {'посещений на сайте':coun.counter}
 
-@precent_router .get('/{id}')
+@precent_router.get('/{id}')
 async def get_one(id: int):
     present = await Present.objects.prefetch_related(
             [
@@ -225,18 +225,7 @@ async def get_one(id: int):
         'presentreason',
         'presentsubcategories'
         ]).get_or_none(id=id)
-    comments = await coments.get_all_comments_for_id_present(present.id)
-    edit_presents = await Present.objects.filter(category__id=present.category[0].id).all()
-    data = {
-        'present':present,
-        'comments ':comments ,
-        'edit_presents':edit_presents[:18]
-    }
-    json_compatible_item_data = jsonable_encoder(data)
-    return JSONResponse(
-    status_code=200,
-    content=json_compatible_item_data
-    )
+    return present
 
 @precent_router.get('/forsite/{id}')
 async def get_one_for_site(id: int):
