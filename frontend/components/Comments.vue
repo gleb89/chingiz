@@ -11,7 +11,7 @@
 
     <!-- box-comments -->
     <div class="boxc-comment" style="overflow: auto; max-height: 60vh;">
-     
+   
     <div v-for="comment in comments_list" :key="comment.id" id="comments">
       <v-container>
         <v-row justify="center">
@@ -188,8 +188,9 @@ export default {
   },
   methods: {
     sendComment(){
+     
       if(this.onlformdata){
-
+        
      
       let data = {
           "present_id": this.product_id,

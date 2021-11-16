@@ -421,21 +421,7 @@ export default {
         }
     ],
   },
-  async asyncData({ $axios }) {
-    const headers = {
-      "Content-Type": "application/json"
-    };
-    const stocks = await $axios.get(
-      `/api/present/stocks/`
-    );
-    const comments= await $axios.get(
-      `/api/present/commentsservice/`
-    );
-    const comments_serv = comments.data.filter(elem => {
-          return elem.moderation
-        });
-    return { stocks: stocks.data,comments_serv:comments_serv };
-  },
+
   async fetch({ store }) {
     if (store.getters["products/products"].length === 0) {
       await store.dispatch("products/fetch");
@@ -448,31 +434,22 @@ export default {
   },
   
   computed: {
-    listproducts() {
-      this.presents = this.$store.getters["products/products"];
-      return this.presents;
+    stocks(){
+      return  this.$store.getters["products/products"].stocks
+    },
+    comments_serv(){
+          let comments_service = this.$store.getters["products/products"].commentserv.filter(elem => {
+          return elem.moderation
+        });
+        return comments_service
     },
     new_product(){
-      let new_array = this.$store.getters["products/products"].filter((elem) => {
-            for (let i of elem.category){
-          if(i.id === 2){
-            return elem
-          }
-        }
-            
-          }).slice(-18)
-        return new_array.sort(function(a, b) { return b.id - a.id; }).slice(0,18)
+        let presents = this.$store.getters["products/products"].new.map((x) => x);
+        return presents
     },
     popular_product(){
-      let new_array = this.$store.getters["products/products"].filter((elem) => {
-        for (let i of elem.category){
-          if(i.id === 2){
-            return elem
-          }
-        }
-            
-          })
-        return new_array.sort(function(a, b) { return b.popular - a.popular; }).slice(0,18)
+      let presents = this.$store.getters["products/products"].popular.map((x) => x);
+        return presents
         
     },
     computedDateFormatted() {

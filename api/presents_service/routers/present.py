@@ -19,6 +19,7 @@ from logics.precents import image_add
 from models.subcategories import SubCategories
 from logics.jwt_token import jwt_auth
 from logics.category import image_delete
+from routers import commentsservice,stocks,coments
 
 
 
@@ -142,6 +143,7 @@ async def get_all_admin():
     return presents 
 
 
+
 @precent_router.get('/catalog')
 async def get_all_catalog():
     # redis = await aioredis.Redis.from_url("redis://redis", max_connections=10, decode_responses=True)
@@ -175,6 +177,27 @@ async def get_all_catalog():
     await conter.update(counter = conter.counter+1)
     return presents
 
+@precent_router.get('/catalog/home')
+async def get_all_catalog_home():
+    conter = await Counter.objects.get_or_none(id=1)
+    await conter.update(counter = conter.counter+1)
+    presents_new = await Present.objects.filter(category__id=2).order_by("-id").all()
+    presents_popular = await Present.objects.filter(category__id=2).order_by("-popular").all()
+    commentserv = await commentsservice.get_all()
+    all_stocks = await stocks.get_all()
+    data = {
+        'new':presents_new[:18],
+        'popular':presents_popular[:18],
+        'commentserv':commentserv,
+        'stocks':all_stocks,
+    }
+    json_compatible_item_data = jsonable_encoder(data)
+    return JSONResponse(
+    status_code=200,
+    content=json_compatible_item_data
+    )
+  
+
 @precent_router.post('/counter')
 async def create_counter(coun:Counter):
     return await coun.save()
@@ -185,6 +208,68 @@ async def get_counter():
     return {'посещений на сайте':coun.counter}
 
 @precent_router .get('/{id}')
+async def get_one(id: int):
+    present = await Present.objects.prefetch_related(
+            [
+                "category__subcategory",
+                "form_precent",
+                "subcategory",
+                "type_precent",
+                "reason_for_precent"
+            ]
+            ).exclude_fields(
+    [
+        'presentformpresent',
+        'presenttypepresent',
+        'presentcategories',
+        'presentreason',
+        'presentsubcategories'
+        ]).get_or_none(id=id)
+    comments = await coments.get_all_comments_for_id_present(present.id)
+    edit_presents = await Present.objects.filter(category__id=present.category[0].id).all()
+    data = {
+        'present':present,
+        'comments ':comments ,
+        'edit_presents':edit_presents[:18]
+    }
+    json_compatible_item_data = jsonable_encoder(data)
+    return JSONResponse(
+    status_code=200,
+    content=json_compatible_item_data
+    )
+
+@precent_router.get('/forsite/{id}')
+async def get_one_for_site(id: int):
+    present = await Present.objects.prefetch_related(
+            [
+                "category__subcategory",
+                "form_precent",
+                "subcategory",
+                "type_precent",
+                "reason_for_precent"
+            ]
+            ).exclude_fields(
+    [
+        'presentformpresent',
+        'presenttypepresent',
+        'presentcategories',
+        'presentreason',
+        'presentsubcategories'
+        ]).get_or_none(id=id)
+    comments = await coments.get_all_comments_for_id_present(present.id)
+    edit_presents = await Present.objects.filter(category__id=present.category[0].id).all()
+    data = {
+        'present':present,
+        'comments':comments ,
+        'edit_presents':edit_presents[:18]
+    }
+    json_compatible_item_data = jsonable_encoder(data)
+    return JSONResponse(
+    status_code=200,
+    content=json_compatible_item_data
+    )
+
+@precent_router.get('/{id}')
 async def get_one(id: int):
     return await Present.objects.prefetch_related(
             [
@@ -202,7 +287,6 @@ async def get_one(id: int):
         'presentreason',
         'presentsubcategories'
         ]).get_or_none(id=id)
-
 
 @precent_router.put('/{id}') 
 async def update_one(

@@ -1,6 +1,6 @@
 export const state = () => {
     return {
-      products:[],
+      pres:[],
       presents:[],
       maxs:0,
       price_min:0,
@@ -12,17 +12,17 @@ export const state = () => {
   }
   
   export const mutations = {
-    setproducts (state,products) {
-    state.products = products
+    setpres (state,pres) {
+    state.pres = pres
   
     },
-    setpresents (state,products) {
-      console.log(products);
-      state.presents = products
+    setpresents (state,pres) {
+      console.log(pres);
+      state.presents = pres
     
       },
-      setpresentspush (state,products) {
-        state.presents.push(products)
+      setpresentspush (state,pres) {
+        state.presents.push(pres)
       
         },
 
@@ -59,17 +59,17 @@ export const state = () => {
         const headers = {
             "Content-Type": "application/json"
           };
-        const products = await this.$axios
-        .$get(`/api/present/catalog/home`,{
+        const pres = await this.$axios
+        .$get(`/api/present/catalog`,{
           headers: headers
         })
-        commit('setproducts',products)
+        commit('setpres',pres)
   
     }
   }
   
   export const getters = {
-    products: s => s.products,
+    pres: s => s.pres,
   
   
   }

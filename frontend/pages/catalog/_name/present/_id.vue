@@ -10,28 +10,28 @@
           <nuxt-link style="color: #303030" to="/catalog/all_presents"
             >Каталог</nuxt-link
           >/
-         
-          <span>{{ product.name_precent }}</span>
+         product.id
+          <span>{{ product.present.name_precent }}</span>
         </div>
         <Goend/>
-        <h2 class="namep mt-6" style="font-weight: 400;" >{{ product.prevue_name }}</h2>
-        <h2 class="namep" style="font-weight: 900;" >"{{ product.name_precent }}"</h2>
+        <h2 class="namep mt-6" style="font-weight: 400;" >{{ product.present.prevue_name }}</h2>
+        <h2 class="namep" style="font-weight: 900;" >"{{ product.present.name_precent }}"</h2>
         <div style="position: relative" class="mt-4">
           <v-img
-          v-if="product.image_origin"
+          v-if="product.present.image_origin"
             fluid
-            :lazy-src="product.image_precent"
+            :lazy-src="product.present.image_precent"
             max-height="500"
             max-width="500"
-            :src="product.image_origin"
+            :src="product.present.image_origin"
           ></v-img>
                     <v-img
-          v-if="!product.image_origin"
+          v-if="!product.present.image_origin"
             fluid
-            :lazy-src="product.image_precent"
+            :lazy-src="product.present.image_precent"
             max-height="500"
             max-width="500"
-            :src="product.image_precent"
+            :src="product.present.image_precent"
           ></v-img>
         </div>
       </v-col>
@@ -44,10 +44,10 @@
           <div class="d-flex mt-4">
             <span class="ml-1">Артикул </span>
             <img class="mr-3 ml-4" src="/barcode.png" alt="" />
-            <span>{{ product.id }}</span>
+            <span>{{ product.present.id }}</span>
           </div>
           <div style="padding-top: 1rem;">
-            <span style="font-weight: bold;"  class="ml-1">Цена: {{ product.price.toLocaleString() }} тг</span>
+            <span style="font-weight: bold;"  class="ml-1">Цена: {{ product.present.price.toLocaleString() }} тг</span>
           </div>
           <!-- nalicie -->
           <div class="d-flex mt-4">
@@ -63,15 +63,15 @@
             <span>есть в наличии</span>
           </div>
           
-          <p v-if="product.body.length > 4"  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
-          <p  v-if="product.body.length > 4" class="ml-1 mt-1">
+          <p v-if="product.present.body.length > 4"  class="ml-1 mt-3" style="font-weight: bold;">Описание:</p>
+          <p  v-if="product.present.body.length > 4" class="ml-1 mt-1">
             
-            {{product.body }}
+            {{product.present.body }}
           </p>
-                        <div v-if="product.composition">
+                        <div v-if="product.present.composition">
                           <p class="ml-1 mt-7" style="font-weight: bold;font-size:1.3em">Состав:</p>
                     <p
-                      v-for="(comp, index) in product.composition.split(/\d[.]+/g)"
+                      v-for="(comp, index) in product.present.composition.split(/\d[.]+/g)"
                       :key="index"
                     >
                       <span style="font-weight: bold;" v-if="index"
@@ -111,7 +111,7 @@
           </div>
           <div>
         <v-btn
-        @click="addBasket(product.id)"
+        @click="addBasket(product.present.id)"
         style="color:white;margin-top:.7rem"
         rounded
         color="#ff7a00"
@@ -136,8 +136,8 @@
     </v-row>
     <div class="mt-6">
       <h2>Похожие товары</h2>
-        <Listcart class="d-lg-block d-none" :listproducts="listproducts" />
-        <CaruselProduct class="d-lg-none d-block" :listproducts="listproducts" />
+        <Listcart class="d-lg-block d-none" :listproducts="product.edit_presents" />
+        <CaruselProduct class="d-lg-none d-block" :listproducts="product.edit_presents" />
               <div class="b1" style="text-align: center;margin-bottom:2rem">
  <v-btn
             @click="oncatalog()"
@@ -151,7 +151,7 @@
         </div>
     </div>
     <div class="mt-14">
-      <Comments :comments_list="comments_list" :product_id="product_id" :add_comment="add_comment"/>
+      <Comments :comments_list="product.comments" :product_id="product_id" :add_comment="add_comment"/> 
     </div>
   </v-container>
 </template>
@@ -161,29 +161,29 @@ export default {
   
     head() {
       return {
-    title: `подарок-${this.product.name_precent}`,
+    title: `подарок-${this.product.present.name_precent}`,
     meta: [
       {
-        hid: `подарок-${this.product.id}`,
+        hid: `подарок-${this.product.present.id}`,
         name: 'description',
         content:
-          `Купить ${this.product.name_precent},${this.product.body}`,
+          `Купить ${this.product.present.name_precent},${this.product.body}`,
       },
       {
-        hid: `подарок-${this.product.name_precent}`,
+        hid: `подарок-${this.product.present.name_precent}`,
         name: 'keywords',
         content:
-          `Подарок на праздник ${this.product.name_precent},${this.product.body}`,
+          `Подарок на праздник ${this.product.present.name_precent},${this.product.body}`,
       },
        {
           hid: 'og:image',
           property: 'og:image',
-          content: `${this.product.image_precent}`
+          content: `${this.product.present.image_precent}`
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: `${this.product.image_precent}`
+          content: `${this.product.present.image_precent}`
         },
         {
           hid: 'og:image:alt',
@@ -197,47 +197,18 @@ export default {
   async asyncData({ route, $axios }) {
     const product_id = Number(route.params.id);
     let product = await $axios.get(
-       `/api/present/${product_id}`
+       `/api/present/forsite/${product_id}`
     );
-    const comments = await $axios.get(
-      `/api/present/comments/all/${product_id}`
-    );
-    return { product: product.data,comments:comments.data,product_id};
+
+    return { product: product.data,product_id};
   },
   computed: {},
-  async fetch({ store }) {
-    if (store.getters["products/products"].length === 0) {
-      await store.dispatch("products/fetch");
-    }
-  },
-  computed: {
-    listproducts() {
-      if(this.count_present < 0){
-        this.count_present = 0
-      }
-      let arr_category_id = []
-      for (let prod of this.products){
-        for(let cat of prod.category){
-        arr_category_id.push(cat.id)
-        }
-      }
-      this.products = this.products.filter((elem) => {
-            for (let i of elem.category){
-          if(arr_category_id.includes(i.id)){
-            return elem
-          }
-            }
-      });
-      return this.products;
-    },
-    comments_list(){
-      this.comments_all = this.comments
-      return this.comments_all
-    }
-  },
+
+ 
+
   data() {
     return {
-      products: this.$store.getters["products/products"],
+     
       count_present:0,
       reveal:false,
       comments_all:[]

@@ -185,8 +185,8 @@
 <script>
 export default {
   async fetch({ store }) {
-    if (store.getters["products/products"].length === 0) {
-      await store.dispatch("products/fetch");
+    if (store.getters["pres/pres"].length === 0) {
+      await store.dispatch("pres/fetch");
     }
     if (store.getters["allfilter/allfilter"].length === 0) {
       await store.dispatch("allfilter/fetch");
@@ -206,7 +206,7 @@ export default {
       let self = this;
       if (this.search) {
         // this.upd_serch = [...new Set(this.search_element)]
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             return (
               elem.name_precent
@@ -227,7 +227,7 @@ export default {
       if (!this.search && this.filter_name === "") {
                 this.search_element = [];
         this.upd_serch = [];
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
             (elem) => {
                for (let i of elem.category) {
                 if (i.id === 2 || i.id === 8 || i.id === 3) {
@@ -252,7 +252,7 @@ export default {
         });
       }
       if (this.minprice && this.maxprice) {
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             return (
               elem.price >= Number(this.minprice) &&
@@ -274,7 +274,7 @@ export default {
       categories: this.$store.getters["allfilter/allfilter"].categories,
       reason_present:
         this.$store.getters["allfilter/allfilter"].reason_for_precent,
-      products: this.$store.getters["products/products"],
+      products: this.$store.getters["pres/pres"],
       search: "",
       upd_serch: [],
       search_element: [],
@@ -312,7 +312,7 @@ export default {
             this.sub_id.splice(i, 1);
           }
         }
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             for (let i of elem.subcategory) {
               if (this.sub_id.includes(i.id)) {
@@ -324,7 +324,7 @@ export default {
       } 
       else {
         this.sub_id.push(sub_id);
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             for (let i of elem.subcategory) {
               if (this.sub_id.includes(i.id)) {
@@ -336,7 +336,7 @@ export default {
         );
       }
       if (this.sub_id.length === 0) {
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             
             for  (let cat of elem.category) {
@@ -372,7 +372,7 @@ export default {
       this.filter_name = name_reason;
       this.products = [];
       setTimeout(() => {
-        this.products = this.$store.getters["products/products"].filter(
+        this.products = this.$store.getters["pres/pres"].filter(
           (elem) => {
             for (let i of elem.reason_for_precent) {
               if (i.id == pk) {
@@ -407,7 +407,7 @@ export default {
     clickselect() {
       this.search = "";
       this.filter_name = "";
-      this.products = this.$store.getters["products/products"];
+      this.products = this.$store.getters["pres/pres"];
     },
     onsearch() {
       this.list_products.filter((elem) => {
@@ -425,7 +425,7 @@ export default {
       setTimeout(() => {
         if (slug === "all_presents") {
         
-          this.products = this.$store.getters["products/products"].filter(
+          this.products = this.$store.getters["pres/pres"].filter(
             (elem) => {
                for (let i of elem.category) {
                 if (i.id === 2 || i.id === 8 || i.id === 3) {
@@ -435,7 +435,7 @@ export default {
             })
           
         } else {
-          this.products = this.$store.getters["products/products"].filter(
+          this.products = this.$store.getters["pres/pres"].filter(
             (elem) => {
               for (let i of elem.category) {
                 if (i.id == pk) {
@@ -483,7 +483,7 @@ export default {
 
     sortedProductForm() {
       this.search = "";
-      this.products = this.$store.getters["products/products"].filter(
+      this.products = this.$store.getters["pres/pres"].filter(
         (elem) => {
           if (elem.form_precent.length > 0) {
             return elem.form_precent[0].id === Number(this.form_id);

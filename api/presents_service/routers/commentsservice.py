@@ -71,6 +71,6 @@ async def get_all():
 
 
 @comment_router.post('/moderation/{comm_id}/{moder}')
-async def get_all(comm_id:int,moder:bool):
+async def get_allmoder(comm_id:int,moder:bool):
     comment = await CommentsService.objects.get(id=comm_id)
     return await comment.update(moderation = moder)

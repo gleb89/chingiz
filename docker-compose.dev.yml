@@ -4,7 +4,7 @@ services:
   data_present:
     restart: always
     image: "postgres:14-alpine"
-    restart: always
+   
     container_name: data_present
     volumes:
         - ./present_data/:/var/lib/postgresql/data
@@ -20,7 +20,7 @@ services:
   data_courier:
     restart: always
     image: "postgres:14-alpine"
-    restart: always
+   
     container_name: data_courier
     volumes:
         - ./data_courier/:/var/lib/postgresql/data
@@ -34,33 +34,33 @@ services:
 
 
 
-  # present_api:
-  #   restart: always
-  #   build: ./api/presents_service
-  #   env_file:
-  #     - .env
-  #   command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-  #   ports:
-  #     - 8001:8000
+  present_api:
+    restart: always
+    build: ./api/presents_service
+    env_file:
+      - .env
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8001:8000
 
-  #   depends_on: 
-  #     - data_present
-  #   volumes:
-  #     - ./api/presents_service:/app/presents
+    depends_on: 
+      - data_present
+    volumes:
+      - ./api/presents_service:/app/presents
 
-  # courier_api:
-  #   restart: always
-  #   build: ./api/courier
-  #   env_file:
-  #     - .env
-  #   command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
-  #   ports:
-  #     - 8002:8000
+  courier_api:
+    restart: always
+    build: ./api/courier
+    env_file:
+      - .env
+    command: bash -c "alembic upgrade head && uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000"
+    ports:
+      - 8002:8000
 
-  #   depends_on: 
-  #     - data_courier
-  #   volumes:
-  #     - ./api/courier:/app/courier
+    depends_on: 
+      - data_courier
+    volumes:
+      - ./api/courier:/app/courier
 
   front:
     restart: always
@@ -77,8 +77,8 @@ services:
     volumes:
       - ./dev/nginx:/etc/nginx/conf.d
     depends_on:
-      # - present_api
-      # - courier_api
+      - present_api
+      - courier_api
       - front
       # - admin
     ports:
