@@ -220,8 +220,6 @@ export default {
           }
         );
 
-        // this.ws.onopen;
-        // this.ws.send(this.search);
       }
 
       if (!this.search && this.filter_name === "") {

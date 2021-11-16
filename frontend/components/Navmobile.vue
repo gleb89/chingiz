@@ -45,7 +45,7 @@
             <fa style="font-size: 1rem;color: #ff8b20;" icon="chevron-right"></fa>
           </v-list-item>
 
-          <v-list-item @click="onPage('catalog/all_presents')">
+          <v-list-item @click="onPage('catalog')">
             <v-list-item-icon>
              <fa style="color:#FF7A00;width: 1.5rem;font-size: 1rem;"  icon="th-list"></fa>
             </v-list-item-icon>

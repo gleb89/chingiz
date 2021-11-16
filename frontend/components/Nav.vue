@@ -18,7 +18,7 @@
       <div style="margin-right: 7px">
         <img  width="14" height="12" src="/menu.png" alt="" />
       </div>
-      <div @click="onPage('catalog/all_presents')">
+      <div @click="onPage('catalog')">
         <span class="text-nav">КАТАЛОГ</span>
       </div> 
     </v-col>

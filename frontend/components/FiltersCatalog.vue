@@ -12,8 +12,8 @@
       <div @click="onfilterslugPageF(category.id,category.name_category)" class="box-filter">
         <img style="max-height: 30px;max-width: 30px;min-width: 30px;" :src="category.icon" alt="" /><span
       
-          :class="{ active: Number($route.params.name) === category.id}"
-          >{{ category.name_category }}
+          :class="{ active: Number($route.params.name) === category.id && $route.path.includes('/catalog/category')}"
+          >{{ category.name_category }} 
         </span>
       </div>
       <hr style="color: #e5e5e5" />

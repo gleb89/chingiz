@@ -7,10 +7,9 @@
         <div>
           <!-- {{compreting}} -->
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
-          <nuxt-link style="color: #303030" to="/catalog/all_presents"
+          <nuxt-link style="color: #303030" to="/catalog"
             >Каталог</nuxt-link
           >/
-         product.id
           <span>{{ product.present.name_precent }}</span>
         </div>
         <Goend/>
@@ -216,7 +215,7 @@ export default {
   },
   methods: {
         oncatalog() {
-      this.$router.push("/"+'catalog/all_presents');
+      this.$router.push("/"+'catalog');
     },
     add_comment(data){
       this.comments_all.push(data)

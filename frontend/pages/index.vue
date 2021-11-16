@@ -72,7 +72,7 @@
               style="align-items: center;margin-bottom: 2rem;"
             >
               <v-btn
-                @click="onsavecity_pushCatalog"
+                @click="oncatalog()"
                 depressed
                 rounded
                 style=";height: 3rem;width: 20em;"
@@ -522,7 +522,7 @@ export default {
       return `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
     },
     oncatalog() {
-      this.$router.push("/" + "catalog/all_presents");
+      this.$router.push("/" + "catalog");
     },
     onsavecity_pushCatalog() {
       this.$store.commit("localStorage/set_Sity", this.city);
