@@ -71,7 +71,8 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    ['@nuxtjs/vuetify', { iconfont: 'mdi' }]
+    ['@nuxtjs/vuetify', { iconfont: 'mdi' }],
+    '@nuxtjs/google-analytics'
     
   ],
 
@@ -143,6 +144,12 @@ export default {
     gtm: {
     id: 'GTM-5FQRDZB'
    },
+   googleAnalytics: {
+    id: 'G-2Q6KZB34SF',
+    autoTracking: {
+      screenview: true
+    }
+  },
   fontawesome:{
     component:'fa',
     icons:{
