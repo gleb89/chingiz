@@ -48,11 +48,12 @@ export default {
       await store.dispatch("allfilter/fetch");
     }
   },
- async asyncData({ route, $axios }) {
+ async asyncData({ route, $axios ,store}) {
   
     let products1 = await $axios.get(
        `/api/present/catalog/paginations?page=1&size=20`
     );
+    store.commit("categories/setcategoriesname", 'Все подарки');
     return { productsfetch: products1.data};
   },
 
@@ -96,8 +97,6 @@ export default {
       };
   },
     mounted: function () {
-      if(!process.client) return;
-      this.$store.commit("categories/setcategoriesname", 'Все подарки');
     setTimeout(() => {
       this.client = true
     }, 2000);
