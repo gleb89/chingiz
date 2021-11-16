@@ -1,6 +1,7 @@
 <template>
 
                   <v-row class="mobile-hei" justify="center">
+                  
             <v-col
               cols="12"
               lg="12"
@@ -90,6 +91,7 @@ export default {
     let subcategory_data = await $axios.get(
        `/api/present/categories/${categoru_id}`
     );  
+
     products.data.items.sort(() => Math.random() - 0.5)
     return {subcategory_data:subcategory_data.data, productsfetch: products.data,categoru_id:categoru_id};
   },
@@ -142,9 +144,7 @@ export default {
       }   
 
   },
-  mounted() {
-   
-  },
+
   
 
   data() {
@@ -162,6 +162,8 @@ export default {
       };
   },
     mounted: function () {
+        if(!process.client) return;
+      this.$store.commit("categories/setcategoriesname", this.subcategory_data.name_category)
     setTimeout(() => {
       this.client = true
     }, 2000);

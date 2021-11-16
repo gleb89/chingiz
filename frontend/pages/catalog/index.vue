@@ -96,6 +96,8 @@ export default {
       };
   },
     mounted: function () {
+      if(!process.client) return;
+      this.$store.commit("categories/setcategoriesname", 'Все подарки');
     setTimeout(() => {
       this.client = true
     }, 2000);

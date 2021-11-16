@@ -66,8 +66,11 @@ export default {
     let products = await $axios.get(
        `/api/present/catalog/paginations/reason?pk=${reson_id}&page=1&size=20`
     );
+    let reasons = await $axios.get(
+       `/api/present/reason/${reson_id}`
+    );
     products.data.items.sort(() => Math.random() - 0.5)
-    return { productsfetch: products.data,reson_id:reson_id};
+    return { productsfetch: products.data,reson_id:reson_id,reasons:reasons.data};
   },
   
  computed: {
@@ -114,6 +117,8 @@ export default {
       };
   },
     mounted: function () {
+    if(!process.client) return;
+      this.$store.commit("categories/setcategoriesname", this.reasons.name_reason);
     setTimeout(() => {
       this.client = true
     }, 2000);

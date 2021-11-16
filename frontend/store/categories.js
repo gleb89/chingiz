@@ -1,7 +1,7 @@
 export const state = () => {
     return {
       categories:[],
-      name_category:'Все подарки',
+      name_category:'',
       count_present:0,
       subcategories:[]
   
