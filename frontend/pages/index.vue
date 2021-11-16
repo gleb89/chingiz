@@ -420,6 +420,7 @@ export default {
           content: 'GIFTCITY'
         }
     ],
+
   },
 
   async fetch({ store }) {

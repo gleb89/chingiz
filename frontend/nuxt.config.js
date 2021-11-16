@@ -22,7 +22,11 @@ export default {
       {name:"mailru-domain" ,content:"H4AMvCUJss9mZlhr"} 
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css?family=Roboto&display=swap'
+      },
     
     ],
 
@@ -75,7 +79,11 @@ export default {
     '@nuxtjs/google-analytics'
     
   ],
-
+  bundleRenderer: {
+    shouldPreload: (file, type) => {
+      return ['script', 'style', 'font'].includes(type)
+    }
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
