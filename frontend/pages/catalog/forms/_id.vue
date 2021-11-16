@@ -60,11 +60,15 @@ export default {
       await store.dispatch("allfilter/fetch");
     }
   },
- async asyncData({ route, $axios }) {
+ async asyncData({ route, $axios,store }) {
     const form_id = Number(route.params.id)
     let products = await $axios.get(
        `/api/present/catalog/paginations/form?pk=${form_id}&page=1&size=20`
     );
+    let forms = await $axios.get(
+       `/api/present/form_product/${form_id}`
+    );
+    store.commit("categories/setcategoriesname", forms.data.name_form);
     products.data.items.sort(() => Math.random() - 0.5)
     return { productsfetch: products.data,form_id:form_id};
   },

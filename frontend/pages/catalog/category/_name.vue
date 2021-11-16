@@ -82,7 +82,7 @@ export default {
       await store.dispatch("allfilter/fetch");
     }
   },
- async asyncData({ route, $axios }) {
+ async asyncData({ route, $axios,store }) {
     const categoru_id = route.params.name
     let products = await $axios.get(
        `/api/present/catalog/paginations/categories?id=${categoru_id}&page=1&size=20`
@@ -91,7 +91,7 @@ export default {
     let subcategory_data = await $axios.get(
        `/api/present/categories/${categoru_id}`
     );  
-
+    store.commit("categories/setcategoriesname", subcategory_data.data.name_category)
     products.data.items.sort(() => Math.random() - 0.5)
     return {subcategory_data:subcategory_data.data, productsfetch: products.data,categoru_id:categoru_id};
   },
@@ -162,8 +162,7 @@ export default {
       };
   },
     mounted: function () {
-        if(!process.client) return;
-      this.$store.commit("categories/setcategoriesname", this.subcategory_data.name_category)
+
     setTimeout(() => {
       this.client = true
     }, 2000);
