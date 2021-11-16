@@ -54,29 +54,29 @@
 export default {
     head() {
       return {
-    title: `подарок-Подарок на праздник подарок с формой  ${this.forms.name_form}` ,
+    title: `Подарки на праздник  с формой  ${this.forms.name_form}` ,
     meta: [
       {
-        hid: `подарок-Подарок на праздник подарок с формой  ${this.forms.name_form}`,
+        hid: `Подарки на праздник  с формой  ${this.forms.name_form}`,
         name: 'description',
         content:
-          `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+          `Подарки на праздник с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
       },
       {
-        hid: `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+        hid: `Подарки на праздник  с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
         name: 'keywords',
         content:
-          `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+          `Подарки  на праздник  с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
       },
        {
           hid: 'og:image',
           property: 'og:image',
-          content: `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`
+          content: `Подарки  на праздник  с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`
         },
         {
           hid: 'og:image:secure_url',
           property: 'og:image:secure_url',
-          content: `Подарок на праздник подарок с формой  ${this.forms.name_form}  (Нур-Султан,Алматы)`
+          content: `Подарки  на праздник  с формой  ${this.forms.name_form}  (Нур-Султан,Алматы)`
         },
         {
           hid: 'og:image:alt',

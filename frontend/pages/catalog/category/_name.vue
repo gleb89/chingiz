@@ -76,19 +76,19 @@
 export default {
     head() {
       return {
-    title: `подарок-${this.subcategory_data.name_category} (Нур-Султан,Алматы)` ,
+    title: `Подарки ${this.subcategory_data.name_category} (Нур-Султан,Алматы)` ,
     meta: [
       {
         hid: `подарок-${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
         name: 'description',
         content:
-          `Купить подарок  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+          `Купить Подарки  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
       },
       {
-        hid: `подарок   ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+        hid: `Подарки  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
         name: 'keywords',
         content:
-          `Подарок  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+          `Подарки  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
       },
        {
           hid: 'og:image',

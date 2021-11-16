@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Подарки на любой праздник | (Нур-Султан,Алматы)',
+    
     title: 'Подарки на любой праздник | (Нур-Султан,Алматы)',
     meta: [
       { charset: 'utf-8' },
