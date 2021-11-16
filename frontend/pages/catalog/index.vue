@@ -1,7 +1,7 @@
 <template>
 
-                  <v-row class="mobile-hei" justify="center">
-  
+                  <v-row class="mobile-hei">
+                  
                 <v-col
                   class="boxs-cardprod"
                   v-for="present in listproducts"
@@ -79,8 +79,16 @@ export default {
       else{
       this.len_items = this.productsfetch.total
       this.$store.commit("categories/setSizepresent",this.len_items); 
+
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-    this.products = this.$store.state.products.presents
+    this.products = this.$store.state.products.presents.filter(
+            (elem) => {
+               for (let i of elem.category) {
+                if (i.id === 2 || i.id === 8 || i.id === 3) {
+                  return elem;
+                }
+              }
+            })
     
         return this.products
     }

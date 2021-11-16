@@ -385,7 +385,8 @@ async def update_one(
 @precent_router.get('/catalog/paginations',response_model=Page[Present])
 async def get_all_catalog_paginations(params: Params = Depends()):
 
-    presents = await Present.objects.all()
+    presents = await Present.objects.prefetch_related(['category']).exclude_fields(
+    ['self_present']).all()
     
     return paginate(presents, params)
 
