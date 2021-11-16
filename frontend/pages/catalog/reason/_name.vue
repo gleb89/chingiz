@@ -52,6 +52,41 @@
 
 <script>
 export default {
+    head() {
+      return {
+    title: `подарок-${this.reasons.name_reason} (Нур-Султан,Алматы)` ,
+    meta: [
+      {
+        hid: `подарок-${this.reasons.name_reason} (Нур-Султан,Алматы)`,
+        name: 'description',
+        content:
+          `Купить подарок на  ${this.reasons.name_reason} (Нур-Султан,Алматы)`,
+      },
+      {
+        hid: `подарок  на ${this.reasons.name_reason} (Нур-Султан,Алматы)`,
+        name: 'keywords',
+        content:
+          `Подарок на праздник ${this.reasons.name_reason} (Нур-Султан,Алматы)`,
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${this.reasons.name_reason} (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: `${this.reasons.name_reason} (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+     
+    ],
+    }
+    },
    transition: 'bounce',
     layout: "catalog",
     

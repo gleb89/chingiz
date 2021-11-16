@@ -74,6 +74,41 @@
 
 <script>
 export default {
+    head() {
+      return {
+    title: `подарок-${this.subcategory_data.name_category} (Нур-Султан,Алматы)` ,
+    meta: [
+      {
+        hid: `подарок-${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+        name: 'description',
+        content:
+          `Купить подарок  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+      },
+      {
+        hid: `подарок   ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+        name: 'keywords',
+        content:
+          `Подарок  ${this.subcategory_data.name_category} (Нур-Султан,Алматы)`,
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `${this.subcategory_data.name_category} (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: `${this.subcategory_data.name_category} (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+     
+    ],
+    }
+    },
   transition: 'bounce',
     layout: "catalog",
 

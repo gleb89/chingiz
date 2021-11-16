@@ -52,6 +52,41 @@
 
 <script>
 export default {
+    head() {
+      return {
+    title: `подарок-Подарок на праздник подарок с формой  ${this.forms.name_form}` ,
+    meta: [
+      {
+        hid: `подарок-Подарок на праздник подарок с формой  ${this.forms.name_form}`,
+        name: 'description',
+        content:
+          `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+      },
+      {
+        hid: `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+        name: 'keywords',
+        content:
+          `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`,
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: `Подарок на праздник подарок с формой  ${this.forms.name_form} (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: `Подарок на праздник подарок с формой  ${this.forms.name_form}  (Нур-Султан,Алматы)`
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+     
+    ],
+    }
+    },
    transition: 'bounce',
     layout: "catalog",
 
@@ -70,7 +105,7 @@ export default {
     );
     store.commit("categories/setcategoriesname", forms.data.name_form);
     products.data.items.sort(() => Math.random() - 0.5)
-    return { productsfetch: products.data,form_id:form_id};
+    return { productsfetch: products.data,form_id:form_id,forms:forms.data};
   },
   
  computed: {
