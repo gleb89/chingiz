@@ -384,11 +384,16 @@ async def update_one(
     
 @precent_router.get('/catalog/paginations',response_model=Page[Present])
 async def get_all_catalog_paginations(params: Params = Depends()):
-
-    presents = await Present.objects.prefetch_related(['category']).exclude_fields(
-    ['self_present']).all()
+    presents = []
+    present_of_basket = await Present.objects.filter(
+    (Present.category.id << [2,8,3])
+    ).order_by("category__id").all()
+    # present_of_boks = Present.objects.
+    # present_of_cvet = Present.objects.
+    # presents = await Present.objects.prefetch_related(['category']).exclude_fields(
+    # ['self_present']).all()
     
-    return paginate(presents, params)
+    return paginate(present_of_basket, params)
 
 @precent_router.get('/catalog/paginations/categories',response_model=Page[Present])
 async def get_all_catalog_paginations(id:int, params: Params = Depends()):

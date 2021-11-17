@@ -40,7 +40,7 @@
               </div>
               <div class="ml-3">
                 <span style="color:#B2B2B2">электронная почта</span>
-                <p style="font-weight: bold;">botaboutique@gmail.com</p>
+                <p style="font-weight: bold;">Info@giftcity.kz</p>
               </div>
             </div>
           </v-col>
@@ -80,18 +80,19 @@
         </v-row>
       </v-container>
     </section>
+
     <section class="mt-6">
       <v-container class="">
         <v-row justify="center">
           <v-col cols="12" md="12" lg="12">
-            <h4>ул. Назарбаева 36, Алматы, Казахстан</h4>
+            <h4>ул. Пушкина 36, Алматы, Казахстан</h4>
             <h5 style="color:#B2B2B2">
-              Мы работаем: ПН-ПТ: с 9.00-21.00 СБ: с 10.00-18.00 ВС: выходной
+              Мы работаем: ПН-ВС: с 9.00-20.00, без выходных.
             </h5>
           </v-col>
           <v-col cols="12" md="8" lg="8"> 
               <iframe
-               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.1632571444343!2d76.94312591578596!3d43.26895547913633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836f581bba36cb%3A0x6c74ca5e0538685f!2z0L_RgC3Rgi4g0J3QsNC30LDRgNCx0LDQtdCy0LAgMzYsINCQ0LvQvNCw0YLRiyAwNTAwMDAsINCa0LDQt9Cw0YXRgdGC0LDQvQ!5e0!3m2!1sru!2sru!4v1632245723485!5m2!1sru!2sru"
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2905.3405959343418!2d76.95077221580871!3d43.26523987913642!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38836fbda8cefd79%3A0xc05b0c28f5f43f5e!2z0YPQuy4g0J_Rg9GI0LrQuNC90LAgMzYsINCQ0LvQvNCw0YLRiyAwNTAwMDAsINCa0LDQt9Cw0YXRgdGC0LDQvQ!5e0!3m2!1sru!2sru!4v1637162420675!5m2!1sru!2sru"
                 width="100%"
                 height="620"
                 style="border:0;"

@@ -81,14 +81,7 @@ export default {
       this.$store.commit("categories/setSizepresent",this.len_items); 
 
       this.$store.commit("products/setpresents",this.productsfetch.items); 
-    this.products = this.$store.state.products.presents.filter(
-            (elem) => {
-               for (let i of elem.category) {
-                if (i.id === 2 || i.id === 8 || i.id === 3) {
-                  return elem;
-                }
-              }
-            })
+    this.products = this.$store.state.products.presents
     
         return this.products
     }
