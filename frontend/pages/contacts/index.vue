@@ -47,12 +47,16 @@
           <v-col cols="12" md="4" lg="4">
             <div class="d-flex" style="align-items: center;">
               <div>
-                <img style="width: 2rem;" src="/c3.png" alt="" />
+                
               </div>
               <div class="ml-3">
-                <span style="color:#B2B2B2">мы в мессенджерах</span>
+                <div style="display: flex;
+    align-items: center;">
+                  <img style="width: 2rem;" src="/c3.png" alt="" />
+                <span style="color:#B2B2B2"> мы в мессенджерах </span>
+                </div>
                 <div class="d-flex flex-wrap">
-                  <div class="d-flex ml-3 mt-4" style="cursor:pointer;width:100%" >
+                  <div class="d-flex ml-8 mt-4" style="cursor:pointer;width:100%" >
                     <span>Telegram</span>
                  
                                                        <a style=" text-decoration: none;color:black ;    display: flex;
@@ -64,7 +68,7 @@
                     </a>
                     
                   </div>
-                   <div class="d-flex ml-3 mt-4" style="width:100%">
+                   <div class="d-flex ml-8 mt-4" style="width:100%">
                                    <a style=" text-decoration: none;color:black ;    display: flex;
     align-items: center;" href="https://wa.me/77071015157/" target="blank">
                 
@@ -73,7 +77,7 @@
                     <img src="/ws.png" alt="">
                     </a>
                   </div>
-                                     <div class="d-flex ml-3 mt-4" style="width:100%">
+                                     <div class="d-flex ml-8 mt-4" style="width:100%">
                                    <a style=" text-decoration: none;color:black ;    display: flex;
     align-items: center;" href="https://www.instagram.com/giftcity_podarki_kz/?utm_medium=copy_link" target="blank">
                 
