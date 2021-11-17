@@ -51,8 +51,8 @@
               </div>
               <div class="ml-3">
                 <span style="color:#B2B2B2">мы в мессенджерах</span>
-                <div class="d-flex">
-                  <div class="d-flex " style="cursor:pointer">
+                <div class="d-flex flex-wrap">
+                  <div class="d-flex ml-3 mt-4" style="cursor:pointer;width:100%" >
                     <span>Telegram</span>
                  
                                                        <a style=" text-decoration: none;color:black ;    display: flex;
@@ -64,13 +64,22 @@
                     </a>
                     
                   </div>
-                   <div class="d-flex ml-3">
+                   <div class="d-flex ml-3 mt-4" style="width:100%">
                                    <a style=" text-decoration: none;color:black ;    display: flex;
     align-items: center;" href="https://wa.me/77071015157/" target="blank">
                 
               
                      <span>WhatsApp</span>
                     <img src="/ws.png" alt="">
+                    </a>
+                  </div>
+                                     <div class="d-flex ml-3 mt-4" style="width:100%">
+                                   <a style=" text-decoration: none;color:black ;    display: flex;
+    align-items: center;" href="https://www.instagram.com/giftcity_podarki_kz/?utm_medium=copy_link" target="blank">
+                
+              
+                     <span>giftcity_podarki_kz</span>
+                    <img width="30" src="/insta.png" alt="">
                     </a>
                   </div>
                 </div>
