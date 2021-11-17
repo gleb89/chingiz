@@ -47,7 +47,7 @@
         <h4 class="hh4" style="font-size: 0.9rem;text-align: center;">
          <span style="font-weight: 500;font-size: 1em;">{{ present.prevue_name }}</span> 
           <br />
-          {{present.id}}
+         
          <span style="font-size: 1.3em;font-weight: 700;">"{{ present.name_precent }}"</span> 
         </h4>
       </v-card-title>
