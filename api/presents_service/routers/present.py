@@ -384,14 +384,9 @@ async def update_one(
     
 @precent_router.get('/catalog/paginations',response_model=Page[Present])
 async def get_all_catalog_paginations(params: Params = Depends()):
-    presents = []
     present_of_basket = await Present.objects.filter(
     (Present.category.id << [2,8,3])
-    ).order_by("category__id").all()
-    # present_of_boks = Present.objects.
-    # present_of_cvet = Present.objects.
-    # presents = await Present.objects.prefetch_related(['category']).exclude_fields(
-    # ['self_present']).all()
+    ).order_by(["-category__name_category","sort_id_catalog"]).all()
     
     return paginate(present_of_basket, params)
 
@@ -469,7 +464,10 @@ async def get_all_filter():
 
 @precent_router.get('/sort/catalog')
 async def get_all_sort_catalog():
-    return await Present.objects.order_by("sort_id_catalog").all()
+    present_of_basket = await Present.objects.filter(
+    (Present.category.id << [2,8,3])
+    ).order_by("-category__name_category").all()
+    return present_of_basket
 
 
 @precent_router.put(
@@ -485,6 +483,9 @@ async def update_sort_id_catalog(
     sort_id_catalog_two = present_two.sort_id_catalog 
     await present_one.update(sort_id_catalog = sort_id_catalog_two)
     await present_two.update(sort_id_catalog = sort_id_catalog_one)
-    return await Present.objects.order_by("sort_id_catalog").all()
+    present_of_basket = await Present.objects.filter(
+    (Present.category.id << [2,8,3])
+    ).order_by("-category__name_category").all()
+    return present_of_basket
 
 
