@@ -775,5 +775,9 @@ h1 {
   border: 1px solid #f4e7e0;
 }
 
-
+#header__content .theme--light.v-input {
+    width: max-content;
+    margin-top: 1rem;
+    width: 100%;
+}
 </style>
