@@ -26,7 +26,7 @@
          <div>
           
             <v-btn 
-             v-if="!user_data.insta.length" 
+             v-if="!user_data.insta" 
             @click="onInsta" 
             rounded
             color="white"
