@@ -22,7 +22,8 @@ from routers import (
     podpicka,
     stocks,
     subcategories,
-    email
+    email,
+    insta
     )   
 
 
@@ -143,6 +144,9 @@ app.include_router(
 )
 app.include_router(
     email.app
+)
+app.include_router(
+    insta.app
 )
 
 

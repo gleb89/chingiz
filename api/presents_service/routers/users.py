@@ -55,7 +55,7 @@ async def get_all()->List[Users]:
     - Возвращает всех юсеров
     """
     return await Users.objects.select_related(
-            ["basket_user"]
+            ["basket_user","insta"]
         ).all()
 
 @app.post('/anonim/{basket_id}')
@@ -66,7 +66,7 @@ async def create_user_for_anonim_basketadd(
     - Создание юсера после анонимного добавления в корзину
     """
     user = await Users.objects.select_related(
-            ["basket_user"]
+            ["basket_user","insta"]
         ).get_or_none(uid_firebase = form_user.uid_firebase)
     basket = await Basket.objects.get(id=basket_id)
     if user:
@@ -75,7 +75,7 @@ async def create_user_for_anonim_basketadd(
         for present in basket.count_present_item.get('presents'):
             await add_present_for_basket(present['id'], user_basket)
         user = await Users.objects.select_related(
-            ["basket_user"]
+            ["basket_user","insta"]
         ).get_or_none(uid_firebase = form_user.uid_firebase)
         summ = [summ['price'] for summ in user_basket.count_present_item.get('presents')]
         basket_id = user_basket.id
@@ -85,7 +85,7 @@ async def create_user_for_anonim_basketadd(
         await new_user.basket_user.add(basket)
         summ = [summ['price'] for summ in basket.count_present_item.get('presents')]
         user = await Users.objects.select_related(
-            ["basket_user"]
+            ["basket_user","insta"]
         ).get_or_none(id = new_user.id)
         basket_id = basket.id
 
@@ -105,7 +105,11 @@ async def get_one(fairbase_id: str)->Users:
     """
     - Возвращает юсера по **fairbase_id**
     """
-    return await Users.objects.get_or_none(uid_firebase=fairbase_id)
+    return await Users.objects.prefetch_related(
+            [
+                "insta"
+            ]
+            ).get_or_none(uid_firebase=fairbase_id)
 
 
 @app.post('/upload_firstname/{firstname}/{fairbase_id}')
@@ -113,7 +117,11 @@ async def get_one(firstname:str,fairbase_id: str)->Users:
     """
     - Возвращает юсера по **fairbase_id**
     """
-    user =  await Users.objects.get_or_none(uid_firebase=fairbase_id)
+    user =  await Users.objects.prefetch_related(
+            [
+                "insta"
+            ]
+            ).get_or_none(uid_firebase=fairbase_id)
     if user:
         return await user.update(firstname=firstname)
     else:
@@ -125,7 +133,11 @@ async def get_one(fairbase_id: str, image: UploadFile = File(...))->Users:
     """
     - Возвращает юсера по **fairbase_id**
     """
-    user =  await Users.objects.get_or_none(uid_firebase=fairbase_id)
+    user =  await Users.objects.prefetch_related(
+            [
+                "insta"
+            ]
+            ).get_or_none(uid_firebase=fairbase_id)
     if user:
         avatar = await image_add(image)
         return await user.update(avatar=avatar)

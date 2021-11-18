@@ -3,6 +3,8 @@ import ormar
 from pydantic import validator
 import datetime
 
+from models.insta import Insta
+
 from config.database import metadata, database
 
 
@@ -25,6 +27,9 @@ class Users(ormar.Model):
     father_name:str = ormar.String(max_length=100, nullable=True)
     avatar: str = ormar.String(max_length=1000, nullable=True)
     points:int = ormar.Integer(nullable=True,default=0)
+    insta: Optional[List[Insta]] = ormar.ManyToMany(
+        Insta,nullable=True,related_name="self_user"
+    )
     timestamp: datetime.datetime = ormar.DateTime(
                 default=datetime.datetime.now()
                                                 )                                  

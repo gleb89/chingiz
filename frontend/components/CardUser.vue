@@ -23,7 +23,17 @@
           </div>
           <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
           <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
-          <div class="box-profile">
+         <div>
+            <v-btn 
+             v-if="!user_data.insta" 
+            @click="onInsta" 
+            rounded
+            color="white"
+            style="min-width: 20%;height: 2rem;">
+              получить бонусы  <img class="ml-3" width="23" src="/insta.png" alt="">
+            </v-btn>
+         </div>
+          <div class="box-profile mt-4">
             <div
               class="prof d-flex justify-space-between"
               @click="onPage('cabinet')"
@@ -81,6 +91,9 @@
 export default {
   props:['user_data'],
     methods: {
+      onInsta(){
+        this.$router.push('/cabinet/insta')
+      },
       onsignout(){
       console.log('out');
       this.$store.commit("localStorage/setAuthuser", '');

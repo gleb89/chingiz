@@ -133,6 +133,88 @@ def get_html_contact(data):
     '''.format(**locals())
     return html
 
+def get_html_insta(data):
+    
+    
+
+    style = """
+    <style>
+
+        .header{
+            max-width: 100%;
+            min-height: 20vh;
+            padding: 1em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header img{
+            max-width: 100%;
+        }
+        .text-email{
+            min-height: 60vh;
+            max-width: 100%;
+            padding: 1em;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        .detail{
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+  
+        h3{
+            
+        }
+        .text-detail{
+        
+        
+        }
+        span{
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+    </style>
+    """
+    # </html>
+    # '''.format(**locals())
+    html = '''\
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <style type="text/css">
+            {style}
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <img src="https://giftcity.kz/logo.png" alt="">
+        </div>
+        <div class="text-email">
+            <h3>Здравствуйте ,Уважаемый(ая) администратор!</h3>
+            
+            <h4> Новая отметка в инстаграм</h4>
+            
+            <div class="text-detail">
+                <p class="detail">Детали сообщения :</p>
+                <p><span>fairbase id клиента: </span> {data.self_user[0].uid_firebase} </p>
+                <h5><span>id отметки : </span> {data.id}</h5>
+                <h5><span>ссылка на отметку  : </span> {data.link}</h5>
+            </div>
+            <div>
+                <p>Подарки в каждой дом!</p>
+            </div>
+        </div>
+    </body>
+
+    </html>
+    '''.format(**locals())
+    return html
+
+
 @app.post('/contact')
 def send_message_contact(data:email.EmailContact):
     message = get_html_contact(data)
@@ -548,6 +630,15 @@ def simple_send(
     send_message_mail(email, send_html)
     send_me = send_me_html(oplata_data)
     send_message_mail(me_email,send_me)
+    return 'ok'
+
+
+def simple_send_insta(
+    insta_data
+    ) :
+    me_email = "info@giftcity.kz"
+    send_html = get_html_insta(insta_data)
+    send_message_mail(me_email,send_html)
     return 'ok'
 
    
