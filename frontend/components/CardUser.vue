@@ -24,8 +24,9 @@
           <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
           <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
          <div>
+          
             <v-btn 
-             v-if="!user_data.insta" 
+             v-if="!user_data.insta.length" 
             @click="onInsta" 
             rounded
             color="white"

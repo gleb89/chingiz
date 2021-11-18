@@ -89,10 +89,22 @@
           
           <p class="text-center" style="color: #ff7a00;margin-top:2rem">{{user_data.points}} бонусов</p>
           <div style="font-weight: bold;width:100%" class="text-center">El-Bazaar</div>
+
            <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
           <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
           <div class="box-profile">
-            <div class="prof d-flex justify-space-between" @click="onPagecabinet('cabinet')">
+                      <div>
+          
+            <v-btn 
+             v-if="!user_data.insta.length" 
+            @click="onInsta" 
+            rounded
+            color="white"
+            style="min-width: 20%;height: 2rem;">
+              получить бонусы  <img class="ml-3" width="23" src="/insta.png" alt="">
+            </v-btn>
+         </div>
+            <div class="prof d-flex justify-space-between mt-4" @click="onPagecabinet('cabinet')">
               <p>Настройки профиля</p>
               <img style="height: 10px;margin-top: .5rem;" src="/vect.png" alt="">
             </div>
@@ -170,7 +182,10 @@ export default {
   },
 
     methods: {
-
+      onInsta(){
+        this.$router.push('/cabinet/insta')
+        this.dialogcabinet = false
+      },
       onPagecabinet(url){
       this.$router.push('/'+url)
       this.dialogcabinet = false
