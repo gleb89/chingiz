@@ -42,6 +42,7 @@
           подробнее
         </v-btn>
       </div>
+      <!-- gg -->
       <hr />
       <v-card-title style="height: 6em;" :class="{ 'on-hover': hover }">
         <h4 class="hh4" style="font-size: 0.9rem;text-align: center;">
