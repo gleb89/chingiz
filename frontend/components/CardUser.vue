@@ -23,10 +23,10 @@
           </div>
           <p v-if="user_data.firstname" class="text-center">{{user_data.firstname}}</p>
           <p v-if="!user_data.firstname" class="text-center"><NuxtLink to="/cabinet" >Имя еще не предоставлено</NuxtLink></p>
-         <div>
+         <div v-if="user_data.insta">
           
             <v-btn 
-             v-if="!user_data.insta" 
+              v-if="!user_data.insta.length" 
             @click="onInsta" 
             rounded
             color="white"
@@ -91,6 +91,16 @@
 <script>
 export default {
   props:['user_data'],
+  data() {
+    return {
+      user_data_insta :[]
+    };
+  },
+  mounted() {
+    if(!process.client) return;
+    this.user_data_insta = this.user_data.insta
+  },
+  
     methods: {
       onInsta(){
         this.$router.push('/cabinet/insta')
