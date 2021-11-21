@@ -463,7 +463,10 @@ def send_me_html(oplata_data):
    
 
 def get_html(oplata_data):
-    summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    try:
+        summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    except:
+        summa = oplata_data.summa
     date = oplata_data.data_dostavki
     adress_user = oplata_data.adress_user
     style = """
