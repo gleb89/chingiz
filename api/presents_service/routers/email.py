@@ -331,7 +331,10 @@ def send_message_commands(
     mail.quit()
 
 def send_me_html(oplata_data):
-    summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    try:
+        summa = '{0:,}'.format(oplata_data.summa).replace(',', ' ')
+    except:
+        summa = oplata_data.summa
     date = oplata_data.data_dostavki
     adress_user = oplata_data.adress_user
     phone = oplata_data.phone_user
@@ -631,9 +634,10 @@ def simple_send(
     ) :
     # me_email = "info@giftcity.kz"
     me_email = "glebhleb89@icloud.com"
-    send_html = get_html(oplata_data)
+    
     if email:
         print('Yes')
+        send_html = get_html(oplata_data)
         send_message_mail(email, send_html)
     send_me = send_me_html(oplata_data)
     send_message_mail(me_email,send_me)
