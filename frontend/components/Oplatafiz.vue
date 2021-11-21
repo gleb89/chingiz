@@ -53,8 +53,6 @@
             label="E-mail" 
             class="prep"
             v-model="email"
-            prepend-inner-icon="*" 
-            :rules="[rules.required, rules.email]"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -487,7 +485,6 @@ mounted: function () {
       if (
         this.name &&
         this.phone &&
-        this.email &&
         this.adress &&
         this.data_dostavki &&
         this.oplata_methods  

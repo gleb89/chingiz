@@ -1,6 +1,7 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from typing import Optional
 
 from fastapi import (
     APIRouter, 
@@ -622,12 +623,13 @@ def get_html(oplata_data):
 
 @app.post("/email")
 def simple_send(
-    email: str,
-    oplata_data
+    oplata_data,
+    email:Optional[str]=None
     ) :
     me_email = "info@giftcity.kz"
     send_html = get_html(oplata_data)
-    send_message_mail(email, send_html)
+    if email:
+        send_message_mail(email, send_html)
     send_me = send_me_html(oplata_data)
     send_message_mail(me_email,send_me)
     return 'ok'

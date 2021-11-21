@@ -52,11 +52,8 @@
         </v-col>
         <v-col cols="12" sm="6" md="6">
           <v-text-field
-          :rules="[rules.required, rules.email]"
           v-model="email"
             label="E-mail"
-                   class="prep"
-              prepend-inner-icon="*"
             solo
             style="min-width:100%"
           ></v-text-field>
@@ -558,7 +555,6 @@ mounted: function () {
         this.name &&
         this.phone &&
         this.adress &&
-        this.email &&
         this.name_company &&
         this.bank_benefic &&
         this.bin_bank &&
