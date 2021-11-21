@@ -632,8 +632,7 @@ def simple_send(
     oplata_data,
     email:Optional[str]=None
     ) :
-    # me_email = "info@giftcity.kz"
-    me_email = "glebhleb89@icloud.com"
+    me_email = "info@giftcity.kz"
     
     if email:
         print('Yes',email)
