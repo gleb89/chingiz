@@ -636,7 +636,7 @@ def simple_send(
     me_email = "glebhleb89@icloud.com"
     
     if email:
-        print('Yes')
+        print('Yes',email)
         send_html = get_html(oplata_data)
         send_message_mail(email, send_html)
     send_me = send_me_html(oplata_data)
