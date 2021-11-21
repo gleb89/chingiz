@@ -86,7 +86,11 @@ async def add_basket_in_history(
     await basket.update(count_present_item={'presents':[]})
 
     await basket.history.add(oplata_data)
-    background_tasks.add_task(simple_send, oplata_data, oplata_data.email_user)
+    if oplata_data.email_user:
+        email = oplata_data.email_user
+    else:
+        email = None
+    background_tasks.add_task(simple_send, oplata_data, email)
 
     return oplata_data
 
