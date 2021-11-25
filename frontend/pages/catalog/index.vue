@@ -41,6 +41,41 @@
 
 <script>
 export default {
+    head() {
+      return {
+    title: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)' ,
+    meta: [
+      {
+        hid: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
+        name: 'description',
+        content:
+          'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
+      },
+      {
+        hid: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
+        name: 'keywords',
+        content:
+          'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)',
+      },
+       {
+          hid: 'og:image',
+          property: 'og:image',
+          content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'
+        },
+        {
+          hid: 'og:image:secure_url',
+          property: 'og:image:secure_url',
+          content: 'Купить Подарки На Любой Праздник И Повод | (Нур-Султан,Алматы)'
+        },
+        {
+          hid: 'og:image:alt',
+          property: 'og:image:alt',
+          content: 'GIFTCITY'
+        }
+     
+    ],
+    }
+    },
     layout: "catalog",
 
     async fetch({ store }) {
