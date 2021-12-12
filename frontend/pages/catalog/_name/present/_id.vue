@@ -10,7 +10,7 @@
           <nuxt-link style="color: #303030" to="/catalog"
             >Каталог</nuxt-link
           >/
-          <span>{{ product.present.name_precent }}</span>
+          <span>{{ product.present.name_precent }} {{property}}</span>
         </div>
         <Goend/>
         <h2 class="namep mt-6" style="font-weight: 400;" >{{ product.present.prevue_name }}</h2>
@@ -201,7 +201,13 @@ export default {
 
     return { product: product.data,product_id};
   },
-  computed: {},
+  computed: {
+     property() {
+      if(this.count_present < 0){
+        this.count_present = 0
+      }
+    },
+  },
 
  
 

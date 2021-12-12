@@ -36,7 +36,7 @@
     
       <span class="text-nav">КОНТАКТЫ</span>
    </v-col>
-   <v-col @click="onCatalog"  class="d-flex justify-center nav-li" style="margin-left: .7em;">
+   <v-col @click="onPage('catalog')" class="d-flex justify-center nav-li" style="margin-left: .7em;">
     
       <img width="32" height="32" style="width: 1.5rem;" src="/search.svg" alt="" />
     </v-col>
