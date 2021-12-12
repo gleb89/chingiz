@@ -181,13 +181,13 @@ async def get_all_catalog():
 async def get_all_catalog_home():
     conter = await Counter.objects.get_or_none(id=1)
     await conter.update(counter = conter.counter+1)
-    presents_new = await Present.objects.filter(category__id=2).order_by("-id").all()
-    presents_popular = await Present.objects.filter(category__id=2).order_by("-popular").all()
+    presents_new = await Present.objects.limit(18).filter(category__id=2).order_by("-id").all()
+    presents_popular = await Present.objects.limit(18).filter(category__id=2).order_by("-popular").all()
     commentserv = await commentsservice.get_all()
     all_stocks = await stocks.get_all()
     data = {
-        'new':presents_new[:18],
-        'popular':presents_popular[:18],
+        'new':presents_new,
+        'popular':presents_popular,
         'commentserv':commentserv,
         'stocks':all_stocks,
     }

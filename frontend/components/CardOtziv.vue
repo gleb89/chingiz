@@ -18,7 +18,7 @@
             
             
               <div class="body text--primary text-left" style="">
-        {{comment.body}}
+        {{comment.body.slice(0, 200)}}
       </div>
           <v-dialog
           

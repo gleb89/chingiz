@@ -20,6 +20,7 @@ docker exec -i data_present /bin/bash -c "PGPASSWORD=postgres1 pg_dump --usernam
 удалить версию алембик в файле sql
 docker exec -i data_present /bin/bash -c "PGPASSWORD=postgres1 psql --username gleb albazar" < dump11.sql
 scp root@188.68.220.99:~/chingiz/dump11.sql /home/gleb/test
+scp -r root@188.68.220.99:~/chingiz//api/presents_service/static/images /home/gleb/test
 
 git checkout -b style - создать ветку
 git add file добавляем
