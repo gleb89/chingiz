@@ -9,7 +9,7 @@ sw.\*
 # Distribution / packaging
 .Python
 **/__pycache__/
-
+.env
 build/
 develop-eggs/
 dist/
