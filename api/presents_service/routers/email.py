@@ -217,7 +217,7 @@ def get_html_insta(data):
 
 
 @app.post('/contact')
-def send_message_contact(data:email.EmailContact):
+def send_message_contactemail(data:email.EmailContact):
     message = get_html_contact(data)
     me_email = "info@giftcity.kz"
     menedjer_email = 'admin@giftcity.kz'
