@@ -220,7 +220,9 @@ def get_html_insta(data):
 def send_message_contact(data:email.EmailContact):
     message = get_html_contact(data)
     me_email = "info@giftcity.kz"
+    menedjer_email = 'admin@giftcity.kz'
     send_message_contact(me_email, message)
+    send_message_contact(menedjer_email, message)
     return True
 
 
@@ -633,13 +635,14 @@ def simple_send(
     email:Optional[str]=None
     ) :
     me_email = "info@giftcity.kz"
-    
+    menedjer_email = 'admin@giftcity.kz'
     if email:
         print('Yes',email)
         send_html = get_html(oplata_data)
         send_message_mail(email, send_html)
     send_me = send_me_html(oplata_data)
     send_message_mail(me_email,send_me)
+    send_message_mail(menedjer_email,send_me)
     return 'ok'
 
 
@@ -647,8 +650,10 @@ def simple_send_insta(
     insta_data
     ) :
     me_email = "info@giftcity.kz"
+    menedjer_email = 'admin@giftcity.kz'
     send_html = get_html_insta(insta_data)
     send_message_mail(me_email,send_html)
+    send_message_mail(menedjer_email,send_html)
     return 'ok'
 
    
