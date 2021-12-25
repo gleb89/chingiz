@@ -1,7 +1,7 @@
 <template>
 <div>
   <v-container id="section-work" style="margin-top:4rem">
-    <v-row justify="center">
+    <v-row>
       <v-col cols="12">
         <div>
           <nuxt-link style="color: #303030" to="/">Главная</nuxt-link> /
@@ -23,7 +23,7 @@
             <img src="/d1.png" alt="">
             <div class="f-flex flex-column ">
               <div>
-                <h3 style="color:#676767"  class="pl-3">стандартная - бесплатно</h3>
+                <h3 style="color:#676767"  class="pl-3">стандартная</h3>
               </div>
             <div class="mt-6">
               <span class="pl-3">(доставка на следующий день)</span>
@@ -33,37 +33,14 @@
           </div>
           <p class="mt-5"  style="color:#676767" >
             Стандартная доставка в черте административных
-            границ города. Доставка бесплатная.
+            границ города. Стоимость доставки 2 000 тг.
           </p>
           <br>
           <p style="color:#676767" >
             Остальные случаи рассчитываются индивидуально.
           </p>
           </v-col>
-        <v-col cols="12" md="6" lg="6">
-            <div class="d-flex flex-nowrap" style="align-items: center;">
-            <img src="/d2.png" alt="">
-            <div class="f-flex flex-column ">
-              <div>
-                <h3 style="color:#676767"  class="pl-3">быстрая - платно</h3>
-              </div>
-            <div class="mt-6">
-              <span class="pl-3">(доставка день в день)</span>
-            </div>
-            
-            </div>
-          </div>
-          <p class="mt-5"  style="color:#676767" >
-            <ul style="color:#ff7b03">
-              <li><span style="color:#676767">В черте улиц Саина - Достык - Аль-Фараби - Райымбек - 1 000 тг</span> </li>
-              <li><span style="color:#676767">В черте административных границ города - 1 500 тг</span> </li>
-            </ul>
-          </p>
-          <br>
-          <p style="color:#676767" >
-            Остальные случаи по запросу.
-          </p>
-          </v-col>
+
     </v-row>
     </v-container>
     <section style="background: #F4F5F6;" class="pb-6">

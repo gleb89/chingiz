@@ -122,7 +122,7 @@
           <div class="mt-14">
             <div>
 <span style="font-weight: 500;
-    ">Внимание!</span>  <br> <p style="margin-top: 1.4em;font-size: .8em;"> Возможна замена одного или нескольких элементов на равнозначный, в зависимости от наличия на складе.
+    ">Внимание!</span>  <br> <p style="margin-top: 1.4em;font-size: .8em;"><span v-if="onCa(product.present.category)">Возможна замена одного или нескольких элементов на равнозначный, в зависимости от наличия на складе.</span> 
 Заказы принятые до 17.00 доставляются день-в-день, в ином случае на следующий день ! Минимальное время заказа до доставки: за 2 часа.
 
 </p>
@@ -220,6 +220,15 @@ export default {
     };
   },
   methods: {
+    onCa(cat){
+      let tt = []
+      for(let i of cat){
+        if(i.slug_category === "Подарочныекорзины" || i.slug_category === "Подарочныебоксы"){
+          tt.push(1)
+        }
+      }
+      return tt.length
+    },
         oncatalog() {
       this.$router.push("/"+'catalog');
     },
